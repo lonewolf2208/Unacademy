@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="preloaded_fonts" translatable="false">
+        <item>@font/reem_kufi</item>
+        <item>@font/rhodium_libre</item>
+        <item>@font/rosario</item>
+        <item>@font/rosario_bold</item>
+    </array>
+</resources>
