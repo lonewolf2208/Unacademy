@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+
 }
 
 android {
@@ -15,9 +16,7 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-    buildFeatures {
-              dataBinding true
-            }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -30,6 +29,9 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
+    }
+    buildFeatures {
+        viewBinding = true
     }
 }
 
