@@ -38,6 +38,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginEnd="24dp"
             android:drawablePadding="10dp"
+            app:helperText="Required"
             app:boxStrokeWidthFocused="0dp"
             app:helperTextTextColor="@android:color/holo_red_dark"
             app:layout_constraintEnd_toEndOf="parent"
@@ -61,13 +62,14 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/LoginPassword"
+            android:id="@+id/LoginPasswordContainer"
             android:layout_width="0dp"
             android:fontFamily="@font/reem_kufi"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="24dp"
+            app:helperText="Required"
             app:helperTextTextColor="@android:color/holo_red_dark"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -75,7 +77,7 @@
             app:passwordToggleEnabled="true">
 
           <com.google.android.material.textfield.TextInputEditText
-              android:id="@+id/editTextTextPersonName2"
+              android:id="@+id/LoginPassword"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:background="@drawable/border"
@@ -118,7 +120,7 @@
             android:text="Forgot Password"
             android:textColor="#003356"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/LoginPassword" />
+            app:layout_constraintTop_toBottomOf="@+id/LoginPasswordContainer" />
 
         <TextView
             android:id="@+id/textView3"
@@ -194,7 +196,7 @@
 
         <View
             android:id="@+id/view"
-            android:layout_width="160dp"
+            android:layout_width="130dp"
             android:layout_height="2dp"
             android:layout_marginStart="30dp"
             android:layout_marginTop="26dp"
@@ -216,7 +218,7 @@
 
         <View
             android:id="@+id/view2"
-            android:layout_width="160dp"
+            android:layout_width="130dp"
             android:layout_height="2dp"
             android:layout_marginTop="26dp"
             android:layout_marginEnd="30dp"

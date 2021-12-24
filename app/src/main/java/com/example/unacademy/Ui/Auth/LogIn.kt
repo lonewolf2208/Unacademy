@@ -7,26 +7,27 @@ import android.view.ViewGroup
 import android.widget.Toast
 
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.example.unacademy.R
 import com.example.unacademy.databinding.FragmentLogInBinding
 //import com.example.unacademy.databinding.FragmentLogInBinding
-import com.example.unacademy.viewModel.LogInViewModel
 
 
 class LogIn : Fragment() ,View.OnClickListener{
     private var binding:FragmentLogInBinding?=null
+    private var validationFlagEmail = 0
+    private var validationFlagPassword = 0
+//     var logInViewModel= LogInViewModel()
 
-     var logInViewModel= LogInViewModel()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View?
     {
         binding = FragmentLogInBinding.inflate(inflater,container,false)
+        emailFocusListener()
+        passwordFocusListener()
         // Inflate the layout for this fragment
 //        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_log_in,container,false)
 //
@@ -64,13 +65,64 @@ class LogIn : Fragment() ,View.OnClickListener{
     }
 
     override fun onClick(v: View?) {
+
+        var passText= binding?.LoginPassword
         val navController = findNavController()
+        var emailText= binding?.LoginEmailAdress
         when(v?.id)
         {
-            R.id.ForgotPassword ->navController.navigate(R.id.action_logIn_to_emailVerification)
-            R.id.LogInButton -> navController.navigate(R.id.signUp)
+
+            R.id.LogInButton ->
+            {
+                emailText?.clearFocus()
+                passText?.clearFocus()
+                if(validationFlagEmail==1 && validationFlagPassword==1) {
+                    navController.navigate(R.id.action_logIn_to_emailVerification)
+                }
+
+            }
+            R.id.ForgotPassword-> navController.navigate(R.id.action_logIn_to_emailVerification)
             R.id.SignUpButtonLogIn->navController.navigate(R.id.action_logIn_to_signUp)
+        }
+    }
+    private fun passwordFocusListener()
+    {
+        binding?.LoginPassword?.setOnFocusChangeListener { _, focused ->
+            if(!focused) {
+                var passText= binding?.LoginPassword?.text.toString().trim()
+                if(Validations.validPassword(passText) ==null){
+                    binding!!.LoginPasswordContainer.helperText=""
+                    validationFlagPassword=1
+                }
+                else {
+
+                    binding!!.LoginPasswordContainer.helperText =
+                        Validations.validPassword(passText).toString()
+                    validationFlagPassword=0
+                }
+            }
+        }
+    }
+    private fun emailFocusListener()
+
+    {
+
+        binding?.LoginEmailAdress?.setOnFocusChangeListener { _, focused ->
+            if(!focused) {
+                var emailText= binding?.LoginEmailAdress?.text.toString().trim()
+                if(Validations.emailValdiation(emailText) == null)
+                {
+                    binding!!.LoginEmailContainer.helperText=""
+                    validationFlagEmail=1
+                }
+                else {
+                    binding!!.LoginEmailContainer.helperText =
+                        Validations.emailValdiation(emailText)
+                    validationFlagEmail=0
+                }
+            }
         }
     }
 
 }
+
