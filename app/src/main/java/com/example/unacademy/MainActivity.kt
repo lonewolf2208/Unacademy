@@ -3,7 +3,7 @@ package com.example.unacademy
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.Navigation
-import com.example.unacademy.viewModel.MainViewModel
+//import com.example.unacademy.viewModel.MainViewModel
 import com.example.unacademy.databinding.ActivityMainBinding
 
 
