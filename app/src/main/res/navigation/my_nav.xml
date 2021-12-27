@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_nav"
+    app:startDestination="@id/splash_Screen">
+
+    <fragment
+        android:id="@+id/logIn"
+        android:name="com.example.unacademy.Ui.Auth.LogIn"
+        android:label="fragment_log_in"
+        tools:layout="@layout/fragment_log_in" >
+        <action
+            android:id="@+id/action_logIn_to_signUp"
+            app:destination="@id/signUp" />
+        <action
+            android:id="@+id/action_logIn_to_emailVerification"
+            app:destination="@id/emailVerification" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUp"
+        android:name="com.example.unacademy.Ui.Auth.SignUp"
+        android:label="fragment_sign_up"
+        tools:layout="@layout/fragment_sign_up" >
+        <action
+            android:id="@+id/action_signUp_to_otp"
+            app:destination="@id/otp" />
+        <action
+            android:id="@+id/action_signUp_to_logIn"
+            app:destination="@id/logIn" />
+    </fragment>
+    <fragment
+        android:id="@+id/otp"
+        android:name="com.example.unacademy.Ui.Auth.Otp"
+        android:label="fragment_otp"
+        tools:layout="@layout/fragment_otp" >
+        <action
+            android:id="@+id/action_otp_to_createPassword"
+            app:destination="@id/createPassword" />
+        <action
+            android:id="@+id/action_otp_to_changePassword"
+            app:destination="@id/changePassword" />
+    </fragment>
+    <fragment
+        android:id="@+id/createPassword"
+        android:name="com.example.unacademy.Ui.Auth.CreatePassword"
+        android:label="fragment_create_password"
+        tools:layout="@layout/fragment_create_password" >
+        <action
+            android:id="@+id/action_createPassword_to_logIn"
+            app:destination="@id/logIn" />
+    </fragment>
+    <fragment
+        android:id="@+id/emailVerification"
+        android:name="com.example.unacademy.Ui.Auth.EmailVerification"
+        android:label="fragment_email_verification"
+        tools:layout="@layout/fragment_email_verification" >
+        <action
+            android:id="@+id/action_emailVerification_to_changePassword"
+            app:destination="@id/changePassword" />
+        <action
+            android:id="@+id/action_emailVerification_to_otp"
+            app:destination="@id/otpChangePassword" />
+    </fragment>
+    <fragment
+        android:id="@+id/changePassword"
+        android:name="com.example.unacademy.Ui.Auth.ChangePassword"
+        android:label="fragment_change_password"
+        tools:layout="@layout/fragment_change_password" />
+    <fragment
+        android:id="@+id/splash_Screen"
+        android:name="com.example.unacademy.Splash_Screen"
+        android:label="fragment_splash__screen"
+        tools:layout="@layout/fragment_splash__screen" >
+        <action
+            android:id="@+id/action_splash_Screen_to_logIn"
+            app:destination="@id/logIn" />
+        <action
+            android:id="@+id/action_splash_Screen_to_signUp"
+            app:destination="@id/signUp" />
+    </fragment>
+    <fragment
+        android:id="@+id/otpChangePassword"
+        android:name="com.example.unacademy.Ui.Auth.OtpChangePassword"
+        android:label="fragment_otp_change_password"
+        tools:layout="@layout/fragment_otp_change_password" />
+</navigation>
