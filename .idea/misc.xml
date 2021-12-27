@@ -6,6 +6,7 @@
         <entry key="..\:/Users/Dell/AndroidStudioProjects/Unacademy/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.14635416666666667" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/Unacademy/app/src/main/res/drawable/border.xml" value="0.26615384615384613" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/Unacademy/app/src/main/res/drawable/ic_bgauth.xml" value="0.26615384615384613" />
+        <entry key="..\:/Users/Dell/AndroidStudioProjects/Unacademy/app/src/main/res/drawable/ic_googlelogo.xml" value="0.14635416666666667" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/Unacademy/app/src/main/res/drawable/ic_launcher_background.xml" value="0.14635416666666667" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/Unacademy/app/src/main/res/drawable/ic_loginimage.xml" value="0.2611111111111111" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/Unacademy/app/src/main/res/font/reem_kufi.xml" value="0.284375" />
@@ -15,7 +16,9 @@
         <entry key="..\:/Users/Dell/AndroidStudioProjects/Unacademy/app/src/main/res/layout/fragment_email_verification.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/Unacademy/app/src/main/res/layout/fragment_log_in.xml" value="0.264" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/Unacademy/app/src/main/res/layout/fragment_otp.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Dell/AndroidStudioProjects/Unacademy/app/src/main/res/layout/fragment_otp_change_password.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/Unacademy/app/src/main/res/layout/fragment_sign_up.xml" value="0.2" />
+        <entry key="..\:/Users/Dell/AndroidStudioProjects/Unacademy/app/src/main/res/layout/fragment_splash__screen.xml" value="0.25416666666666665" />
       </map>
     </option>
   </component>

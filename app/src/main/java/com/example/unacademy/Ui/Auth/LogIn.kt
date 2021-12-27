@@ -13,6 +13,7 @@ import androidx.lifecycle.LifecycleCoroutineScope
 import androidx.navigation.fragment.findNavController
 import com.example.unacademy.R
 import com.example.unacademy.Repository.ApiRepo
+import com.example.unacademy.Repository.GetTokenRepo
 //import com.example.unacademy.Repository.ApiRepo
 import com.example.unacademy.Repository.Response
 import com.example.unacademy.api.Api
@@ -49,6 +50,7 @@ class LogIn : Fragment() ,View.OnClickListener{
 //        val Api = RetrofitClient.getInstance().create(Api::class.java)
         ApiRepo= ApiRepo(RetrofitClient.init())
 //        ApiRepo= ApiRepo(Api)
+        Toast.makeText(context,GetTokenRepo.accessToken,Toast.LENGTH_LONG).show()
         emailFocusListener()
         passwordFocusListener()
         // Inflate the layout for this fragment
@@ -105,10 +107,10 @@ class LogIn : Fragment() ,View.OnClickListener{
                         ApiRepo?.getLoginApi(emailText?.text.toString(),passText?.text.toString())
                         ApiRepo?.ApiResponse?.observe(this@LogIn,{
                             when (it) {
-
-                                is Response.Success -> {
+                                is Response.Success ->
+                                {
+                                    binding?.LogInButton?.isEnabled = true
                                     binding?.progressBarLogin?.visibility=View.INVISIBLE
-
                                     Toast.makeText(context,"Logged In", Toast.LENGTH_LONG).show()
 
                                 }
@@ -120,11 +122,7 @@ class LogIn : Fragment() ,View.OnClickListener{
                                 is Response.Loading->
                                 {
                                     binding?.progressBarLogin?.visibility=View.VISIBLE
-                                    Toast.makeText(context,"Lading", Toast.LENGTH_LONG).show()
-                                }
-                                else-> {
-                                    binding?.LogInButton?.isEnabled = true
-                                    Toast.makeText(context,"ElseBlock", Toast.LENGTH_LONG).show()
+
                                 }
                             }
                         })
