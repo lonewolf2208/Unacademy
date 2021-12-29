@@ -35,7 +35,7 @@ class EmailVerification : Fragment(),View.OnClickListener {
         savedInstanceState: Bundle?
     ): View? {
         _binding= FragmentEmailVerificationBinding.inflate(inflater,container,false)
-        SignUpRepo=SignUpRepo(RetrofitClient.init())
+
 
 //        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_email_verification,container,false)
 //        binding.lifecycleOwner=this
@@ -63,11 +63,13 @@ class EmailVerification : Fragment(),View.OnClickListener {
             R.id.EmailVerifyButtonEmailVerification-> {
                 binding.emailEmailVerification.clearFocus()
                 if(validationFlagEmail==1) {
+                    SignUpRepo=SignUpRepo(RetrofitClient.init())
                     emailChangePassword=binding?.emailEmailVerification?.text.toString()
                     SignUpRepo?.SignUpApi( binding?.emailEmailVerification?.text.toString(),"")
                     SignUpRepo?.SignUpResponse?.observe(this@EmailVerification,{
                         when (it) {
                             is com.example.unacademy.Repository.Response.Success -> {
+                                binding?.progressBarEmailVerification?.visibility=View.INVISIBLE
 //                                binding?.progressBarSignUp?.visibility=View.INVISIBLE
 //                                SignUp.name =binding?.SignUpName?.text.toString()
 //                                SignUp.email = binding?.SignUpEmailAdress?.text.toString()
@@ -81,18 +83,19 @@ class EmailVerification : Fragment(),View.OnClickListener {
                                 navController.navigate(R.id.otpChangePassword)
                             }
                             is com.example.unacademy.Repository.Response.Error -> {
+                                binding?.EmailVerifyButtonEmailVerification?.isEnabled=true
+                                binding?.progressBarEmailVerification?.visibility=View.INVISIBLE
 //                                binding?.progressBarSignUp?.visibility=View.INVISIBLE
 //                                binding?.verifyEmailSignUp?.isEnabled=true
                                 Toast.makeText(context,it.errorMessage.toString(), Toast.LENGTH_LONG).show()
                             }
                             is com.example.unacademy.Repository.Response.Loading->
                             {
-//                                binding?.progressBarSignUp?.visibility=View.VISIBLE
-                                Toast.makeText(context,it.errorMessage.toString(), Toast.LENGTH_LONG).show()
+                                binding?.EmailVerifyButtonEmailVerification?.isEnabled=false
+                                binding?.progressBarEmailVerification?.visibility=View.VISIBLE
+
                             }
-                            else-> {
-                                Toast.makeText(context,"ElseBlock", Toast.LENGTH_LONG).show()
-                            }
+
                         }
                     })
                 }

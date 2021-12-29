@@ -1,23 +1,18 @@
-package com.example.unacademy
+package com.example.unacademy.Ui.Auth
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.preferencesKey
 import androidx.datastore.preferences.createDataStore
-import androidx.lifecycle.lifecycleScope
-import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import com.example.unacademy.R
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.launch
-import java.util.logging.Handler
 
 
 class Splash_Screen : Fragment() {
@@ -28,7 +23,7 @@ class Splash_Screen : Fragment() {
         suspend fun save(key:String,value:Boolean)
         {
             val dataStoreKey= preferencesKey<Boolean>(key)
-            dataStore?.edit {Settings->
+            dataStore?.edit { Settings->
                 Settings[dataStoreKey]=value
             }
 

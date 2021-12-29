@@ -27,8 +27,9 @@ class OtpChangePassword : Fragment(),View.OnClickListener {
     ): View? {
         // Inflate the layout for this fragment
         _binding= FragmentOtpChangePasswordBinding.inflate(inflater, container, false)
-        otp= OtpRepo(RetrofitClient.init())
+
         binding.otpVerifyButtonChangePassword.setOnClickListener(this)
+        binding.ResendOtpChangePassword.setOnClickListener(this)
         return binding.root
     }
 
@@ -37,6 +38,7 @@ class OtpChangePassword : Fragment(),View.OnClickListener {
         when(v?.id)
         {
             R.id.otpVerifyButtonChangePassword-> {
+                otp= OtpRepo(RetrofitClient.init())
                 binding.otpVerifyButtonChangePassword.isEnabled=false
                 var email:String=EmailVerification.emailChangePassword
 
@@ -59,6 +61,7 @@ class OtpChangePassword : Fragment(),View.OnClickListener {
                         is com.example.unacademy.Repository.Response.Loading->
                         {
                             binding.progressBarOtpChangePassword.visibility=View.VISIBLE
+                            binding.otpVerifyButtonChangePassword.isEnabled=false
 //                            Toast.makeText(context,"Loading", Toast.LENGTH_LONG).show()
                         }
 
@@ -66,7 +69,7 @@ class OtpChangePassword : Fragment(),View.OnClickListener {
                 })
 
             }
-            R.id.ResendOtp->
+            R.id.ResendOtpChangePassword->
             { var SignUpRepo= SignUpRepo(RetrofitClient.init())
                 SignUpRepo?.SignUpApi(SignUp.email,SignUp.name)
                 Toast.makeText(context,"Otp has been Sent Successfully", Toast.LENGTH_LONG).show()

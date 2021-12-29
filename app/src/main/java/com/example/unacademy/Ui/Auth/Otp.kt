@@ -6,15 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.unacademy.R
 import com.example.unacademy.Repository.OtpRepo
 import com.example.unacademy.Repository.SignUpRepo
-import com.example.unacademy.Splash_Screen
 import com.example.unacademy.api.RetrofitClient
 import com.example.unacademy.databinding.FragmentOtpBinding
-import kotlinx.coroutines.launch
 
 
 class Otp : Fragment(),View.OnClickListener {
@@ -29,7 +26,7 @@ class Otp : Fragment(),View.OnClickListener {
     ): View? {
         // Inflate the layout for this fragment
         _binding= FragmentOtpBinding.inflate(inflater, container, false)
-        otp= OtpRepo(RetrofitClient.init())
+
         binding.otpVerifyButton.setOnClickListener(this)
         binding.ResendOtp.setOnClickListener(this)
         return binding.root
@@ -45,6 +42,7 @@ class Otp : Fragment(),View.OnClickListener {
         when(v?.id)
         {
             R.id.otpVerifyButton-> {
+                otp= OtpRepo(RetrofitClient.init())
                 binding.otpVerifyButton.isEnabled=false
                 var email:String=SignUp.email
 

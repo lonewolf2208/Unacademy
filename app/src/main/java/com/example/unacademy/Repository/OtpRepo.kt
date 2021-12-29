@@ -34,11 +34,11 @@ class OtpRepo(private var Api:Api) {
                 }
                 else if(response.code()==400)
                 {
-                    OtpLiveData.postValue(Response.Error("Otp Expired"))
+                    OtpLiveData.postValue(Response.Error("Otp Expired !! Please resend OTP"))
                 }
                 else
                 {
-                    OtpLiveData.postValue(Response.Error(response.code().toString()))
+                    OtpLiveData.postValue(Response.Error("Something went Wrong ! Please Try Again"))
                 }
             }
 

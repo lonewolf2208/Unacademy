@@ -29,7 +29,7 @@ class ChangePassword : Fragment() ,View.OnClickListener{
     ): View? {
         // Inflate the layout for this fragment
         _binding= FragmentChangePasswordBinding.inflate(inflater,container,false)
-        ChangePasswordRepo= ChangePasswordRepo(RetrofitClient.init())
+
         binding?.doneButtonChangePassword?.setOnClickListener(this)
         passwordFocusListener()
         return binding?.root
@@ -77,12 +77,14 @@ class ChangePassword : Fragment() ,View.OnClickListener{
                 binding?.ConfirmPasswordChangePassword?.clearFocus()
                 if(validationFlagPassword1==1  && validationFlagPassword2==1)
                 {
+                    ChangePasswordRepo= ChangePasswordRepo(RetrofitClient.init())
                     ChangePasswordRepo?.PasswordApi(EmailVerification.emailChangePassword, binding?.ConfirmPasswordChangePassword?.text.toString())
-                    Toast.makeText(context,EmailVerification.emailChangePassword,Toast.LENGTH_LONG).show()
                     ChangePasswordRepo?.ChangePasswordResponse?.observe(this@ChangePassword,{
                         when (it) {
                             is Response.Success ->
                             {
+                                binding?.progressBarChangePassword?.visibility=View.INVISIBLE
+                                binding?.doneButtonChangePassword?.isEnabled=true
 //                                var GetTokenRepo= GetTokenRepo(RetrofitClient.init())
 //                                GetTokenRepo.getToken(EmailVerification.emailChangePassword,binding?.ConfirmPasswordChangePassword?.text.toString())
 //                                Toast.makeText(context,com.example.unacademy.Repository.GetTokenRepo.accessToken,
@@ -96,13 +98,16 @@ class ChangePassword : Fragment() ,View.OnClickListener{
                                 navController.navigate(R.id.logIn)
                             }
                             is Response.Error -> {
+                                binding?.progressBarChangePassword?.visibility=View.INVISIBLE
+                                binding?.doneButtonChangePassword?.isEnabled=true
 //                                binding.progressBarCreatePassword.visibility=View.INVISIBLE
 //                                binding.signInButtonCreatePassword.isEnabled=true
                                 Toast.makeText(context,it.errorMessage.toString(), Toast.LENGTH_LONG).show()
                             }
                             is Response.Loading->
                             {
-//                                binding.progressBarCreatePassword.visibility=View.VISIBLE
+                                binding?.progressBarChangePassword?.visibility=View.VISIBLE
+                                binding?.doneButtonChangePassword?.isEnabled=false
                             }
 
                         }

@@ -37,9 +37,6 @@
         <action
             android:id="@+id/action_otp_to_createPassword"
             app:destination="@id/createPassword" />
-        <action
-            android:id="@+id/action_otp_to_changePassword"
-            app:destination="@id/changePassword" />
     </fragment>
     <fragment
         android:id="@+id/createPassword"
@@ -56,9 +53,6 @@
         android:label="fragment_email_verification"
         tools:layout="@layout/fragment_email_verification" >
         <action
-            android:id="@+id/action_emailVerification_to_changePassword"
-            app:destination="@id/changePassword" />
-        <action
             android:id="@+id/action_emailVerification_to_otp"
             app:destination="@id/otpChangePassword" />
     </fragment>
@@ -69,7 +63,7 @@
         tools:layout="@layout/fragment_change_password" />
     <fragment
         android:id="@+id/splash_Screen"
-        android:name="com.example.unacademy.Splash_Screen"
+        android:name="com.example.unacademy.Ui.Auth.Splash_Screen"
         android:label="fragment_splash__screen"
         tools:layout="@layout/fragment_splash__screen" >
         <action
@@ -83,5 +77,9 @@
         android:id="@+id/otpChangePassword"
         android:name="com.example.unacademy.Ui.Auth.OtpChangePassword"
         android:label="fragment_otp_change_password"
-        tools:layout="@layout/fragment_otp_change_password" />
+        tools:layout="@layout/fragment_otp_change_password" >
+        <action
+            android:id="@+id/action_otpChangePassword_to_changePassword"
+            app:destination="@id/changePassword" />
+    </fragment>
 </navigation>

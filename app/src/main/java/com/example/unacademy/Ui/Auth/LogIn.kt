@@ -1,6 +1,7 @@
 package com.example.unacademy.Ui.Auth
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +11,9 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleCoroutineScope
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.example.unacademy.Activities.NavBarActivity
 import com.example.unacademy.R
 import com.example.unacademy.Repository.ApiRepo
 import com.example.unacademy.Repository.GetTokenRepo
@@ -38,9 +41,7 @@ class LogIn : Fragment() ,View.OnClickListener{
     private var validationFlagEmail = 0
     private var validationFlagPassword = 0
     lateinit var ApiRepo: ApiRepo
-     var logInViewModel= LogInViewModel()
-
-
+//     var logInViewModel= LogInViewModel()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -48,9 +49,8 @@ class LogIn : Fragment() ,View.OnClickListener{
     {
         binding = FragmentLogInBinding.inflate(inflater,container,false)
 //        val Api = RetrofitClient.getInstance().create(Api::class.java)
-        ApiRepo= ApiRepo(RetrofitClient.init())
+
 //        ApiRepo= ApiRepo(Api)
-        Toast.makeText(context,GetTokenRepo.accessToken,Toast.LENGTH_LONG).show()
         emailFocusListener()
         passwordFocusListener()
         // Inflate the layout for this fragment
@@ -102,6 +102,7 @@ class LogIn : Fragment() ,View.OnClickListener{
                 passText?.clearFocus()
                 if (validationFlagEmail == 1 && validationFlagPassword == 1)
                 {
+                    ApiRepo= ApiRepo(RetrofitClient.init())
                     binding?.LogInButton?.isEnabled = false
                         var LoginDataClass = LoginDataClass(emailText?.text.toString(), passText?.text.toString())
                         ApiRepo?.getLoginApi(emailText?.text.toString(),passText?.text.toString())
@@ -111,8 +112,27 @@ class LogIn : Fragment() ,View.OnClickListener{
                                 {
                                     binding?.LogInButton?.isEnabled = true
                                     binding?.progressBarLogin?.visibility=View.INVISIBLE
+                                    var GetTokenRepo=GetTokenRepo(RetrofitClient.init())
+                                    GetTokenRepo.getToken(emailText?.text.toString(),passText?.text.toString())
+//                                Toast.makeText(context,GetTokenRepo.TokenResponse.value.toString(),Toast.LENGTH_LONG).show()
+                                    GetTokenRepo.TokenResponse.observe(this@LogIn,
+                                        {
+                                            when(it)
+                                            {
+                                                is Response.Success->
+                                                {
+                                                    lifecycleScope.launch {
+                                                        Splash_Screen.saveInfo("access",it.data?.access.toString())
+                                                        Splash_Screen.saveInfo("refresh",it.data?.refresh.toString())
+                                                    }
+                                                    val intent = Intent(activity,NavBarActivity::class.java)
+                                                    startActivity(intent)
+                                                }
+                                                is Response.Loading->Toast.makeText(context,"Loading",Toast.LENGTH_LONG).show()
+                                                is Response.Error->Toast.makeText(context,"Error",Toast.LENGTH_LONG).show()
+                                            }
+                                        })
                                     Toast.makeText(context,"Logged In", Toast.LENGTH_LONG).show()
-
                                 }
                                 is Response.Error -> {
                                     binding?.LogInButton?.isEnabled = true

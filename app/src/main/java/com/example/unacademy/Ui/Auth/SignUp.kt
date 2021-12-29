@@ -6,22 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.lifecycle.lifecycleScope
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.example.unacademy.R
-import com.example.unacademy.Repository.ApiRepo
 import com.example.unacademy.Repository.SignUpRepo
-import com.example.unacademy.Splash_Screen
-import com.example.unacademy.api.Api
 import com.example.unacademy.api.RetrofitClient
 import com.example.unacademy.databinding.FragmentSignUpBinding
-import com.example.unacademy.models.SignUpDataClass
-import kotlinx.coroutines.launch
-import okhttp3.ResponseBody
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 
 class SignUp : Fragment(),View.OnClickListener {
@@ -44,7 +33,6 @@ class SignUp : Fragment(),View.OnClickListener {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentSignUpBinding.inflate(inflater,container,false)
-        SignupRepo= SignUpRepo(RetrofitClient.init())
         binding?.LogInSignUp?.setOnClickListener(this)
         binding?.verifyEmailSignUp?.setOnClickListener(this)
 //        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_sign_up,container,false)
@@ -67,6 +55,7 @@ class SignUp : Fragment(),View.OnClickListener {
         {
             R.id.LogInSignUp -> navController.navigate(R.id.action_signUp_to_logIn)
             R.id.verifyEmailSignUp-> {
+                SignupRepo= SignUpRepo(RetrofitClient.init())
                 binding?.SignUpEmailAdress?.clearFocus()
                 binding?.SignUpName?.clearFocus()
                 if(validationFlagEmail==1 && nameValidation == 1) {

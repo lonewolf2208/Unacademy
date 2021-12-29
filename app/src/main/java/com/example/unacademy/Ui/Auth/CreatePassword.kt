@@ -12,7 +12,6 @@ import com.example.unacademy.R
 import com.example.unacademy.Repository.GetTokenRepo
 import com.example.unacademy.Repository.PasswordRepo
 import com.example.unacademy.Repository.Response
-import com.example.unacademy.Splash_Screen
 import com.example.unacademy.api.RetrofitClient
 import com.example.unacademy.databinding.FragmentCreatePasswordBinding
 import kotlinx.coroutines.launch
@@ -31,7 +30,7 @@ class CreatePassword : Fragment() ,View.OnClickListener{
     ): View? {
         // Inflate the layout for this fragment
         _binding= FragmentCreatePasswordBinding.inflate(inflater, container, false)
-        passwordRepo= PasswordRepo(RetrofitClient.init())
+
         binding.signInButtonCreatePassword.setOnClickListener(this)
         passwordFocusListener()
         return binding.root
@@ -54,6 +53,7 @@ class CreatePassword : Fragment() ,View.OnClickListener{
                 binding.NewPasswordCreatePassword.clearFocus()
                 if(validationFlagPassword1==1 && validationFlagPassword2==1) {
                     binding.signInButtonCreatePassword.isEnabled=false
+                    passwordRepo= PasswordRepo(RetrofitClient.init())
                     passwordRepo?.PasswordApi(name,email,binding.ConfirmPasswordCreatePassword.text.toString())
                     passwordRepo?.PasswordResponse?.observe(this@CreatePassword,{
                         when (it) {
