@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/teachers_side"
+    app:startDestination="@id/homePageTeachersSide">
+
+    <activity
+        android:id="@+id/navBarActivity"
+        android:name="com.example.unacademy.Activities.NavBarActivity"
+        android:label="activity_nav_bar"
+        tools:layout="@layout/activity_nav_bar" />
+    <fragment
+        android:id="@+id/homePageTeachersSide"
+        android:name="com.example.unacademy.Ui.TeachersSide.HomePageTeachersSide"
+        android:label="fragment_home_page_teachers_side"
+        tools:layout="@layout/fragment_home_page_teachers_side" />
+    <fragment
+        android:id="@+id/profileTeachersSide"
+        android:name="com.example.unacademy.Ui.TeachersSide.ProfileTeachersSide"
+        android:label="fragment_profile_teachers_side"
+        tools:layout="@layout/fragment_profile_teachers_side" />
+</navigation>
