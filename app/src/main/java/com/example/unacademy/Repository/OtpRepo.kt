@@ -43,7 +43,7 @@ class OtpRepo(private var Api:Api) {
             }
 
             override fun onFailure(call: Call<Message?>, t: Throwable) {
-               OtpLiveData.postValue(Response.Error(t.message))
+               OtpLiveData.postValue(Response.Error("Something went wrong . Please try again !!"))
             }
         })
     }

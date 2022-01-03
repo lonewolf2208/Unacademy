@@ -51,7 +51,7 @@ class ApiRepo(private var Api:Api) {
         }
         catch (e:Exception)
         {
-            ApiLiveData.postValue(Response.Error(e.message))
+            ApiLiveData.postValue(Response.Error("Something went wrong . Please try again !!"))
         }
 
     }

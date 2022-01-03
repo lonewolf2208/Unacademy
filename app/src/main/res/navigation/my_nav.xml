@@ -42,7 +42,11 @@
         android:id="@+id/createPassword"
         android:name="com.example.unacademy.Ui.Auth.CreatePassword"
         android:label="fragment_create_password"
-        tools:layout="@layout/fragment_create_password" />
+        tools:layout="@layout/fragment_create_password" >
+        <action
+            android:id="@+id/action_createPassword_to_chooseRole"
+            app:destination="@id/chooseRole" />
+    </fragment>
     <fragment
         android:id="@+id/emailVerification"
         android:name="com.example.unacademy.Ui.Auth.EmailVerification"
@@ -87,4 +91,9 @@
             android:id="@+id/action_signUpLoginPage_to_signUp"
             app:destination="@id/signUp" />
     </fragment>
+    <fragment
+        android:id="@+id/chooseRole"
+        android:name="com.example.unacademy.Ui.Auth.ChooseRole"
+        android:label="fragment_choose_role"
+        tools:layout="@layout/fragment_choose_role" />
 </navigation>

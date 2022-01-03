@@ -72,13 +72,12 @@ class CreatePassword : Fragment() ,View.OnClickListener{
                                                    Splash_Screen.saveInfo("access",it.data?.access.toString())
                                                    Splash_Screen.saveInfo("refresh",it.data?.refresh.toString())
                                                }
-                                                navController.navigate(R.id.action_createPassword_to_logIn)}
-                                            is Response.Loading->Toast.makeText(context,"Loading",Toast.LENGTH_LONG).show()
+                                                navController.navigate(R.id.action_createPassword_to_chooseRole)
+                                            }
                                             is Response.Error->Toast.makeText(context,"Error",Toast.LENGTH_LONG).show()
                                         }
                                     })
                                 binding.progressBarCreatePassword.visibility=View.INVISIBLE
-                                Toast.makeText(context,"LoggedIn", Toast.LENGTH_LONG).show()
 //                                navController.navigate(R.id.action_createPassword_to_logIn)
                             }
                             is Response.Error -> {

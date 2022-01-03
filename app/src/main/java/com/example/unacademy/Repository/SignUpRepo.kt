@@ -32,7 +32,7 @@ class SignUpRepo(private var Api:Api) {
             }
 
             override fun onFailure(call: Call<ResponseBody?>, t: Throwable) {
-                SignUpLiveData.postValue(Response.Error(t.message))
+                SignUpLiveData.postValue(Response.Error("Something went wrong . Please try again !!"))
             }
         })
 

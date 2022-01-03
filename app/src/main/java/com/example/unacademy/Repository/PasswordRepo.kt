@@ -38,7 +38,7 @@ class PasswordRepo(private var Api:Api) {
             }
 
             override fun onFailure(call: Call<ResponseBody?>, t: Throwable) {
-                PasswordRepoLiveData.postValue(Response.Error(t.message))
+                PasswordRepoLiveData.postValue(Response.Error("Something went wrong . Please try again !!"))
             }
         })
 
