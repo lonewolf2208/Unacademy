@@ -62,7 +62,7 @@ class Splash_Screen : Fragment() {
         val view=inflater.inflate(R.layout.fragment_splash__screen, container, false)
         android.os.Handler().postDelayed(
             {
-               findNavController().navigate(R.id.action_splash_Screen_to_logIn)
+               findNavController().navigate(R.id.action_splash_Screen_to_signUpLoginPage)
             },3000)
         return view
     }

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Ui.Auth.SignUpLoginPage">
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+  <androidx.constraintlayout.widget.ConstraintLayout
+      android:layout_height="match_parent"
+      android:layout_width="match_parent">
+
+      <TextView
+          android:id="@+id/textView27"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="24dp"
+          android:layout_marginTop="393dp"
+          android:layout_marginEnd="157dp"
+          android:fontFamily="@font/rubik_mono_one"
+          android:text="UNACADEMY"
+          android:textColor="#000000"
+          android:textSize="30sp"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent" />
+
+      <TextView
+          android:id="@+id/textView28"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="24dp"
+          android:layout_marginTop="6dp"
+          android:layout_marginEnd="24dp"
+          android:text="“Think out of the box and create a learning experience where the learner can interact with the content and their brains.”"
+          android:textSize="19sp"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/textView27" />
+
+      <Button
+          android:id="@+id/OpeningSignUpButton"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="24dp"
+          android:layout_marginTop="18dp"
+          android:layout_marginEnd="24dp"
+          android:backgroundTint="#003356"
+          android:fontFamily="@font/reem_kufi"
+          android:paddingTop="9dp"
+          android:paddingBottom="9dp"
+          android:text="Sign Up"
+          android:textAllCaps="false"
+          android:textSize="20sp"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/textView28" />
+
+      <com.google.android.material.button.MaterialButton
+          android:id="@+id/OpeningLoginButton"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="24dp"
+          android:layout_marginTop="16dp"
+          android:layout_marginEnd="24dp"
+          android:backgroundTint="@color/white"
+          android:fontFamily="@font/reem_kufi"
+          android:paddingTop="9dp"
+          android:paddingBottom="9dp"
+          android:text="Log In"
+          android:textAllCaps="false"
+          android:textColor="#003356"
+          android:textSize="20sp"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/OpeningSignUpButton"
+          app:strokeColor="#163A53"
+          app:strokeWidth="2dp" />
+
+      <ImageView
+          android:id="@+id/imageView9"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:src="@drawable/ic_bgauth"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent" />
+  </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
+</FrameLayout>

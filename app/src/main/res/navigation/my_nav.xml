@@ -42,11 +42,7 @@
         android:id="@+id/createPassword"
         android:name="com.example.unacademy.Ui.Auth.CreatePassword"
         android:label="fragment_create_password"
-        tools:layout="@layout/fragment_create_password" >
-        <action
-            android:id="@+id/action_createPassword_to_logIn"
-            app:destination="@id/logIn" />
-    </fragment>
+        tools:layout="@layout/fragment_create_password" />
     <fragment
         android:id="@+id/emailVerification"
         android:name="com.example.unacademy.Ui.Auth.EmailVerification"
@@ -67,11 +63,8 @@
         android:label="fragment_splash__screen"
         tools:layout="@layout/fragment_splash__screen" >
         <action
-            android:id="@+id/action_splash_Screen_to_logIn"
-            app:destination="@id/logIn" />
-        <action
-            android:id="@+id/action_splash_Screen_to_signUp"
-            app:destination="@id/signUp" />
+            android:id="@+id/action_splash_Screen_to_signUpLoginPage"
+            app:destination="@id/signUpLoginPage" />
     </fragment>
     <fragment
         android:id="@+id/otpChangePassword"
@@ -81,5 +74,17 @@
         <action
             android:id="@+id/action_otpChangePassword_to_changePassword"
             app:destination="@id/changePassword" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpLoginPage"
+        android:name="com.example.unacademy.Ui.Auth.SignUpLoginPage"
+        android:label="fragment_sign_up_login_page"
+        tools:layout="@layout/fragment_sign_up_login_page" >
+        <action
+            android:id="@+id/action_signUpLoginPage_to_logIn"
+            app:destination="@id/logIn" />
+        <action
+            android:id="@+id/action_signUpLoginPage_to_signUp"
+            app:destination="@id/signUp" />
     </fragment>
 </navigation>
