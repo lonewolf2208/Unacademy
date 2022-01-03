@@ -54,10 +54,16 @@ class ChangePassword : Fragment() ,View.OnClickListener{
         binding?.ConfirmPasswordChangePassword?.setOnFocusChangeListener { _, focused ->
             if(!focused) {
                 var passText= binding?.ConfirmPasswordChangePassword?.text.toString().trim()
-                if(Validations.validPassword(passText) ==null){
+                if(Validations.validPassword(passText) ==null &&  Validations.samePassword(passText,binding?.oldPasswordChangePassword?.text.toString().trim()) == null){
+
                     binding!!.ConfirmPasswordChangePasswordContainer.helperText=""
                     validationFlagPassword2=1
                 }
+                else if(Validations.samePassword(passText,binding?.oldPasswordChangePassword?.text.toString())!=null)
+                    {
+                        binding!!.ConfirmPasswordChangePasswordContainer.helperText=Validations.samePassword(passText,binding?.oldPasswordChangePassword?.text.toString())
+                                validationFlagPassword2=0
+                    }
                 else {
 
                     binding!!.ConfirmPasswordChangePasswordContainer.helperText =

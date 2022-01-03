@@ -1,5 +1,6 @@
 package com.example.unacademy.Ui.Auth
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,9 +11,12 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.preferencesKey
 import androidx.datastore.preferences.createDataStore
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.example.unacademy.Activities.NavBarActivity
 import com.example.unacademy.R
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 
 
 class Splash_Screen : Fragment() {
@@ -62,7 +66,18 @@ class Splash_Screen : Fragment() {
         val view=inflater.inflate(R.layout.fragment_splash__screen, container, false)
         android.os.Handler().postDelayed(
             {
-               findNavController().navigate(R.id.action_splash_Screen_to_signUpLoginPage)
+                lifecycleScope.launch {
+                    var loggedIn = read("loggedIn")
+                    if (loggedIn != true)
+                    {
+                        val intent = Intent(activity, NavBarActivity::class.java)
+                        startActivity(intent)
+                    }
+                    else
+                    {
+                        findNavController().navigate(R.id.action_splash_Screen_to_signUpLoginPage)
+                    }
+                }
             },3000)
         return view
     }

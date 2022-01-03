@@ -120,9 +120,14 @@ class CreatePassword : Fragment() ,View.OnClickListener{
         binding?.ConfirmPasswordCreatePassword?.setOnFocusChangeListener { _, focused ->
             if(!focused) {
                 var passText= binding?.ConfirmPasswordCreatePassword?.text.toString().trim()
-                if(Validations.validPassword(passText) ==null){
+                if(Validations.validPassword(passText) ==null && Validations.samePassword(passText,binding?.NewPasswordCreatePassword?.text.toString().trim())==null){
                     binding!!.ConfirmPasswordCreatePasswordContainer.helperText=""
                     validationFlagPassword2=1
+                }
+                else if(Validations.samePassword(passText,binding?.NewPasswordCreatePassword?.text.toString().trim())!=null)
+                {
+                    binding!!.ConfirmPasswordCreatePasswordContainer.helperText=Validations.samePassword(passText,binding?.NewPasswordCreatePassword?.text.toString()).toString()
+                    validationFlagPassword2=0
                 }
                 else {
 

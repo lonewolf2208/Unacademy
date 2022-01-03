@@ -70,17 +70,9 @@ class EmailVerification : Fragment(),View.OnClickListener {
                         when (it) {
                             is com.example.unacademy.Repository.Response.Success -> {
                                 binding?.progressBarEmailVerification?.visibility=View.INVISIBLE
-//                                binding?.progressBarSignUp?.visibility=View.INVISIBLE
-//                                SignUp.name =binding?.SignUpName?.text.toString()
-//                                SignUp.email = binding?.SignUpEmailAdress?.text.toString()
-//                                lifecycleScope.launch {
-//                                    Splash_Screen.saveInfo("name", binding?.SignUpName?.text.toString())
-//                                    Toast.makeText(context,binding?.SignUpEmailAdress?.text.toString(),Toast.LENGTH_LONG).show()
-//                                    Splash_Screen.saveInfo("email", binding?.SignUpEmailAdress?.text.toString())
-//                                }
-
+//
                                 Toast.makeText(context,"Otp Has Been Sent to your email", Toast.LENGTH_LONG).show()
-                                navController.navigate(R.id.otpChangePassword)
+                                navController.navigate(R.id.action_emailVerification_to_otpChangePassword)
                             }
                             is com.example.unacademy.Repository.Response.Error -> {
                                 binding?.EmailVerifyButtonEmailVerification?.isEnabled=true

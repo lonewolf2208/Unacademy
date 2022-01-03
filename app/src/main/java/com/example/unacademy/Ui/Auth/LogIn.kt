@@ -106,6 +106,7 @@ class LogIn : Fragment() ,View.OnClickListener{
                                 is Response.Success ->
                                 {
                                     binding?.LogInButton?.isEnabled = true
+
                                     binding?.progressBarLogin?.visibility=View.INVISIBLE
                                     var GetTokenRepo=GetTokenRepo(RetrofitClient.init())
                                     GetTokenRepo.getToken(emailText?.text.toString(),passText?.text.toString())
@@ -118,6 +119,7 @@ class LogIn : Fragment() ,View.OnClickListener{
                                                     lifecycleScope.launch {
                                                         Splash_Screen.saveInfo("access",it.data?.access.toString())
                                                         Splash_Screen.saveInfo("refresh",it.data?.refresh.toString())
+                                                        Splash_Screen.save("loggedIn",true)
                                                     }
                                                     val intent = Intent(activity,NavBarActivity::class.java)
                                                     startActivity(intent)
