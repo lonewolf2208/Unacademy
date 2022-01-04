@@ -2,6 +2,7 @@ package com.example.unacademy.Ui.TeachersSide
 
 import android.app.Activity.RESULT_OK
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -21,7 +22,7 @@ import com.google.firebase.database.FirebaseDatabase
 class ProfileTeachersSide : Fragment() {
 
     private var binding:FragmentProfileTeachersSideBinding?=null
-
+    private var imageUri:Uri?=null
     private var IMAGE_REQUEST_CODE=100
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -52,6 +53,7 @@ class ProfileTeachersSide : Fragment() {
         super.onActivityResult(requestCode, resultCode, data)
         if(requestCode==IMAGE_REQUEST_CODE && resultCode==RESULT_OK)
         {
+            imageUri= data?.getData()
             binding?.setProfileImageTeachers?.setImageURI(data?.data)
         }
     }

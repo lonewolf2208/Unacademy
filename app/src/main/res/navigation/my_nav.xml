@@ -120,5 +120,14 @@
         android:id="@+id/chooseRole"
         android:name="com.example.unacademy.Ui.Auth.ChooseRole"
         android:label="fragment_choose_role"
-        tools:layout="@layout/fragment_choose_role" />
+        tools:layout="@layout/fragment_choose_role" >
+        <action
+            android:id="@+id/action_chooseRole_to_teachers_profile"
+            app:destination="@id/teachers_profile" />
+    </fragment>
+    <fragment
+        android:id="@+id/teachers_profile"
+        android:name="com.example.unacademy.teachers_profile"
+        android:label="fragment_teachers_profile"
+        tools:layout="@layout/fragment_teachers_profile" />
 </navigation>

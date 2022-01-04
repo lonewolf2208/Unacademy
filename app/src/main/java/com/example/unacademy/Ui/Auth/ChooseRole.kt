@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
+import com.example.unacademy.R
 import com.example.unacademy.databinding.FragmentChooseRoleBinding
 
 
@@ -20,7 +22,9 @@ class ChooseRole : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding= FragmentChooseRoleBinding.inflate(inflater,container,false)
-
+        binding?.checkBoxTeacher?.setOnClickListener {
+            findNavController().navigate(R.id.action_chooseRole_to_teachers_profile)
+        }
         return binding?.root
     }
 
