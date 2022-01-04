@@ -72,13 +72,12 @@ class CreatePassword : Fragment() ,View.OnClickListener{
                                                    Splash_Screen.saveInfo("access",it.data?.access.toString())
                                                    Splash_Screen.saveInfo("refresh",it.data?.refresh.toString())
                                                }
-                                                navController.navigate(R.id.action_createPassword_to_logIn)}
-                                            is Response.Loading->Toast.makeText(context,"Loading",Toast.LENGTH_LONG).show()
+                                                navController.navigate(R.id.action_createPassword_to_chooseRole)
+                                            }
                                             is Response.Error->Toast.makeText(context,"Error",Toast.LENGTH_LONG).show()
                                         }
                                     })
                                 binding.progressBarCreatePassword.visibility=View.INVISIBLE
-                                Toast.makeText(context,"LoggedIn", Toast.LENGTH_LONG).show()
 //                                navController.navigate(R.id.action_createPassword_to_logIn)
                             }
                             is Response.Error -> {
@@ -121,9 +120,14 @@ class CreatePassword : Fragment() ,View.OnClickListener{
         binding?.ConfirmPasswordCreatePassword?.setOnFocusChangeListener { _, focused ->
             if(!focused) {
                 var passText= binding?.ConfirmPasswordCreatePassword?.text.toString().trim()
-                if(Validations.validPassword(passText) ==null){
+                if(Validations.validPassword(passText) ==null && Validations.samePassword(passText,binding?.NewPasswordCreatePassword?.text.toString().trim())==null){
                     binding!!.ConfirmPasswordCreatePasswordContainer.helperText=""
                     validationFlagPassword2=1
+                }
+                else if(Validations.samePassword(passText,binding?.NewPasswordCreatePassword?.text.toString().trim())!=null)
+                {
+                    binding!!.ConfirmPasswordCreatePasswordContainer.helperText=Validations.samePassword(passText,binding?.NewPasswordCreatePassword?.text.toString()).toString()
+                    validationFlagPassword2=0
                 }
                 else {
 

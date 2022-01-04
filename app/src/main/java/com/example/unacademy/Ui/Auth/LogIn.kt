@@ -33,7 +33,6 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.create
 
-//import com.example.unacademy.databinding.FragmentLogInBinding
 
 
 class LogIn : Fragment() ,View.OnClickListener{
@@ -48,9 +47,6 @@ class LogIn : Fragment() ,View.OnClickListener{
     ): View?
     {
         binding = FragmentLogInBinding.inflate(inflater,container,false)
-//        val Api = RetrofitClient.getInstance().create(Api::class.java)
-
-//        ApiRepo= ApiRepo(Api)
         emailFocusListener()
         passwordFocusListener()
         // Inflate the layout for this fragment
@@ -104,17 +100,16 @@ class LogIn : Fragment() ,View.OnClickListener{
                 {
                     ApiRepo= ApiRepo(RetrofitClient.init())
                     binding?.LogInButton?.isEnabled = false
-                        var LoginDataClass = LoginDataClass(emailText?.text.toString(), passText?.text.toString())
                         ApiRepo?.getLoginApi(emailText?.text.toString(),passText?.text.toString())
                         ApiRepo?.ApiResponse?.observe(this@LogIn,{
                             when (it) {
                                 is Response.Success ->
                                 {
                                     binding?.LogInButton?.isEnabled = true
+
                                     binding?.progressBarLogin?.visibility=View.INVISIBLE
                                     var GetTokenRepo=GetTokenRepo(RetrofitClient.init())
                                     GetTokenRepo.getToken(emailText?.text.toString(),passText?.text.toString())
-//                                Toast.makeText(context,GetTokenRepo.TokenResponse.value.toString(),Toast.LENGTH_LONG).show()
                                     GetTokenRepo.TokenResponse.observe(this@LogIn,
                                         {
                                             when(it)
@@ -124,12 +119,12 @@ class LogIn : Fragment() ,View.OnClickListener{
                                                     lifecycleScope.launch {
                                                         Splash_Screen.saveInfo("access",it.data?.access.toString())
                                                         Splash_Screen.saveInfo("refresh",it.data?.refresh.toString())
+                                                        Splash_Screen.save("loggedIn",true)
                                                     }
                                                     val intent = Intent(activity,NavBarActivity::class.java)
                                                     startActivity(intent)
                                                 }
-                                                is Response.Loading->Toast.makeText(context,"Loading",Toast.LENGTH_LONG).show()
-                                                is Response.Error->Toast.makeText(context,"Error",Toast.LENGTH_LONG).show()
+                                                is Response.Error->Toast.makeText(context,"Something went wrong . Please try again !!",Toast.LENGTH_LONG).show()
                                             }
                                         })
                                     Toast.makeText(context,"Logged In", Toast.LENGTH_LONG).show()
@@ -142,54 +137,10 @@ class LogIn : Fragment() ,View.OnClickListener{
                                 is Response.Loading->
                                 {
                                     binding?.progressBarLogin?.visibility=View.VISIBLE
-
                                 }
                             }
                         })
-//                        Toast.makeText(context,result.toString(),Toast.LENGTH_LONG).show()
-//                        when (result) {
-//                            is Response.Success<*> -> {
-//                                Toast.makeText(context,"Su", Toast.LENGTH_LONG).show()
-//                                navController.navigate(R.id.action_logIn_to_emailVerification)
-//                            }
-//                            is Response.Error<*> -> {
-//                                Toast.makeText(context, result.errorMessage, Toast.LENGTH_LONG).show()
-//                            }
-//                            else->
-//                            {
-//                                Toast.makeText(context,"ElseBlock", Toast.LENGTH_LONG).show()
-//                            }
-//                        }
 
-
-//                        var LoginDataClass =LoginDataClass(emailText?.text.toString(), passText?.text.toString())
-//                        RetrofitClient.init().LoginApi(emailText?.text.toString(),passText?.text.toString()).enqueue(object : Callback<ResponseBody?> {
-//                            override fun onResponse(
-//                                call: Call<ResponseBody?>,
-//                                response: retrofit2.Response<ResponseBody?>
-//                            ) {
-//                                if(response.isSuccessful())
-//                                {
-//                                    navController.navigate(R.id.action_logIn_to_emailVerification)
-//                                }
-//                                else if(response.code() == 401)
-//                                {
-//                                    Toast.makeText(context,"Incorrect Password",Toast.LENGTH_LONG).show()
-//                                }
-//                                else if(response.code()==406)
-//                                {
-//                                    Toast.makeText(context,"User not regisetred",Toast.LENGTH_LONG).show()
-//                                }
-//                                else
-//                                {
-//                                    Toast.makeText(context,response.message(),Toast.LENGTH_LONG).show()
-//                                }
-//                            }
-//
-//                            override fun onFailure(call: Call<ResponseBody?>, t: Throwable) {
-//                                Toast.makeText(context,"On Failure",Toast.LENGTH_LONG).show()
-//                            }
-//                    })
                 }
 
             }

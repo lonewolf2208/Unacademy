@@ -48,4 +48,12 @@ object Validations {
         }
         return null
     }
+    fun samePassword(createPassword :String,confirmPassword:String):String?
+    {
+        if(createPassword!=confirmPassword)
+        {
+            return "Password doesn't matches"
+        }
+        return null
+    }
 }

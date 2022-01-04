@@ -12,10 +12,16 @@
         tools:layout="@layout/fragment_log_in" >
         <action
             android:id="@+id/action_logIn_to_signUp"
-            app:destination="@id/signUp" />
+            app:destination="@id/signUp"
+            app:popUpTo="@id/logIn"
+            app:popUpToInclusive="true"
+            />
         <action
             android:id="@+id/action_logIn_to_emailVerification"
-            app:destination="@id/emailVerification" />
+            app:destination="@id/emailVerification"
+            app:popUpTo="@id/logIn"
+
+            />
     </fragment>
     <fragment
         android:id="@+id/signUp"
@@ -24,10 +30,13 @@
         tools:layout="@layout/fragment_sign_up" >
         <action
             android:id="@+id/action_signUp_to_otp"
-            app:destination="@id/otp" />
+            app:destination="@id/otp"
+            app:popUpTo="@id/signUp"/>
         <action
             android:id="@+id/action_signUp_to_logIn"
-            app:destination="@id/logIn" />
+            app:destination="@id/logIn"
+            app:popUpTo="@id/signUp"
+            app:popUpToInclusive="true"/>
     </fragment>
     <fragment
         android:id="@+id/otp"
@@ -36,7 +45,8 @@
         tools:layout="@layout/fragment_otp" >
         <action
             android:id="@+id/action_otp_to_createPassword"
-            app:destination="@id/createPassword" />
+            app:destination="@id/createPassword"
+            app:popUpTo="@id/signUp"/>
     </fragment>
     <fragment
         android:id="@+id/createPassword"
@@ -44,8 +54,9 @@
         android:label="fragment_create_password"
         tools:layout="@layout/fragment_create_password" >
         <action
-            android:id="@+id/action_createPassword_to_logIn"
-            app:destination="@id/logIn" />
+            android:id="@+id/action_createPassword_to_chooseRole"
+            app:destination="@id/chooseRole" />
+
     </fragment>
     <fragment
         android:id="@+id/emailVerification"
@@ -53,25 +64,28 @@
         android:label="fragment_email_verification"
         tools:layout="@layout/fragment_email_verification" >
         <action
-            android:id="@+id/action_emailVerification_to_otp"
-            app:destination="@id/otpChangePassword" />
+            android:id="@+id/action_emailVerification_to_otpChangePassword"
+            app:destination="@id/otpChangePassword"
+            app:popUpTo="@id/logIn"
+            />
     </fragment>
     <fragment
         android:id="@+id/changePassword"
         android:name="com.example.unacademy.Ui.Auth.ChangePassword"
         android:label="fragment_change_password"
-        tools:layout="@layout/fragment_change_password" />
+        tools:layout="@layout/fragment_change_password" >
+
+    </fragment>
     <fragment
         android:id="@+id/splash_Screen"
         android:name="com.example.unacademy.Ui.Auth.Splash_Screen"
         android:label="fragment_splash__screen"
         tools:layout="@layout/fragment_splash__screen" >
         <action
-            android:id="@+id/action_splash_Screen_to_logIn"
-            app:destination="@id/logIn" />
-        <action
-            android:id="@+id/action_splash_Screen_to_signUp"
-            app:destination="@id/signUp" />
+            android:id="@+id/action_splash_Screen_to_signUpLoginPage"
+            app:destination="@id/signUpLoginPage"
+            app:popUpTo="@id/splash_Screen"
+            app:popUpToInclusive="true"/>
     </fragment>
     <fragment
         android:id="@+id/otpChangePassword"
@@ -80,6 +94,31 @@
         tools:layout="@layout/fragment_otp_change_password" >
         <action
             android:id="@+id/action_otpChangePassword_to_changePassword"
-            app:destination="@id/changePassword" />
+            app:destination="@id/changePassword"
+            app:popUpTo="@id/logIn"
+           />
+
     </fragment>
+    <fragment
+        android:id="@+id/signUpLoginPage"
+        android:name="com.example.unacademy.Ui.Auth.SignUpLoginPage"
+        android:label="fragment_sign_up_login_page"
+        tools:layout="@layout/fragment_sign_up_login_page" >
+        <action
+            android:id="@+id/action_signUpLoginPage_to_logIn"
+            app:destination="@id/logIn"
+            app:popUpTo="@id/signUpLoginPage"
+           />
+        <action
+            android:id="@+id/action_signUpLoginPage_to_signUp"
+            app:destination="@id/signUp"
+            app:popUpTo="@id/signUpLoginPage"
+            />
+
+    </fragment>
+    <fragment
+        android:id="@+id/chooseRole"
+        android:name="com.example.unacademy.Ui.Auth.ChooseRole"
+        android:label="fragment_choose_role"
+        tools:layout="@layout/fragment_choose_role" />
 </navigation>

@@ -36,7 +36,7 @@ class ChangePasswordRepo(private val Api:Api)
             }
 
             override fun onFailure(call: Call<com.example.unacademy.models.Message?>, t: Throwable) {
-                ChangeePasswordRepoLiveData.postValue(Response.Error(t.message))
+                ChangeePasswordRepoLiveData.postValue(Response.Error("Something went wrong . Please try again !!"))
             }
         })
 

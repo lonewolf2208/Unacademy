@@ -45,13 +45,13 @@ class ApiRepo(private var Api:Api) {
               }
               override fun onFailure(call: Call<ResponseBody?>, t: Throwable)
               {
-                  ApiLiveData.postValue(Response.Error(t.message))
+                  ApiLiveData.postValue(Response.Error("Something went wrong!!.Please Try Again!"))
               }
           })
         }
         catch (e:Exception)
         {
-            ApiLiveData.postValue(Response.Error(e.message))
+            ApiLiveData.postValue(Response.Error("Something went wrong . Please try again !!"))
         }
 
     }

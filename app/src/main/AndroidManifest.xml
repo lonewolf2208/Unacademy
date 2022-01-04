@@ -16,10 +16,6 @@
             android:name=".Activities.NavBarActivity"
             android:exported="false" />
         <activity
-            android:name=".Activities.NavigationActivity"
-            android:exported="false"
-            android:label="@string/title_activity_navigation" />
-        <activity
             android:name=".Activities.MainActivity"
             android:exported="true">
             <intent-filter>

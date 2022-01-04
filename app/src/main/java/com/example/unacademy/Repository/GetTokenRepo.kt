@@ -48,14 +48,14 @@ class GetTokenRepo(private var Api: Api) {
                 }
                 override fun onFailure(call: Call<SignUpDataClass?>, t: Throwable)
                 {
-                    TokenLiveData.postValue(Response.Error(t.message))
+                    TokenLiveData.postValue(Response.Error("Something went wrong . Please try again !!"))
                     accessToken="OnFailure"
                 }
             })
         }
         catch (e: Exception)
         {
-            TokenLiveData.postValue(Response.Error(e.message))
+            TokenLiveData.postValue(Response.Error("Something went wrong . Please try again !!"))
             accessToken="Catch"
         }
     }
