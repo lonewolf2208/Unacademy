@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Unacademy">
         <activity
+            android:name=".Activities.StudentSideActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activities.NavBarActivity"
             android:exported="false" />
         <activity

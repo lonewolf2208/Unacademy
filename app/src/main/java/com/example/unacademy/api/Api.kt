@@ -18,7 +18,7 @@ interface Api {
  fun LoginApi(
   @Field("email") email: String,
   @Field("password") password: String
- ): Call<ResponseBody>
+ ): Call<LoginDataClass>
 
  @FormUrlEncoded
  @POST("/user/send-otp/")
