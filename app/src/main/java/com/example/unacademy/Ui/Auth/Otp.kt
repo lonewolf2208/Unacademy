@@ -55,7 +55,7 @@ class Otp : Fragment(),View.OnClickListener {
                         is com.example.unacademy.Repository.Response.Success -> {
                             binding.progressBarOtp.visibility=View.INVISIBLE
                             Toast.makeText(context,"Otp Verified", Toast.LENGTH_LONG).show()
-                            navController.navigate(R.id.createPassword)
+                            navController.navigate(R.id.action_otp_to_createPassword)
                         }
                         is com.example.unacademy.Repository.Response.Error -> {
                             binding.progressBarOtp.visibility=View.INVISIBLE

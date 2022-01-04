@@ -13,19 +13,19 @@ import java.lang.Exception
 
 class ApiRepo(private var Api:Api) {
 
-    private val ApiLiveData = MutableLiveData<Response<ResponseBody>>()
+    private val ApiLiveData = MutableLiveData<Response<LoginDataClass>>()
 
-    val ApiResponse:LiveData<Response<ResponseBody>>
+    val ApiResponse:LiveData<Response<LoginDataClass>>
     get() = ApiLiveData
    fun getLoginApi(email:String,password:String)
     {
         val result = Api.LoginApi(email = email,password)
         ApiLiveData.postValue(Response.Loading())
         try {
-          result.enqueue(object : Callback<ResponseBody?> {
+          result.enqueue(object : Callback<LoginDataClass?> {
               override fun onResponse(
-                  call: Call<ResponseBody?>,
-                  response: retrofit2.Response<ResponseBody?>
+                  call: Call<LoginDataClass?>,
+                  response: retrofit2.Response<LoginDataClass?>
               ) {
                   if(response.isSuccessful) {
                       ApiLiveData.postValue(Response.Success(response.body()))
@@ -43,7 +43,7 @@ class ApiRepo(private var Api:Api) {
                       ApiLiveData.postValue(Response.Error("Something went wrong!!.Please Try Again!"))
                   }
               }
-              override fun onFailure(call: Call<ResponseBody?>, t: Throwable)
+              override fun onFailure(call: Call<LoginDataClass?>, t: Throwable)
               {
                   ApiLiveData.postValue(Response.Error("Something went wrong!!.Please Try Again!"))
               }

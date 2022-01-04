@@ -69,14 +69,8 @@ class SignUp : Fragment(),View.OnClickListener {
                                 binding?.progressBarSignUp?.visibility=View.INVISIBLE
                                 name=binding?.SignUpName?.text.toString()
                                 email= binding?.SignUpEmailAdress?.text.toString()
-//                                lifecycleScope.launch {
-//                                    Splash_Screen.saveInfo("name", binding?.SignUpName?.text.toString())
-//                                    Toast.makeText(context,binding?.SignUpEmailAdress?.text.toString(),Toast.LENGTH_LONG).show()
-//                                    Splash_Screen.saveInfo("email", binding?.SignUpEmailAdress?.text.toString())
-//                                }
-
                                 Toast.makeText(context,"Otp Has Been Sent to your email", Toast.LENGTH_LONG).show()
-                                navController.navigate(R.id.otp)
+                                navController.navigate(R.id.action_signUp_to_otp)
                             }
                             is com.example.unacademy.Repository.Response.Error -> {
                                 binding?.progressBarSignUp?.visibility=View.INVISIBLE
@@ -92,26 +86,6 @@ class SignUp : Fragment(),View.OnClickListener {
                             }
                         }
                     })
-//                    var singUpDataClass=SignUpDataClass(binding.SignUpEmailAdress.text.toString(),binding.SignUpName.text.toString())
-//                    RetrofitClient.init().SignUpApi(singUpDataClass).enqueue(object : Callback<ResponseBody?> {
-//                        override fun onResponse(
-//                            call: Call<ResponseBody?>,
-//                            response: Response<ResponseBody?>
-//                        ) {
-//                            if(response.isSuccessful)
-//                            {
-//                                navController.navigate(R.id.action_signUp_to_otp)
-//                            }
-//                            else
-//                            {
-//                                Toast.makeText(context,response.message(),Toast.LENGTH_LONG).show()
-//                            }
-//                        }
-//
-//                        override fun onFailure(call: Call<ResponseBody?>, t: Throwable) {
-//                           Toast.makeText(context,t.message,Toast.LENGTH_LONG).show()
-//                        }
-//                    })
 
                 }
             }

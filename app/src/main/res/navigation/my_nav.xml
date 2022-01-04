@@ -22,6 +22,9 @@
             app:popUpTo="@id/logIn"
 
             />
+        <action
+            android:id="@+id/action_logIn_to_chooseRole"
+            app:destination="@id/chooseRole" />
     </fragment>
     <fragment
         android:id="@+id/signUp"
@@ -55,7 +58,8 @@
         tools:layout="@layout/fragment_create_password" >
         <action
             android:id="@+id/action_createPassword_to_chooseRole"
-            app:destination="@id/chooseRole" />
+            app:destination="@id/chooseRole"
+            app:popUpTo="@id/signUp"/>
 
     </fragment>
     <fragment

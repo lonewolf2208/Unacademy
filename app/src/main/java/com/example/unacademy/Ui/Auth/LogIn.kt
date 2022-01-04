@@ -14,6 +14,7 @@ import androidx.lifecycle.LifecycleCoroutineScope
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.unacademy.Activities.NavBarActivity
+import com.example.unacademy.Activities.StudentSideActivity
 import com.example.unacademy.R
 import com.example.unacademy.Repository.ApiRepo
 import com.example.unacademy.Repository.GetTokenRepo
@@ -106,7 +107,8 @@ class LogIn : Fragment() ,View.OnClickListener{
                                 is Response.Success ->
                                 {
                                     binding?.LogInButton?.isEnabled = true
-
+                                    var teacher= it.data?.is_educator
+                                    var student =it.data?.is_student
                                     binding?.progressBarLogin?.visibility=View.INVISIBLE
                                     var GetTokenRepo=GetTokenRepo(RetrofitClient.init())
                                     GetTokenRepo.getToken(emailText?.text.toString(),passText?.text.toString())
@@ -114,20 +116,41 @@ class LogIn : Fragment() ,View.OnClickListener{
                                         {
                                             when(it)
                                             {
-                                                is Response.Success->
-                                                {
+                                                is Response.Success-> {
                                                     lifecycleScope.launch {
-                                                        Splash_Screen.saveInfo("access",it.data?.access.toString())
-                                                        Splash_Screen.saveInfo("refresh",it.data?.refresh.toString())
-                                                        Splash_Screen.save("loggedIn",true)
+                                                        Splash_Screen.saveInfo(
+                                                            "access",
+                                                            it.data?.access.toString()
+                                                        )
+                                                        Splash_Screen.saveInfo(
+                                                            "refresh",
+                                                            it.data?.refresh.toString()
+                                                        )
+                                                        Splash_Screen.save("loggedIn", true)
                                                     }
-                                                    val intent = Intent(activity,NavBarActivity::class.java)
-                                                    startActivity(intent)
+                                                    if (teacher == true) {
+                                                        val intent = Intent(
+                                                            activity,
+                                                            NavBarActivity::class.java
+                                                        )
+                                                        startActivity(intent)
+                                                    } else if (student == true)
+                                                    {
+                                                        val intent=Intent(
+                                                            activity,
+                                                            StudentSideActivity::class.java
+                                                        )
+                                                        startActivity(intent)
+                                                    }
+                                                    else
+                                                    {
+                                                        findNavController().navigate(R.id.action_logIn_to_chooseRole)
+                                                    }
                                                 }
                                                 is Response.Error->Toast.makeText(context,"Something went wrong . Please try again !!",Toast.LENGTH_LONG).show()
                                             }
                                         })
-                                    Toast.makeText(context,"Logged In", Toast.LENGTH_LONG).show()
+
                                 }
                                 is Response.Error -> {
                                     binding?.LogInButton?.isEnabled = true
