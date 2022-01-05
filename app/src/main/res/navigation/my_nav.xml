@@ -131,7 +131,6 @@
     </fragment>
     <fragment
         android:id="@+id/teachers_profile"
-        android:name="com.example.unacademy.teachers_profile"
-        android:label="fragment_teachers_profile"
-        tools:layout="@layout/fragment_teachers_profile" />
+        android:name="com.example.unacademy.Ui.TeachersSide.teachers_profile"
+        android:label="teachers_profile" />
 </navigation>

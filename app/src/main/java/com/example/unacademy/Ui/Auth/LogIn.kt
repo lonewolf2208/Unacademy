@@ -55,28 +55,8 @@ class LogIn : Fragment() ,View.OnClickListener{
 //
 //        binding.lifecycleOwner = this
 //        binding.logInViewModel=LogInViewModel()
-//
-//        binding.ForgotPassword.setOnClickListener {
-//            view?.let { it1 -> Navigation.findNavController(it1).navigate(R.id.emailVerification) }
-//        }
-//        logInViewModel.loginEmail.observe(viewLifecycleOwner,
-//            {
-//
-//            })
-//        binding.LogInButton.setOnClickListener{
-//            Toast.makeText(context,logInViewModel.loginEmail.value.toString(),Toast.LENGTH_LONG).show()
-//            if(logInViewModel.Validations()==true)
-//            {
-//                view?.let { it1 -> Navigation.findNavController(it1).navigate(R.id.signUp) }
-//            }
-//            else{
-//                Toast.makeText(context, "failed", Toast.LENGTH_SHORT).show()
-//            }
-//        }
-
         binding!!.SignUpButtonLogIn.setOnClickListener(this)
-//        binding.lifecycleOwner = this
-//        binding.logInViewModel=LogInViewModel()
+
         binding!!.LogInButton.setOnClickListener(this)
         binding!!.ForgotPassword.setOnClickListener(this)
         return binding!!.root
