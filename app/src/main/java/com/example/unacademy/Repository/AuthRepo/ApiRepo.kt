@@ -1,12 +1,10 @@
-package com.example.unacademy.Repository
+package com.example.unacademy.Repository.AuthRepo
 
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.unacademy.Ui.Auth.LogIn
+import com.example.unacademy.Repository.Response
 import com.example.unacademy.api.Api
-import com.example.unacademy.models.LoginDataClass
-import okhttp3.ResponseBody
+import com.example.unacademy.models.AuthModels.LoginDataClass
 import retrofit2.Call
 import retrofit2.Callback
 import java.lang.Exception

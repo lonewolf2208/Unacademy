@@ -1,14 +1,13 @@
 package com.example.unacademy.api
 
 
-import com.example.unacademy.Ui.Auth.SignUp.Companion.email
-import com.example.unacademy.models.LoginDataClass
-import com.example.unacademy.models.Message
-import com.example.unacademy.models.SignUpDataClass
+import com.example.unacademy.models.AuthModels.LoginDataClass
+import com.example.unacademy.models.AuthModels.Message
+import com.example.unacademy.models.AuthModels.SignUpDataClass
+import com.example.unacademy.models.TeachersSideModels.teachersProfileDataClass
 import okhttp3.ResponseBody
 import retrofit2.Call
 
-import retrofit2.Response
 import retrofit2.http.*
 
 interface Api {
@@ -44,16 +43,19 @@ interface Api {
 
  @FormUrlEncoded
  @POST("/api/token/")
- fun getToken
-          (
-   @Field("email") email:String,
-   @Field("password")password: String
- ):Call<SignUpDataClass>
+ fun getToken(
+  @Field("email") email: String,
+  @Field("password") password: String
+ ): Call<SignUpDataClass>
 
  @FormUrlEncoded
  @POST("/user/change-password/")
  fun passwordChange(
-  @Field("email")email:String,
-  @Field("new password")password: String
- ):Call<Message>
+  @Field("email") email: String,
+  @Field("new password") password: String
+ ): Call<Message>
+
+ @Headers("Connection:close")
+ @POST("/educator/create/")
+ fun teachersProfile(@Body teachersProfileDataClass: teachersProfileDataClass,@Header("Authorization")token:String): Call<ResponseBody>
 }

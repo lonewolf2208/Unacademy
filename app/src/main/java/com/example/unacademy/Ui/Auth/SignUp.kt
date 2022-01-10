@@ -8,7 +8,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.unacademy.R
-import com.example.unacademy.Repository.SignUpRepo
+import com.example.unacademy.Repository.Response
+import com.example.unacademy.Repository.AuthRepo.SignUpRepo
 import com.example.unacademy.api.RetrofitClient
 import com.example.unacademy.databinding.FragmentSignUpBinding
 
@@ -27,7 +28,7 @@ class SignUp : Fragment(),View.OnClickListener {
     get() = _binding
     private var validationFlagEmail = 0
     private var nameValidation=0
-    private var SignupRepo:SignUpRepo?=null
+    private var SignupRepo: SignUpRepo?=null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -65,19 +66,19 @@ class SignUp : Fragment(),View.OnClickListener {
                         binding?.SignUpName?.text.toString())
                     SignupRepo?.SignUpResponse?.observe(this@SignUp,{
                         when (it) {
-                            is com.example.unacademy.Repository.Response.Success -> {
+                            is Response.Success -> {
                                 binding?.progressBarSignUp?.visibility=View.INVISIBLE
                                 name=binding?.SignUpName?.text.toString()
                                 email= binding?.SignUpEmailAdress?.text.toString()
                                 Toast.makeText(context,"Otp Has Been Sent to your email", Toast.LENGTH_LONG).show()
                                 navController.navigate(R.id.action_signUp_to_otp)
                             }
-                            is com.example.unacademy.Repository.Response.Error -> {
+                            is Response.Error -> {
                                 binding?.progressBarSignUp?.visibility=View.INVISIBLE
                                 binding?.verifyEmailSignUp?.isEnabled=true
                                 Toast.makeText(context,it.errorMessage.toString(), Toast.LENGTH_LONG).show()
                             }
-                            is com.example.unacademy.Repository.Response.Loading->
+                            is Response.Loading->
                             {
                                 binding?.progressBarSignUp?.visibility=View.VISIBLE
                             }

@@ -1,6 +1,5 @@
 package com.example.unacademy.Ui.Auth
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,31 +8,18 @@ import android.view.ViewGroup
 import android.widget.Toast
 
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleCoroutineScope
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.unacademy.Activities.NavBarActivity
 import com.example.unacademy.Activities.StudentSideActivity
 import com.example.unacademy.R
-import com.example.unacademy.Repository.ApiRepo
-import com.example.unacademy.Repository.GetTokenRepo
-//import com.example.unacademy.Repository.ApiRepo
+import com.example.unacademy.Repository.AuthRepo.ApiRepo
+import com.example.unacademy.Repository.AuthRepo.GetTokenRepo
+//import com.example.unacademy.Repository.AuthRepo.ApiRepo
 import com.example.unacademy.Repository.Response
-import com.example.unacademy.api.Api
 import com.example.unacademy.api.RetrofitClient
 import com.example.unacademy.databinding.FragmentLogInBinding
-import com.example.unacademy.models.LoginDataClass
-import com.example.unacademy.viewModel.LogInViewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
-import okhttp3.Dispatcher
-import okhttp3.ResponseBody
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.create
-
 
 
 class LogIn : Fragment() ,View.OnClickListener{
@@ -90,7 +76,7 @@ class LogIn : Fragment() ,View.OnClickListener{
                                     var teacher= it.data?.is_educator
                                     var student =it.data?.is_student
                                     binding?.progressBarLogin?.visibility=View.INVISIBLE
-                                    var GetTokenRepo=GetTokenRepo(RetrofitClient.init())
+                                    var GetTokenRepo= GetTokenRepo(RetrofitClient.init())
                                     GetTokenRepo.getToken(emailText?.text.toString(),passText?.text.toString())
                                     GetTokenRepo.TokenResponse.observe(this@LogIn,
                                         {
@@ -127,7 +113,7 @@ class LogIn : Fragment() ,View.OnClickListener{
                                                         findNavController().navigate(R.id.action_logIn_to_chooseRole)
                                                     }
                                                 }
-                                                is Response.Error->Toast.makeText(context,"Something went wrong . Please try again !!",Toast.LENGTH_LONG).show()
+                                                is Response.Error->Toast.makeText(context,it.errorMessage.toString(),Toast.LENGTH_LONG).show()
                                             }
                                         })
 

@@ -6,10 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.unacademy.R
-import com.example.unacademy.Repository.OtpRepo
 import com.example.unacademy.databinding.FragmentHomePageTeachersSideBinding
-import com.example.unacademy.databinding.FragmentOtpChangePasswordBinding
 
 class HomePageTeachersSide : Fragment() {
 

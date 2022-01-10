@@ -1,7 +1,8 @@
-package com.example.unacademy.Repository
+package com.example.unacademy.Repository.AuthRepo
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.unacademy.Repository.Response
 import com.example.unacademy.api.Api
 import okhttp3.ResponseBody
 import retrofit2.Call

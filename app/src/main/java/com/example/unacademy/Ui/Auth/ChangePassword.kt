@@ -8,10 +8,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.unacademy.R
-import com.example.unacademy.Repository.ChangePasswordRepo
-import com.example.unacademy.Repository.GetTokenRepo
+import com.example.unacademy.Repository.AuthRepo.ChangePasswordRepo
 import com.example.unacademy.Repository.Response
-import com.example.unacademy.Ui.Auth.SignUp.Companion.email
 import com.example.unacademy.api.RetrofitClient
 import com.example.unacademy.databinding.FragmentChangePasswordBinding
 
@@ -22,7 +20,7 @@ class ChangePassword : Fragment() ,View.OnClickListener{
     get()=_binding
     private var validationFlagPassword1=0
     private var validationFlagPassword2=0
-    private var ChangePasswordRepo:ChangePasswordRepo?=null
+    private var ChangePasswordRepo: ChangePasswordRepo?=null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -93,11 +91,11 @@ class ChangePassword : Fragment() ,View.OnClickListener{
                                 binding?.doneButtonChangePassword?.isEnabled=true
 //                                var GetTokenRepo= GetTokenRepo(RetrofitClient.init())
 //                                GetTokenRepo.getToken(EmailVerification.emailChangePassword,binding?.ConfirmPasswordChangePassword?.text.toString())
-//                                Toast.makeText(context,com.example.unacademy.Repository.GetTokenRepo.accessToken,
+//                                Toast.makeText(context,com.example.unacademy.Repository.AuthRepo.GetTokenRepo.accessToken,
 //                                    Toast.LENGTH_LONG).show()
 //                                GetTokenRepo.TokenResponse.observe(this@CreatePassword,
 //                                    {
-//                                        Toast.makeText(context,com.example.unacademy.Repository.GetTokenRepo.accessToken,Toast.LENGTH_LONG).show()
+//                                        Toast.makeText(context,com.example.unacademy.Repository.AuthRepo.GetTokenRepo.accessToken,Toast.LENGTH_LONG).show()
 //                                    })
 //                                binding.progressBarCreatePassword.visibility=View.INVISIBLE
                                 Toast.makeText(context,"Password Created", Toast.LENGTH_LONG).show()

@@ -12,7 +12,11 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.viewModelScope
 import com.example.unacademy.R
+import com.example.unacademy.Repository.Response
+import com.example.unacademy.Ui.Auth.Splash_Screen
 import com.example.unacademy.databinding.FragmentTeachersProfileBinding
 import com.example.unacademy.viewModel.TeachersProfileViewModel
 import com.google.android.gms.tasks.OnFailureListener
@@ -21,15 +25,23 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.OnProgressListener
 import com.google.firebase.storage.UploadTask
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
+import okhttp3.Dispatcher
 import java.util.*
 
-class teachers_profile : Fragment() {
+class teachers_profile : Fragment(),View.OnClickListener {
     private lateinit var imageUri: Uri
     private var IMAGE_REQUEST_CODE=100
     lateinit var binding: FragmentTeachersProfileBinding
-    lateinit var teachersProfileViewModel: TeachersProfileViewModel
+    lateinit var teachersProfileViewModel:TeachersProfileViewModel
     var storage: FirebaseStorage = FirebaseStorage.getInstance()
     var forImage=0
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        teachersProfileViewModel=ViewModelProvider(this)[TeachersProfileViewModel::class.java]
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -37,21 +49,14 @@ class teachers_profile : Fragment() {
         // Inflate the layout for this fragment
         binding  = DataBindingUtil.inflate(inflater,R.layout.fragment_teachers_profile,container,false)
         binding.lifecycleOwner=this
-        binding.teachersProfile=TeachersProfileViewModel()
-        binding.teachersImage.setOnClickListener {
-            pickImageGallery()
-        }
-        binding.VideoUpload.setOnClickListener {
-
-            pickVideoGallery()
-        }
+        binding.teachersProfileViewModel=teachersProfileViewModel
+        binding.teachersImage.setOnClickListener(this)
+        binding.VideoUpload.setOnClickListener(this)
+        binding.sunmitButtonTeachersProfile.setOnClickListener(this)
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        teachersProfileViewModel=ViewModelProvider(this)[TeachersProfileViewModel::class.java]
-    }
+
     private fun pickImageGallery() {
         val intent = Intent(Intent.ACTION_PICK)
         intent.type="image/*"
@@ -72,11 +77,22 @@ class teachers_profile : Fragment() {
             storageReference.putFile(imageUri)
                 .addOnSuccessListener{
                     it.storage.downloadUrl.addOnSuccessListener {
-                        val url = it.toString()
+
                        if(progressDialog.isShowing())
                        {
                            progressDialog.dismiss()
                        }
+                        if(forImage==1)
+                        {
+                            binding?.teachersImage?.setImageURI(data?.data)
+                            teachersProfileViewModel.imageUrl.postValue(it.toString())
+                            forImage=0
+                        }
+                        else
+                        {
+                            teachersProfileViewModel.VideoUrl.postValue(it.toString())
+                            binding.VideoUploadContainer.helperText=data.dataString
+                        }
                     }
                 }
                 .addOnFailureListener(OnFailureListener()
@@ -92,15 +108,37 @@ class teachers_profile : Fragment() {
                     var progresPercent = (100*it.bytesTransferred/it.totalByteCount)
                     progressDialog.setMessage("Progress: " + progresPercent + "%")
                 })
-            if(forImage==1) {
-                binding?.teachersImage?.setImageURI(data?.data)
-            }
-            TeachersProfileViewModel().imageUri.postValue(imageUri)
         }
     }
     private fun pickVideoGallery() {
         val intent = Intent(Intent.ACTION_PICK)
         intent.type="video/*"
         startActivityForResult(intent,IMAGE_REQUEST_CODE)
+    }
+
+    override fun onClick(v: View?) {
+        when(v?.id)
+        {
+            R.id.teachers_image->pickImageGallery()
+            R.id.VideoUpload->pickVideoGallery()
+            R.id.sunmitButtonTeachersProfile->
+            {
+                teachersProfileViewModel.validations()
+                teachersProfileViewModel.gender.postValue(binding.spinner.selectedItem.toString())
+                lifecycleScope.launch {
+                    var result=teachersProfileViewModel.submitData()
+                    result.observe(this@teachers_profile,{
+                        when(it)
+                        {
+                            is Response.Success->Toast.makeText(context,"Success",Toast.LENGTH_LONG).show()
+                            is Response.Error->Toast.makeText(context,it.errorMessage,Toast.LENGTH_LONG).show()
+                            is Response.Loading->Toast.makeText(context,"Loading",Toast.LENGTH_LONG).show()
+                        }
+                    })
+                }
+
+            }
+        }
+
     }
 }

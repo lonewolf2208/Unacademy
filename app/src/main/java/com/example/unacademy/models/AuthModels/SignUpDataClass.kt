@@ -1,4 +1,4 @@
-package com.example.unacademy.models
+package com.example.unacademy.models.AuthModels
 
 data class SignUpDataClass(
     val refresh: String,

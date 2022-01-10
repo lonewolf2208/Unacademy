@@ -9,8 +9,8 @@ import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.unacademy.R
-import com.example.unacademy.Repository.GetTokenRepo
-import com.example.unacademy.Repository.PasswordRepo
+import com.example.unacademy.Repository.AuthRepo.GetTokenRepo
+import com.example.unacademy.Repository.AuthRepo.PasswordRepo
 import com.example.unacademy.Repository.Response
 import com.example.unacademy.api.RetrofitClient
 import com.example.unacademy.databinding.FragmentCreatePasswordBinding
@@ -23,7 +23,7 @@ class CreatePassword : Fragment() ,View.OnClickListener{
     private var validationFlagPassword1 =0
     private var validationFlagPassword2=0
 
-    private var passwordRepo:PasswordRepo?=null
+    private var passwordRepo: PasswordRepo?=null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -59,7 +59,7 @@ class CreatePassword : Fragment() ,View.OnClickListener{
                         when (it) {
                             is Response.Success ->
                             {
-                                var GetTokenRepo=GetTokenRepo(RetrofitClient.init())
+                                var GetTokenRepo= GetTokenRepo(RetrofitClient.init())
                                 GetTokenRepo.getToken(email,binding.ConfirmPasswordCreatePassword.text.toString())
 //                                Toast.makeText(context,GetTokenRepo.TokenResponse.value.toString(),Toast.LENGTH_LONG).show()
                                 GetTokenRepo.TokenResponse.observe(this@CreatePassword,

@@ -8,10 +8,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.unacademy.R
-import com.example.unacademy.Repository.OtpRepo
-import com.example.unacademy.Repository.SignUpRepo
+import com.example.unacademy.Repository.AuthRepo.OtpRepo
+import com.example.unacademy.Repository.Response
+import com.example.unacademy.Repository.AuthRepo.SignUpRepo
 import com.example.unacademy.api.RetrofitClient
-import com.example.unacademy.databinding.FragmentOtpBinding
 import com.example.unacademy.databinding.FragmentOtpChangePasswordBinding
 
 
@@ -48,17 +48,17 @@ class OtpChangePassword : Fragment(),View.OnClickListener {
                 otp?.OtpApi(email,binding.editTextChangePassword.text.toString())
                 otp?.OtpResponse?.observe(this@OtpChangePassword,{
                     when (it) {
-                        is com.example.unacademy.Repository.Response.Success -> {
+                        is Response.Success -> {
                             binding.progressBarOtpChangePassword.visibility=View.INVISIBLE
                             Toast.makeText(context,"Otp Verified", Toast.LENGTH_LONG).show()
                             navController.navigate(R.id.action_otpChangePassword_to_changePassword)
                         }
-                        is com.example.unacademy.Repository.Response.Error -> {
+                        is Response.Error -> {
                             binding.progressBarOtpChangePassword.visibility=View.INVISIBLE
                             binding.otpVerifyButtonChangePassword.isEnabled=true
                             Toast.makeText(context,it.errorMessage.toString(), Toast.LENGTH_LONG).show()
                         }
-                        is com.example.unacademy.Repository.Response.Loading->
+                        is Response.Loading->
                         {
                             binding.progressBarOtpChangePassword.visibility=View.VISIBLE
                             binding.otpVerifyButtonChangePassword.isEnabled=false

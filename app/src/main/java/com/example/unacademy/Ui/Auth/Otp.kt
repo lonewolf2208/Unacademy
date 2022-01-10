@@ -8,8 +8,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.unacademy.R
-import com.example.unacademy.Repository.OtpRepo
-import com.example.unacademy.Repository.SignUpRepo
+import com.example.unacademy.Repository.AuthRepo.OtpRepo
+import com.example.unacademy.Repository.Response
+import com.example.unacademy.Repository.AuthRepo.SignUpRepo
 import com.example.unacademy.api.RetrofitClient
 import com.example.unacademy.databinding.FragmentOtpBinding
 
@@ -19,7 +20,7 @@ class Otp : Fragment(),View.OnClickListener {
     private var _binding : FragmentOtpBinding?=null
     private val binding
     get() =_binding!!
-    private  var otp:OtpRepo?=null
+    private  var otp: OtpRepo?=null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -52,17 +53,17 @@ class Otp : Fragment(),View.OnClickListener {
                 otp?.OtpApi(email,binding.editTextTextPersonName4.text.toString())
                 otp?.OtpResponse?.observe(this@Otp,{
                     when (it) {
-                        is com.example.unacademy.Repository.Response.Success -> {
+                        is Response.Success -> {
                             binding.progressBarOtp.visibility=View.INVISIBLE
                             Toast.makeText(context,"Otp Verified", Toast.LENGTH_LONG).show()
                             navController.navigate(R.id.action_otp_to_createPassword)
                         }
-                        is com.example.unacademy.Repository.Response.Error -> {
+                        is Response.Error -> {
                             binding.progressBarOtp.visibility=View.INVISIBLE
                             binding.otpVerifyButton.isEnabled=true
                             Toast.makeText(context,it.errorMessage.toString(), Toast.LENGTH_LONG).show()
                         }
-                        is com.example.unacademy.Repository.Response.Loading->
+                        is Response.Loading->
                         {
                             binding.progressBarOtp.visibility=View.VISIBLE
                         }
@@ -71,7 +72,7 @@ class Otp : Fragment(),View.OnClickListener {
 
             }
             R.id.ResendOtp->
-            { var SignUpRepo=SignUpRepo(RetrofitClient.init())
+            { var SignUpRepo= SignUpRepo(RetrofitClient.init())
                 SignUpRepo?.SignUpApi(SignUp.email,SignUp.name)
                 Toast.makeText(context,"Otp has been Sent Successfully",Toast.LENGTH_LONG).show()
             }
