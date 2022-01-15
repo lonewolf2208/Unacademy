@@ -28,19 +28,19 @@
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:layout_marginStart="150dp"
-                    android:layout_marginTop="32dp"
+                    android:layout_marginTop="5dp"
                     android:layout_marginEnd="150dp"
                     android:src="@drawable/profile_teachers_side"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView35" />
 
                 <TextView
                     android:id="@+id/textView30"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="21dp"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="50dp"
                     android:fontFamily="@font/reem_kufi"
                     android:text="Name"
                     android:textColor="#003356"
@@ -48,26 +48,30 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/teachers_image" />
 
-                <EditText
-                    android:id="@+id/editTextTextPersonName"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/editTextTextPersonNameContainer"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="1dp"
                     android:layout_marginEnd="20dp"
-                    android:background="@drawable/border"
-                    android:text="@={TeachersProfileViewModel.name}"
-                    android:ems="10"
-                    android:fontFamily="@font/reem_kufi"
-                    android:hint="Enter Your Name"
-                    android:inputType="textPersonName"
-                    android:paddingLeft="10dp"
-                    android:paddingTop="12dp"
-                    android:paddingBottom="12dp"
-                    android:textColor="#003356"
+                    app:helperTextTextColor="@android:color/holo_red_dark"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView30" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView30">
+
+                    <EditText
+                        android:id="@+id/editTextTextPersonName"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/border"
+                        android:ems="10"
+                        android:fontFamily="@font/reem_kufi"
+                        android:hint="Enter Your Name"
+                        android:inputType="textPersonName"
+                        android:text="@={TeachersProfileViewModel.name}"
+                        android:textColor="#003356" />
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
                     android:id="@+id/textView31"
@@ -80,42 +84,43 @@
                     android:textColor="#003356"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+                    app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonNameContainer" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/editTextTextPersonName2Container"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:counterEnabled="true"
-                    app:helperText="@{TeachersProfileViewModel.helperTextmobile}"
-                    app:counterMaxLength="10"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView31"
-                     android:layout_marginStart="20dp"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="1dp"
-                    android:layout_marginEnd="20dp">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editTextTextPersonName2"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/border"
-                    android:ems="10"
-                    android:text="@={TeachersProfileViewModel.mobileno}"
-                    android:fontFamily="@font/reem_kufi"
-                    android:hint="Enter Your Mobile No. "
-                    android:inputType="numberDecimal"
-                    android:paddingLeft="10dp"
-                    android:paddingTop="12dp"
-                    android:textColor="#003356"
-                    />
+                    android:layout_marginEnd="20dp"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="10"
+                    app:helperText="@{TeachersProfileViewModel.helperTextmobile}"
+                    app:helperTextTextColor="@android:color/holo_red_dark"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView31">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editTextTextPersonName2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/border"
+                        android:ems="10"
+                        android:fontFamily="@font/reem_kufi"
+                        android:hint="Enter Your Mobile No. "
+                        android:inputType="numberDecimal"
+                        android:paddingLeft="10dp"
+                        android:text="@={TeachersProfileViewModel.mobileno}"
+                        android:textColor="#003356" />
                 </com.google.android.material.textfield.TextInputLayout>
+
                 <TextView
                     android:id="@+id/textView32"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="21dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="8dp"
                     android:fontFamily="@font/reem_kufi"
                     android:text="Gender"
                     android:textColor="#003356 "
@@ -123,19 +128,27 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2Container" />
 
-                <Spinner
-                    android:id="@+id/spinner"
-                    android:layout_width="150dp"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/spinnerContainer"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:layout_marginTop="1dp"
-                    android:background="@drawable/border"
-                    android:dropDownSelector="@drawable/ic_notifications_black_24dp"
-                    android:entries="@array/Gender"
-                    android:paddingTop="12dp"
-                    android:paddingBottom="12dp"
+                    android:layout_marginTop="4dp"
+                    app:helperText="@{TeachersProfileViewModel.helperTextGender}"
+                    app:helperTextTextColor="@android:color/holo_red_dark"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView32" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView32">
+
+                    <Spinner
+                        android:id="@+id/spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/border"
+                        android:dropDownSelector="@drawable/ic_notifications_black_24dp"
+                        android:entries="@array/Gender"
+                        android:paddingTop="15dp"
+                        android:paddingBottom="15dp" />
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
                     android:id="@+id/textView33"
@@ -148,7 +161,7 @@
                     android:textColor="#003356"
                     android:textSize="16dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/spinner" />
+                    app:layout_constraintTop_toBottomOf="@+id/spinnerContainer" />
 
                 <EditText
                     android:id="@+id/editTextTextPersonName5"
@@ -159,13 +172,13 @@
                     android:layout_marginEnd="20dp"
                     android:background="@drawable/border"
                     android:ems="10"
-                    android:text="@={TeachersProfileViewModel.educationdetails}"
                     android:hint="Enter Your Details"
                     android:inputType="textMultiLine"
                     android:paddingStart="10dp"
                     android:paddingTop="10dp"
                     android:paddingEnd="10dp"
                     android:paddingBottom="53dp"
+                    android:text="@={TeachersProfileViewModel.educationdetails}"
 
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -194,12 +207,12 @@
                     android:background="@drawable/border"
                     android:ems="10"
                     android:fontFamily="@font/reem_kufi"
-                    android:text="@={TeachersProfileViewModel.experience}"
                     android:hint="Enter Your Experience"
                     android:inputType="textPersonName"
                     android:paddingLeft="10dp"
                     android:paddingTop="12dp"
                     android:paddingBottom="12dp"
+                    android:text="@={TeachersProfileViewModel.experience}"
                     android:textColor="#003356"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -208,22 +221,18 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="60dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="60dp"
+                    android:textAlignment="center"
+                    app:helperText="@{TeachersProfileViewModel.helperTextImage}"
+                    app:helperTextTextColor="@android:color/holo_red_dark"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:helperText="@{TeachersProfileViewModel.helperTextImage}"
-                    app:layout_constraintTop_toBottomOf="@+id/teachers_image"
-                    android:layout_marginStart="130dp"
-                    android:layout_marginTop="4dp">
-                <TextView
-                    android:id="@+id/textView35"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:fontFamily="@font/reem_kufi"
-                    android:text="Upload Profile Picture"
-                    android:textColor="#003356"
-                    android:textSize="16sp"
-                   />
+                    app:layout_constraintTop_toBottomOf="@+id/teachers_image">
+
                 </com.google.android.material.textfield.TextInputLayout>
+
                 <TextView
                     android:id="@+id/textView36"
                     android:layout_width="wrap_content"
@@ -238,28 +247,29 @@
                     app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName6" />
 
                 <com.google.android.material.textfield.TextInputLayout
-                   android:id="@+id/VideoUploadContainer"
+                    android:id="@+id/VideoUploadContainer"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView36"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="1dp"
                     android:layout_marginEnd="20dp"
-                    >
-                <Button
-                    android:id="@+id/VideoUpload"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:backgroundTint="#003356"
-                    android:fontFamily="@font/reem_kufi"
-                    android:paddingTop="10dp"
-                    android:text="Upload"
-                    android:textAllCaps="false"
-                    android:textSize="20sp"
-                     />
+                    app:helperTextTextColor="@android:color/holo_red_dark"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView36">
+
+                    <Button
+                        android:id="@+id/VideoUpload"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:backgroundTint="#003356"
+                        android:fontFamily="@font/reem_kufi"
+                        android:paddingTop="10dp"
+                        android:text="Upload"
+                        android:textAllCaps="false"
+                        android:textSize="20sp" />
                 </com.google.android.material.textfield.TextInputLayout>
+
                 <Button
                     android:id="@+id/sunmitButtonTeachersProfile"
                     android:layout_width="0dp"
@@ -283,7 +293,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="130dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="8dp"
                     android:fontFamily="@font/reem_kufi"
                     android:text="Date of Birth"
                     android:textColor="#003356"
@@ -292,29 +302,57 @@
                     app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2Container" />
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayout"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="28dp"
                     android:layout_marginTop="1dp"
                     android:layout_marginEnd="20dp"
                     app:helperText="@{TeachersProfileViewModel.helpertextdon}"
+                    app:helperTextTextColor="@android:color/holo_red_dark"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/spinner"
+                    app:layout_constraintStart_toEndOf="@+id/spinnerContainer"
                     app:layout_constraintTop_toBottomOf="@+id/textView37">
-                <EditText
-                    android:id="@+id/editTextTextPersonName7"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/border"
-                    android:ems="10"
-                    android:text="@={TeachersProfileViewModel.dateofbirth}"
-                    android:hint="DD/MM/YYYY"
-                    android:inputType="textPersonName"
-                    android:paddingStart="10dp"
-                    android:paddingTop="12dp"
-                    android:textSize="16sp"
-                     />
+
+                    <EditText
+                        android:id="@+id/editTextTextPersonName7"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/border"
+                        android:ems="10"
+                        android:hint="YYYY-MM-DD"
+                        android:inputType="textPersonName"
+                        android:text="@={TeachersProfileViewModel.dateofbirth}"
+                        android:textSize="16sp" />
                 </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/textView29"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="140dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="140dp"
+                    android:fontFamily="@font/reem_kufi"
+                    android:text="Teacher"
+                    android:textColor="#000000"
+                    android:textSize="28sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView35"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/reem_kufi"
+                    android:text="Upload a Profile Picture"
+                    android:textColor="#003356"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView29" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>

@@ -14,10 +14,18 @@
         android:id="@+id/homePageTeachersSide"
         android:name="com.example.unacademy.Ui.TeachersSide.HomePageTeachersSide"
         android:label="fragment_home_page_teachers_side"
-        tools:layout="@layout/fragment_home_page_teachers_side" />
+        tools:layout="@layout/fragment_home_page_teachers_side" >
+        <action
+            android:id="@+id/action_homePageTeachersSide_to_createYourSeries2"
+            app:destination="@id/createYourSeries" />
+    </fragment>
     <fragment
         android:id="@+id/profileTeachersSide"
         android:name="com.example.unacademy.Ui.TeachersSide.ProfileTeachersSide"
         android:label="fragment_profile_teachers_side"
         tools:layout="@layout/fragment_profile_teachers_side" />
+    <fragment
+        android:id="@+id/createYourSeries"
+        android:name="com.example.unacademy.Ui.TeachersSide.CreateYourSeries"
+        android:label="CreateYourSeries" />
 </navigation>

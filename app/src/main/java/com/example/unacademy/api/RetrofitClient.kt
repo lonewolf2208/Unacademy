@@ -7,7 +7,6 @@ import retrofit2.create
 
 object RetrofitClient {
     private val client = OkHttpClient.Builder().build()
-
     fun getInstance():Retrofit{
         return  Retrofit.Builder()
             .baseUrl("https://unacademy-software-incubator.herokuapp.com")

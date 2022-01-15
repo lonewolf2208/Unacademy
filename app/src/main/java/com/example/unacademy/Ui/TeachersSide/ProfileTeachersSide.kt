@@ -33,12 +33,6 @@ class ProfileTeachersSide : Fragment() {
         binding!!.setProfileImageTeachers.setOnClickListener {
             pickImageGallery()
         }
-        val database = FirebaseDatabase.getInstance()
-        val myRef = database.getReference("message")
-
-        myRef.setValue("Hello, World!").addOnCompleteListener{
-            Toast.makeText(context,"Saved",Toast.LENGTH_LONG).show()
-        }
         return binding!!.root
     }
 

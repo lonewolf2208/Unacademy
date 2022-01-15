@@ -14,10 +14,11 @@
         android:theme="@style/Theme.Unacademy">
         <activity
             android:name=".Activities.StudentSideActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".Activities.NavBarActivity"
-            android:exported="false" />
+            android:theme="@style/TeachersSideHomePage"
+            android:exported="true" />
         <activity
             android:name=".Activities.MainActivity"
             android:exported="true">

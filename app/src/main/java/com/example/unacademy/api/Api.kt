@@ -55,7 +55,16 @@ interface Api {
   @Field("new password") password: String
  ): Call<Message>
 
- @Headers("Connection:close")
+ @FormUrlEncoded
  @POST("/educator/create/")
- fun teachersProfile(@Body teachersProfileDataClass: teachersProfileDataClass,@Header("Authorization")token:String): Call<ResponseBody>
+ fun teachersProfile(@Field("name")name: String,@Field("mobile")mobile:Double, @Field("gender")gender:String, @Field("birth")birth:String, @Field("picture")picture:String, @Field("qual")qual:String, @Field("bio")bio:String, @Field("sample_video")sample_video:String, @Header("Authorization") token:String): Call<ResponseBody>
+
+@FormUrlEncoded
+ @POST("/educator/series/")
+ fun createSeries(@Field("name")name: String,@Field("icon")icon:String,@Field("description")description:String,@Header("Authorization")token:String):Call<ResponseBody>
+
+
+ @FormUrlEncoded
+ @POST("/api/token/refresh/")
+ fun refreshToken(@Header("Authorization")token:String):Call<ResponseBody>
 }

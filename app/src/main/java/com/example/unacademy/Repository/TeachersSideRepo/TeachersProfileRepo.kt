@@ -21,7 +21,16 @@ class TeachersProfileRepo(private val Api:Api)
     fun TeachersProfileApi(teachersProfileDataClass: teachersProfileDataClass,token:String)
     {
 
-        val result = Api.teachersProfile(teachersProfileDataClass,token)
+        val result = Api.teachersProfile(
+            teachersProfileDataClass.name.toString(),
+            teachersProfileDataClass.mobile!!.toDouble(),
+            "Male",
+            teachersProfileDataClass.birth.toString(),
+            teachersProfileDataClass.picture.toString(),
+            teachersProfileDataClass.qual.toString(),
+            teachersProfileDataClass.bio.toString(),
+            teachersProfileDataClass.sample_video.toString(),
+            token ="Bearer ${token}")
         result.enqueue(object : Callback<ResponseBody?> {
             override fun onResponse(
                 call: Call<ResponseBody?>,
@@ -33,12 +42,12 @@ class TeachersProfileRepo(private val Api:Api)
                 }
                 else
                 {
-                    TeachersProfileLiveData.postValue(Response.Error(response.code().toString()))
+                    TeachersProfileLiveData.postValue(Response.Error(response.message() .toString()))
                 }
             }
 
             override fun onFailure(call: Call<ResponseBody?>, t: Throwable) {
-                Log.d("Errormy",t.toString())
+
                     TeachersProfileLiveData.postValue(Response.Error(t.localizedMessage))
             }
         })

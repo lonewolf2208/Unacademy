@@ -36,13 +36,7 @@ class LogIn : Fragment() ,View.OnClickListener{
         binding = FragmentLogInBinding.inflate(inflater,container,false)
         emailFocusListener()
         passwordFocusListener()
-        // Inflate the layout for this fragment
-//        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_log_in,container,false)
-//
-//        binding.lifecycleOwner = this
-//        binding.logInViewModel=LogInViewModel()
         binding!!.SignUpButtonLogIn.setOnClickListener(this)
-
         binding!!.LogInButton.setOnClickListener(this)
         binding!!.ForgotPassword.setOnClickListener(this)
         return binding!!.root

@@ -18,6 +18,7 @@ class TeachersProfileViewModel():ViewModel()
     var helpertextdon=MutableLiveData<String>()
     var helperTextmobile=MutableLiveData<String>()
     var helperTextImage=MutableLiveData<String>()
+    var helperTextGender=MutableLiveData<String>()
     var imageUrl=MutableLiveData<String>()
     var VideoUrl=MutableLiveData<String>()
     var name=MutableLiveData<String>()
@@ -31,29 +32,74 @@ class TeachersProfileViewModel():ViewModel()
     suspend fun submitData(): LiveData<Response<teachersProfileDataClass>>
     {
         var Api=RetrofitClient.init()
-        val teachersProfileRepo: TeachersProfileRepo=TeachersProfileRepo(Api)
-       val job= viewModelScope.async {
+        val teachersProfileRepo: TeachersProfileRepo=TeachersProfileRepo(Api = Api)
+       val job= viewModelScope.launch {
             var AccessToken = Splash_Screen.readInfo("access").toString()
             token = AccessToken
         }
-
         var teachersProfileDataClass= teachersProfileDataClass(
-            name.value.toString(),
-            mobileno.value!!.toDouble()
+            name.value.toString()
+            ,mobileno.value?.toDouble()
             ,gender.value.toString()
             ,dateofbirth.value.toString()
-            ,imageUrl.value
+            ,imageUrl.value.toString()
             ,educationdetails.value.toString()
             ,experience.value.toString()
-            ,VideoUrl.value)
-
-        teachersProfileRepo.TeachersProfileApi(teachersProfileDataClass,token = "${job.await()}")
+            ,VideoUrl.value.toString())
+        job.join()
+        teachersProfileRepo.TeachersProfileApi(teachersProfileDataClass,token = token.toString())
         var result = teachersProfileRepo.TeachersProfileResponse
         return result
     }
 
-    fun validations()
+
+    fun dobValidations():Unit?
     {
+        var dob = dateofbirth.value.toString()
+        if(dob.isNullOrEmpty())
+        {
+            helpertextdon.postValue("Invalid Format")
+            return Unit
+        }
+        if(dob.length<10)
+        {
+            helpertextdon.postValue("Invalid Format")
+            return Unit
+        }
+        for(i in 0..3)
+        {
+            var value = dob[i].toInt()
+            if(!(value in 0..9))
+            {
+                helpertextdon.postValue("Invalid Format")
+            }
+        }
+        for (j in 5..6)
+        {
+            var value = dob[j].toInt()
+            if(!(value in 0..9))
+            {
+                helpertextdon.postValue("Invalid Format")
+            }
+
+        }
+        for (j in 8..9)
+        {
+            var value = dob[j].toInt()
+            if(!(value in 0..9))
+            {
+                helpertextdon.postValue("Invalid Format")
+            }
+
+        }
+        if((dob[4] != '-')  && (dob[7] !='-'))
+        {
+            helpertextdon.postValue("Invalid Format")
+
+        }
+        return null
+    }
+    fun validations(): Unit? {
         if(mobileno.value.isNullOrEmpty())
         {
             helperTextmobile.postValue("Please Enter Your Mobile no.")
@@ -62,6 +108,11 @@ class TeachersProfileViewModel():ViewModel()
         {
             helperTextImage.postValue("Please Update Your Profile Picture")
         }
-
+        if(gender.value.isNullOrEmpty() || gender.value.toString().trim()=="Select Your Gender")
+        {
+            helperTextGender.postValue("Please Select Your Gender")
+        }
+        dobValidations()
+        return null
     }
 }

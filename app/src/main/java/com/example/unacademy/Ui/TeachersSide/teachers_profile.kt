@@ -53,6 +53,7 @@ class teachers_profile : Fragment(),View.OnClickListener {
         binding.teachersImage.setOnClickListener(this)
         binding.VideoUpload.setOnClickListener(this)
         binding.sunmitButtonTeachersProfile.setOnClickListener(this)
+//        binding.spinner.setOnItemClickListener { parent, view, position, id ->  teachersProfileViewModel.gender.postValue(binding.spinner.selectedItem.toString())}
         return binding.root
     }
 
@@ -86,6 +87,7 @@ class teachers_profile : Fragment(),View.OnClickListener {
                         {
                             binding?.teachersImage?.setImageURI(data?.data)
                             teachersProfileViewModel.imageUrl.postValue(it.toString())
+                            Toast.makeText(context,it.toString().length.toString(),Toast.LENGTH_LONG).show()
                             forImage=0
                         }
                         else
@@ -123,20 +125,39 @@ class teachers_profile : Fragment(),View.OnClickListener {
             R.id.VideoUpload->pickVideoGallery()
             R.id.sunmitButtonTeachersProfile->
             {
-                teachersProfileViewModel.validations()
-                teachersProfileViewModel.gender.postValue(binding.spinner.selectedItem.toString())
-                lifecycleScope.launch {
-                    var result=teachersProfileViewModel.submitData()
-                    result.observe(this@teachers_profile,{
-                        when(it)
-                        {
-                            is Response.Success->Toast.makeText(context,"Success",Toast.LENGTH_LONG).show()
-                            is Response.Error->Toast.makeText(context,it.errorMessage,Toast.LENGTH_LONG).show()
-                            is Response.Loading->Toast.makeText(context,"Loading",Toast.LENGTH_LONG).show()
-                        }
-                    })
-                }
+                Toast.makeText(context,teachersProfileViewModel.imageUrl.value.toString(),Toast.LENGTH_LONG).show()
+                Toast.makeText(context,teachersProfileViewModel.name.value.toString(),Toast.LENGTH_LONG).show()
+                Toast.makeText(context,teachersProfileViewModel.mobileno.value.toString(),Toast.LENGTH_LONG).show()
+                Toast.makeText(context,teachersProfileViewModel.dateofbirth.value.toString(),Toast.LENGTH_LONG).show()
+                Toast.makeText(context,teachersProfileViewModel.gender.value.toString(),Toast.LENGTH_LONG).show()
+                Toast.makeText(context,teachersProfileViewModel.educationdetails.value.toString(),Toast.LENGTH_LONG).show()
+                Toast.makeText(context,teachersProfileViewModel.experience.value.toString(),Toast.LENGTH_LONG).show()
+                Toast.makeText(context,teachersProfileViewModel.VideoUrl.value.toString(),Toast.LENGTH_LONG).show()
 
+                if(teachersProfileViewModel.validations()==null) {
+                    lifecycleScope.launch {
+                        var result = teachersProfileViewModel.submitData()
+                        result.observe(this@teachers_profile, {
+                            when (it) {
+                                is Response.Success -> Toast.makeText(
+                                    context,
+                                    "Success",
+                                    Toast.LENGTH_LONG
+                                ).show()
+                                is Response.Error -> Toast.makeText(
+                                    context,
+                                    it.errorMessage,
+                                    Toast.LENGTH_LONG
+                                ).show()
+                                is Response.Loading -> Toast.makeText(
+                                    context,
+                                    "Loading",
+                                    Toast.LENGTH_LONG
+                                ).show()
+                            }
+                        })
+                    }
+                }
             }
         }
 
