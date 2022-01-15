@@ -32,9 +32,7 @@ class TeachersProfileViewModel():ViewModel()
 
 
 
-    var result=MutableLiveData<Response<ResponseBody>>()
-
-
+    var result=MutableLiveData<Response<teachersProfileDataClass>>()
 
     suspend fun submitData()
     {
@@ -55,6 +53,7 @@ class TeachersProfileViewModel():ViewModel()
             ,VideoUrl.value.toString())
         val teachersProfileRepo: TeachersProfileRepo=TeachersProfileRepo(Api = Api)
         result=teachersProfileRepo.teachersProfileApi(teachersProfileDataClass,token = token.toString())
+
     }
 
 
@@ -104,7 +103,7 @@ class TeachersProfileViewModel():ViewModel()
         }
         return null
     }
-    fun validations(): Unit? {
+    fun validations(): Unit?{
         if(mobileno.value.isNullOrEmpty())
         {
             helperTextmobile.postValue("Please Enter Your Mobile no.")
@@ -112,12 +111,20 @@ class TeachersProfileViewModel():ViewModel()
         if(imageUrl.value.isNullOrEmpty())
         {
             helperTextImage.postValue("Please Update Your Profile Picture")
+
         }
         if(gender.value.isNullOrEmpty() || gender.value.toString().trim()=="Select Your Gender")
         {
             helperTextGender.postValue("Please Select Your Gender")
         }
-        dobValidations()
-        return null
+        if(dobValidations()!=null)
+        {
+            return Unit
+        }
+        else
+        {
+            return null
+        }
+        return Unit
     }
 }

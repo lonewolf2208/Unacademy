@@ -67,8 +67,8 @@ class Splash_Screen : Fragment() {
         android.os.Handler().postDelayed(
             {
                 lifecycleScope.launch {
-                    var loggedIn = read("loggedIn")
-                    if (loggedIn != true)
+                    var teacherloggedIn = read("teacherloggedIn")
+                    if (teacherloggedIn== true)
                     {
                         val intent = Intent(activity, NavBarActivity::class.java)
                         startActivity(intent)

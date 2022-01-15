@@ -67,7 +67,7 @@ interface Api {
         @Field("bio") bio: String,
         @Field("sample_video") sample_video: String,
         @Header("Authorization") token: String
-    ): Call<ResponseBody>
+    ): Call<teachersProfileDataClass>
 
     @FormUrlEncoded
     @POST("/educator/series/")

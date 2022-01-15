@@ -32,8 +32,8 @@ class NavBarActivity : AppCompatActivity() {
         binding.drawerlayoutTeachersSide.addDrawerListener(toggle)
 
         toggle.syncState()
-        binding.floatingButtonHomePageTeachersSide.setOnClickListener {
-            navController.navigate(R.id.action_homePageTeachersSide_to_createYourSeries2)
+        binding.floatingButtonTeachersSide.setOnClickListener {
+            navController.navigate(R.id.createYourSeries)
         }
         val actionBar = supportActionBar
         actionBar?.setDisplayHomeAsUpEnabled(true)

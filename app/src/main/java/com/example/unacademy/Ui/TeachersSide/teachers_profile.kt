@@ -16,26 +16,23 @@ import androidx.lifecycle.lifecycleScope
 import com.example.unacademy.Activities.NavBarActivity
 import com.example.unacademy.R
 import com.example.unacademy.Repository.Response
-import com.example.unacademy.Ui.Auth.Splash_Screen
 import com.example.unacademy.databinding.FragmentTeachersProfileBinding
 import com.example.unacademy.viewModel.TeachersProfileViewModel
 import com.google.android.gms.tasks.OnFailureListener
-import com.google.android.gms.tasks.OnSuccessListener
-import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.OnProgressListener
-import com.google.firebase.storage.UploadTask
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
-import okhttp3.Dispatcher
-import okhttp3.ResponseBody
 import java.util.*
 import android.widget.AdapterView
-
-
+import com.example.unacademy.Ui.Auth.Splash_Screen
+import com.example.unacademy.models.TeachersSideModels.teachersProfileDataClass
 
 
 class teachers_profile : Fragment(),View.OnClickListener {
+    companion object
+    {
+        var resultteachers_profile:teachersProfileDataClass?=null
+    }
     private lateinit var imageUri: Uri
     private var IMAGE_REQUEST_CODE=100
     lateinit var binding: FragmentTeachersProfileBinding
@@ -136,27 +133,38 @@ class teachers_profile : Fragment(),View.OnClickListener {
         {
             R.id.teachers_image->pickImageGallery()
             R.id.VideoUpload->pickVideoGallery()
-            R.id.sunmitButtonTeachersProfile->
-            {
-                lifecycleScope.launch {
-                          teachersProfileViewModel.submitData()
+            R.id.sunmitButtonTeachersProfile-> {
+                if (teachersProfileViewModel.validations() == null) {
+                    lifecycleScope.launch {
+                        teachersProfileViewModel.submitData()
                     }
-                teachersProfileViewModel.result.observe(viewLifecycleOwner,
-                    {
-                        when(it) {
-                            is Response.Success ->
-                            {
-                                Toast.makeText(context, "Success", Toast.LENGTH_LONG).show()
-                                val intent = Intent(
-                                    activity,
-                                    NavBarActivity::class.java
-                                )
-                                startActivity(intent)
+                    teachersProfileViewModel.result.observe(viewLifecycleOwner,
+                        {
+                            when (it) {
+                                is Response.Success -> {
+                                    lifecycleScope.launch {
+                                        Splash_Screen.save("teacherloggedIn",true)
+                                    }
+                                    val intent = Intent(
+                                        activity,
+                                        NavBarActivity::class.java
+                                    )
+                                    resultteachers_profile=it.data
+                                    startActivity(intent)
+                                }
+                                is Response.Error -> Toast.makeText(
+                                    context,
+                                    it.errorMessage.toString(),
+                                    Toast.LENGTH_LONG
+                                ).show()
+                                is Response.Loading -> Toast.makeText(
+                                    context,
+                                    "Loading",
+                                    Toast.LENGTH_LONG
+                                ).show()
                             }
-                            is Response.Error->Toast.makeText(context,it.errorMessage.toString(),Toast.LENGTH_LONG).show()
-                            is Response.Loading->Toast.makeText(context,"Loading",Toast.LENGTH_LONG).show()
-                        }
-                    })
+                        })
+                }
             }
         }
 

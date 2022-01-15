@@ -86,13 +86,18 @@ class LogIn : Fragment() ,View.OnClickListener{
                                                             "refresh",
                                                             it.data?.refresh.toString()
                                                         )
-                                                        Splash_Screen.save("loggedIn", true)
                                                     }
                                                     if (teacher == true) {
+                                                        lifecycleScope.launch {
+                                                            Splash_Screen.save("loggedIn",true)
+                                                        }
                                                         val intent = Intent(
                                                             activity,
                                                             NavBarActivity::class.java
                                                         )
+                                                        lifecycleScope.launch {
+                                                            Splash_Screen.save("teacherloggedIn",true)
+                                                        }
                                                         startActivity(intent)
                                                     } else if (student == true)
                                                     {
@@ -100,6 +105,9 @@ class LogIn : Fragment() ,View.OnClickListener{
                                                             activity,
                                                             StudentSideActivity::class.java
                                                         )
+                                                        lifecycleScope.launch {
+                                                            Splash_Screen.save("studentloggedIn",true)
+                                                        }
                                                         startActivity(intent)
                                                     }
                                                     else

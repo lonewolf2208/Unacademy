@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import coil.load
 import com.example.unacademy.R
 import com.example.unacademy.databinding.FragmentProfileTeachersSideBinding
 import com.google.firebase.database.DatabaseReference
@@ -22,33 +23,17 @@ import com.google.firebase.database.FirebaseDatabase
 class ProfileTeachersSide : Fragment() {
 
     private var binding:FragmentProfileTeachersSideBinding?=null
-    private var imageUri:Uri?=null
-    private var IMAGE_REQUEST_CODE=100
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         binding= FragmentProfileTeachersSideBinding.inflate(inflater,container,false)
-        binding!!.setProfileImageTeachers.setOnClickListener {
-            pickImageGallery()
-        }
+        binding!!.setProfileImageTeachers.load(teachers_profile.resultteachers_profile?.picture)
+        binding!!.FacultyQualification.text=teachers_profile.resultteachers_profile?.qual
+        binding!!.FacultyName.text=teachers_profile.resultteachers_profile?.name
+        binding!!.facultyExperience.text=teachers_profile.resultteachers_profile?.bio
         return binding!!.root
     }
 
-    private fun pickImageGallery() {
-        val intent = Intent(Intent.ACTION_PICK)
-        intent.type="image/*"
-        startActivityForResult(intent,IMAGE_REQUEST_CODE)
-    }
-
-    override
-    fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if(requestCode==IMAGE_REQUEST_CODE && resultCode==RESULT_OK)
-        {
-            imageUri= data?.getData()
-            binding?.setProfileImageTeachers?.setImageURI(data?.data)
-        }
-    }
 }

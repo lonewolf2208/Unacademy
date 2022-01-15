@@ -11,11 +11,11 @@ import retrofit2.Call
 import retrofit2.Callback
 
 class TeachersProfileRepo(private val Api: Api) {
-    private val teacherProfileLiveData = MutableLiveData<Response<ResponseBody>>()
+    private val teacherProfileLiveData = MutableLiveData<Response<teachersProfileDataClass>>()
     fun teachersProfileApi(
         teachersProfileDataClass: teachersProfileDataClass,
         token: String
-    ): MutableLiveData<Response<ResponseBody>> {
+    ): MutableLiveData<Response<teachersProfileDataClass>> {
 
         teacherProfileLiveData.postValue(Response.Loading())
         val result = Api.teachersProfile(
@@ -29,20 +29,20 @@ class TeachersProfileRepo(private val Api: Api) {
             teachersProfileDataClass.sample_video.toString(),
             "Bearer ${token}"
         )
-        result.enqueue(object : Callback<ResponseBody?> {
+        result.enqueue(object : Callback<teachersProfileDataClass?> {
             override fun onResponse(
-                call: Call<ResponseBody?>,
-                response: retrofit2.Response<ResponseBody?>
+                call: Call<teachersProfileDataClass?>,
+                response: retrofit2.Response<teachersProfileDataClass?>
             ) {
                 if (response.isSuccessful) {
                     Log.w("sda", "Successsfull")
-                    teacherProfileLiveData.postValue(Response.Success())
+                    teacherProfileLiveData.postValue(Response.Success(response.body()))
                 } else {
                     teacherProfileLiveData.postValue(Response.Error("Some Error has occured please try again!!"))
                 }
             }
 
-            override fun onFailure(call: Call<ResponseBody?>, t: Throwable) {
+            override fun onFailure(call: Call<teachersProfileDataClass?>, t: Throwable) {
                 Log.w("sda", "Failure")
                 teacherProfileLiveData.postValue(Response.Error(t.message.toString()))
             }
