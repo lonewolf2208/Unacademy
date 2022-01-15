@@ -29,6 +29,5 @@ class CreateSeriesViewModel:ViewModel() {
         createSeriesRepo.createSeriesApi(courseName.value.toString(),coursedescription.value.toString(),icon.value.toString(),token.toString())
         var result=createSeriesRepo.createSeriesResponse
         return result
-
     }
 }

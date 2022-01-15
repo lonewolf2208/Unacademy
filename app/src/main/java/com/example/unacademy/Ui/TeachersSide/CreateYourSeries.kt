@@ -102,15 +102,12 @@ class CreateYourSeries : Fragment() ,View.OnClickListener{
             R.id.createSeries->
             {
                 lifecycleScope.launch {
-                    Toast.makeText(context,createYourSeriesViewModel.icon.value,Toast.LENGTH_LONG).show()
-                    Toast.makeText(context,createYourSeriesViewModel.courseName.value,Toast.LENGTH_LONG).show()
-                    Toast.makeText(context,createYourSeriesViewModel.coursedescription.value,Toast.LENGTH_LONG).show()
                     val result=createYourSeriesViewModel.createSeries()
                     result.observe(this@CreateYourSeries,
                         {
                             when(it)
                             {
-                                is Response.Success->Toast.makeText(context,"Sucess",Toast.LENGTH_LONG).show()
+                                is Response.Success->Toast.makeText(context,"Success",Toast.LENGTH_LONG).show()
                                 is Response.Error->Toast.makeText(context,it.errorMessage,Toast.LENGTH_LONG).show()
                             }
                         })

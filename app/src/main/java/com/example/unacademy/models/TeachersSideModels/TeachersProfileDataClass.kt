@@ -2,7 +2,7 @@ package com.example.unacademy.models.TeachersSideModels
 
 data class teachersProfileDataClass(
     var name : String?=null,
-    var mobile: Double? = null,
+    var mobile: Long? = null,
     var gender: String? = null,
     var birth: String? = null,
     var picture: String? = null,

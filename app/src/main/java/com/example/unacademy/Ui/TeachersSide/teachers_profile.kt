@@ -13,7 +13,7 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.viewModelScope
+import com.example.unacademy.Activities.NavBarActivity
 import com.example.unacademy.R
 import com.example.unacademy.Repository.Response
 import com.example.unacademy.Ui.Auth.Splash_Screen
@@ -28,18 +28,24 @@ import com.google.firebase.storage.UploadTask
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import okhttp3.Dispatcher
+import okhttp3.ResponseBody
 import java.util.*
+import android.widget.AdapterView
+
+
+
 
 class teachers_profile : Fragment(),View.OnClickListener {
     private lateinit var imageUri: Uri
     private var IMAGE_REQUEST_CODE=100
     lateinit var binding: FragmentTeachersProfileBinding
-    lateinit var teachersProfileViewModel:TeachersProfileViewModel
+    private lateinit var teachersProfileViewModel:TeachersProfileViewModel
+
     var storage: FirebaseStorage = FirebaseStorage.getInstance()
     var forImage=0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        teachersProfileViewModel=ViewModelProvider(this)[TeachersProfileViewModel::class.java]
+        teachersProfileViewModel= ViewModelProvider(this)[TeachersProfileViewModel::class.java]
     }
 
     override fun onCreateView(
@@ -53,7 +59,15 @@ class teachers_profile : Fragment(),View.OnClickListener {
         binding.teachersImage.setOnClickListener(this)
         binding.VideoUpload.setOnClickListener(this)
         binding.sunmitButtonTeachersProfile.setOnClickListener(this)
-//        binding.spinner.setOnItemClickListener { parent, view, position, id ->  teachersProfileViewModel.gender.postValue(binding.spinner.selectedItem.toString())}
+        binding.spinner.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View, pos: Int, id: Long) {
+                val item = parent.getItemAtPosition(pos)
+                teachersProfileViewModel.gender.postValue(item.toString())
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+            }
+        })
         return binding.root
     }
 
@@ -78,7 +92,6 @@ class teachers_profile : Fragment(),View.OnClickListener {
             storageReference.putFile(imageUri)
                 .addOnSuccessListener{
                     it.storage.downloadUrl.addOnSuccessListener {
-
                        if(progressDialog.isShowing())
                        {
                            progressDialog.dismiss()
@@ -87,7 +100,6 @@ class teachers_profile : Fragment(),View.OnClickListener {
                         {
                             binding?.teachersImage?.setImageURI(data?.data)
                             teachersProfileViewModel.imageUrl.postValue(it.toString())
-                            Toast.makeText(context,it.toString().length.toString(),Toast.LENGTH_LONG).show()
                             forImage=0
                         }
                         else
@@ -118,6 +130,7 @@ class teachers_profile : Fragment(),View.OnClickListener {
         startActivityForResult(intent,IMAGE_REQUEST_CODE)
     }
 
+
     override fun onClick(v: View?) {
         when(v?.id)
         {
@@ -125,39 +138,25 @@ class teachers_profile : Fragment(),View.OnClickListener {
             R.id.VideoUpload->pickVideoGallery()
             R.id.sunmitButtonTeachersProfile->
             {
-                Toast.makeText(context,teachersProfileViewModel.imageUrl.value.toString(),Toast.LENGTH_LONG).show()
-                Toast.makeText(context,teachersProfileViewModel.name.value.toString(),Toast.LENGTH_LONG).show()
-                Toast.makeText(context,teachersProfileViewModel.mobileno.value.toString(),Toast.LENGTH_LONG).show()
-                Toast.makeText(context,teachersProfileViewModel.dateofbirth.value.toString(),Toast.LENGTH_LONG).show()
-                Toast.makeText(context,teachersProfileViewModel.gender.value.toString(),Toast.LENGTH_LONG).show()
-                Toast.makeText(context,teachersProfileViewModel.educationdetails.value.toString(),Toast.LENGTH_LONG).show()
-                Toast.makeText(context,teachersProfileViewModel.experience.value.toString(),Toast.LENGTH_LONG).show()
-                Toast.makeText(context,teachersProfileViewModel.VideoUrl.value.toString(),Toast.LENGTH_LONG).show()
-
-                if(teachersProfileViewModel.validations()==null) {
-                    lifecycleScope.launch {
-                        var result = teachersProfileViewModel.submitData()
-                        result.observe(this@teachers_profile, {
-                            when (it) {
-                                is Response.Success -> Toast.makeText(
-                                    context,
-                                    "Success",
-                                    Toast.LENGTH_LONG
-                                ).show()
-                                is Response.Error -> Toast.makeText(
-                                    context,
-                                    it.errorMessage,
-                                    Toast.LENGTH_LONG
-                                ).show()
-                                is Response.Loading -> Toast.makeText(
-                                    context,
-                                    "Loading",
-                                    Toast.LENGTH_LONG
-                                ).show()
-                            }
-                        })
+                lifecycleScope.launch {
+                          teachersProfileViewModel.submitData()
                     }
-                }
+                teachersProfileViewModel.result.observe(viewLifecycleOwner,
+                    {
+                        when(it) {
+                            is Response.Success ->
+                            {
+                                Toast.makeText(context, "Success", Toast.LENGTH_LONG).show()
+                                val intent = Intent(
+                                    activity,
+                                    NavBarActivity::class.java
+                                )
+                                startActivity(intent)
+                            }
+                            is Response.Error->Toast.makeText(context,it.errorMessage.toString(),Toast.LENGTH_LONG).show()
+                            is Response.Loading->Toast.makeText(context,"Loading",Toast.LENGTH_LONG).show()
+                        }
+                    })
             }
         }
 

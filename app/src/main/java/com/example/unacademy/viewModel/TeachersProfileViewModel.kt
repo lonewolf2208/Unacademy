@@ -7,6 +7,7 @@ import com.example.unacademy.Repository.TeachersSideRepo.TeachersProfileRepo
 import com.example.unacademy.Ui.Auth.Splash_Screen
 
 import com.example.unacademy.api.RetrofitClient
+import com.example.unacademy.models.AuthModels.Message
 import com.example.unacademy.models.TeachersSideModels.teachersProfileDataClass
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
@@ -29,27 +30,31 @@ class TeachersProfileViewModel():ViewModel()
     var experience = MutableLiveData<String>()
     var token:String?=null
 
-    suspend fun submitData(): LiveData<Response<teachersProfileDataClass>>
+
+
+    var result=MutableLiveData<Response<ResponseBody>>()
+
+
+
+    suspend fun submitData()
     {
         var Api=RetrofitClient.init()
-        val teachersProfileRepo: TeachersProfileRepo=TeachersProfileRepo(Api = Api)
        val job= viewModelScope.launch {
             var AccessToken = Splash_Screen.readInfo("access").toString()
             token = AccessToken
         }
+        job.join()
         var teachersProfileDataClass= teachersProfileDataClass(
             name.value.toString()
-            ,mobileno.value?.toDouble()
+            ,mobileno.value?.toLong()
             ,gender.value.toString()
             ,dateofbirth.value.toString()
             ,imageUrl.value.toString()
             ,educationdetails.value.toString()
             ,experience.value.toString()
             ,VideoUrl.value.toString())
-        job.join()
-        teachersProfileRepo.TeachersProfileApi(teachersProfileDataClass,token = token.toString())
-        var result = teachersProfileRepo.TeachersProfileResponse
-        return result
+        val teachersProfileRepo: TeachersProfileRepo=TeachersProfileRepo(Api = Api)
+        result=teachersProfileRepo.teachersProfileApi(teachersProfileDataClass,token = token.toString())
     }
 
 
