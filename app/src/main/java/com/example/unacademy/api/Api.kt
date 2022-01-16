@@ -4,7 +4,10 @@ package com.example.unacademy.api
 import com.example.unacademy.models.AuthModels.LoginDataClass
 import com.example.unacademy.models.AuthModels.Message
 import com.example.unacademy.models.AuthModels.SignUpDataClass
+import com.example.unacademy.models.TeachersSideModels.educatorSeries.educatorSeriesModelItem
+import com.example.unacademy.models.TeachersSideModels.getTeachersProfile.getTeachersProfileModel
 import com.example.unacademy.models.TeachersSideModels.teachersProfileDataClass
+import com.example.unacademy.models.tokenModel
 import okhttp3.ResponseBody
 import retrofit2.Call
 
@@ -78,8 +81,13 @@ interface Api {
         @Header("Authorization") token: String
     ): Call<ResponseBody>
 
-
     @FormUrlEncoded
     @POST("/api/token/refresh/")
-    fun refreshToken(@Header("Authorization") token: String): Call<ResponseBody>
+    fun refreshToken(@Header("Authorization") token: String): Call<tokenModel>
+
+    @GET("/educator/series/")
+    fun getSeries(@Header("Authorization") token: String):Call<List<educatorSeriesModelItem>>
+
+    @GET("/educator/create/")
+    fun getTeachersProfile(@Header("Authorization") token: String):Call<getTeachersProfileModel>
 }

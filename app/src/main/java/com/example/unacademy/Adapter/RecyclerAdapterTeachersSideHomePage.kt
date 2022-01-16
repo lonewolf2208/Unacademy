@@ -6,16 +6,15 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.example.unacademy.R
 import com.example.unacademy.databinding.FragmentCardViewHomePageTeachersSideBinding
+import com.example.unacademy.models.TeachersSideModels.educatorSeries.educatorSeriesModelItem
 import com.example.unacademy.viewModel.HomePageViewModel
 
-class RecyclerAdapterTeachersSideHomePage():RecyclerView.Adapter<RecyclerAdapterTeachersSideHomePage.ViewHolder>() {
+class RecyclerAdapterTeachersSideHomePage(val educatorSeriesModelItem: List<educatorSeriesModelItem>?):RecyclerView.Adapter<RecyclerAdapterTeachersSideHomePage.ViewHolder>() {
     inner class ViewHolder(val binding:FragmentCardViewHomePageTeachersSideBinding) :RecyclerView.ViewHolder(binding.root) {
-        fun bind( homePageViewModel: HomePageViewModel)
-        {
-            binding.homePageViewModel=homePageViewModel
-        }
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -25,11 +24,15 @@ class RecyclerAdapterTeachersSideHomePage():RecyclerView.Adapter<RecyclerAdapter
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        holder.binding.batchNameHomeTeacherSide.text= educatorSeriesModelItem?.get(position)?.name.toString()
+        holder.binding.descriptionhomepageteachersSide.text= educatorSeriesModelItem?.get(position)?.description.toString()
+        holder.binding.totalectureshomepageteachersSide.text=
+            educatorSeriesModelItem?.get(position)?.educator.toString()
+        holder.binding.batchimageteachersside.load(educatorSeriesModelItem?.get(position)?.icon)
     }
 
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        return educatorSeriesModelItem!!.size
     }
 
 

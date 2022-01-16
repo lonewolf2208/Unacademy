@@ -17,7 +17,7 @@ class createSeriesRepo(private val Api:Api) {
 
     fun createSeriesApi(name:String,description:String,icon:String,token:String)
     {
-        val result=Api.createSeries(name, icon, description, "Bearer ${token}").enqueue(object : Callback<ResponseBody?> {
+       Api.createSeries(name, icon, description, "Bearer ${token}").enqueue(object : Callback<ResponseBody?> {
             override fun onResponse(
                 call: Call<ResponseBody?>,
                 response: retrofit2.Response<ResponseBody?>

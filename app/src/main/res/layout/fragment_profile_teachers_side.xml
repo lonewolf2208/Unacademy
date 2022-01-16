@@ -11,20 +11,29 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/setProfileImageTeachers"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/setProfileImageTeachersCardView"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_marginStart="150dp"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="150dp"
-            android:elevation="1000dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/profile_teachers_side"
+            android:elevation="12dp"
+            app:cardCornerRadius="70dp"
+            android:shape="ring"
             app:layout_constraintCircleRadius="50dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+        <ImageView
+            android:id="@+id/setProfileImageTeachers"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:elevation="1000dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/profile_teachers_side"
+             />
+        </androidx.cardview.widget.CardView>
 
         <TextView
             android:id="@+id/FacultyName"
@@ -39,7 +48,7 @@
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/setProfileImageTeachers" />
+            app:layout_constraintTop_toBottomOf="@+id/setProfileImageTeachersCardView" />
 
         <TextView
             android:id="@+id/FacultyQualification"
