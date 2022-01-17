@@ -34,5 +34,13 @@
     <fragment
         android:id="@+id/lecturesTeachersSide"
         android:name="com.example.unacademy.Ui.TeachersSide.lecturesTeachersSide"
-        android:label="lecturesTeachersSide" />
+        android:label="lecturesTeachersSide" >
+        <action
+            android:id="@+id/action_lecturesTeachersSide_to_upload_lectures"
+            app:destination="@id/upload_lectures" />
+    </fragment>
+    <fragment
+        android:id="@+id/upload_lectures"
+        android:name="com.example.unacademy.Ui.TeachersSide.upload_lectures"
+        android:label="upload_lectures" />
 </navigation>

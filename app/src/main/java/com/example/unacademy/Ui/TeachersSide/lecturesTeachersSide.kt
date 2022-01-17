@@ -1,5 +1,6 @@
 package com.example.unacademy.Ui.TeachersSide
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -12,6 +13,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.unacademy.Activities.ExoPlayer
+import com.example.unacademy.Activities.StudentSideActivity
 import com.example.unacademy.Adapter.RecyclerAdapterLectureTeachersSide
 import com.example.unacademy.Adapter.RecyclerAdapterTeachersSideHomePage
 import com.example.unacademy.R
@@ -26,7 +29,7 @@ class lecturesTeachersSide : Fragment() {
     lateinit var binding: FragmentLecturesTeachersSideBinding
     lateinit var lectureTeachersSideViewModel: LectureTeachersSideViewModel
     private var layoutManager: RecyclerView.LayoutManager? = null
-    private var adapter: RecyclerView.Adapter<RecyclerAdapterLectureTeachersSide.ViewHolder>? = null
+    lateinit var adapter: RecyclerAdapterLectureTeachersSide
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,6 +51,9 @@ class lecturesTeachersSide : Fragment() {
             Toast.makeText(context,HomePageTeachersSide.seriesid.toString(),Toast.LENGTH_LONG).show()
         binding.lifecycleOwner = this
         binding.lectureSideViewModel = lectureTeachersSideViewModel
+        binding.floatingButtonUploadLecture.setOnClickListener {
+            findNavController().navigate(R.id.action_lecturesTeachersSide_to_upload_lectures )
+        }
         lifecycleScope.launch {
             lectureTeachersSideViewModel.getLectures(HomePageTeachersSide.seriesid!!.toInt())
             lectureTeachersSideViewModel.result.observe(viewLifecycleOwner,
@@ -59,11 +65,16 @@ class lecturesTeachersSide : Fragment() {
                             binding.recyclerViewLectureSide.layoutManager = layoutManager
                             adapter = RecyclerAdapterLectureTeachersSide(it.data)
                             binding.recyclerViewLectureSide.adapter = adapter
-//                        lectureTeachersSideViewModel.seriesName.postValue(it.data?.get(0)?.series_name)
-//                        lectureTeachersSideViewModel.seriesDescription.postValue(it.data?.get(0)?.series_description)
-
+                            adapter.onClickListeer(object : RecyclerAdapterTeachersSideHomePage.ClickListener {
+                                override fun OnClick(position: Int) {
+                                    val intent=Intent(
+                                        activity,
+                                        ExoPlayer::class.java
+                                    )
+                                    startActivity(intent)
+                                }
+                            })
                         }
-
                         is com.example.unacademy.Repository.Response.Error -> Toast.makeText(
                             context,
                             it.errorMessage.toString(),

@@ -94,4 +94,8 @@ interface Api {
 
     @GET("/educator/series/lecture/{series}")
     fun getLectures(@Path("series")series:Int, @Header("Authorization") token: String):Call<List<getLectureModelItem>>
+
+    @FormUrlEncoded
+    @POST("/educator/series/lecture/{series}")
+    fun UploadLectures(@Field("name")name:String,@Field("description")description:String,@Field("video")video:String,@Path("series")series:Int,@Header("Authorization") token: String):Call<ResponseBody>
 }
