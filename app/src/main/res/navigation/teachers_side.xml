@@ -18,6 +18,9 @@
         <action
             android:id="@+id/action_homePageTeachersSide_to_createYourSeries2"
             app:destination="@id/createYourSeries" />
+        <action
+            android:id="@+id/action_homePageTeachersSide_to_lecturesTeachersSide"
+            app:destination="@id/lecturesTeachersSide" />
     </fragment>
     <fragment
         android:id="@+id/profileTeachersSide"
@@ -28,4 +31,8 @@
         android:id="@+id/createYourSeries"
         android:name="com.example.unacademy.Ui.TeachersSide.CreateYourSeries"
         android:label="CreateYourSeries" />
+    <fragment
+        android:id="@+id/lecturesTeachersSide"
+        android:name="com.example.unacademy.Ui.TeachersSide.lecturesTeachersSide"
+        android:label="lecturesTeachersSide" />
 </navigation>

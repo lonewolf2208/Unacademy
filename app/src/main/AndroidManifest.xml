@@ -13,12 +13,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Unacademy">
         <activity
+            android:name=".Activities.ExoPlayer"
+            android:exported="false" />
+        <activity
             android:name=".Activities.StudentSideActivity"
             android:exported="true" />
         <activity
             android:name=".Activities.NavBarActivity"
-            android:theme="@style/TeachersSideHomePage"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/TeachersSideHomePage" />
         <activity
             android:name=".Activities.MainActivity"
             android:exported="true">

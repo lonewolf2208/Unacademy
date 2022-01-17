@@ -30,8 +30,6 @@ class TeachersProfileViewModel():ViewModel()
     var experience = MutableLiveData<String>()
     var token:String?=null
 
-
-
     var result=MutableLiveData<Response<teachersProfileDataClass>>()
 
     suspend fun submitData()
@@ -55,6 +53,7 @@ class TeachersProfileViewModel():ViewModel()
         result=teachersProfileRepo.teachersProfileApi(teachersProfileDataClass,token = token.toString())
 
     }
+
 
 
     fun dobValidations():Unit?

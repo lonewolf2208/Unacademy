@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.unacademy.Activities.NavBarActivity
@@ -22,13 +23,19 @@ import com.example.unacademy.databinding.FragmentHomePageTeachersSideBinding
 import com.example.unacademy.viewModel.HomePageViewModel
 import kotlinx.coroutines.launch
 import retrofit2.Response
+import java.lang.NullPointerException
 
 class HomePageTeachersSide : Fragment() {
 
+    companion object
+    {
+        var seriesid:Int?=null
+    }
     lateinit var binding :FragmentHomePageTeachersSideBinding
     lateinit var homePageViewModel:HomePageViewModel
     private var layoutManager: RecyclerView.LayoutManager?=null
-    private var adapter: RecyclerView.Adapter<RecyclerAdapterTeachersSideHomePage.ViewHolder>? = null
+    private var recyclerAdapterClickListener:RecyclerAdapterTeachersSideHomePage.ClickListener?=null
+    lateinit var adapter:RecyclerAdapterTeachersSideHomePage
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         homePageViewModel=ViewModelProvider(this)[HomePageViewModel::class.java]
@@ -47,7 +54,7 @@ class HomePageTeachersSide : Fragment() {
         )
 
         binding.lifecycleOwner=this
-        binding.homePageViewModel=homePageViewModel
+
         lifecycleScope.launch {
             homePageViewModel.getSeries()
         }
@@ -57,10 +64,17 @@ class HomePageTeachersSide : Fragment() {
                when(it)
                {
                    is com.example.unacademy.Repository.Response.Success -> {
+                
                        layoutManager=LinearLayoutManager(container?.context)
                        binding.recyclerViewHomePage.layoutManager=layoutManager
                        adapter=RecyclerAdapterTeachersSideHomePage(it.data)
                        binding.recyclerViewHomePage.adapter=adapter
+                       adapter.onClickListeer(object : RecyclerAdapterTeachersSideHomePage.ClickListener {
+                           override fun OnClick(position: Int) {
+                             seriesid = adapter.educatorSeriesModelItem?.get(position)?.id!!.toInt()
+                               findNavController().navigate(R.id.action_homePageTeachersSide_to_lecturesTeachersSide)
+                           }
+                       })
                    }
 
                    is com.example.unacademy.Repository.Response.Error -> Toast.makeText(

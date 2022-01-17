@@ -23,8 +23,6 @@ class TeachersProfileRepo(private val Api: Api) {
         teachersProfileDataClass: teachersProfileDataClass,
         token: String
     ): MutableLiveData<Response<teachersProfileDataClass>> {
-
-        teacherProfileLiveData.postValue(Response.Loading())
         val result = Api.teachersProfile(
             teachersProfileDataClass.name.toString(),
             teachersProfileDataClass.mobile!!.toLong(),

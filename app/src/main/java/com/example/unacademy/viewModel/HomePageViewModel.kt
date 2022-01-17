@@ -12,9 +12,6 @@ import com.example.unacademy.models.TeachersSideModels.teachersProfileDataClass
 import kotlinx.coroutines.launch
 
 class HomePageViewModel():ViewModel() {
-    var batchName=MutableLiveData<String>()
-    var description=MutableLiveData<String>()
-    var lectureCount=MutableLiveData<String>()
     var token:String?=null
     var result=MutableLiveData<Response<List<educatorSeriesModelItem>>>()
     suspend fun getSeries()

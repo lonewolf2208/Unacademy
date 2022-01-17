@@ -13,14 +13,25 @@ import com.example.unacademy.models.TeachersSideModels.educatorSeries.educatorSe
 import com.example.unacademy.viewModel.HomePageViewModel
 
 class RecyclerAdapterTeachersSideHomePage(val educatorSeriesModelItem: List<educatorSeriesModelItem>?):RecyclerView.Adapter<RecyclerAdapterTeachersSideHomePage.ViewHolder>() {
-    inner class ViewHolder(val binding:FragmentCardViewHomePageTeachersSideBinding) :RecyclerView.ViewHolder(binding.root) {
+    var clickListener:ClickListener?=null
 
+    fun onClickListeer( clickListener:ClickListener)
+    {
+        this.clickListener=clickListener
+    }
+
+    inner class ViewHolder(val binding:FragmentCardViewHomePageTeachersSideBinding,listener: ClickListener) :RecyclerView.ViewHolder(binding.root) {
+        init {
+            itemView.setOnClickListener {
+                clickListener?.OnClick(adapterPosition)
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
        val layoutInflater=LayoutInflater.from(parent.context)
         val cardViewHomePageTeachersSideBinding:FragmentCardViewHomePageTeachersSideBinding=DataBindingUtil.inflate(layoutInflater,R.layout.fragment_card_view_home_page_teachers_side,parent,false)
-        return ViewHolder(cardViewHomePageTeachersSideBinding)
+        return ViewHolder(cardViewHomePageTeachersSideBinding,clickListener!!)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -29,11 +40,16 @@ class RecyclerAdapterTeachersSideHomePage(val educatorSeriesModelItem: List<educ
         holder.binding.totalectureshomepageteachersSide.text=
             educatorSeriesModelItem?.get(position)?.educator.toString()
         holder.binding.batchimageteachersside.load(educatorSeriesModelItem?.get(position)?.icon)
+        holder.binding.batchimageteachersside
+
     }
 
     override fun getItemCount(): Int {
         return educatorSeriesModelItem!!.size
     }
 
+     interface ClickListener{
+        fun OnClick(position:Int)
+    }
 
 }
