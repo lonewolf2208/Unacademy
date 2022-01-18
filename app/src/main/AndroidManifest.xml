@@ -15,7 +15,6 @@
         android:theme="@style/Theme.Unacademy">
         <activity
             android:name=".Activities.ExoPlayer"
-
             android:exported="false" />
         <activity
             android:name=".Activities.StudentSideActivity"

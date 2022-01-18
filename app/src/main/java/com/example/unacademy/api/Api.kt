@@ -92,10 +92,10 @@ interface Api {
     @GET("/educator/create/")
     fun getTeachersProfile(@Header("Authorization") token: String):Call<getTeachersProfileModel>
 
-    @GET("/educator/series/lecture/{series}")
+    @GET("/educator/series/lecture/{series}/")
     fun getLectures(@Path("series")series:Int, @Header("Authorization") token: String):Call<List<getLectureModelItem>>
 
     @FormUrlEncoded
-    @POST("/educator/series/lecture/{series}")
-    fun UploadLectures(@Field("name")name:String,@Field("description")description:String,@Field("video")video:String,@Path("series")series:Int,@Header("Authorization") token: String):Call<ResponseBody>
+    @POST("/educator/series/lecture/{series}/")
+    fun UploadLectures(@Path("series")series:Int,@Field("name")name:String,@Field("description")description:String,@Field("video")video:String,@Header("Authorization") token: String):Call<ResponseBody>
 }

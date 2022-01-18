@@ -9,20 +9,20 @@ import retrofit2.Call
 import retrofit2.Callback
 
 class UploadLectureRepo(val Api:Api) {
-    private val uploadLectureLiveData = MutableLiveData<Response<List<ResponseBody>>>()
+    private val uploadLectureLiveData = MutableLiveData<Response<ResponseBody>>()
     fun uploadLecturesApi(
         name:String,
         description:String,
         movie:String,
         token: String,
         id:Int
-    ): MutableLiveData<Response<List<ResponseBody>>> {
+    ): MutableLiveData<Response<ResponseBody>> {
 
         val result = Api.UploadLectures(
+            id,
             name,
             description,
             movie,
-            id,
             "Bearer ${token}"
         )
         result.enqueue(object : Callback<ResponseBody?> {

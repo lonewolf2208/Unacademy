@@ -90,16 +90,16 @@ class upload_lectures : Fragment(),View.OnClickListener {
         intent.type="video/*"
         startActivityForResult(intent,IMAGE_REQUEST_CODE)
     }
-
-
     override fun onClick(v: View?) {
         when(v?.id)
         {
             R.id.UploadLectureButton->pickVideoGallery()
             R.id.createLecture->
             {
+
                 lifecycleScope.launch {
                         var result=uploadLectureViewModel.uploadLectures()
+
                     result.observe(viewLifecycleOwner,
                         {
                             when(it)
@@ -107,11 +107,17 @@ class upload_lectures : Fragment(),View.OnClickListener {
                                 is Response.Success -> {
                                     Toast.makeText(context,"Success",Toast.LENGTH_LONG).show()
                                 }
-                                is Response.Error -> Toast.makeText(
-                                    context,
-                                    it.errorMessage.toString(),
-                                    Toast.LENGTH_LONG
-                                ).show()
+                                is Response.Error -> {
+                                    Toast.makeText(context,uploadLectureViewModel.token.toString(),Toast.LENGTH_LONG).show()
+                                    Toast.makeText(context,uploadLectureViewModel.movieUrl.value.toString(),Toast.LENGTH_LONG).show()
+                                    Toast.makeText(context,uploadLectureViewModel.lectureTitle.value.toString(),Toast.LENGTH_LONG).show()
+                                    Toast.makeText(context,uploadLectureViewModel.lectureDescription.value.toString(),Toast.LENGTH_LONG).show()
+                                    Toast.makeText(
+                                        context,
+                                        it.errorMessage.toString(),
+                                        Toast.LENGTH_LONG
+                                    ).show()
+                                }
                                 is Response.Loading -> Toast.makeText(
                                     context,
                                     "Loading",
