@@ -6,14 +6,13 @@
     <data>
         <variable
             name="TeachersProfileViewModel"
-            type="com.example.unacademy.viewModel.TeachersProfileViewModel"/>
+            type="com.example.unacademy.viewModel.ChangeTeachersProfileViewModel"/>
     </data>
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".Ui.TeachersSide.teachers_profile">
-
+        tools:context=".Ui.TeachersSide.change_teachers_profile">
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -22,29 +21,29 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:backgroundTint="#003356 ">
-<androidx.cardview.widget.CardView
-    android:id="@+id/teachers_image_container"
-    android:layout_width="150dp"
-    android:layout_height="150dp"
-    android:layout_marginStart="150dp"
-    android:layout_marginTop="5dp"
-    android:layout_marginEnd="150dp"
-    android:elevation="12dp"
-    android:shape="ring"
-    app:cardCornerRadius="70dp"
-    app:layout_constraintCircleRadius="50dp"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/textView35">
-                <ImageView
-                    android:id="@+id/teachers_image"
-                   android:layout_height="match_parent"
-                    android:layout_width="match_parent"
-                    android:src="@drawable/profile_teachers_side"
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/change_teachers_image_container"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_marginStart="150dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="150dp"
+                    android:elevation="12dp"
+                    android:shape="ring"
+                    app:cardCornerRadius="70dp"
+                    app:layout_constraintCircleRadius="50dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView35" />
-</androidx.cardview.widget.CardView>
+                    app:layout_constraintTop_toBottomOf="@+id/textView35">
+                    <ImageView
+                        android:id="@+id/change_teachers_image"
+                        android:layout_height="match_parent"
+                        android:layout_width="match_parent"
+                        android:src="@drawable/profile_teachers_side"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView35" />
+                </androidx.cardview.widget.CardView>
 
                 <TextView
                     android:id="@+id/textView30"
@@ -57,10 +56,10 @@
                     android:textColor="#003356"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/teachers_image_container" />
+                    app:layout_constraintTop_toBottomOf="@+id/change_teachers_image_container" />
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/editTextTextPersonNameContainer"
+                    android:id="@+id/chnageNameCOntainer"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -72,7 +71,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView30">
 
                     <EditText
-                        android:id="@+id/editTextTextPersonName"
+                        android:id="@+id/changeName"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@drawable/border"
@@ -95,10 +94,10 @@
                     android:textColor="#003356"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonNameContainer" />
+                    app:layout_constraintTop_toBottomOf="@+id/chnageNameCOntainer" />
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/editTextTextPersonName2Container"
+                    android:id="@+id/changeMobileContainer"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -137,7 +136,7 @@
                     android:textColor="#003356 "
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2Container" />
+                    app:layout_constraintTop_toBottomOf="@+id/changeMobileContainer" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/spinnerContainer"
@@ -151,7 +150,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView32">
 
                     <Spinner
-                        android:id="@+id/spinner"
+                        android:id="@+id/changeGender"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@drawable/border"
@@ -175,7 +174,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/spinnerContainer" />
 
                 <EditText
-                    android:id="@+id/editTextTextPersonName5"
+                    android:id="@+id/changeEducationDetails"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -206,10 +205,10 @@
                     android:textColor="#003356"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName5" />
+                    app:layout_constraintTop_toBottomOf="@+id/changeEducationDetails" />
 
                 <EditText
-                    android:id="@+id/editTextTextPersonName6"
+                    android:id="@+id/changeExperience"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -253,7 +252,7 @@
                     android:textColor="#003356 "
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName6" />
+                    app:layout_constraintTop_toBottomOf="@+id/changeExperience" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/VideoUploadContainer"
@@ -268,7 +267,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView36">
 
                     <Button
-                        android:id="@+id/VideoUpload"
+                        android:id="@+id/VideoUploadChange"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:backgroundTint="#003356"
@@ -280,7 +279,7 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <Button
-                    android:id="@+id/sunmitButtonTeachersProfile"
+                    android:id="@+id/ChangesubmitButtonTeachersProfile"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="80dp"
@@ -308,7 +307,7 @@
                     android:textColor="#003356"
                     android:textSize="16sp"
                     app:layout_constraintStart_toEndOf="@+id/textView32"
-                    app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2Container" />
+                    app:layout_constraintTop_toBottomOf="@+id/changeMobileContainer" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/textInputLayout"
@@ -324,7 +323,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView37">
 
                     <EditText
-                        android:id="@+id/editTextTextPersonName7"
+                        android:id="@+id/changeDob"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@drawable/border"

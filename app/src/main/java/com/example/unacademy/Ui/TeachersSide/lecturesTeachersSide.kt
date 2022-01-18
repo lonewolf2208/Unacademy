@@ -13,6 +13,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.example.unacademy.Activities.ExoPlayer
 import com.example.unacademy.Activities.StudentSideActivity
 import com.example.unacademy.Adapter.RecyclerAdapterLectureTeachersSide
@@ -37,6 +38,9 @@ class lecturesTeachersSide : Fragment() {
             ViewModelProvider(this)[LectureTeachersSideViewModel::class.java]
     }
 
+    companion object{
+        var videoUrl:String?=null
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -48,11 +52,11 @@ class lecturesTeachersSide : Fragment() {
             container,
             false
         )
-            Toast.makeText(context,HomePageTeachersSide.seriesid.toString(),Toast.LENGTH_LONG).show()
         binding.lifecycleOwner = this
         binding.lectureSideViewModel = lectureTeachersSideViewModel
+        binding.seriedThumbnail.load(HomePageTeachersSide.thumbnail.toString())
         binding.floatingButtonUploadLecture.setOnClickListener {
-            findNavController().navigate(R.id.action_lecturesTeachersSide_to_upload_lectures )
+            findNavController().navigate(R.id.upload_lectures)
         }
         lifecycleScope.launch {
             lectureTeachersSideViewModel.getLectures(HomePageTeachersSide.seriesid!!.toInt())
@@ -60,13 +64,14 @@ class lecturesTeachersSide : Fragment() {
                 {
                     when (it) {
                         is com.example.unacademy.Repository.Response.Success -> {
-                            Toast.makeText(context,it.data.toString(),Toast.LENGTH_LONG).show()
+
                             layoutManager = LinearLayoutManager(container?.context)
                             binding.recyclerViewLectureSide.layoutManager = layoutManager
                             adapter = RecyclerAdapterLectureTeachersSide(it.data)
                             binding.recyclerViewLectureSide.adapter = adapter
                             adapter.onClickListeer(object : RecyclerAdapterTeachersSideHomePage.ClickListener {
                                 override fun OnClick(position: Int) {
+                                       videoUrl=adapter.getLectureModelItem?.get(position)?.video.toString()
                                     val intent=Intent(
                                         activity,
                                         ExoPlayer::class.java

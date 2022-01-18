@@ -9,53 +9,54 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import coil.load
 import com.example.unacademy.Activities.NavBarActivity
 import com.example.unacademy.R
 import com.example.unacademy.Repository.Response
+import com.example.unacademy.Ui.Auth.Splash_Screen
+import com.example.unacademy.databinding.FragmentChangeTeachersProfileBinding
 import com.example.unacademy.databinding.FragmentTeachersProfileBinding
+import com.example.unacademy.viewModel.ChangeTeachersProfileViewModel
 import com.example.unacademy.viewModel.TeachersProfileViewModel
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.OnProgressListener
 import kotlinx.coroutines.launch
 import java.util.*
-import android.widget.AdapterView
-import com.example.unacademy.Ui.Auth.Splash_Screen
-import com.example.unacademy.models.TeachersSideModels.teachersProfileDataClass
 
-
-class teachers_profile : Fragment(),View.OnClickListener {
+class change_teachers_profile : Fragment(),View.OnClickListener{
     private lateinit var imageUri: Uri
     private var IMAGE_REQUEST_CODE=100
-    lateinit var binding: FragmentTeachersProfileBinding
-    private lateinit var teachersProfileViewModel:TeachersProfileViewModel
+    lateinit var binding:FragmentChangeTeachersProfileBinding
+    private lateinit var changeteachersProfileViewModel: ChangeTeachersProfileViewModel
 
     var storage: FirebaseStorage = FirebaseStorage.getInstance()
     var forImage=0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        teachersProfileViewModel= ViewModelProvider(this)[TeachersProfileViewModel::class.java]
+
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        binding  = DataBindingUtil.inflate(inflater,R.layout.fragment_teachers_profile,container,false)
+        binding  = DataBindingUtil.inflate(inflater,R.layout.fragment_change_teachers_profile,container,false)
         binding.lifecycleOwner=this
-        binding.teachersProfileViewModel=teachersProfileViewModel
-        binding.teachersImage.setOnClickListener(this)
-        binding.VideoUpload.setOnClickListener(this)
-        binding.sunmitButtonTeachersProfile.setOnClickListener(this)
-        binding.spinner.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+        binding.teachersProfileViewModel=changeteachersProfileViewModel
+        binding.changeTeachersImage.load(ProfileTeachersSide.result?.picture.toString())
+        binding.changeTeachersImage.setOnClickListener(this)
+        binding.VideoUploadChange.setOnClickListener(this)
+        binding.ChangesubmitButtonTeachersProfile.setOnClickListener(this)
+        binding.changeGender.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View, pos: Int, id: Long) {
                 val item = parent.getItemAtPosition(pos)
-                teachersProfileViewModel.gender.postValue(item.toString())
+                changeteachersProfileViewModel.gender.postValue(item.toString())
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -63,7 +64,6 @@ class teachers_profile : Fragment(),View.OnClickListener {
         })
         return binding.root
     }
-
 
     private fun pickImageGallery() {
         val intent = Intent(Intent.ACTION_PICK)
@@ -85,19 +85,18 @@ class teachers_profile : Fragment(),View.OnClickListener {
             storageReference.putFile(imageUri)
                 .addOnSuccessListener{
                     it.storage.downloadUrl.addOnSuccessListener {
-                       if(progressDialog.isShowing())
-                       {
-                           progressDialog.dismiss()
-                       }
+                        if(progressDialog.isShowing())
+                        {
+                            progressDialog.dismiss()
+                        }
                         if(forImage==1)
                         {
-                            binding?.teachersImage?.setImageURI(data?.data)
-                            teachersProfileViewModel.imageUrl.postValue(it.toString())
+                            changeteachersProfileViewModel.imageUrl.postValue(it.toString())
                             forImage=0
                         }
                         else
                         {
-                            teachersProfileViewModel.VideoUrl.postValue(it.toString())
+                            changeteachersProfileViewModel.VideoUrl.postValue(it.toString())
                             binding.VideoUploadContainer.helperText=data.dataString
                         }
                     }
@@ -123,24 +122,21 @@ class teachers_profile : Fragment(),View.OnClickListener {
         startActivityForResult(intent,IMAGE_REQUEST_CODE)
     }
 
-
     override fun onClick(v: View?) {
         when(v?.id)
         {
             R.id.teachers_image->pickImageGallery()
             R.id.VideoUpload->pickVideoGallery()
             R.id.sunmitButtonTeachersProfile-> {
-                if (teachersProfileViewModel.validations() == null) {
+                if (changeteachersProfileViewModel.validations() == null) {
                     lifecycleScope.launch {
-                        teachersProfileViewModel.submitData()
+                       changeteachersProfileViewModel.submitData()
                     }
-                    teachersProfileViewModel.result.observe(viewLifecycleOwner,
+                    changeteachersProfileViewModel.result.observe(viewLifecycleOwner,
                         {
                             when (it) {
                                 is Response.Success -> {
-                                    lifecycleScope.launch {
-                                        Splash_Screen.save("teacherloggedIn",true)
-                                    }
+                                    Toast.makeText(context,"Information Updated",Toast.LENGTH_LONG).show()
                                     val intent = Intent(
                                         activity,
                                         NavBarActivity::class.java
@@ -164,4 +160,4 @@ class teachers_profile : Fragment(),View.OnClickListener {
         }
 
     }
-}
+    }

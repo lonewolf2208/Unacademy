@@ -15,6 +15,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.unacademy.Activities.LectureActivity
 import com.example.unacademy.Activities.NavBarActivity
 import com.example.unacademy.Adapter.RecyclerAdapterTeachersSideHomePage
 import com.example.unacademy.R
@@ -30,11 +31,11 @@ class HomePageTeachersSide : Fragment() {
     companion object
     {
         var seriesid:Int?=null
+        var thumbnail:String?=null
     }
     lateinit var binding :FragmentHomePageTeachersSideBinding
     lateinit var homePageViewModel:HomePageViewModel
     private var layoutManager: RecyclerView.LayoutManager?=null
-    private var recyclerAdapterClickListener:RecyclerAdapterTeachersSideHomePage.ClickListener?=null
     lateinit var adapter:RecyclerAdapterTeachersSideHomePage
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -72,7 +73,9 @@ class HomePageTeachersSide : Fragment() {
                        adapter.onClickListeer(object : RecyclerAdapterTeachersSideHomePage.ClickListener {
                            override fun OnClick(position: Int) {
                              seriesid = adapter.educatorSeriesModelItem?.get(position)?.id!!.toInt()
-                               findNavController().navigate(R.id.action_homePageTeachersSide_to_lecturesTeachersSide)
+                               thumbnail=adapter.educatorSeriesModelItem?.get(position)?.icon!!.toString()
+                               val intent=Intent(activity,LectureActivity()::class.java)
+                               startActivity(intent)
                            }
                        })
                    }

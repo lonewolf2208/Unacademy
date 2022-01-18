@@ -9,10 +9,13 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:usesCleartextTraffic="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Unacademy">
+        android:theme="@style/Theme.Unacademy"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".Activities.LectureActivity"
+            android:exported="false" />
         <activity
             android:name=".Activities.ExoPlayer"
             android:exported="false" />

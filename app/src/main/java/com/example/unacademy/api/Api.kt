@@ -98,4 +98,22 @@ interface Api {
     @FormUrlEncoded
     @POST("/educator/series/lecture/{series}/")
     fun UploadLectures(@Path("series")series:Int,@Field("name")name:String,@Field("description")description:String,@Field("video")video:String,@Header("Authorization") token: String):Call<ResponseBody>
+
+
+    @FormUrlEncoded
+    @PUT("/educator/create/")
+    fun ChangeteachersProfile(
+        @Field("name") name: String,
+        @Field("mobile") mobile: Long,
+        @Field("gender") gender: String,
+        @Field("birth") birth: String,
+        @Field("picture") picture: String,
+        @Field("qual") qual: String,
+        @Field("bio") bio: String,
+        @Field("sample_video") sample_video: String,
+        @Header("Authorization") token: String
+    ): Call<teachersProfileDataClass>
+
+
+
 }

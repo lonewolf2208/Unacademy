@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/lecture_side_navigation"
+    app:startDestination="@id/lecturesTeachersSide">
+    <fragment
+        android:id="@+id/upload_lectures"
+        android:name="com.example.unacademy.Ui.TeachersSide.upload_lectures"
+        android:label="upload_lectures" />
+    <fragment
+        android:id="@+id/lecturesTeachersSide"
+        android:name="com.example.unacademy.Ui.TeachersSide.lecturesTeachersSide"
+        android:label="lecturesTeachersSide" >
+        <action
+            android:id="@+id/action_lecturesTeachersSide_to_upload_lectures"
+            app:destination="@id/upload_lectures" />
+    </fragment>
+</navigation>

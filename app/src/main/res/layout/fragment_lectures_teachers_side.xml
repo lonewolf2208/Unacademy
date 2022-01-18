@@ -9,14 +9,10 @@
      type="com.example.unacademy.viewModel.LectureTeachersSideViewModel"/>
  </data>
 
- <FrameLayout
-     android:layout_width="match_parent"
-     android:layout_height="match_parent"
-     tools:context=".Ui.TeachersSide.lecturesTeachersSide">
-
   <androidx.core.widget.NestedScrollView
       android:layout_width="match_parent"
-      android:layout_height="match_parent">
+      android:layout_height="match_parent"
+      tools:context=".Activities.LectureActivity">
 
    <androidx.constraintlayout.widget.ConstraintLayout
        android:layout_width="match_parent"
@@ -28,6 +24,7 @@
         android:layout_width="0dp"
         android:layout_height="196dp"
         android:src="@drawable/gradient"
+        android:scaleType="fitXY"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -96,5 +93,4 @@
         app:layout_constraintEnd_toEndOf="parent" />
    </androidx.constraintlayout.widget.ConstraintLayout>
   </androidx.core.widget.NestedScrollView>
- </FrameLayout>
 </layout>
