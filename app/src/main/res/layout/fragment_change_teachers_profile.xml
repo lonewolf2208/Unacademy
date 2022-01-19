@@ -13,6 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".Ui.TeachersSide.change_teachers_profile">
+
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -21,6 +22,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:backgroundTint="#003356 ">
+
                 <androidx.cardview.widget.CardView
                     android:id="@+id/change_teachers_image_container"
                     android:layout_width="150dp"
@@ -35,10 +37,11 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView35">
+
                     <ImageView
                         android:id="@+id/change_teachers_image"
-                        android:layout_height="match_parent"
                         android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:src="@drawable/profile_teachers_side"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -275,6 +278,7 @@
                         android:paddingTop="10dp"
                         android:text="Upload"
                         android:textAllCaps="false"
+                        android:textColor="#FFFFFF"
                         android:textSize="20sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -291,6 +295,7 @@
                     android:paddingBottom="10dp"
                     android:text="Submit"
                     android:textAllCaps="false"
+                    android:textColor="#FFFEFE"
                     android:textSize="18sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

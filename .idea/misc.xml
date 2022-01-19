@@ -8,6 +8,7 @@
         <entry key="..\:/Users/Dell/AndroidStudioProjects/Unacademy/app/src/main/res/drawable/button_border.xml" value="0.2703125" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/Unacademy/app/src/main/res/drawable/gradient.xml" value="0.2703125" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/Unacademy/app/src/main/res/drawable/ic_add_button.xml" value="0.2703125" />
+        <entry key="..\:/Users/Dell/AndroidStudioProjects/Unacademy/app/src/main/res/drawable/ic_baseline_menu_24.xml" value="0.2703125" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/Unacademy/app/src/main/res/drawable/ic_bgauth.xml" value="0.26615384615384613" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/Unacademy/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.2703125" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/Unacademy/app/src/main/res/drawable/ic_googlelogo.xml" value="0.14635416666666667" />
@@ -51,6 +52,7 @@
         <entry key="..\:/Users/Dell/AndroidStudioProjects/Unacademy/app/src/main/res/layout/fragment_splash__screen.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/Unacademy/app/src/main/res/layout/fragment_teachers_profile.xml" value="0.2748868778280543" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/Unacademy/app/src/main/res/layout/fragment_upload_lectures.xml" value="0.264" />
+        <entry key="..\:/Users/Dell/AndroidStudioProjects/Unacademy/app/src/main/res/layout/toolbar_layout.xml" value="0.190625" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/Unacademy/app/src/main/res/layout/upload_lectures.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/Unacademy/app/src/main/res/menu/bottom_menu.xml" value="0.18489583333333334" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/Unacademy/app/src/main/res/menu/bottom_nav_menu.xml" value="0.25416666666666665" />

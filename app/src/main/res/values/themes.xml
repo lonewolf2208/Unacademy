@@ -14,7 +14,7 @@
         <!-- Customize your theme here. -->
     </style>
 
-    t<style name="TeachersSideHomePage" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    t<style name="TeachersSideHomePage" parent="Theme.MaterialComponents.DayNight.NoActionBar">
     <item name="colorPrimary">#003356</item>
     <item name="colorPrimaryVariant">@color/purple_700</item>
     <item name="colorOnPrimary">#003356</item>
@@ -26,4 +26,5 @@
         <item name="android:statusBarColor" tools:targetApi="l">#003356</item>
         <!-- Customize your theme here. -->
     </style>
+
 </resources>

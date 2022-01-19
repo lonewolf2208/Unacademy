@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import coil.load
 import com.example.unacademy.Activities.NavBarActivity
@@ -39,7 +40,7 @@ class change_teachers_profile : Fragment(),View.OnClickListener{
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+       changeteachersProfileViewModel= ViewModelProvider(this)[ChangeTeachersProfileViewModel::class.java]
     }
 
     override fun onCreateView(
