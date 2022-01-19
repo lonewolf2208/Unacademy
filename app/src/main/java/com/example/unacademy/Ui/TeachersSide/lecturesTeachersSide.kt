@@ -64,7 +64,8 @@ class lecturesTeachersSide : Fragment() {
                 {
                     when (it) {
                         is com.example.unacademy.Repository.Response.Success -> {
-
+                            binding.shimmerFrameLayoutLectureSide.stopShimmerAnimation()
+                            binding.shimmerFrameLayoutLectureSide.visibility=View.GONE
                             layoutManager = LinearLayoutManager(container?.context)
                             binding.recyclerViewLectureSide.layoutManager = layoutManager
                             adapter = RecyclerAdapterLectureTeachersSide(it.data)

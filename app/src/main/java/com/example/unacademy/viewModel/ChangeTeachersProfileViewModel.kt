@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.unacademy.Repository.Response
 import com.example.unacademy.Repository.TeachersSideRepo.TeachersProfileRepo
+import com.example.unacademy.Repository.TeachersSideRepo.changeTeachersProfileRepo
 import com.example.unacademy.Ui.Auth.Splash_Screen
 import com.example.unacademy.Ui.TeachersSide.ProfileTeachersSide
 import com.example.unacademy.api.RetrofitClient
@@ -44,9 +45,8 @@ class ChangeTeachersProfileViewModel:ViewModel() {
             ,educationdetails.value.toString()
             ,experience.value.toString()
             ,VideoUrl.value.toString())
-        val teachersProfileRepo: TeachersProfileRepo = TeachersProfileRepo(Api = Api)
-        result=teachersProfileRepo.teachersProfileApi(teachersProfileDataClass,token = token.toString())
-
+        val teachersProfileRepo= changeTeachersProfileRepo(Api = Api)
+        result=teachersProfileRepo.ChangeTeachersProfileApi(teachersProfileDataClass,token = token.toString())
     }
 
 

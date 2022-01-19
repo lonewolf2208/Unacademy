@@ -15,7 +15,7 @@ class changeTeachersProfileRepo(val Api:Api) {
         teachersProfileDataClass: teachersProfileDataClass,
         token: String
     ): MutableLiveData<Response<teachersProfileDataClass>> {
-        val result = Api.teachersProfile(
+        val result = Api.ChangeteachersProfile(
             teachersProfileDataClass.name.toString(),
             teachersProfileDataClass.mobile!!.toLong(),
             "Male",

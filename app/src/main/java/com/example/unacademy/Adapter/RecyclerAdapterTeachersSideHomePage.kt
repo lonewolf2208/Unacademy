@@ -35,6 +35,8 @@ class RecyclerAdapterTeachersSideHomePage(val educatorSeriesModelItem: List<educ
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+//        holder.binding.shimmerFrameLayoutHomePage.stopShimmerAnimation()
+//        holder.binding.shimmerFrameLayoutHomePage.visibility=View.GONE
         holder.binding.batchNameHomeTeacherSide.text= educatorSeriesModelItem?.get(position)?.name.toString()
         holder.binding.descriptionhomepageteachersSide.text= educatorSeriesModelItem?.get(position)?.description.toString()
         holder.binding.totalectureshomepageteachersSide.text=

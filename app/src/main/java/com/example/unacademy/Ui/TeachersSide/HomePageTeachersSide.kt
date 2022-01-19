@@ -22,6 +22,7 @@ import com.example.unacademy.R
 import com.example.unacademy.Ui.Auth.Splash_Screen
 import com.example.unacademy.databinding.FragmentHomePageTeachersSideBinding
 import com.example.unacademy.viewModel.HomePageViewModel
+import com.facebook.shimmer.ShimmerFrameLayout
 import kotlinx.coroutines.launch
 import retrofit2.Response
 import java.lang.NullPointerException
@@ -65,7 +66,9 @@ class HomePageTeachersSide : Fragment() {
                when(it)
                {
                    is com.example.unacademy.Repository.Response.Success -> {
-                
+                       var shimmerFrameLayoutHomePage=view?.findViewById<ShimmerFrameLayout>(R.id.shimmerFrameLayoutHomePage)
+                       shimmerFrameLayoutHomePage?.stopShimmerAnimation()
+                       shimmerFrameLayoutHomePage?.visibility=View.GONE
                        layoutManager=LinearLayoutManager(container?.context)
                        binding.recyclerViewHomePage.layoutManager=layoutManager
                        adapter=RecyclerAdapterTeachersSideHomePage(it.data)
