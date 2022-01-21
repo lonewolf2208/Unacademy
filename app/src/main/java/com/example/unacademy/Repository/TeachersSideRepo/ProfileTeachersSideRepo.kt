@@ -12,7 +12,7 @@ import retrofit2.Callback
 class ProfileTeachersSideRepo(private val Api:Api) {
     private val uploadStoryLiveData = MutableLiveData<Response<ResponseBody>>()
     fun uploadStory(doc:String,token:String): MutableLiveData<Response<ResponseBody>> {
-        Api.UploadStory(name,"Bearer ${token}").enqueue(object :
+        Api.UploadStory(doc,"Bearer ${token}").enqueue(object :
             Callback<ResponseBody?> {
             override fun onResponse(
                 call: Call<ResponseBody?>,

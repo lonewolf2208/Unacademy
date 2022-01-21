@@ -126,9 +126,9 @@ class change_teachers_profile : Fragment(),View.OnClickListener{
     override fun onClick(v: View?) {
         when(v?.id)
         {
-            R.id.teachers_image->pickImageGallery()
-            R.id.VideoUpload->pickVideoGallery()
-            R.id.sunmitButtonTeachersProfile-> {
+            R.id.change_teachers_image->pickImageGallery()
+            R.id.VideoUploadChange->pickVideoGallery()
+            R.id.ChangesubmitButtonTeachersProfile-> {
                 if (changeteachersProfileViewModel.validations() == null) {
                     lifecycleScope.launch {
                        changeteachersProfileViewModel.submitData()

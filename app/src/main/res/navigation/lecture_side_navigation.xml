@@ -6,7 +6,11 @@
     <fragment
         android:id="@+id/upload_lectures"
         android:name="com.example.unacademy.Ui.TeachersSide.upload_lectures"
-        android:label="upload_lectures" />
+        android:label="upload_lectures" >
+        <action
+            android:id="@+id/action_upload_lectures_to_lecturesTeachersSide"
+            app:destination="@id/lecturesTeachersSide" />
+    </fragment>
     <fragment
         android:id="@+id/lecturesTeachersSide"
         android:name="com.example.unacademy.Ui.TeachersSide.lecturesTeachersSide"

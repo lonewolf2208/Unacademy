@@ -31,20 +31,10 @@ class EmailVerification : Fragment(),View.OnClickListener {
         savedInstanceState: Bundle?
     ): View? {
         _binding= FragmentEmailVerificationBinding.inflate(inflater,container,false)
-
-
-//        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_email_verification,container,false)
-//        binding.lifecycleOwner=this
-//        binding.emailVerificationViewModel= EmailVerificationViewModel()
-//        binding.EmailVerify.setOnClickListener {
-//            view?.let { it1 -> Navigation.findNavController(it1).navigate(R.id.changePassword) }
-//        }
         emailFocusListener()
         binding.EmailVerifyButtonEmailVerification.setOnClickListener(this)
         return binding.root
 
-        // Inflate the layout for this fragment
-//        return inflater.inflate(R.layout.fragment_email_verification, container, false)
     }
 
     override fun onDestroyView() {

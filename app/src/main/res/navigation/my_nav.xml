@@ -79,6 +79,10 @@
         android:label="fragment_change_password"
         tools:layout="@layout/fragment_change_password" >
 
+        <action
+            android:id="@+id/action_changePassword_to_logIn"
+            app:popUpTo="@id/logIn"
+            app:destination="@id/logIn" />
     </fragment>
     <fragment
         android:id="@+id/splash_Screen"

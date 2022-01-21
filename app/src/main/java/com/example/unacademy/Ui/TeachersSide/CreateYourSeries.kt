@@ -101,16 +101,25 @@ class CreateYourSeries : Fragment() ,View.OnClickListener{
             R.id.ThumbnailUpload->pickImageGallery()
             R.id.createSeries->
             {
-                lifecycleScope.launch {
-                    val result=createYourSeriesViewModel.createSeries()
-                    result.observe(this@CreateYourSeries,
-                        {
-                            when(it)
+                if (createYourSeriesViewModel.Validations()==null) {
+                    lifecycleScope.launch {
+                        val result = createYourSeriesViewModel.createSeries()
+                        result.observe(this@CreateYourSeries,
                             {
-                                is Response.Success->Toast.makeText(context,"Success",Toast.LENGTH_LONG).show()
-                                is Response.Error->Toast.makeText(context,it.errorMessage,Toast.LENGTH_LONG).show()
-                            }
-                        })
+                                when (it) {
+                                    is Response.Success -> Toast.makeText(
+                                        context,
+                                        "Success",
+                                        Toast.LENGTH_LONG
+                                    ).show()
+                                    is Response.Error -> Toast.makeText(
+                                        context,
+                                        it.errorMessage,
+                                        Toast.LENGTH_LONG
+                                    ).show()
+                                }
+                            })
+                    }
                 }
             }
         }

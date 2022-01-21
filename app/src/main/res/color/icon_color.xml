@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:color="#FFD243" android:state_checked="true"/>
-    <item android:color="#003356" android:state_checked="false"/>
+    <gradient
+        android:startY="16.021"
+        android:startX="17.5714"
+        android:endY="108.013"
+        android:endX="105.945"
+        android:type="linear"/>
 </selector>

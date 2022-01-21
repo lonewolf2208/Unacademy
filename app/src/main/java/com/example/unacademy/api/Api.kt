@@ -7,6 +7,7 @@ import com.example.unacademy.models.AuthModels.SignUpDataClass
 import com.example.unacademy.models.TeachersSideModels.educatorSeries.educatorSeriesModelItem
 import com.example.unacademy.models.TeachersSideModels.getLectureModelItem
 import com.example.unacademy.models.TeachersSideModels.getStoryModel
+import com.example.unacademy.models.TeachersSideModels.getStoryModelItem
 import com.example.unacademy.models.TeachersSideModels.getTeachersProfile.getTeachersProfileModel
 import com.example.unacademy.models.TeachersSideModels.teachersProfileDataClass
 import com.example.unacademy.models.tokenModel
@@ -126,7 +127,7 @@ interface Api {
     @GET("/educator/story/")
     fun getStory(
         @Header("Authorization") token: String
-    ):Call<List<getStoryModel>>
+    ):Call<List<getStoryModelItem>>
 
 
 }

@@ -1,5 +1,6 @@
 package com.example.unacademy.Ui.Auth
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -7,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
+import com.example.unacademy.Activities.NavBarActivity
 import com.example.unacademy.R
 import com.example.unacademy.Repository.AuthRepo.ChangePasswordRepo
 import com.example.unacademy.Repository.Response
@@ -52,7 +54,7 @@ class ChangePassword : Fragment() ,View.OnClickListener{
         binding?.ConfirmPasswordChangePassword?.setOnFocusChangeListener { _, focused ->
             if(!focused) {
                 var passText= binding?.ConfirmPasswordChangePassword?.text.toString().trim()
-                if(Validations.validPassword(passText) ==null &&  Validations.samePassword(passText,binding?.oldPasswordChangePassword?.text.toString().trim()) == null){
+                if(Validations.validPassword(passText) ==null&& Validations.samePassword(passText,binding?.oldPasswordChangePassword?.text.toString().trim())==null){
 
                     binding!!.ConfirmPasswordChangePasswordContainer.helperText=""
                     validationFlagPassword2=1
@@ -99,7 +101,14 @@ class ChangePassword : Fragment() ,View.OnClickListener{
 //                                    })
 //                                binding.progressBarCreatePassword.visibility=View.INVISIBLE
                                 Toast.makeText(context,"Password Created", Toast.LENGTH_LONG).show()
-                                navController.navigate(R.id.logIn)
+                                if(navController.previousBackStackEntry?.destination?.label.toString()=="fragment_log_in") {
+                                    navController.navigate(R.id.logIn)
+                                }
+                                else
+                                {
+                                    val intent=Intent(activity,NavBarActivity::class.java)
+                                    startActivity(intent)
+                                }
                             }
                             is Response.Error -> {
                                 binding?.progressBarChangePassword?.visibility=View.INVISIBLE

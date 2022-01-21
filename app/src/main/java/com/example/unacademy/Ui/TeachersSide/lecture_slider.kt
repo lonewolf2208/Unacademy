@@ -5,29 +5,26 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import com.denzcoskun.imageslider.models.SlideModel
 import com.example.unacademy.R
+import com.example.unacademy.Repository.Response
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+import com.example.unacademy.databinding.FragmentStorySliderBinding
+import com.example.unacademy.viewModel.GetStoryViewModel
+import kotlinx.coroutines.launch
 
-/**
- * A simple [Fragment] subclass.
- * Use the [lecture_slider.newInstance] factory method to
- * create an instance of this fragment.
- */
+
 class lecture_slider : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
+lateinit var binding:FragmentStorySliderBinding
+lateinit var getStoryViewModel: GetStoryViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+        getStoryViewModel=ViewModelProvider(this)[GetStoryViewModel::class.java]
     }
 
     override fun onCreateView(
@@ -35,26 +32,36 @@ class lecture_slider : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_lecture_slider, container, false)
+        binding=DataBindingUtil.inflate(inflater,R.layout.fragment_story_slider, container, false)
+        binding.lifecycleOwner=this
+        binding.getStoryViewModel=getStoryViewModel
+        lifecycleScope.launch {
+           var result=  getStoryViewModel.getStory()
+            result.observe(viewLifecycleOwner,
+                {
+                    when(it) {
+                        is Response.Success -> {
+                            var size = it.data?.size?.toInt()
+                            var imageList: MutableList<String>? = null
+                            var slideModel = ArrayList<SlideModel>()
+                            for (i in 0..(size!!.toInt()-1)) {
+                                slideModel.add(SlideModel(it.data!![i].icon, centerCrop = true ))
+                            }
+                            binding.imageSliderFragment.setImageList(slideModel, true)
+                        }
+                        is Response.Error -> {
+                            Toast.makeText(context, it.errorMessage.toString(), Toast.LENGTH_LONG)
+                                .show()
+                        }
+                        is Response.noStory -> {
+                           binding.storySliderText.text="No story to show"
+                        }
+
+                    }
+                })
+        }
+
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment lecture_slider.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            lecture_slider().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
 }

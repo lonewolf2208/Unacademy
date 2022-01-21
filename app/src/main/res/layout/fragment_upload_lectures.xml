@@ -75,25 +75,33 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/UploadLectureButton" />
 
-            <EditText
-                android:id="@+id/editTextTextPersonName9"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/editTextTextPersonName9Container"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:helperText="@{uploadLectureViewModel.helperTextTitle}"
+                app:helperTextTextColor="@android:color/holo_red_dark"
+                app:layout_constraintTop_toBottomOf="@+id/textView45"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="4dp"
-                android:layout_marginEnd="24dp"
+                android:layout_marginEnd="24dp">
+
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextTextPersonName9"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:background="@drawable/border"
                 android:ems="10"
                 android:text="@={uploadLectureViewModel.lectureTitle}"
                 android:hint="Enter the title of lecture"
                 android:inputType="textPersonName"
                 android:paddingStart="11dp"
-                android:paddingTop="12dp"
-                android:paddingBottom="12dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView45" />
 
+                />
+            </com.google.android.material.textfield.TextInputLayout>
             <Button
                 android:id="@+id/createLecture"
                 android:layout_width="0dp"
@@ -106,27 +114,33 @@
                 android:textColor="#FFFFFF"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lectureDescription" />
+                app:layout_constraintTop_toBottomOf="@+id/lectureDescriptionContainer" />
 
-            <EditText
-                android:id="@+id/lectureDescription"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/lectureDescriptionContainer"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="24dp"
+                app:helperTextTextColor="@android:color/holo_red_dark"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:helperText="@{uploadLectureViewModel.helperTextDescription}"
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView47">
+            <EditText
+                android:id="@+id/lectureDescription"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
                 android:background="@drawable/border"
                 android:ems="10"
                 android:paddingStart="11dp"
-                android:paddingTop="12dp"
-                android:paddingBottom="12dp"
                 android:hint="Enter your description"
                 android:inputType="textPersonName"
                 android:text="@={uploadLectureViewModel.lectureDescription}"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView47" />
-
+                />
+            </com.google.android.material.textfield.TextInputLayout>
             <TextView
                 android:id="@+id/textView47"
                 android:layout_width="wrap_content"
@@ -138,7 +152,7 @@
                 android:layout_marginTop="16dp"
                 android:text="Lecture Description"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName9" />
+                app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName9Container" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </FrameLayout>

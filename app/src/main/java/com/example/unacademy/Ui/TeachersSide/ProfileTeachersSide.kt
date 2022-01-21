@@ -21,6 +21,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
 import coil.load
 import com.example.unacademy.Activities.NavBarActivity
+import com.example.unacademy.Activities.StoryActivity
 import com.example.unacademy.R
 import com.example.unacademy.Ui.Auth.Splash_Screen
 import com.example.unacademy.api.RetrofitClient
@@ -69,6 +70,7 @@ class ProfileTeachersSide : Fragment(),View.OnClickListener {
         // Inflate the layout for this fragment
         binding=DataBindingUtil.inflate(inflater,R.layout.fragment_profile_teachers_side,container,false)
         binding.makeAnnouncement.setOnClickListener(this)
+        binding.setProfileImageTeachers.setOnClickListener(this)
         binding.ViewProfile.setOnClickListener(this)
         binding.UploadStory.setOnClickListener(this)
             lifecycleScope.launch {
@@ -132,7 +134,7 @@ class ProfileTeachersSide : Fragment(),View.OnClickListener {
                                     when(it)
                                     {
                                     is com.example.unacademy.Repository.Response.Success -> {
-//                                        binding.setProfileImageTeachersCardView.cardBackgroundColor= ColorStateList.valueOf(Color.CYAN)
+
                                         Toast.makeText(
                                             context,
                                            "Story Updated",
@@ -185,6 +187,11 @@ class ProfileTeachersSide : Fragment(),View.OnClickListener {
             R.id.makeAnnouncement->findNavController().navigate(R.id.action_profileTeachersSide_to_makeAnnouncement2)
             R.id.ViewProfile->findNavController().navigate(R.id.action_profileTeachersSide_to_change_teachers_profile)
             R.id.UploadStory->pickImageGallery()
+            R.id.setProfileImageTeachers->
+            {
+                var intent=Intent(activity,StoryActivity::class.java)
+                startActivity(intent)
+            }
         }
     }
 

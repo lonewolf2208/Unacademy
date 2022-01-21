@@ -34,15 +34,13 @@ class RecyclerAdapterLectureTeachersSide(val getLectureModelItem: List<getLectur
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
       holder.binding.LectureName.text= getLectureModelItem!![position].name
-        holder.binding.imageView11.load(getLectureModelItem[position].video)
+//        holder.binding.imageView11.load(getLectureModelItem[position].video)
 
     }
 
     override fun getItemCount(): Int {
        return getLectureModelItem!!.size
     }
-    interface ClickListener{
-        fun OnClick(position:Int)
-    }
+
 
 }

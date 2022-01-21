@@ -27,7 +27,7 @@ class OtpChangePassword : Fragment(),View.OnClickListener {
     ): View? {
         // Inflate the layout for this fragment
         _binding= FragmentOtpChangePasswordBinding.inflate(inflater, container, false)
-
+       Toast.makeText(context,findNavController().previousBackStackEntry?.destination?.label.toString(),Toast.LENGTH_LONG).show()
         binding.otpVerifyButtonChangePassword.setOnClickListener(this)
         binding.ResendOtpChangePassword.setOnClickListener(this)
         return binding.root

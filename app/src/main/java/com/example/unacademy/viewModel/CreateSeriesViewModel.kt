@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.unacademy.Repository.Response
 import com.example.unacademy.Repository.TeachersSideRepo.createSeriesRepo
 import com.example.unacademy.Ui.Auth.Splash_Screen
+import com.example.unacademy.Ui.Auth.Validations
 import com.example.unacademy.api.RetrofitClient
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
@@ -14,6 +15,8 @@ import okhttp3.ResponseBody
 import okhttp3.internal.wait
 
 class CreateSeriesViewModel:ViewModel() {
+    var helperTextName=MutableLiveData<String>()
+    var helperTextDescription=MutableLiveData<String>()
     var courseName=MutableLiveData<String>()
     var coursedescription=MutableLiveData<String>()
     var icon=MutableLiveData<String>()
@@ -29,5 +32,25 @@ class CreateSeriesViewModel:ViewModel() {
         createSeriesRepo.createSeriesApi(courseName.value.toString(),coursedescription.value.toString(),icon.value.toString(),token.toString())
         var result=createSeriesRepo.createSeriesResponse
         return result
+    }
+    fun Validations():Unit?
+    {
+        if(courseName.value.isNullOrEmpty())
+        {
+            helperTextName.postValue("Add Series Name")
+        }
+        if(coursedescription.value.isNullOrEmpty())
+        {
+            helperTextDescription.postValue("Add Description")
+        }
+        if(icon.value.isNullOrEmpty())
+        {
+
+        }
+        else
+        {
+            return null
+        }
+        return Unit
     }
 }

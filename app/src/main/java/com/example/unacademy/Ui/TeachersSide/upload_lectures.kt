@@ -13,6 +13,7 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.example.unacademy.Activities.NavBarActivity
 import com.example.unacademy.R
 import com.example.unacademy.Repository.Response
@@ -94,38 +95,38 @@ class upload_lectures : Fragment(),View.OnClickListener {
         when(v?.id)
         {
             R.id.UploadLectureButton->pickVideoGallery()
-            R.id.createLecture->
-            {
+            R.id.createLecture-> {
+                if (uploadLectureViewModel.Validations() == null) {
+                    lifecycleScope.launch {
+                        var result = uploadLectureViewModel.uploadLectures()
 
-                lifecycleScope.launch {
-                        var result=uploadLectureViewModel.uploadLectures()
-
-                    result.observe(viewLifecycleOwner,
-                        {
-                            when(it)
+                        result.observe(viewLifecycleOwner,
                             {
-                                is Response.Success -> {
-                                    Toast.makeText(context,"Success",Toast.LENGTH_LONG).show()
-                                }
-                                is Response.Error -> {
-                                    Toast.makeText(context,uploadLectureViewModel.token.toString(),Toast.LENGTH_LONG).show()
-                                    Toast.makeText(context,uploadLectureViewModel.movieUrl.value.toString(),Toast.LENGTH_LONG).show()
-                                    Toast.makeText(context,uploadLectureViewModel.lectureTitle.value.toString(),Toast.LENGTH_LONG).show()
-                                    Toast.makeText(context,uploadLectureViewModel.lectureDescription.value.toString(),Toast.LENGTH_LONG).show()
-                                    Toast.makeText(
+                                when (it) {
+                                    is Response.Success -> {
+                                        Toast.makeText(
+                                            context,
+                                            "Lecture uploaded ",
+                                            Toast.LENGTH_LONG
+                                        ).show()
+                                        findNavController().navigate(R.id.action_upload_lectures_to_lecturesTeachersSide)
+                                    }
+                                    is Response.Error -> {
+                                        Toast.makeText(
+                                            context,
+                                            it.errorMessage.toString(),
+                                            Toast.LENGTH_LONG
+                                        ).show()
+                                    }
+                                    is Response.Loading -> Toast.makeText(
                                         context,
-                                        it.errorMessage.toString(),
+                                        "Loading",
                                         Toast.LENGTH_LONG
                                     ).show()
                                 }
-                                is Response.Loading -> Toast.makeText(
-                                    context,
-                                    "Loading",
-                                    Toast.LENGTH_LONG
-                                ).show()
-                            }
 
-                        })
+                            })
+                    }
                 }
             }
         }

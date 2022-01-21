@@ -29,6 +29,7 @@
                     android:layout_height="150dp"
                     android:layout_marginStart="150dp"
                     android:layout_marginTop="5dp"
+                    android:background="@drawable/image_border"
                     android:layout_marginEnd="150dp"
                     android:elevation="12dp"
                     android:shape="ring"
@@ -38,10 +39,12 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView35">
 
-                    <ImageView
+                    <com.google.android.material.imageview.ShapeableImageView
                         android:id="@+id/change_teachers_image"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+
+                        android:scaleType="fitXY"
                         android:src="@drawable/profile_teachers_side"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"

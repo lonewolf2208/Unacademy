@@ -68,7 +68,7 @@ class Splash_Screen : Fragment() {
             {
                 lifecycleScope.launch {
                     var teacherloggedIn = read("teacherloggedIn")
-                    if (teacherloggedIn!= true)
+                    if (teacherloggedIn== true)
                     {
                         val intent = Intent(activity, NavBarActivity::class.java)
                         startActivity(intent)
