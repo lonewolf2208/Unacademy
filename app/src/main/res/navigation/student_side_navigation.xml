@@ -13,5 +13,13 @@
     <fragment
         android:id="@+id/homePageStudentSide"
         android:name="com.example.unacademy.Ui.StudentsSide.homePageStudentSide"
-        android:label="homePageStudentSide" />
+        android:label="homePageStudentSide" >
+        <action
+            android:id="@+id/action_homePageStudentSide_to_lecturesTeachersSide2"
+            app:destination="@id/lecturesTeachersSide2" />
+    </fragment>
+    <fragment
+        android:id="@+id/lecturesTeachersSide2"
+        android:name="com.example.unacademy.Ui.TeachersSide.lecturesTeachersSide"
+        android:label="lecturesTeachersSide" />
 </navigation>

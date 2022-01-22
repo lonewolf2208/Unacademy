@@ -14,7 +14,7 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-
+            android:elevation="12dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -33,17 +33,19 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/gradient" />
 
-                <ImageView
+                <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/educatorImageStudentSide"
                     android:layout_width="52dp"
                     android:layout_height="52dp"
                     android:layout_marginStart="40dp"
+                    app:shapeAppearanceOverlay="@style/Circular"
+                    app:strokeWidth="5dp"
                     android:layout_marginTop="17dp"
                     android:layout_marginEnd="40dp"
                     app:layout_constraintEnd_toEndOf="@+id/imageView12"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/imageView12"
-                    app:srcCompat="@drawable/profile_teachers_side" />
+                    android:background="@drawable/profile_teachers_side" />
 
                 <TextView
                     android:id="@+id/EducatorNameStudentSide"
@@ -54,6 +56,7 @@
                     android:layout_marginEnd="4dp"
                     android:fontFamily="@font/rosario_bold"
                     android:text="TextView"
+                    android:singleLine="true"
                     android:textAlignment="center"
                     android:textColor="#000000"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -68,6 +71,7 @@
                     android:layout_marginTop="4dp"
                     android:layout_marginEnd="4dp"
                     android:text="TextView"
+                    android:singleLine="true"
                     android:textAlignment="center"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

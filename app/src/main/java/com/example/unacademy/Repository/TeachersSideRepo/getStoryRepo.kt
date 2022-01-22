@@ -21,7 +21,7 @@ class getStoryRepo(val Api:Api) {
                response: retrofit2.Response<List<getStoryModelItem>?>
            ) {
                if(response.isSuccessful) {
-                   getStoryLiveData.postValue(Response.Success())
+                   getStoryLiveData.postValue(Response.Success(response.body()))
                }
                else if (response.code()==204)
                {
@@ -29,13 +29,13 @@ class getStoryRepo(val Api:Api) {
                }
                else
                {
-                   getStoryLiveData.postValue(Response.Error(response.message().toString()))
+                   getStoryLiveData.postValue(Response.Error(response.code().toString()))
                }
 
            }
 
            override fun onFailure(call: Call<List<getStoryModelItem>?>, t: Throwable) {
-               getStoryLiveData.postValue(Response.Error(t.message.toString()))           }
+               getStoryLiveData.postValue(Response.Error(t.localizedMessage.toString()))           }
        })
         return getStoryLiveData
     }

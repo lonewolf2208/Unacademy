@@ -1,5 +1,6 @@
 package com.example.unacademy.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -24,5 +25,6 @@ suspend fun UploadStory()
     job.join()
     var profileTeachersSideRepo=ProfileTeachersSideRepo(Api)
    result= profileTeachersSideRepo.uploadStory(doc.value.toString(),token.toString())
+    Log.w("Upload Story",doc.value.toString())
 }
 }

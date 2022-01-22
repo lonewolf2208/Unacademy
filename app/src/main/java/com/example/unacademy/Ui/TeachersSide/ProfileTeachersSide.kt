@@ -44,12 +44,12 @@ class ProfileTeachersSide : Fragment(),View.OnClickListener {
     private var IMAGE_REQUEST_CODE=100
     var storage: FirebaseStorage = FirebaseStorage.getInstance()
    lateinit var binding:FragmentProfileTeachersSideBinding
-   lateinit var ProfileTeachersSideVIewModel:ProfileTeachersSideVIewModel
+   lateinit var profileTeachersSideVIewModel:ProfileTeachersSideVIewModel
     private var token:String?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        ProfileTeachersSideVIewModel= ViewModelProvider(this)[com.example.unacademy.viewmodel.ProfileTeachersSideVIewModel::class.java]
+        profileTeachersSideVIewModel= ViewModelProvider(this)[com.example.unacademy.viewmodel.ProfileTeachersSideVIewModel::class.java]
     }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -57,6 +57,8 @@ class ProfileTeachersSide : Fragment(),View.OnClickListener {
     ): View? {
         // Inflate the layout for this fragment
         binding=DataBindingUtil.inflate(inflater,R.layout.fragment_profile_teachers_side,container,false)
+       binding.lifecycleOwner=this
+        binding.profileteacherSideViewModel=profileTeachersSideVIewModel
         binding.makeAnnouncement.setOnClickListener(this)
         binding.setProfileImageTeachers.setOnClickListener(this)
         binding.ViewProfile.setOnClickListener(this)
@@ -114,10 +116,11 @@ class ProfileTeachersSide : Fragment(),View.OnClickListener {
                         {
                             progressDialog.dismiss()
                         }
-                        ProfileTeachersSideVIewModel.doc.postValue(it.toString())
                         lifecycleScope.launch {
-                            ProfileTeachersSideVIewModel.UploadStory()
-                            ProfileTeachersSideVIewModel.result.observe(
+                            profileTeachersSideVIewModel.doc.postValue(it.toString())
+                            Toast.makeText(context,profileTeachersSideVIewModel.doc.value.toString(),Toast.LENGTH_LONG).show()
+                            profileTeachersSideVIewModel.UploadStory()
+                            profileTeachersSideVIewModel.result.observe(
                                 viewLifecycleOwner, {
                                     when(it)
                                     {

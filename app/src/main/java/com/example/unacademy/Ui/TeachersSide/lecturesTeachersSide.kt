@@ -52,9 +52,9 @@ class lecturesTeachersSide : Fragment() {
         binding.lifecycleOwner = this
         binding.lectureSideViewModel = lectureTeachersSideViewModel
         binding.seriedThumbnail.load(HomePageTeachersSide.thumbnail.toString())
-        binding.floatingButtonUploadLecture.setOnClickListener {
-            findNavController().navigate(R.id.upload_lectures)
-        }
+//        binding.floatingButtonUploadLecture.setOnClickListener {
+//            findNavController().navigate(R.id.upload_lectures)
+//        }
         lifecycleScope.launch {
             lectureTeachersSideViewModel.getLectures(HomePageTeachersSide.seriesid!!.toInt())
             lectureTeachersSideViewModel.result.observe(viewLifecycleOwner,

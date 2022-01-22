@@ -14,6 +14,9 @@
         android:theme="@style/Theme.Unacademy"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".Activities.StudentStoryActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activities.StoryActivity"
             android:exported="false" />
         <activity

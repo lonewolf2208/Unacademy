@@ -6,17 +6,16 @@ import com.example.unacademy.models.AuthModels.Message
 import com.example.unacademy.models.AuthModels.SignUpDataClass
 import com.example.unacademy.models.StudentSideModel.getStudentSeries.EducatorDetails
 import com.example.unacademy.models.StudentSideModel.getStudentSeries.getStudentSeriesItem
+import com.example.unacademy.models.StudentSideModel.getStudentSeries.studentStories.StudentStoryInfoModelItem
+import com.example.unacademy.models.StudentStory.studentStoryModelItem
 import com.example.unacademy.models.TeachersSideModels.educatorSeries.educatorSeriesModelItem
 import com.example.unacademy.models.TeachersSideModels.getLectureModelItem
-import com.example.unacademy.models.TeachersSideModels.getStoryModel
 import com.example.unacademy.models.TeachersSideModels.getStoryModelItem
 import com.example.unacademy.models.TeachersSideModels.getTeachersProfile.getTeachersProfileModel
 import com.example.unacademy.models.TeachersSideModels.teachersProfileDataClass
 import com.example.unacademy.models.tokenModel
 import okhttp3.ResponseBody
 import retrofit2.Call
-import retrofit2.Response
-import retrofit2.Retrofit
 
 import retrofit2.http.*
 
@@ -120,6 +119,8 @@ interface Api {
         @Header("Authorization") token: String
     ): Call<teachersProfileDataClass>
 
+
+
     @FormUrlEncoded
     @POST("/educator/story/")
     fun UploadStory(
@@ -153,4 +154,13 @@ interface Api {
     @GET("/student/educator-list/")
     fun ourEducators(
         @Header("Authorization")token:String):Call<List<EducatorDetails>>
+
+    @GET("/student/story-users/")
+    fun studentStoryProfile(
+        @Header("Authorization")token:String):Call<List<studentStoryModelItem>>
+
+    @GET("/student/story/{educator_id}")
+    fun getStudentStory(
+        @Path("educator_id")id:Int, @Header("Authorization")token:String
+    ):Call<List<StudentStoryInfoModelItem>>
 }
