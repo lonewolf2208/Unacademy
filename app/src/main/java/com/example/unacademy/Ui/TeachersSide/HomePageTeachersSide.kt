@@ -9,23 +9,17 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.unacademy.Activities.LectureActivity
-import com.example.unacademy.Activities.NavBarActivity
 import com.example.unacademy.Adapter.RecyclerAdapterTeachersSideHomePage
 import com.example.unacademy.R
-import com.example.unacademy.Ui.Auth.Splash_Screen
 import com.example.unacademy.databinding.FragmentHomePageTeachersSideBinding
-import com.example.unacademy.viewModel.HomePageViewModel
+import com.example.unacademy.viewmodel.HomePageViewModel
 import com.facebook.shimmer.ShimmerFrameLayout
 import kotlinx.coroutines.launch
-import retrofit2.Response
-import java.lang.NullPointerException
 
 class HomePageTeachersSide : Fragment() {
 

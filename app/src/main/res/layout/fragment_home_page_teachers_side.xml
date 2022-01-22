@@ -6,7 +6,7 @@
     <data>
         <variable
         name="homePageViewModel"
-        type="com.example.unacademy.viewModel.HomePageViewModel"/>
+        type="com.example.unacademy.viewmodel.HomePageViewModel"/>
     </data>
 <androidx.core.widget.NestedScrollView
     android:layout_width="match_parent"

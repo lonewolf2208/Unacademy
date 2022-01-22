@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/student_side_navigation"
+    app:startDestination="@id/homePageStudentSide">
+
+    <activity
+        android:id="@+id/studentSideActivity"
+        android:name="com.example.unacademy.Activities.StudentSideActivity"
+        android:label="activity_student_side"
+        tools:layout="@layout/activity_student_side" />
+    <fragment
+        android:id="@+id/homePageStudentSide"
+        android:name="com.example.unacademy.Ui.StudentsSide.homePageStudentSide"
+        android:label="homePageStudentSide" />
+</navigation>

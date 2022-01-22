@@ -6,7 +6,7 @@
     <data>
         <variable
             name="TeachersProfileViewModel"
-            type="com.example.unacademy.viewModel.ChangeTeachersProfileViewModel"/>
+            type="com.example.unacademy.viewmodel.ChangeTeachersProfileViewModel"/>
     </data>
 
     <FrameLayout

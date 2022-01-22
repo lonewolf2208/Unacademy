@@ -17,7 +17,7 @@ import com.example.unacademy.Activities.NavBarActivity
 import com.example.unacademy.R
 import com.example.unacademy.Repository.Response
 import com.example.unacademy.databinding.FragmentTeachersProfileBinding
-import com.example.unacademy.viewModel.TeachersProfileViewModel
+import com.example.unacademy.viewmodel.TeachersProfileViewModel
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.OnProgressListener
@@ -25,7 +25,6 @@ import kotlinx.coroutines.launch
 import java.util.*
 import android.widget.AdapterView
 import com.example.unacademy.Ui.Auth.Splash_Screen
-import com.example.unacademy.models.TeachersSideModels.teachersProfileDataClass
 
 
 class teachers_profile : Fragment(),View.OnClickListener {

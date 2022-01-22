@@ -1,16 +1,13 @@
 package com.example.unacademy.Adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.unacademy.R
 import com.example.unacademy.databinding.FragmentCardViewHomePageTeachersSideBinding
 import com.example.unacademy.models.TeachersSideModels.educatorSeries.educatorSeriesModelItem
-import com.example.unacademy.viewModel.HomePageViewModel
 
 class RecyclerAdapterTeachersSideHomePage(val educatorSeriesModelItem: List<educatorSeriesModelItem>?):RecyclerView.Adapter<RecyclerAdapterTeachersSideHomePage.ViewHolder>() {
     var clickListener:ClickListener?=null

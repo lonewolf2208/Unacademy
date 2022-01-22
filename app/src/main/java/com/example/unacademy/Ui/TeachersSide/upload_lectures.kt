@@ -14,14 +14,10 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.example.unacademy.Activities.NavBarActivity
 import com.example.unacademy.R
 import com.example.unacademy.Repository.Response
-import com.example.unacademy.Ui.Auth.Splash_Screen
-import com.example.unacademy.databinding.FragmentHomePageTeachersSideBinding
 import com.example.unacademy.databinding.FragmentUploadLecturesBinding
-import com.example.unacademy.viewModel.HomePageViewModel
-import com.example.unacademy.viewModel.UploadLectureViewModel
+import com.example.unacademy.viewmodel.UploadLectureViewModel
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.OnProgressListener

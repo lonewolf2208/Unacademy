@@ -25,6 +25,9 @@ class ChooseRole : Fragment() {
         binding?.checkBoxTeacher?.setOnClickListener {
             findNavController().navigate(R.id.action_chooseRole_to_teachers_profile)
         }
+        binding?.checkBoxStudent?.setOnClickListener {
+            findNavController().navigate(R.id.action_chooseRole_to_studentInfo)
+        }
         return binding?.root
     }
 

@@ -14,7 +14,7 @@ import com.example.unacademy.R
 import com.example.unacademy.Repository.Response
 
 import com.example.unacademy.databinding.FragmentStorySliderBinding
-import com.example.unacademy.viewModel.GetStoryViewModel
+import com.example.unacademy.viewmodel.GetStoryViewModel
 import kotlinx.coroutines.launch
 
 

@@ -16,7 +16,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.unacademy.R
 import com.example.unacademy.Repository.Response
 import com.example.unacademy.databinding.FragmentCreateYourSeriesBinding
-import com.example.unacademy.viewModel.CreateSeriesViewModel
+import com.example.unacademy.viewmodel.CreateSeriesViewModel
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.OnProgressListener

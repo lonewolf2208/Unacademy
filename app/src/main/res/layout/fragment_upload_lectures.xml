@@ -6,7 +6,7 @@
     <data>
         <variable
             name="uploadLectureViewModel"
-            type="com.example.unacademy.viewModel.UploadLectureViewModel" />
+            type="com.example.unacademy.viewmodel.UploadLectureViewModel" />
     </data>
 
     <FrameLayout

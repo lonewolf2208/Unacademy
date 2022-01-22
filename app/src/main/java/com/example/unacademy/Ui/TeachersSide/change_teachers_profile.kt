@@ -18,11 +18,8 @@ import coil.load
 import com.example.unacademy.Activities.NavBarActivity
 import com.example.unacademy.R
 import com.example.unacademy.Repository.Response
-import com.example.unacademy.Ui.Auth.Splash_Screen
 import com.example.unacademy.databinding.FragmentChangeTeachersProfileBinding
-import com.example.unacademy.databinding.FragmentTeachersProfileBinding
-import com.example.unacademy.viewModel.ChangeTeachersProfileViewModel
-import com.example.unacademy.viewModel.TeachersProfileViewModel
+import com.example.unacademy.viewmodel.ChangeTeachersProfileViewModel
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.OnProgressListener

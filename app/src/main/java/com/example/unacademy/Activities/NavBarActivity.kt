@@ -92,13 +92,16 @@ class NavBarActivity : AppCompatActivity() ,View.OnClickListener{
        {
            R.id.LogOutButton->
            {
-               lifecycleScope.launch {
-                   Splash_Screen.save("loggedIn",false)
-               }
+
                val builder: AlertDialog.Builder = AlertDialog.Builder(this)
                builder.setTitle("Confirm Exit")
                builder.setMessage("Are you sure you want to LogOut ?")
-               builder.setPositiveButton("Yes", DialogInterface.OnClickListener { dialog, which -> finishAffinity()})
+               builder.setPositiveButton("Yes", DialogInterface.OnClickListener { dialog , which ->
+                   finishAffinity()
+                   lifecycleScope.launch {
+                       Splash_Screen.save("teacherloggedIn",false)
+                   }
+               })
                builder.setNegativeButton("No", DialogInterface.OnClickListener { dialog, which ->dialog.cancel()  })
                builder.show()
 

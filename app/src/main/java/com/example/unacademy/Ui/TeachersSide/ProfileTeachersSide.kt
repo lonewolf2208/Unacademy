@@ -1,11 +1,8 @@
 package com.example.unacademy.Ui.TeachersSide
 
 import android.app.Activity
-import android.app.Activity.RESULT_OK
 import android.app.ProgressDialog
 import android.content.Intent
-import android.content.res.ColorStateList
-import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -17,28 +14,19 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
 import coil.load
-import com.example.unacademy.Activities.NavBarActivity
 import com.example.unacademy.Activities.StoryActivity
 import com.example.unacademy.R
 import com.example.unacademy.Ui.Auth.Splash_Screen
 import com.example.unacademy.api.RetrofitClient
 import com.example.unacademy.databinding.FragmentProfileTeachersSideBinding
-import com.example.unacademy.databinding.FragmentTeachersProfileBinding
-import com.example.unacademy.models.TeachersSideModels.educatorSeries.educatorSeriesModelItem
 import com.example.unacademy.models.TeachersSideModels.getTeachersProfile.getTeachersProfileModel
-import com.example.unacademy.models.TeachersSideModels.teachersProfileDataClass
-import com.example.unacademy.viewModel.ProfileTeachersSideVIewModel
-import com.example.unacademy.viewModel.TeachersProfileViewModel
+import com.example.unacademy.viewmodel.ProfileTeachersSideVIewModel
 import com.google.android.gms.tasks.OnFailureListener
-import com.google.firebase.database.DatabaseReference
 
-import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.OnProgressListener
-import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
@@ -61,7 +49,7 @@ class ProfileTeachersSide : Fragment(),View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        ProfileTeachersSideVIewModel= ViewModelProvider(this)[com.example.unacademy.viewModel.ProfileTeachersSideVIewModel::class.java]
+        ProfileTeachersSideVIewModel= ViewModelProvider(this)[com.example.unacademy.viewmodel.ProfileTeachersSideVIewModel::class.java]
     }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

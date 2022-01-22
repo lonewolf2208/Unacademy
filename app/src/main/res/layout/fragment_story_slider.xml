@@ -6,7 +6,7 @@
     <data>
         <variable
             name="getStoryViewModel"
-            type="com.example.unacademy.viewModel.GetStoryViewModel" />
+            type="com.example.unacademy.viewmodel.GetStoryViewModel" />
     </data>
 
     <FrameLayout

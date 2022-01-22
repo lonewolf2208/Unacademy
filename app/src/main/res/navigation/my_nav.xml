@@ -132,9 +132,17 @@
         <action
             android:id="@+id/action_chooseRole_to_teachers_profile"
             app:destination="@id/teachers_profile" />
+        <action
+            android:id="@+id/action_chooseRole_to_studentInfo"
+            app:destination="@id/studentInfo" />
     </fragment>
     <fragment
         android:id="@+id/teachers_profile"
         android:name="com.example.unacademy.Ui.TeachersSide.teachers_profile"
         android:label="teachers_profile" />
+    <fragment
+        android:id="@+id/studentInfo"
+        android:name="com.example.unacademy.Ui.StudentsSide.StudentInfo"
+        android:label="fragment_student_info"
+        tools:layout="@layout/fragment_student_info" />
 </navigation>

@@ -4,6 +4,8 @@ package com.example.unacademy.api
 import com.example.unacademy.models.AuthModels.LoginDataClass
 import com.example.unacademy.models.AuthModels.Message
 import com.example.unacademy.models.AuthModels.SignUpDataClass
+import com.example.unacademy.models.StudentSideModel.getStudentSeries.EducatorDetails
+import com.example.unacademy.models.StudentSideModel.getStudentSeries.getStudentSeriesItem
 import com.example.unacademy.models.TeachersSideModels.educatorSeries.educatorSeriesModelItem
 import com.example.unacademy.models.TeachersSideModels.getLectureModelItem
 import com.example.unacademy.models.TeachersSideModels.getStoryModel
@@ -13,6 +15,7 @@ import com.example.unacademy.models.TeachersSideModels.teachersProfileDataClass
 import com.example.unacademy.models.tokenModel
 import okhttp3.ResponseBody
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.Retrofit
 
 import retrofit2.http.*
@@ -129,5 +132,25 @@ interface Api {
         @Header("Authorization") token: String
     ):Call<List<getStoryModelItem>>
 
+    @FormUrlEncoded
+    @POST("/student/create/")
+    fun createStudent(
+        @Field("name")name:String,
+        @Field("gender")gender:String,
+        @Field("birth")birth:String,
+        @Field("picture")picture:String,
+        @Field("standard")standard:String,
+        @Field("mobile")mobile:Long,
+        @Field("bio")bio:String,
+        @Header("Authorization") token: String
+    ):Call<ResponseBody>
 
+    @GET("/student/series/")
+    fun studentSeries(
+        @Header("Authorization")token:String
+    ):Call<List<getStudentSeriesItem>>
+
+    @GET("/student/educator-list/")
+    fun ourEducators(
+        @Header("Authorization")token:String):Call<List<EducatorDetails>>
 }

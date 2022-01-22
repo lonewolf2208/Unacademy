@@ -1,4 +1,4 @@
-package com.example.unacademy.viewModel
+package com.example.unacademy.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -7,12 +7,9 @@ import androidx.lifecycle.viewModelScope
 import com.example.unacademy.Repository.Response
 import com.example.unacademy.Repository.TeachersSideRepo.createSeriesRepo
 import com.example.unacademy.Ui.Auth.Splash_Screen
-import com.example.unacademy.Ui.Auth.Validations
 import com.example.unacademy.api.RetrofitClient
-import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import okhttp3.ResponseBody
-import okhttp3.internal.wait
 
 class CreateSeriesViewModel:ViewModel() {
     var helperTextName=MutableLiveData<String>()

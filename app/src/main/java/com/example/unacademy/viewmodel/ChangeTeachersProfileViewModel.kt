@@ -1,10 +1,9 @@
-package com.example.unacademy.viewModel
+package com.example.unacademy.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.unacademy.Repository.Response
-import com.example.unacademy.Repository.TeachersSideRepo.TeachersProfileRepo
 import com.example.unacademy.Repository.TeachersSideRepo.changeTeachersProfileRepo
 import com.example.unacademy.Ui.Auth.Splash_Screen
 import com.example.unacademy.Ui.TeachersSide.ProfileTeachersSide

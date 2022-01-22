@@ -6,7 +6,7 @@
     <data>
         <variable
             name="createSeriesViewModel"
-            type="com.example.unacademy.viewModel.CreateSeriesViewModel" />
+            type="com.example.unacademy.viewmodel.CreateSeriesViewModel" />
     </data>
 
     <FrameLayout

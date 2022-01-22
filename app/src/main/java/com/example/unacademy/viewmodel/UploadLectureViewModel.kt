@@ -1,4 +1,4 @@
-package com.example.unacademy.viewModel
+package com.example.unacademy.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
@@ -6,12 +6,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.unacademy.Repository.TeachersSideRepo.UploadLectureRepo
 import com.example.unacademy.Ui.Auth.Splash_Screen
-import com.example.unacademy.Ui.Auth.Validations
 import com.example.unacademy.Ui.TeachersSide.HomePageTeachersSide
 import com.example.unacademy.api.RetrofitClient
 import kotlinx.coroutines.launch
 import okhttp3.ResponseBody
-import retrofit2.Response
 
 class UploadLectureViewModel:ViewModel() {
     var helperTextTitle=MutableLiveData<String>()

@@ -15,14 +15,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.unacademy.Activities.ExoPlayer
-import com.example.unacademy.Activities.StudentSideActivity
 import com.example.unacademy.Adapter.RecyclerAdapterLectureTeachersSide
 import com.example.unacademy.Adapter.RecyclerAdapterTeachersSideHomePage
 import com.example.unacademy.R
 import com.example.unacademy.databinding.FragmentLecturesTeachersSideBinding
-import com.example.unacademy.viewModel.HomePageViewModel
-import com.example.unacademy.viewModel.LectureTeachersSideViewModel
-import com.example.unacademy.viewModel.TeachersProfileViewModel
+import com.example.unacademy.viewmodel.LectureTeachersSideViewModel
 import kotlinx.coroutines.launch
 
 class lecturesTeachersSide : Fragment() {

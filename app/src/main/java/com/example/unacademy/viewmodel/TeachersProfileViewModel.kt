@@ -1,4 +1,4 @@
-package com.example.unacademy.viewModel
+package com.example.unacademy.viewmodel
 
 
 import androidx.lifecycle.*
@@ -7,11 +7,8 @@ import com.example.unacademy.Repository.TeachersSideRepo.TeachersProfileRepo
 import com.example.unacademy.Ui.Auth.Splash_Screen
 
 import com.example.unacademy.api.RetrofitClient
-import com.example.unacademy.models.AuthModels.Message
 import com.example.unacademy.models.TeachersSideModels.teachersProfileDataClass
-import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
-import okhttp3.ResponseBody
 
 
 class TeachersProfileViewModel():ViewModel()

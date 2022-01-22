@@ -1,4 +1,4 @@
-package com.example.unacademy.viewModel
+package com.example.unacademy.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -8,7 +8,6 @@ import com.example.unacademy.Repository.TeachersSideRepo.getSeriesRepo
 import com.example.unacademy.Ui.Auth.Splash_Screen
 import com.example.unacademy.api.RetrofitClient
 import com.example.unacademy.models.TeachersSideModels.educatorSeries.educatorSeriesModelItem
-import com.example.unacademy.models.TeachersSideModels.getStoryModelItem
 import kotlinx.coroutines.launch
 
 class GetStoryViewModel:ViewModel()
