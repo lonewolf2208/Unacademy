@@ -1,6 +1,9 @@
 package com.example.unacademy.Activities
 
 import android.app.AlertDialog
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Color
@@ -44,6 +47,13 @@ class NavBarActivity : AppCompatActivity() ,View.OnClickListener{
         super.onCreate(savedInstanceState)
         binding= ActivityNavBarBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+
+            val channel = NotificationChannel("Unacademy", "Unacademy", NotificationManager.IMPORTANCE_DEFAULT)
+            // Register the channel with the system
+            val manager:NotificationManager= applicationContext.getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+            manager.createNotificationChannel(channel)
+        }
         binding.bottomNavigationView.itemIconTintList=null
         binding.bottomNavigationView.background=null
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragment_container) as NavHostFragment

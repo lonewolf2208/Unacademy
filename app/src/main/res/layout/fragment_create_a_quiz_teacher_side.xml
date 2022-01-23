@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+  <data>
+  <variable
+      name="createAQuizViewModel"
+      type="com.example.unacademy.viewmodel.CreateAQuizViewModel" />
+  </data>
+
+  <FrameLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      tools:context=".Ui.TeachersSide.CreateAQuizTeacherSide">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+      <TextView
+          android:id="@+id/textView67"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="120dp"
+          android:layout_marginTop="36dp"
+          android:fontFamily="@font/rosario_bold"
+          android:text="Create A Quiz"
+          android:textColor="#000000"
+          android:textSize="28sp"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent" />
+
+      <TextView
+          android:id="@+id/textView68"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="24dp"
+          android:layout_marginTop="36dp"
+          android:fontFamily="@font/rosario_bold"
+          android:text="Title"
+          android:textColor="#003356"
+          android:textSize="20sp"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/textView67" />
+
+      <com.google.android.material.textfield.TextInputLayout
+          android:id="@+id/textInputLayout7"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="4dp"
+          android:layout_marginStart="24dp"
+          android:layout_marginEnd="24dp"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/textView68">
+
+        <EditText
+            android:id="@+id/editTextTextPersonName10"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/border"
+            android:ems="10"
+            android:text="@={createAQuizViewModel.title}"
+            android:hint="Enter the title of quiz"
+            android:inputType="textPersonName"
+
+            />
+      </com.google.android.material.textfield.TextInputLayout>
+
+      <TextView
+          android:id="@+id/textView69"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="24dp"
+          android:layout_marginTop="16dp"
+          android:fontFamily="@font/rosario_bold"
+          android:text="No. of questions (min. 10)"
+          android:textColor="#003356"
+          android:textSize="20sp"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/textInputLayout7" />
+
+      <com.google.android.material.textfield.TextInputLayout
+          android:id="@+id/textInputLayout8"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="24dp"
+          android:layout_marginTop="4dp"
+          android:layout_marginEnd="24dp"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/textView69">
+
+        <EditText
+            android:id="@+id/editTextTextPersonName11"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/border"
+            android:ems="10"
+            android:text="@={createAQuizViewModel.questions}"
+            android:hint="Enter the no.of questions"
+            android:inputType="textPersonName" />
+      </com.google.android.material.textfield.TextInputLayout>
+
+      <TextView
+          android:id="@+id/textView70"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="24dp"
+          android:layout_marginTop="16dp"
+          android:fontFamily="@font/rosario_bold"
+          android:text="Duration"
+          android:textColor="#003356"
+          android:textSize="20sp"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/textInputLayout8" />
+
+      <com.google.android.material.textfield.TextInputLayout
+          android:id="@+id/textInputLayout9"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="24dp"
+          android:layout_marginTop="4dp"
+          android:layout_marginEnd="24dp"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/textView70">
+
+        <EditText
+            android:id="@+id/editTextTextPersonName16"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/border"
+            android:ems="10"
+            android:text="@={createAQuizViewModel.duration}"
+            android:hint="Enter the duration for ompleting the quiz"
+            android:inputType="textPersonName" />
+      </com.google.android.material.textfield.TextInputLayout>
+
+      <Button
+          android:id="@+id/CreateAndAddQuestion"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="24dp"
+          android:layout_marginTop="45dp"
+          android:layout_marginEnd="24dp"
+          android:paddingTop="10dp"
+          android:paddingBottom="10dp"
+          android:text="Create &amp; add questions"
+          android:textAllCaps="false"
+          android:textSize="20sp"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/textInputLayout9" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+  </FrameLayout>
+</layout>

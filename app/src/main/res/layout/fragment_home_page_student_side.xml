@@ -8,7 +8,9 @@
     name="homePageStudentSideModel"
     type="com.example.unacademy.viewmodel.viewmodelStudentside.HomePageStudentSideViewModel" />
     </data>
-
+<androidx.core.widget.NestedScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -31,7 +33,7 @@
                 android:textSize="24sp"
                 app:layout_constraintBottom_toTopOf="@+id/horizontalScrollView"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/recyclerViewStoriesStudentSide" />
+                app:layout_constraintTop_toBottomOf="@+id/textView65" />
 
             <HorizontalScrollView
                 android:id="@+id/horizontalScrollView"
@@ -40,6 +42,8 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="16dp"
+                android:layout_marginBottom="5dp"
+                app:layout_constraintBottom_toTopOf="@+id/textView64"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView60">
@@ -49,6 +53,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView60" />
@@ -69,18 +74,18 @@
 
             <HorizontalScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_height="200dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView64">
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/OurEducatorsRecyclerViewStudentSide"
-                />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/OurEducatorsRecyclerViewStudentSide"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
             </HorizontalScrollView>
 
             <androidx.recyclerview.widget.RecyclerView
@@ -90,7 +95,19 @@
                 android:layout_marginTop="24dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView65"
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:layout_marginTop="10dp"
+                android:background="#63574D4D"
+                android:backgroundTint="#444749"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/recyclerViewStoriesStudentSide" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </FrameLayout>
+</androidx.core.widget.NestedScrollView>
 </layout>

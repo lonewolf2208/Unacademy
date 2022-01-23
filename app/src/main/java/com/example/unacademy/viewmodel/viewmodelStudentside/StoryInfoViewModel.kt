@@ -29,4 +29,5 @@ class StoryInfoViewModel:ViewModel() {
         Log.w("idSTudentStory",homePageStudentSide().id.toString())
         return result
     }
+
 }

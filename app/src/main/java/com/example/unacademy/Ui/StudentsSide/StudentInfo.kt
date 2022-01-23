@@ -102,29 +102,38 @@ class StudentInfo : Fragment(),View.OnClickListener {
         }
     }
     override fun onClick(v: View?) {
-        when(v?.id)
-        {
-            R.id.shapeableImageView->pickImageGallery()
-            R.id.submitStudentInfo->
-            {
-                Toast.makeText(context,createStudentViewModel.name.value.toString(),Toast.LENGTH_LONG).show()
-                Toast.makeText(context,createStudentViewModel.mobileno.value.toString(),Toast.LENGTH_LONG).show()
-                lifecycleScope.launch {
-                    var result = createStudentViewModel.createStudent()
-                    result.observe(viewLifecycleOwner,{
-                        when(it)
-                        {
-                            is Response.Success->
-                            {
-                                val intent=Intent(activity,StudentSideActivity::class.java)
-                                startActivity(intent)
+        when (v?.id) {
+            R.id.shapeableImageView -> pickImageGallery()
+            R.id.submitStudentInfo -> {
+                if (createStudentViewModel.validations() == null) {
+                    Toast.makeText(
+                        context,
+                        createStudentViewModel.name.value.toString(),
+                        Toast.LENGTH_LONG
+                    ).show()
+                    Toast.makeText(
+                        context,
+                        createStudentViewModel.mobileno.value.toString(),
+                        Toast.LENGTH_LONG
+                    ).show()
+                    lifecycleScope.launch {
+                        var result = createStudentViewModel.createStudent()
+                        result.observe(viewLifecycleOwner, {
+                            when (it) {
+                                is Response.Success -> {
+                                    val intent = Intent(activity, StudentSideActivity::class.java)
+                                    startActivity(intent)
+                                }
+                                is Response.Error -> Toast.makeText(
+                                    context,
+                                    it.errorMessage,
+                                    Toast.LENGTH_LONG
+                                ).show()
                             }
-                            is Response.Error->Toast.makeText(context,it.errorMessage,Toast.LENGTH_LONG).show()
-                        }
-                    })
+                        })
+                    }
                 }
             }
         }
     }
-
 }

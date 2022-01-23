@@ -20,7 +20,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:shapeAppearanceOverlay="@style/RectangularBorder"
-            app:strokeColor="@color/black"
+            app:strokeColor="#19D2CC"
             app:strokeWidth="5dp"></com.google.android.material.imageview.ShapeableImageView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

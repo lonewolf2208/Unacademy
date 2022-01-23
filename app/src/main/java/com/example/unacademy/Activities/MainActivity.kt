@@ -16,5 +16,6 @@ class MainActivity : AppCompatActivity() {
 //        binding = DataBindingUtil.setContentView(this,R.layout.activity_main)
 //        Navigation.findNavController(this,R.id.mainActivity).navigate(R.id.logIn)
         setContentView(R.layout.activity_main)
+
     }
 }

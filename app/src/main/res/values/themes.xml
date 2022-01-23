@@ -17,7 +17,7 @@
     t<style name="TeachersSideHomePage" parent="Theme.MaterialComponents.DayNight.NoActionBar">
     <item name="colorPrimary">#003356</item>
     <item name="colorPrimaryVariant">@color/purple_700</item>
-    <item name="colorOnPrimary">#003356</item>
+    <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
         <item name="colorSecondaryVariant">@color/teal_700</item>

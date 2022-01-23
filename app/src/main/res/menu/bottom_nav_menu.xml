@@ -3,13 +3,13 @@
 
     <item android:id="@+id/homePageTeachersSide"
         android:title="Home"
-        android:icon="@drawable/profile_selection_teachers_side" />
+        android:icon="@drawable/home_selection_teachers_side" />
 
     <item android:id="@+id/placeholder"
         android:title="" />
 
     <item android:id="@+id/profileTeachersSide"
         android:title="Profile"
-        android:icon="@drawable/home_selection_teachers_side" />
+        android:icon="@drawable/profile_selection_teachers_side" />
 
 </menu>

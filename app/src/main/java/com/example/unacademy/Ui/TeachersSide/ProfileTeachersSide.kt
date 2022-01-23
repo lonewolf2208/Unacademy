@@ -62,6 +62,7 @@ class ProfileTeachersSide : Fragment(),View.OnClickListener {
         binding.makeAnnouncement.setOnClickListener(this)
         binding.setProfileImageTeachers.setOnClickListener(this)
         binding.ViewProfile.setOnClickListener(this)
+        binding.AddQuiz.setOnClickListener(this)
         binding.UploadStory.setOnClickListener(this)
             lifecycleScope.launch {
             var AccessToken = Splash_Screen.readInfo("access").toString()
@@ -183,6 +184,7 @@ class ProfileTeachersSide : Fragment(),View.OnClickListener {
                 var intent=Intent(activity,StoryActivity::class.java)
                 startActivity(intent)
             }
+            R.id.AddQuiz->findNavController().navigate(R.id.action_profileTeachersSide_to_createAQuizTeacherSide)
         }
     }
 

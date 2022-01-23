@@ -8,12 +8,14 @@ import com.example.unacademy.models.StudentSideModel.getStudentSeries.EducatorDe
 import com.example.unacademy.models.StudentSideModel.getStudentSeries.getStudentSeriesItem
 import com.example.unacademy.models.StudentSideModel.getStudentSeries.studentStories.StudentStoryInfoModelItem
 import com.example.unacademy.models.StudentStory.studentStoryModelItem
+import com.example.unacademy.models.TeachersSideModels.CreateQuizModel.CreateQuizModel
 import com.example.unacademy.models.TeachersSideModels.educatorSeries.educatorSeriesModelItem
 import com.example.unacademy.models.TeachersSideModels.getLectureModelItem
 import com.example.unacademy.models.TeachersSideModels.getStoryModelItem
 import com.example.unacademy.models.TeachersSideModels.getTeachersProfile.getTeachersProfileModel
 import com.example.unacademy.models.TeachersSideModels.teachersProfileDataClass
 import com.example.unacademy.models.tokenModel
+import com.example.unacademy.viewmodel.CreateAQuizViewModel
 import okhttp3.ResponseBody
 import retrofit2.Call
 
@@ -163,4 +165,27 @@ interface Api {
     fun getStudentStory(
         @Path("educator_id")id:Int, @Header("Authorization")token:String
     ):Call<List<StudentStoryInfoModelItem>>
+
+
+    @FormUrlEncoded
+    @POST("/educator/quiz/")
+    fun createAQuiz(
+        @Field("title")title:String,
+        @Field("description")description:String,
+        @Header("Authorization")token:String
+    ):Call<CreateQuizModel>
+
+    @FormUrlEncoded
+    @POST("/educator/quiz/question/")
+    fun UploadQuizQuestion(
+        @Field("quiz")quiz:Int,
+        @Field("question")question:String,
+        @Field("marks")marks:Int,
+        @Field("option1")option1:String,
+        @Field("option2")option2:String,
+        @Field("option3")option3:String,
+        @Field("option4")option4:String,
+        @Field("answer")answer:Int,
+        @Header("Authorization")token:String
+    ):Call<ResponseBody>
 }

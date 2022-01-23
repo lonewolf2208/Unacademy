@@ -33,6 +33,9 @@
         <action
             android:id="@+id/action_profileTeachersSide_to_lecture_slider"
             app:destination="@id/lecture_slider" />
+        <action
+            android:id="@+id/action_profileTeachersSide_to_createAQuizTeacherSide"
+            app:destination="@id/createAQuizTeacherSide" />
     </fragment>
     <fragment
         android:id="@+id/createYourSeries"
@@ -86,5 +89,23 @@
         android:label="fragment_change_password"
         tools:layout="@layout/fragment_change_password">
 
+    </fragment>
+    <fragment
+        android:id="@+id/createAQuizTeacherSide"
+        android:name="com.example.unacademy.Ui.TeachersSide.CreateAQuizTeacherSide"
+        android:label="fragment_create_a_quiz_teacher_side"
+        tools:layout="@layout/fragment_create_a_quiz_teacher_side" >
+        <action
+            android:id="@+id/action_createAQuizTeacherSide_to_addQuizQuestions"
+            app:destination="@id/addQuizQuestions" />
+    </fragment>
+    <fragment
+        android:id="@+id/addQuizQuestions"
+        android:name="com.example.unacademy.Ui.TeachersSide.AddQuizQuestions"
+        android:label="fragment_add_quiz_questions"
+        tools:layout="@layout/fragment_add_quiz_questions" >
+        <action
+            android:id="@+id/action_addQuizQuestions_to_homePageTeachersSide"
+            app:destination="@id/homePageTeachersSide" />
     </fragment>
 </navigation>
