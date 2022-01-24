@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 import okhttp3.ResponseBody
 
 class ProfileTeachersSideVIewModel:ViewModel() {
-var doc =MutableLiveData<String>()
+    var doc=MutableLiveData<String>()
     var token:String=""
     var result=MutableLiveData<Response<ResponseBody>>()
 suspend fun UploadStory()

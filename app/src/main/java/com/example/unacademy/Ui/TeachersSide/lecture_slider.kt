@@ -35,7 +35,6 @@ lateinit var getStoryViewModel: GetStoryViewModel
         // Inflate the layout for this fragment
         binding=DataBindingUtil.inflate(inflater,R.layout.fragment_story_slider, container, false)
         binding.lifecycleOwner=this
-        Toast.makeText(context,findNavController().previousBackStackEntry?.destination?.label.toString(),Toast.LENGTH_LONG).show()
         binding.getStoryViewModel=getStoryViewModel
         lifecycleScope.launch {
            var result=  getStoryViewModel.getStory()
@@ -44,7 +43,6 @@ lateinit var getStoryViewModel: GetStoryViewModel
                     when(it) {
                         is Response.Success -> {
                             var size = it.data?.size?.toInt()
-                            var imageList: MutableList<String>? = null
                             var slideModel = ArrayList<SlideModel>()
                             for (i in 0..(size!!.toInt()-1)) {
                                 slideModel.add(SlideModel(it.data!![i].doc, centerCrop = true ))

@@ -20,7 +20,7 @@ class RecyclerAdapterOurEducatorsStudentSide(var educationDetails: List<Educator
     }
     inner class ViewHolder(var binding:CardViewOurEducatorsStudentSideBinding):RecyclerView.ViewHolder(binding.root) {
         init {
-            itemView.setOnClickListener {
+            binding.FollowButton.setOnClickListener {
                 clickListener?.OnClick(adapterPosition)
             }
         }

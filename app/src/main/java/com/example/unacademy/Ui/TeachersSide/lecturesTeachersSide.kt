@@ -18,6 +18,7 @@ import com.example.unacademy.Activities.ExoPlayer
 import com.example.unacademy.Adapter.RecyclerAdapterLectureTeachersSide
 import com.example.unacademy.Adapter.RecyclerAdapterTeachersSideHomePage
 import com.example.unacademy.R
+import com.example.unacademy.Ui.StudentsSide.homePageStudentSide
 import com.example.unacademy.databinding.FragmentLecturesTeachersSideBinding
 import com.example.unacademy.viewmodel.LectureTeachersSideViewModel
 import kotlinx.coroutines.launch
@@ -52,6 +53,9 @@ class lecturesTeachersSide : Fragment() {
         binding.lifecycleOwner = this
         binding.lectureSideViewModel = lectureTeachersSideViewModel
         binding.seriedThumbnail.load(HomePageTeachersSide.thumbnail.toString())
+        binding.seriesName.setText(HomePageTeachersSide.seriesName.toString())
+        binding.seriesDescription.setText(HomePageTeachersSide.seriesDescription.toString())
+
 //        binding.floatingButtonUploadLecture.setOnClickListener {
 //            findNavController().navigate(R.id.upload_lectures)
 //        }

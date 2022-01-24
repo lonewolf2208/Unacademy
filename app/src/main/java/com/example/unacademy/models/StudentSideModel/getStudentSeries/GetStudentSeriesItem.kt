@@ -7,6 +7,7 @@ data class getStudentSeriesItem(
     val educator: Int,
     val educator_details: EducatorDetails,
     val icon: String,
+    val lectures:Int,
     val id: Int,
     val name: String
 )

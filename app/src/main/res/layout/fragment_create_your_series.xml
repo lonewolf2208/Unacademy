@@ -8,7 +8,9 @@
             name="createSeriesViewModel"
             type="com.example.unacademy.viewmodel.CreateSeriesViewModel" />
     </data>
-
+<androidx.core.widget.NestedScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -37,14 +39,14 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="81dp"
+                android:layout_marginTop="40dp"
                 android:fontFamily="@font/reem_kufi"
                 android:text="Upload a thumbnail for your Series"
                 android:textColor="#003356"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView39" />
+                app:layout_constraintTop_toBottomOf="@+id/ThumbnailSeries" />
 
             <Button
                 android:id="@+id/ThumbnailUpload"
@@ -158,6 +160,20 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textInputLayout3" />
 
+            <ImageView
+                android:id="@+id/ThumbnailSeries"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginStart="120dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="120dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView39"
+                app:srcCompat="@drawable/gradient" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </FrameLayout>
+</androidx.core.widget.NestedScrollView>
 </layout>

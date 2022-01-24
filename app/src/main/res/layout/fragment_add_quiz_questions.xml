@@ -53,7 +53,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="4dp"
-                app:helperText="@{addQuizQuestionsViewModel.question}"
+                app:helperText="@{addQuizQuestionsViewModel.helperTextQuestion}"
                 app:helperTextTextColor="@android:color/holo_red_dark"
                 android:layout_marginEnd="24dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -130,7 +130,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="16dp"
                 app:helperTextTextColor="@android:color/holo_red_dark"
-                app:helperText="@{addQuizQuestionsViewModel.option1}"
+                app:helperText="@{addQuizQuestionsViewModel.helperTextOption1}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/textView75"
                 app:layout_constraintTop_toBottomOf="@+id/textView74">
@@ -167,7 +167,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:hint="Option2"
-                app:helperText="@{addQuizQuestionsViewModel.option2}"
+                app:helperText="@{addQuizQuestionsViewModel.helperTextOption2}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:helperTextTextColor="@android:color/holo_red_dark"
                 app:layout_constraintStart_toEndOf="@+id/textView77"
@@ -202,7 +202,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
-                app:helperText="@{addQuizQuestionsViewModel.option3}"
+                app:helperText="@{addQuizQuestionsViewModel.helperTextOption3}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/textView78"
                 app:layout_constraintTop_toBottomOf="@+id/textInputLayout12">
@@ -250,7 +250,7 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/border"
                     android:ems="10"
-                    android:text="@={addQuizQuestionsViewModel.option4}"
+                    android:text="@={addQuizQuestionsViewModel.helperTextOption4}"
                     android:hint="Option4"
                     android:inputType="textPersonName" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -261,7 +261,7 @@
                 android:layout_height="50dp"
                 android:layout_marginStart="24dp"
                 app:helperTextTextColor="@android:color/holo_red_dark"
-                app:helperText="@{addQuizQuestionsViewModel.answer}"
+                app:helperText="@{addQuizQuestionsViewModel.helperTextAnswer}"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="24dp"
                 app:layout_constraintEnd_toEndOf="parent"

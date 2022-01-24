@@ -23,7 +23,7 @@
 
 
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/setProfileImageTeachersCardView"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
@@ -31,22 +31,17 @@
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="150dp"
                 android:elevation="12dp"
-                android:shape="ring"
-                app:cardCornerRadius="70dp"
+                app:shapeAppearanceOverlay="@style/Circular"
+                app:strokeWidth="5dp"
+                android:scaleType="centerCrop"
+                android:background="@drawable/profile_teachers_side"
                 app:layout_constraintCircleRadius="50dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <ImageView
-                    android:id="@+id/setProfileImageTeachers"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:elevation="1000dp"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/profile_teachers_side" />
 
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.imageview.ShapeableImageView>
 
             <TextView
                 android:id="@+id/FacultyName"

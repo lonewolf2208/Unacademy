@@ -13,6 +13,8 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import coil.load
 import com.example.unacademy.R
 import com.example.unacademy.Repository.Response
 import com.example.unacademy.databinding.FragmentCreateYourSeriesBinding
@@ -74,9 +76,9 @@ class CreateYourSeries : Fragment() ,View.OnClickListener{
                         {
                             progressDialog.dismiss()
                         }
-
+                            binding.ThumbnailSeries.setImageURI(data?.data)
                             createYourSeriesViewModel.icon.postValue(it.toString())
-                            Toast.makeText(context,it.toString().length.toString(), Toast.LENGTH_LONG).show()
+
                     }
                 }
                 .addOnFailureListener(OnFailureListener()
@@ -107,11 +109,14 @@ class CreateYourSeries : Fragment() ,View.OnClickListener{
                         result.observe(this@CreateYourSeries,
                             {
                                 when (it) {
-                                    is Response.Success -> Toast.makeText(
+                                    is Response.Success ->
+                                    {
+                                        findNavController().navigate(R.id.action_createYourSeries_to_homePageTeachersSide)
+                                        Toast.makeText(
                                         context,
-                                        "Success",
+                                        "Series Created",
                                         Toast.LENGTH_LONG
-                                    ).show()
+                                    ).show()}
                                     is Response.Error -> Toast.makeText(
                                         context,
                                         it.errorMessage,

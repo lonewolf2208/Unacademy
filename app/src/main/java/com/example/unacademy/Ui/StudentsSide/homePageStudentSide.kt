@@ -2,26 +2,28 @@ package com.example.unacademy.Ui.StudentsSide
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.unacademy.Activities.LectureActivity
 import com.example.unacademy.Activities.StudentStoryActivity
 import com.example.unacademy.Adapter.StudentSideAdapters.RecyclerAdapterLatestSeries
 import com.example.unacademy.Adapter.StudentSideAdapters.RecyclerAdapterOurEducatorsStudentSide
+import com.example.unacademy.Adapter.StudentSideAdapters.RecyclerAdapterQuizTEachersSide
 import com.example.unacademy.Adapter.StudentSideAdapters.RecyclerAdapterStudentStory
 import com.example.unacademy.R
 import com.example.unacademy.Repository.Response
 import com.example.unacademy.Ui.TeachersSide.HomePageTeachersSide
 import com.example.unacademy.databinding.FragmentHomePageStudentSideBinding
+import com.example.unacademy.models.StudentSideGetQuiz.StudentSideGetQuizModelItem
 import com.example.unacademy.viewmodel.viewmodelStudentside.HomePageStudentSideViewModel
 import kotlinx.coroutines.launch
 
@@ -33,10 +35,16 @@ class homePageStudentSide : Fragment() {
     lateinit var adapter: RecyclerAdapterLatestSeries
     lateinit var storiesAdapter:RecyclerAdapterStudentStory
     lateinit var adapterOurEducators:RecyclerAdapterOurEducatorsStudentSide
-
+    lateinit var adapterGetQuiz:RecyclerAdapterQuizTEachersSide
     companion object
     {
         var studentStoryId:Int=0
+        var educatorId:Int=0
+        var quizid=0
+        var quizTitle:String=""
+        var quizDescription:String=""
+        var quizLectureCount:String=""
+        var totalQuiz:List<StudentSideGetQuizModelItem>?=null
     }
 
 
@@ -53,7 +61,7 @@ class homePageStudentSide : Fragment() {
         // Inflate the layout for this fragment
         binding= DataBindingUtil.inflate(inflater,R.layout.fragment_home_page_student_side, container, false)
         binding.lifecycleOwner=this
-        Toast.makeText(context,findNavController().previousBackStackEntry?.destination?.label.toString(),Toast.LENGTH_LONG).show()
+
         binding.homePageStudentSideModel=homePageStudentSideViewModel
         lifecycleScope.launch {
         var resultStudentStoryProfile=homePageStudentSideViewModel.getStudentStoryProfile()
@@ -63,7 +71,7 @@ class homePageStudentSide : Fragment() {
                     {
                         is Response.Success->
                         {
-                            Toast.makeText(context,"Success",Toast.LENGTH_LONG).show()
+
                             layoutManager= LinearLayoutManager(container?.context,LinearLayoutManager.HORIZONTAL, true)
                             binding.recyclerViewStoriesStudentSide.layoutManager=layoutManager
                             storiesAdapter= RecyclerAdapterStudentStory(it.data)
@@ -101,6 +109,12 @@ class homePageStudentSide : Fragment() {
                                    findNavController().navigate(R.id.action_homePageStudentSide_to_lecturesTeachersSide2)
                                 }
                             })
+                            adapter.wishListClickListener(object : RecyclerAdapterLatestSeries.ClickListener {
+                                override fun OnClick(position: Int) {
+
+                                }
+                            })
+
                         }
                     }
                 })
@@ -115,6 +129,59 @@ class homePageStudentSide : Fragment() {
                             binding.OurEducatorsRecyclerViewStudentSide.layoutManager=layoutManager
                             adapterOurEducators= RecyclerAdapterOurEducatorsStudentSide(it.data)
                             binding.OurEducatorsRecyclerViewStudentSide.adapter=adapterOurEducators
+                            adapterOurEducators.onClickListener(object : RecyclerAdapterOurEducatorsStudentSide.ClickListener {
+                                override fun OnClick(position: Int) {
+                                    educatorId= it.data?.get(position)!!.id
+                                    lifecycleScope.launch {
+                                     var result=   homePageStudentSideViewModel.addFollowing()
+                                        result.observe(viewLifecycleOwner,
+                                            {
+                                                when(it) {
+                                                    is Response.Success -> {
+                                                        view?.findViewById<Button>(R.id.FollowButton)?.text="Following"
+                                                    }
+                                                    is Response.Error -> {
+                                                        Toast.makeText(
+                                                            context,
+                                                            it.errorMessage.toString(),
+                                                            Toast.LENGTH_LONG
+                                                        ).show()
+                                                    }
+                                                }
+                                            })
+                                    }
+                                }
+                            })
+
+                        }
+                        is Response.Error->Toast.makeText(context,it.errorMessage.toString(),Toast.LENGTH_LONG).show()
+                    }
+                })
+
+
+
+            var GetQuizresult=homePageStudentSideViewModel.getQuiz()
+            GetQuizresult.observe(viewLifecycleOwner,
+                {
+                    when(it)
+                    {
+                        is Response.Success->
+                        {
+
+                           totalQuiz=it.data
+                            layoutManager= LinearLayoutManager(container?.context,LinearLayoutManager.HORIZONTAL, true)
+                            binding.RecyclerAdapterDailQuizStudentSide.layoutManager=layoutManager
+                            adapterGetQuiz= RecyclerAdapterQuizTEachersSide(it.data)
+                            binding.RecyclerAdapterDailQuizStudentSide.adapter=adapterGetQuiz
+                            adapterGetQuiz.onClickListener(object : RecyclerAdapterQuizTEachersSide.ClickListener {
+                                override fun OnClick(position: Int) {
+                                    quizTitle= it.data!!?.get(position).title.toString()
+                                    quizDescription=it.data[position].description.toString()
+                                    quizLectureCount=it.data[position].questions.toString()
+                                    quizid=it.data[position].id.toInt()
+                                    findNavController().navigate(R.id.action_homePageStudentSide_to_quizShowPageStudentSide)
+                                }
+                            })
                         }
                         is Response.Error->Toast.makeText(context,it.errorMessage.toString(),Toast.LENGTH_LONG).show()
                     }
@@ -123,5 +190,7 @@ class homePageStudentSide : Fragment() {
         return binding.root
     }
 
-
+    override fun onPause() {
+        super.onPause()
+    }
 }

@@ -12,6 +12,7 @@ import kotlinx.coroutines.launch
 import okhttp3.ResponseBody
 
 class UploadLectureViewModel:ViewModel() {
+    var helperTextVideo=MutableLiveData<String>()
     var helperTextTitle=MutableLiveData<String>()
     var helperTextDescription=MutableLiveData<String>()
     var lectureTitle=MutableLiveData<String>()

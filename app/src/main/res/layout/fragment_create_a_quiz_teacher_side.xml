@@ -75,7 +75,7 @@
           android:layout_marginStart="24dp"
           android:layout_marginTop="16dp"
           android:fontFamily="@font/rosario_bold"
-          android:text="No. of questions (min. 10)"
+          android:text="Description"
           android:textColor="#003356"
           android:textSize="20sp"
           app:layout_constraintStart_toStartOf="parent"
@@ -98,8 +98,8 @@
             android:layout_height="match_parent"
             android:background="@drawable/border"
             android:ems="10"
-            android:text="@={createAQuizViewModel.questions}"
-            android:hint="Enter the no.of questions"
+            android:text="@={createAQuizViewModel.description}"
+            android:hint="Enter the description to quiz"
             android:inputType="textPersonName" />
       </com.google.android.material.textfield.TextInputLayout>
 

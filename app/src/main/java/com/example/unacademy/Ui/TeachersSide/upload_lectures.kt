@@ -63,7 +63,7 @@ class upload_lectures : Fragment(),View.OnClickListener {
                         {
                             progressDialog.dismiss()
                         }
-
+                            uploadLectureViewModel.helperTextVideo.postValue(data?.data.toString())
                             uploadLectureViewModel.movieUrl.postValue(it.toString())
                     }
                 }

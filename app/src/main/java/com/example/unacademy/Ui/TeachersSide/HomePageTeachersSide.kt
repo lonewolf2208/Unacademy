@@ -27,6 +27,8 @@ class HomePageTeachersSide : Fragment() {
     {
         var seriesid:Int?=null
         var thumbnail:String?=null
+        var seriesName:String=""
+        var seriesDescription:String=""
     }
     lateinit var binding :FragmentHomePageTeachersSideBinding
     lateinit var homePageViewModel:HomePageViewModel
@@ -71,6 +73,8 @@ class HomePageTeachersSide : Fragment() {
                            override fun OnClick(position: Int) {
                              seriesid = adapter.educatorSeriesModelItem?.get(position)?.id!!.toInt()
                                thumbnail=adapter.educatorSeriesModelItem?.get(position)?.icon!!.toString()
+                               seriesName= adapter.educatorSeriesModelItem!![position].name.toString()
+                               seriesDescription= adapter.educatorSeriesModelItem!![position].description.toString()
                                val intent=Intent(activity,LectureActivity()::class.java)
                                startActivity(intent)
                            }

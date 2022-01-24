@@ -14,7 +14,7 @@ import okhttp3.ResponseBody
 
 class CreateAQuizViewModel:ViewModel() {
     var title=MutableLiveData<String>()
-    var questions=MutableLiveData<String>()
+    var description=MutableLiveData<String>()
     var duration=MutableLiveData<String>()
     var token :String=""
 suspend fun CreateAQuiz(): MutableLiveData<Response<CreateQuizModel>> {
@@ -25,7 +25,7 @@ suspend fun CreateAQuiz(): MutableLiveData<Response<CreateQuizModel>> {
         token = AccessToken
     }
     job.join()
-    var result = createAQuizRepo.CreateAQuizApi(title.value.toString(),questions.value.toString(),token)
+    var result = createAQuizRepo.CreateAQuizApi(title.value.toString(),description.value.toString(),token)
     return result
 }
 }

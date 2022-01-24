@@ -40,7 +40,11 @@
     <fragment
         android:id="@+id/createYourSeries"
         android:name="com.example.unacademy.Ui.TeachersSide.CreateYourSeries"
-        android:label="CreateYourSeries" />
+        android:label="CreateYourSeries" >
+        <action
+            android:id="@+id/action_createYourSeries_to_homePageTeachersSide"
+            app:destination="@id/homePageTeachersSide" />
+    </fragment>
     <fragment
         android:id="@+id/makeAnnouncement2"
         android:name="com.example.unacademy.Ui.TeachersSide.MakeAnnouncement"

@@ -37,7 +37,7 @@ class RecyclerAdapterTeachersSideHomePage(val educatorSeriesModelItem: List<educ
         holder.binding.batchNameHomeTeacherSide.text= educatorSeriesModelItem?.get(position)?.name.toString()
         holder.binding.descriptionhomepageteachersSide.text= educatorSeriesModelItem?.get(position)?.description.toString()
         holder.binding.totalectureshomepageteachersSide.text=
-            educatorSeriesModelItem?.get(position)?.educator.toString()
+            educatorSeriesModelItem?.get(position)?.lectures.toString()
         holder.binding.batchimageteachersside.load(educatorSeriesModelItem?.get(position)?.icon)
         holder.binding.batchimageteachersside
 

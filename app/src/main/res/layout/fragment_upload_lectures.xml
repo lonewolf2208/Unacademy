@@ -46,13 +46,21 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView21" />
 
-            <Button
-                android:id="@+id/UploadLectureButton"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/UploadLectureButtonContainer"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="4dp"
+                app:helperText="@{uploadLectureViewModel.helperTextVideo}"
                 android:layout_marginEnd="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView23">
+            <Button
+                android:id="@+id/UploadLectureButton"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:fontFamily="@font/reem_kufi"
                 android:text="Upload"
                 android:textAllCaps="false"
@@ -61,6 +69,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView23" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:id="@+id/textView45"
@@ -73,7 +82,7 @@
                 android:textColor="#003356"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/UploadLectureButton" />
+                app:layout_constraintTop_toBottomOf="@+id/UploadLectureButtonContainer" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/editTextTextPersonName9Container"

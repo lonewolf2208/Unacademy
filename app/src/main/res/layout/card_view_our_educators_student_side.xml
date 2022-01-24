@@ -31,6 +31,7 @@
                     android:id="@+id/imageView12"
                     android:layout_width="0dp"
                     android:layout_height="85dp"
+                    android:scaleType="centerCrop"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -41,6 +42,7 @@
                     android:layout_width="52dp"
                     android:layout_height="52dp"
                     android:layout_marginStart="40dp"
+                    android:scaleType="centerCrop"
                     app:shapeAppearanceOverlay="@style/Circular"
                     app:strokeWidth="5dp"
                     android:layout_marginTop="17dp"
@@ -81,7 +83,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/EducatorNameStudentSide" />
 
                 <Button
-                    android:id="@+id/button"
+                    android:id="@+id/FollowButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"

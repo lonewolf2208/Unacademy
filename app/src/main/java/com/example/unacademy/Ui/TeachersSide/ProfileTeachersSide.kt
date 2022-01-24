@@ -3,6 +3,7 @@ package com.example.unacademy.Ui.TeachersSide
 import android.app.Activity
 import android.app.ProgressDialog
 import android.content.Intent
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -60,7 +61,7 @@ class ProfileTeachersSide : Fragment(),View.OnClickListener {
        binding.lifecycleOwner=this
         binding.profileteacherSideViewModel=profileTeachersSideVIewModel
         binding.makeAnnouncement.setOnClickListener(this)
-        binding.setProfileImageTeachers.setOnClickListener(this)
+        binding.setProfileImageTeachersCardView.setOnClickListener(this)
         binding.ViewProfile.setOnClickListener(this)
         binding.AddQuiz.setOnClickListener(this)
         binding.UploadStory.setOnClickListener(this)
@@ -75,7 +76,7 @@ class ProfileTeachersSide : Fragment(),View.OnClickListener {
                         if(response.isSuccessful)
                         {
                             result=response.body()
-                            binding?.setProfileImageTeachers?.load(response.body()?.picture)
+                            binding?.setProfileImageTeachersCardView?.load(response.body()?.picture)
                             binding.FacultyName.text=response.body()?.name.toString()
                         }
                         else
@@ -118,45 +119,36 @@ class ProfileTeachersSide : Fragment(),View.OnClickListener {
                             progressDialog.dismiss()
                         }
                         lifecycleScope.launch {
-                            profileTeachersSideVIewModel.doc.postValue(it.toString())
-                            Toast.makeText(context,profileTeachersSideVIewModel.doc.value.toString(),Toast.LENGTH_LONG).show()
+                            profileTeachersSideVIewModel.doc.value=it.toString()
                             profileTeachersSideVIewModel.UploadStory()
                             profileTeachersSideVIewModel.result.observe(
                                 viewLifecycleOwner, {
-                                    when(it)
-                                    {
-                                    is com.example.unacademy.Repository.Response.Success -> {
-
-                                        Toast.makeText(
+                                    when (it) {
+                                        is com.example.unacademy.Repository.Response.Success -> {
+                                            binding.setProfileImageTeachersCardView.setStrokeColorResource(R.color.black)
+                                            Toast.makeText(
+                                                context,
+                                                "Story Updated",
+                                                Toast.LENGTH_LONG
+                                            ).show()
+                                        }
+                                        is com.example.unacademy.Repository.Response.Error -> Toast.makeText(
                                             context,
-                                           "Story Updated",
+                                            it.errorMessage.toString(),
                                             Toast.LENGTH_LONG
                                         ).show()
-                                        story=1
-                                        val timer = object: CountDownTimer(20000, 1000) {
-                                            override fun onTick(millisUntilFinished: Long) {}
-                                            override fun onFinish() {
-                                                story=0
-                                            }
-                                        }
-                                        timer.start()
-                                }
-                                    is com.example.unacademy.Repository.Response.Error -> Toast.makeText(
-                                    context,
-                                    it.errorMessage.toString(),
-                                    Toast.LENGTH_LONG
-                                    ).show()
-                                    is com.example.unacademy.Repository.Response.Loading -> Toast.makeText(
-                                    context,
-                                    "Loading",
-                                    Toast.LENGTH_LONG
-                                    ).show()
-                                }
+                                        is com.example.unacademy.Repository.Response.Loading -> Toast.makeText(
+                                            context,
+                                            "Loading",
+                                            Toast.LENGTH_LONG
+                                        ).show()
+                                    }
                                 }
                             )
                         }
-                        story=1
+
                     }
+
                 }
                 .addOnFailureListener(OnFailureListener()
                 {
@@ -178,8 +170,11 @@ class ProfileTeachersSide : Fragment(),View.OnClickListener {
         {
             R.id.makeAnnouncement->findNavController().navigate(R.id.action_profileTeachersSide_to_makeAnnouncement2)
             R.id.ViewProfile->findNavController().navigate(R.id.action_profileTeachersSide_to_change_teachers_profile)
-            R.id.UploadStory->pickImageGallery()
-            R.id.setProfileImageTeachers->
+            R.id.UploadStory->
+            {
+                pickImageGallery()
+            }
+            R.id.setProfileImageTeachersCardView->
             {
                 var intent=Intent(activity,StoryActivity::class.java)
                 startActivity(intent)

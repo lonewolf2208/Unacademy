@@ -17,9 +17,43 @@
         <action
             android:id="@+id/action_homePageStudentSide_to_lecturesTeachersSide2"
             app:destination="@id/lecturesTeachersSide2" />
+        <action
+            android:id="@+id/action_homePageStudentSide_to_quizShowPageStudentSide"
+            app:destination="@id/quizShowPageStudentSide" />
     </fragment>
     <fragment
         android:id="@+id/lecturesTeachersSide2"
         android:name="com.example.unacademy.Ui.TeachersSide.lecturesTeachersSide"
         android:label="lecturesTeachersSide" />
+    <fragment
+        android:id="@+id/profileStudentSide"
+        android:name="com.example.unacademy.Ui.StudentsSide.ProfileStudentSide"
+        android:label="fragment_profile_student_side"
+        tools:layout="@layout/fragment_profile_student_side" />
+    <fragment
+        android:id="@+id/wishListStudentSide"
+        android:name="com.example.unacademy.Ui.StudentsSide.WishListStudentSide"
+        android:label="fragment_wish_list_student_side"
+        tools:layout="@layout/fragment_wish_list_student_side" />
+    <fragment
+        android:id="@+id/selfStudyStudentSide"
+        android:name="com.example.unacademy.Ui.StudentsSide.SelfStudyStudentSide"
+        android:label="fragment_self_study_student_side"
+        tools:layout="@layout/fragment_self_study_student_side" />
+    <fragment
+        android:id="@+id/quizShowPageStudentSide"
+        android:name="com.example.unacademy.Ui.StudentsSide.QuizShowPageStudentSide"
+        android:label="QuizShowPageStudentSide" >
+        <action
+            android:id="@+id/action_quizShowPageStudentSide_to_questionPageStudentSide"
+            app:destination="@id/questionPageStudentSide" />
+    </fragment>
+    <fragment
+        android:id="@+id/questionPageStudentSide"
+        android:name="com.example.unacademy.Ui.StudentsSide.QuestionPageStudentSide"
+        android:label="QuestionPageStudentSide" >
+        <action
+            android:id="@+id/action_questionPageStudentSide_to_homePageStudentSide"
+            app:destination="@id/homePageStudentSide" />
+    </fragment>
 </navigation>

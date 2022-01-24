@@ -4,6 +4,8 @@ package com.example.unacademy.api
 import com.example.unacademy.models.AuthModels.LoginDataClass
 import com.example.unacademy.models.AuthModels.Message
 import com.example.unacademy.models.AuthModels.SignUpDataClass
+import com.example.unacademy.models.QuizQuestionsModel.quizQuestionsModel
+import com.example.unacademy.models.StudentSideGetQuiz.StudentSideGetQuizModelItem
 import com.example.unacademy.models.StudentSideModel.getStudentSeries.EducatorDetails
 import com.example.unacademy.models.StudentSideModel.getStudentSeries.getStudentSeriesItem
 import com.example.unacademy.models.StudentSideModel.getStudentSeries.studentStories.StudentStoryInfoModelItem
@@ -188,4 +190,31 @@ interface Api {
         @Field("answer")answer:Int,
         @Header("Authorization")token:String
     ):Call<ResponseBody>
+
+
+    @FormUrlEncoded
+    @PATCH("/student/profile/")
+    fun addFollowing(
+        @Field("following")following:Int,
+        @Header("Authorization")token:String
+    ):Call<ResponseBody>
+
+
+    @GET("/student/quiz/")
+    fun getQuizStudentSide(  @Header("Authorization")token:String):Call<List<StudentSideGetQuizModelItem>>
+
+    @GET("/educator/quiz/{quiz_id}/")
+    fun getQuizQuestions(@Path("quiz_id")id:Int,@Header("Authorization")token:String):Call<List<quizQuestionsModel>>
+
+    @FormUrlEncoded
+    @POST("/student/quiz/question/attempt/")
+    fun UploadQuestionAns(@Field("question")question:Int,
+                          @Field("answer")answer:Int, @Header("Authorization")token:String):Call<ResponseBody>
+
+
+    @POST("/student/wishlist/")
+    fun studentWishlist(
+@Field("series")series:Int,
+@Header("Authorization")token:String):Call<ResponseBody>
+
 }

@@ -164,3 +164,35 @@ class teachers_profile : Fragment(),View.OnClickListener {
 
     }
 }
+//lifecycleScope.launch {
+//    profileTeachersSideVIewModel.UploadStory()
+//    profileTeachersSideVIewModel.result.observe(
+//        viewLifecycleOwner, {
+//            when(it)
+//            {
+//                is com.example.unacademy.Repository.Response.Success ->
+//                {
+//                    Toast.makeText(
+//                        context,
+//                        "Story Updated",
+//                        Toast.LENGTH_LONG
+//                    ).show()
+//                }
+//                is com.example.unacademy.Repository.Response.Error -> Toast.makeText(
+//                    context,
+//                    it.errorMessage.toString(),
+//                    Toast.LENGTH_LONG
+//                ).show()
+//                is com.example.unacademy.Repository.Response.Loading -> Toast.makeText(
+//                    context,
+//                    "Loading",
+//                    Toast.LENGTH_LONG
+//                ).show()
+//            }
+//        }
+//    )
+//}
+//story=1
+//}
+
+
