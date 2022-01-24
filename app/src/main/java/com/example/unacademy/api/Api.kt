@@ -211,10 +211,15 @@ interface Api {
     fun UploadQuestionAns(@Field("question")question:Int,
                           @Field("answer")answer:Int, @Header("Authorization")token:String):Call<ResponseBody>
 
-
-    @POST("/student/wishlist/")
+@FormUrlEncoded
+    @PUT("/student/wishlist/")
     fun studentWishlist(
 @Field("series")series:Int,
 @Header("Authorization")token:String):Call<ResponseBody>
+
+    @GET("/student/wishlist/")
+    fun getWishlistedSeries
+                (
+        @Header("Authorization")token:String):Call<List<getStudentSeriesItem>>
 
 }

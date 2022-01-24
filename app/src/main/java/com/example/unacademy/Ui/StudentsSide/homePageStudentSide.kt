@@ -111,7 +111,16 @@ class homePageStudentSide : Fragment() {
                             })
                             adapter.wishListClickListener(object : RecyclerAdapterLatestSeries.ClickListener {
                                 override fun OnClick(position: Int) {
-
+                                    lifecycleScope.launch {
+                                var result=homePageStudentSideViewModel.StudentWishlist(adapter.getStudentSeries!![position].id.toInt())
+                                result.observe(viewLifecycleOwner,
+                                    {
+                                        when(it) {
+                                            is Response.Success ->{Toast.makeText(context,"Item add to wishlist",Toast.LENGTH_LONG).show()}
+                                            is Response.Error->{Toast.makeText(context,it.errorMessage.toString(),Toast.LENGTH_LONG).show()}
+                                        }
+                                    })
+                                    }
                                 }
                             })
 

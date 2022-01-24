@@ -77,4 +77,16 @@ class HomePageStudentSideViewModel:ViewModel()
         var result=getQuizRepoStudentSide.getQuizStudentSideApi(token.toString())
         return result
     }
+    suspend fun StudentWishlist( id :Int): MutableLiveData<Response<ResponseBody>> {
+        var Api=RetrofitClient.init()
+        val job= viewModelScope.launch {
+            var AccessToken = Splash_Screen.readInfo("access").toString()
+            token = AccessToken
+        }
+        job.join()
+        var wishlisRepo=StudentWishlisRepo(Api)
+        var result=wishlisRepo.studentStoryInfoApi(id,token.toString())
+        return result
+    }
+
 }
