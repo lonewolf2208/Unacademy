@@ -1,45 +1,42 @@
 package com.example.unacademy.Repository.StudentSideRepo
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.unacademy.Repository.Response
 import com.example.unacademy.api.Api
-import com.example.unacademy.models.StudentSideModel.getStudentSeries.studentStories.StudentStoryInfoModelItem
+import com.example.unacademy.models.StudentSideModel.getStudentSeries.getStudentSeriesItem
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 
-class TeacherFollowingRepo(var Api:Api) {
-    private val teacherFollowingInfoLiveData = MutableLiveData<Response<ResponseBody>>()
-    fun teacherFollowingApi(
-        following: Int,
+class DeleteWishlistRepo(var Api:Api)
+{
+    private val DeleteStudentWishlisRepoLiveData = MutableLiveData<Response<ResponseBody>>()
+    fun DeletestudentStoryInfoApi(
+        id:Int,
         token: String
     ): MutableLiveData<Response<ResponseBody>> {
-        val result = Api.addFollowing(following, "Bearer ${token}")
+        val result = Api.deleteWishlist(id, "Bearer ${token}")
         result.enqueue(object : Callback<ResponseBody?> {
             override fun onResponse(
                 call: Call<ResponseBody?>,
                 response: retrofit2.Response<ResponseBody?>
             ) {
-                Log.w("Followinggg",response.message().toString())
                 if (response.isSuccessful) {
-
-                    teacherFollowingInfoLiveData.postValue(Response.Success())
-
+                    DeleteStudentWishlisRepoLiveData.postValue(Response.Success(response.body()))
                 } else {
-                    teacherFollowingInfoLiveData.postValue(
+                    DeleteStudentWishlisRepoLiveData.postValue(
                         Response.Error(
                             response.message().toString()
                         )
                     )
                 }
-            }
 
+            }
 
             override fun onFailure(call: Call<ResponseBody?>, t: Throwable) {
-                teacherFollowingInfoLiveData.postValue(Response.Error(t.localizedMessage.toString()))
+                DeleteStudentWishlisRepoLiveData.postValue(Response.Error(t.localizedMessage.toString()))
             }
         })
-        return teacherFollowingInfoLiveData
+        return DeleteStudentWishlisRepoLiveData
     }
 }

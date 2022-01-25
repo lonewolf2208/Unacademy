@@ -52,9 +52,9 @@ class lecturesTeachersSide : Fragment() {
         )
         binding.lifecycleOwner = this
         binding.lectureSideViewModel = lectureTeachersSideViewModel
-        binding.seriedThumbnail.load(HomePageTeachersSide.thumbnail.toString())
-        binding.seriesName.setText(HomePageTeachersSide.seriesName.toString())
-        binding.seriesDescription.setText(HomePageTeachersSide.seriesDescription.toString())
+        binding.seriedThumbnail.load(RecyclerAdapterLectureTeachersSide.seriesThumbnail.toString())
+        binding.seriesName.setText(RecyclerAdapterLectureTeachersSide.series_name)
+        binding.seriesDescription.setText(RecyclerAdapterLectureTeachersSide.seriesDescription)
 
 //        binding.floatingButtonUploadLecture.setOnClickListener {
 //            findNavController().navigate(R.id.upload_lectures)
@@ -71,6 +71,7 @@ class lecturesTeachersSide : Fragment() {
                             binding.recyclerViewLectureSide.layoutManager = layoutManager
                             adapter = RecyclerAdapterLectureTeachersSide(it.data)
                             binding.recyclerViewLectureSide.adapter = adapter
+
                             adapter.onClickListeer(object : RecyclerAdapterTeachersSideHomePage.ClickListener {
                                 override fun OnClick(position: Int) {
                                        videoUrl=adapter.getLectureModelItem?.get(position)?.video.toString()

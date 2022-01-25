@@ -11,6 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.unacademy.Adapter.RecyclerAdapterLectureTeachersSide
 import com.example.unacademy.Adapter.StudentSideAdapters.RecyclerAdapterLatestSeries
 import com.example.unacademy.R
 import com.example.unacademy.Repository.Response
@@ -45,19 +46,19 @@ lateinit var wishListSTudentSideViewModel:WishlistStudentSideViewModel
                     when (it) {
                         is Response.Success -> {
                             layoutManager = LinearLayoutManager(
-                                container?.context,
-                            )
+                                container?.context)
                             bindiing.RecyclerViewWishlistedSeries.layoutManager = layoutManager
-                            adapter = RecyclerAdapterLatestSeries(it.data)
+                            adapter = RecyclerAdapterLatestSeries(requireContext(),it.data)
                             bindiing.RecyclerViewWishlistedSeries.adapter = adapter
+                            adapter.notifyDataSetChanged()
                             adapter.onClickListener(object :
                                 RecyclerAdapterLatestSeries.ClickListener {
                                 override fun OnClick(position: Int) {
                                     HomePageTeachersSide.seriesid =
                                         adapter.getStudentSeries?.get(position)?.id!!.toInt()
-                                    HomePageTeachersSide.thumbnail =
-                                        adapter.getStudentSeries?.get(position)?.icon!!.toString()
-
+                                    RecyclerAdapterLectureTeachersSide.series_name=adapter.getStudentSeries?.get(position)?.name.toString()
+                                    RecyclerAdapterLectureTeachersSide.seriesDescription=adapter.getStudentSeries?.get(position)?.description.toString()
+                                    RecyclerAdapterLectureTeachersSide.seriesThumbnail=adapter.getStudentSeries?.get(position)?.icon.toString()
                                 }
                             })
                         }

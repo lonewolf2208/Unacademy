@@ -38,6 +38,7 @@ class AddQuizQuestions : Fragment(),View.OnClickListener{
         // Inflate the layout for this fragment
        binding= DataBindingUtil.inflate(inflater,R.layout.fragment_add_quiz_questions, container, false)
         binding.lifecycleOwner=this
+        binding.FinishQuiz.setOnClickListener(this)
         binding.addQuizQuestionsViewModel=addQuizQuestionViewModel
         binding.AddNextQuestion.setOnClickListener(this)
         binding.spinner2.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {

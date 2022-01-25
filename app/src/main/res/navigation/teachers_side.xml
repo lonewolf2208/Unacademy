@@ -29,13 +29,16 @@
             app:destination="@id/makeAnnouncement2" />
         <action
             android:id="@+id/action_profileTeachersSide_to_change_teachers_profile"
-            app:destination="@id/change_teachers_profile" />
+            app:destination="@id/change_teachers_profile"
+            app:popUpTo="@id/profileTeachersSide" />
         <action
             android:id="@+id/action_profileTeachersSide_to_lecture_slider"
-            app:destination="@id/lecture_slider" />
+            app:destination="@id/lecture_slider"
+            app:popUpTo="@id/profileTeachersSide" />
         <action
             android:id="@+id/action_profileTeachersSide_to_createAQuizTeacherSide"
-            app:destination="@id/createAQuizTeacherSide" />
+            app:destination="@id/createAQuizTeacherSide"
+            app:popUpTo="@id/profileTeachersSide" />
     </fragment>
     <fragment
         android:id="@+id/createYourSeries"
@@ -101,7 +104,8 @@
         tools:layout="@layout/fragment_create_a_quiz_teacher_side" >
         <action
             android:id="@+id/action_createAQuizTeacherSide_to_addQuizQuestions"
-            app:destination="@id/addQuizQuestions" />
+            app:destination="@id/addQuizQuestions"
+            app:popUpTo="@id/createAQuizTeacherSide" />
     </fragment>
     <fragment
         android:id="@+id/addQuizQuestions"
@@ -110,6 +114,8 @@
         tools:layout="@layout/fragment_add_quiz_questions" >
         <action
             android:id="@+id/action_addQuizQuestions_to_homePageTeachersSide"
-            app:destination="@id/homePageTeachersSide" />
+            app:destination="@id/homePageTeachersSide"
+            app:popUpTo="@id/addQuizQuestions"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>

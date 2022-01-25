@@ -22,6 +22,7 @@ import okhttp3.ResponseBody
 import retrofit2.Call
 
 import retrofit2.http.*
+import java.util.ArrayList
 
 interface Api {
 
@@ -161,7 +162,7 @@ interface Api {
 
     @GET("/student/story-users/")
     fun studentStoryProfile(
-        @Header("Authorization")token:String):Call<List<studentStoryModelItem>>
+        @Header("Authorization")token:String):Call<ArrayList<studentStoryModelItem>>
 
     @GET("/student/story/{educator_id}")
     fun getStudentStory(
@@ -193,7 +194,7 @@ interface Api {
 
 
     @FormUrlEncoded
-    @PATCH("/student/profile/")
+    @PUT("/student/profile/")
     fun addFollowing(
         @Field("following")following:Int,
         @Header("Authorization")token:String
@@ -221,5 +222,19 @@ interface Api {
     fun getWishlistedSeries
                 (
         @Header("Authorization")token:String):Call<List<getStudentSeriesItem>>
+
+
+    @FormUrlEncoded
+    @HTTP(method = "DELETE", path = "/student/wishlist/",hasBody = true)
+    fun deleteWishlist(
+        @Field("series")series:Int,
+        @Header("Authorization")token:String):Call<ResponseBody>
+    @FormUrlEncoded
+    @PUT("/student/profile/")
+    fun removeFollowing(
+        @Field("remove")remove:Int,
+        @Header("Authorization")token:String
+    ):Call<ResponseBody>
+
 
 }

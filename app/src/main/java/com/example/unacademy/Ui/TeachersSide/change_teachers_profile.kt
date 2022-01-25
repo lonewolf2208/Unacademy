@@ -49,7 +49,18 @@ class change_teachers_profile : Fragment(),View.OnClickListener{
         binding.teachersProfileViewModel=changeteachersProfileViewModel
         binding.changeTeachersImage.load(ProfileTeachersSide.result?.picture.toString())
         binding.changeTeachersImage.setOnClickListener(this)
-        binding.VideoUploadChange.setOnClickListener(this)
+        if(ProfileTeachersSide.result!!.gender=="Male")
+        {
+            binding.changeGender.setSelection(1)
+        }
+        else if(ProfileTeachersSide.result!!.gender=="Female")
+        {
+            binding.changeGender.setSelection(2)
+        }
+        else
+        {
+            binding.changeGender.setSelection(3)
+        }
         binding.ChangesubmitButtonTeachersProfile.setOnClickListener(this)
         binding.changeGender.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View, pos: Int, id: Long) {
@@ -92,11 +103,7 @@ class change_teachers_profile : Fragment(),View.OnClickListener{
                             changeteachersProfileViewModel.imageUrl.postValue(it.toString())
                             forImage=0
                         }
-                        else
-                        {
-                            changeteachersProfileViewModel.VideoUrl.postValue(it.toString())
-                            binding.VideoUploadContainer.helperText=data.dataString
-                        }
+
                     }
                 }
                 .addOnFailureListener(OnFailureListener()
@@ -124,7 +131,7 @@ class change_teachers_profile : Fragment(),View.OnClickListener{
         when(v?.id)
         {
             R.id.change_teachers_image->pickImageGallery()
-            R.id.VideoUploadChange->pickVideoGallery()
+
             R.id.ChangesubmitButtonTeachersProfile-> {
                 if (changeteachersProfileViewModel.validations() == null) {
                     lifecycleScope.launch {

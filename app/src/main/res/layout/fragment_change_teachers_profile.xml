@@ -237,53 +237,16 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="60dp"
+                    android:layout_marginStart="52dp"
                     android:layout_marginTop="4dp"
                     android:textAlignment="center"
                     app:helperText="@{TeachersProfileViewModel.helperTextImage}"
                     app:helperTextTextColor="@android:color/holo_red_dark"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/teachers_image_container">
+                    app:layout_constraintTop_toBottomOf="@+id/change_teachers_image_container">
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <TextView
-                    android:id="@+id/textView36"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="16dp"
-                    android:fontFamily="@font/reem_kufi"
-                    android:text="Upload a sample video(Optional)"
-                    android:textColor="#003356 "
-                    android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/changeExperience" />
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/VideoUploadContainer"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="1dp"
-                    android:layout_marginEnd="20dp"
-                    app:helperTextTextColor="@android:color/holo_red_dark"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView36">
-
-                    <Button
-                        android:id="@+id/VideoUploadChange"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:backgroundTint="#003356"
-                        android:fontFamily="@font/reem_kufi"
-                        android:paddingTop="10dp"
-                        android:text="Upload"
-                        android:textAllCaps="false"
-                        android:textColor="#FFFFFF"
-                        android:textSize="20sp" />
-                </com.google.android.material.textfield.TextInputLayout>
 
                 <Button
                     android:id="@+id/ChangesubmitButtonTeachersProfile"
@@ -302,7 +265,7 @@
                     android:textSize="18sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/VideoUploadContainer" />
+                    app:layout_constraintTop_toBottomOf="@+id/changeExperience" />
 
                 <TextView
                     android:id="@+id/textView37"

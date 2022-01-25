@@ -14,6 +14,7 @@ import androidx.datastore.preferences.createDataStore
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.unacademy.Activities.NavBarActivity
+import com.example.unacademy.Activities.StudentSideActivity
 import com.example.unacademy.R
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
@@ -68,9 +69,15 @@ class Splash_Screen : Fragment() {
             {
                 lifecycleScope.launch {
                     var teacherloggedIn = read("teacherloggedIn")
+                    var studentloggedIn=read("studentloggedIn")
                     if (teacherloggedIn== true)
                     {
                         val intent = Intent(activity, NavBarActivity::class.java)
+                        startActivity(intent)
+                    }
+                    else if(studentloggedIn==true)
+                    {
+                        val intent = Intent(activity, StudentSideActivity::class.java)
                         startActivity(intent)
                     }
                     else

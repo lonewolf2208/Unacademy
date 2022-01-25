@@ -5,20 +5,30 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.example.unacademy.Adapter.StudentSideAdapters.RecyclerAdapterQuizTEachersSide
 import com.example.unacademy.R
+import com.example.unacademy.Repository.Response
 import com.example.unacademy.Ui.TeachersSide.HomePageTeachersSide
 import com.example.unacademy.databinding.FragmentQuizShowPageStudentSideBinding
 import com.example.unacademy.viewmodel.viewmodelStudentside.GetQuizQuestionsViewModel
+import com.example.unacademy.viewmodel.viewmodelStudentside.HomePageStudentSideViewModel
+import kotlinx.coroutines.launch
 
 
 class QuizShowPageStudentSide : Fragment() {
 
 lateinit var binding:FragmentQuizShowPageStudentSideBinding
-
+    lateinit var adapterGetQuiz:RecyclerAdapterQuizTEachersSide
+    private var layoutManager: RecyclerView.LayoutManager?=null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -29,10 +39,28 @@ lateinit var binding:FragmentQuizShowPageStudentSideBinding
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding= DataBindingUtil.inflate(inflater,R.layout.fragment_quiz_show_page_student_side, container, false)
-        binding.QUestionCountHomePageStudentSide.text=homePageStudentSide.quizLectureCount
-        binding.QuizDescriptionHomePage.text=homePageStudentSide.quizDescription
+        binding = DataBindingUtil.inflate(
+            inflater,
+            R.layout.fragment_quiz_show_page_student_side,
+            container,
+            false
+        )
+        binding.QUestionCountHomePageStudentSide.text = homePageStudentSide.quizLectureCount
+        binding.QuizDescriptionHomePage.text = homePageStudentSide.quizDescription
         binding.QuizTitleHomePage.text=homePageStudentSide.quizTitle
+        layoutManager= StaggeredGridLayoutManager(2,LinearLayoutManager.VERTICAL)
+        binding.RecyclerAdapterMoreQuizes.layoutManager=layoutManager
+        adapterGetQuiz= RecyclerAdapterQuizTEachersSide(homePageStudentSide.totalQuiz)
+        binding.RecyclerAdapterMoreQuizes.adapter=adapterGetQuiz
+        adapterGetQuiz.onClickListener(object : RecyclerAdapterQuizTEachersSide.ClickListener {
+            override fun OnClick(position: Int) {
+                homePageStudentSide.quizTitle = homePageStudentSide.totalQuiz!!.get(position).title.toString()
+                homePageStudentSide.quizDescription =homePageStudentSide.totalQuiz!!.get(position).description.toString()
+                homePageStudentSide.quizLectureCount =homePageStudentSide.totalQuiz!!.get(position).questions.toString()
+                homePageStudentSide.quizid =homePageStudentSide.totalQuiz!!.get(position).id.toInt()
+                findNavController().navigate(R.id.quizShowPageStudentSide)
+            }
+        })
         binding.button.setOnClickListener {
             findNavController().navigate(R.id.action_quizShowPageStudentSide_to_questionPageStudentSide)
         }

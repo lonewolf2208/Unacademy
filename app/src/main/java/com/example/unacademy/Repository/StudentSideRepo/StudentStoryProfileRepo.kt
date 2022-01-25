@@ -1,5 +1,6 @@
 package com.example.unacademy.Repository.StudentSideRepo
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.unacademy.Repository.Response
 import com.example.unacademy.api.Api
@@ -7,51 +8,76 @@ import com.example.unacademy.models.StudentStory.studentStoryModelItem
 import retrofit2.Call
 import retrofit2.Callback
 
-class StudentStoryProfileRepo(val Api:Api)
-{
-    companion object
-    {
-        var studentStoryData=ArrayList<String>()
+class StudentStoryProfileRepo(val Api:Api) {
+    companion object {
+        var studentStoryDataName = java.util.ArrayList<String>()
+        var studetStoryDataPicture=java.util.ArrayList<String>()
+        var studentStoryId=java.util.ArrayList<Int>()
     }
-    private val getStudentStoryProfileLiveData = MutableLiveData<Response<List<studentStoryModelItem>>>()
+
+    private val getStudentStoryProfileLiveData =
+        MutableLiveData<Response<ArrayList<studentStoryModelItem>>>()
+
     fun getStudentStoryApi(
         token: String
-    ): MutableLiveData<Response<List<studentStoryModelItem>>> {
+    ): MutableLiveData<Response<ArrayList<studentStoryModelItem>>> {
         val result = Api.studentStoryProfile("Bearer ${token}")
-        result.enqueue(object : Callback<List<studentStoryModelItem>?> {
+        result.enqueue(object : Callback<ArrayList<studentStoryModelItem>?> {
             override fun onResponse(
-                call: Call<List<studentStoryModelItem>?>,
-                response: retrofit2.Response<List<studentStoryModelItem>?>
+                call: Call<ArrayList<studentStoryModelItem>?>,
+                response: retrofit2.Response<ArrayList<studentStoryModelItem>?>
             ) {
 
-                if (response.isSuccessful)
-                {
-                    for(i in 0..response.body()!!.size)
-                    {
-                        var flag=0
-                        if(response.body()!![i].name in studentStoryData)
+                if (response.isSuccessful) {
+                    for(i in 0..(response.body()!!.size-1))
                         {
-                              flag=1
-                            break
-                        }
-                        if(flag==0)
-                        {
-                            studentStoryData.add(response.body()!![i].name)
-                        }
+                            var flag=0
+                            if(response.body()!![i].name in StudentStoryProfileRepo.studentStoryDataName)
+                            {
+                                continue
+                            }
+                            else
+                            {
+                                studentStoryDataName.add(response.body()!![i].name)
+                                studetStoryDataPicture.add(response.body()!![i].picture)
+                                studentStoryId.add(response.body()!![i].educator)
+                            }
+                            Log.d("Sisdas", studentStoryDataName.size.toString())
                     }
                     getStudentStoryProfileLiveData.postValue(Response.Success(response.body()))
-                }
-                else
-                {
-                    getStudentStoryProfileLiveData.postValue(Response.Error(response.message().toString()))
+
+                } else {
+                    getStudentStoryProfileLiveData.postValue(
+                        Response.Error(
+                            response.message().toString()
+                        )
+                    )
+
                 }
             }
-
-            override fun onFailure(call: Call<List<studentStoryModelItem>?>, t: Throwable) {
+            override fun onFailure(call: Call<ArrayList<studentStoryModelItem>?>, t: Throwable) {
                 getStudentStoryProfileLiveData.postValue(Response.Error(t.localizedMessage.toString()))
             }
         })
-
         return getStudentStoryProfileLiveData
     }
 }
+
+
+
+
+//
+//for(i in 0..response.body()!!.size)
+//{
+//    var flag=0
+//    if(response.body()!![i].name in StudentStoryProfileRepo.studentStoryData)
+//    {
+//
+//        flag=1
+//        break
+//    }
+//    if(flag==0)
+//    {
+//        StudentStoryProfileRepo.studentStoryData.add(response.body()!![i].name)
+//    }
+//}

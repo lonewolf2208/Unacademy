@@ -16,10 +16,12 @@
         android:label="homePageStudentSide" >
         <action
             android:id="@+id/action_homePageStudentSide_to_lecturesTeachersSide2"
-            app:destination="@id/lecturesTeachersSide2" />
+            app:destination="@id/lecturesTeachersSide2"
+            app:popUpTo="@id/homePageStudentSide" />
         <action
             android:id="@+id/action_homePageStudentSide_to_quizShowPageStudentSide"
-            app:destination="@id/quizShowPageStudentSide" />
+            app:destination="@id/quizShowPageStudentSide"
+            app:popUpTo="@id/homePageStudentSide" />
     </fragment>
     <fragment
         android:id="@+id/lecturesTeachersSide2"
@@ -46,7 +48,9 @@
         android:label="QuizShowPageStudentSide" >
         <action
             android:id="@+id/action_quizShowPageStudentSide_to_questionPageStudentSide"
-            app:destination="@id/questionPageStudentSide" />
+            app:destination="@id/questionPageStudentSide"
+            app:popUpTo="@id/quizShowPageStudentSide"
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/questionPageStudentSide"
@@ -54,6 +58,8 @@
         android:label="QuestionPageStudentSide" >
         <action
             android:id="@+id/action_questionPageStudentSide_to_homePageStudentSide"
-            app:destination="@id/homePageStudentSide" />
+            app:destination="@id/homePageStudentSide"
+            app:popUpTo="@id/questionPageStudentSide"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>

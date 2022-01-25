@@ -14,6 +14,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.unacademy.Activities.LectureActivity
+import com.example.unacademy.Adapter.RecyclerAdapterLectureTeachersSide
 import com.example.unacademy.Adapter.RecyclerAdapterTeachersSideHomePage
 import com.example.unacademy.R
 import com.example.unacademy.databinding.FragmentHomePageTeachersSideBinding
@@ -72,9 +73,9 @@ class HomePageTeachersSide : Fragment() {
                        adapter.onClickListeer(object : RecyclerAdapterTeachersSideHomePage.ClickListener {
                            override fun OnClick(position: Int) {
                              seriesid = adapter.educatorSeriesModelItem?.get(position)?.id!!.toInt()
-                               thumbnail=adapter.educatorSeriesModelItem?.get(position)?.icon!!.toString()
-                               seriesName= adapter.educatorSeriesModelItem!![position].name.toString()
-                               seriesDescription= adapter.educatorSeriesModelItem!![position].description.toString()
+                               RecyclerAdapterLectureTeachersSide.series_name=adapter.educatorSeriesModelItem?.get(position)?.name.toString()
+                               RecyclerAdapterLectureTeachersSide.seriesDescription=adapter.educatorSeriesModelItem?.get(position)?.description.toString()
+                               RecyclerAdapterLectureTeachersSide.seriesThumbnail=adapter.educatorSeriesModelItem?.get(position)?.icon.toString()
                                val intent=Intent(activity,LectureActivity()::class.java)
                                startActivity(intent)
                            }

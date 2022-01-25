@@ -9,6 +9,7 @@ data class EducatorDetails(
     val educator: Educator,
     val gender: String,
     val id: Int,
+    val is_followed:Boolean,
     val mobile: Long,
     val name: String,
     val picture: String,

@@ -1,13 +1,12 @@
 package com.example.unacademy.Ui.StudentsSide
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.MutableLiveData
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -74,42 +73,47 @@ class QuestionPageStudentSide : Fragment() {
         }
 
         binding.NextQuestionQuizPAge.setOnClickListener {
-            i++
-            if (i < questionsQuiz!!.size) {
-                if(i== (questionsQuiz!!.size-1))
-                {
-                 binding.NextQuestionQuizPAge.text="Complete Quiz"
+            if (ans == 0) {
+                Toast.makeText(
+                    context,
+                    "Please select One of the options to continue further.",
+                    Toast.LENGTH_LONG
+                ).show()
+            } else {
+                i++
+                if (i == (questionsQuiz!!.size)) {
+                    findNavController().navigate(R.id.action_questionPageStudentSide_to_homePageStudentSide)
+                }
+                if (i < questionsQuiz!!.size) {
+                    if (i == (questionsQuiz!!.size - 1)) {
+                        binding.NextQuestionQuizPAge.text = "Complete Quiz"
+                    }
+                    lifecycleScope.launch {
+                        getQuizQuestionsViewModel.UploadQuestion(
+                            questionsQuiz?.get(i - 1)!!.id,
+                            ans
+                        )
+                        binding.RadioGroup.clearCheck()
+
+                    }
+                    ans=0
+                    binding.QuestionsQuizPage.text = questionsQuiz?.get(i)!!.question
+                    binding.Option1QuizPage.text = questionsQuiz?.get(i)!!.option1
+                    binding.Option2QuizPage.text = questionsQuiz?.get(i)!!.option2
+                    binding.Option3QuizPage.text = questionsQuiz?.get(i)!!.option3
+                    binding.Option4QuizPage.text = questionsQuiz?.get(i)!!.option4
                 }
 
-                if(ans==0)
-                {
-                    Toast.makeText(context,"Please select One of the otions to continue further.",Toast.LENGTH_LONG).show()}
-        lifecycleScope.launch {
-          getQuizQuestionsViewModel.UploadQuestion(questionsQuiz?.get(i-1)!!.id, ans)
-//            result.observe(
-//                viewLifecycleOwner,
-//                {
-//                    when(it)
-//                    {
-//                        is Response.Success->Toast.makeText(context,"Succc",Toast.LENGTH_LONG).show()
-//                    }
-//                }
-//            )
-        }
-                binding.QuestionsQuizPage.text = questionsQuiz?.get(i)!!.question
-                binding.Option1QuizPage.text = questionsQuiz?.get(i)!!.option1
-                binding.Option2QuizPage.text = questionsQuiz?.get(i)!!.option2
-                binding.Option3QuizPage.text = questionsQuiz?.get(i)!!.option3
-                binding.Option4QuizPage.text = questionsQuiz?.get(i)!!.option4
-            }
-            if(i== (questionsQuiz!!.size))
-            {
-
-                findNavController().navigate(R.id.action_questionPageStudentSide_to_homePageStudentSide)
             }
         }
             return binding.root
     }
-
+//    fun onBackPressed() {
+//        val fragment: Myfragment =
+//            getSupportFragmentManager().findFragmentByTag(TAG_FRAGMENT) as Myfragment
+//        if (fragment.allowBackPressed()) { // and then you define a method allowBackPressed with the logic to allow back pressed or not
+//            super.onBackPressed()
+//        }
+//    }
 
 }

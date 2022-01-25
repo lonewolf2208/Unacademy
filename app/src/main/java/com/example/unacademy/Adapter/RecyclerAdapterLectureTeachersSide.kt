@@ -12,6 +12,13 @@ import com.example.unacademy.databinding.FragmentCardViewLecturesBinding
 import com.example.unacademy.models.TeachersSideModels.getLectureModelItem
 
 class RecyclerAdapterLectureTeachersSide(val getLectureModelItem: List<getLectureModelItem>?): RecyclerView.Adapter<RecyclerAdapterLectureTeachersSide.ViewHolder>()  {
+
+   companion object
+   {
+       var series_name:String=""
+       var seriesDescription:String=""
+       var seriesThumbnail:String=""
+   }
     var clickListener: RecyclerAdapterTeachersSideHomePage.ClickListener?=null
 
     fun onClickListeer( clickListener: RecyclerAdapterTeachersSideHomePage.ClickListener)
@@ -29,6 +36,7 @@ class RecyclerAdapterLectureTeachersSide(val getLectureModelItem: List<getLectur
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater=LayoutInflater.from(parent.context)
         val cardViewLecturesBinding:FragmentCardViewLecturesBinding=DataBindingUtil.inflate(layoutInflater,R.layout.fragment_card_view_lectures,parent,false)
+
         return ViewHolder(cardViewLecturesBinding)
     }
 

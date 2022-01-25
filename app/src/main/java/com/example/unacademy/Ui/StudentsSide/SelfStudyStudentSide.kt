@@ -5,29 +5,24 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.example.unacademy.Adapter.StudentSideAdapters.RecyclerAdapterQuizTEachersSide
 import com.example.unacademy.R
+import com.example.unacademy.databinding.FragmentSelfStudyStudentSideBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [SelfStudyStudentSide.newInstance] factory method to
- * create an instance of this fragment.
- */
 class SelfStudyStudentSide : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
+    lateinit var binding:FragmentSelfStudyStudentSideBinding
+    lateinit var adapterGetQuiz: RecyclerAdapterQuizTEachersSide
+    private var layoutManager: RecyclerView.LayoutManager?=null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+
     }
 
     override fun onCreateView(
@@ -35,26 +30,22 @@ class SelfStudyStudentSide : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_self_study_student_side, container, false)
+        binding= DataBindingUtil.inflate(inflater,R.layout.fragment_self_study_student_side, container, false)
+        layoutManager= StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
+        binding.RecyclerAdapterSelfStudy.layoutManager=layoutManager
+        adapterGetQuiz= RecyclerAdapterQuizTEachersSide(homePageStudentSide.totalQuiz)
+        binding.RecyclerAdapterSelfStudy.adapter=adapterGetQuiz
+        adapterGetQuiz.onClickListener(object : RecyclerAdapterQuizTEachersSide.ClickListener {
+            override fun OnClick(position: Int) {
+                homePageStudentSide.quizTitle = homePageStudentSide.totalQuiz!!.get(position).title.toString()
+                homePageStudentSide.quizDescription =homePageStudentSide.totalQuiz!!.get(position).description.toString()
+                homePageStudentSide.quizLectureCount =homePageStudentSide.totalQuiz!!.get(position).questions.toString()
+                homePageStudentSide.quizid =homePageStudentSide.totalQuiz!!.get(position).id.toInt()
+                findNavController().navigate(R.id.quizShowPageStudentSide)
+            }
+        })
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment SelfStudyStudentSide.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            SelfStudyStudentSide().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
+
 }

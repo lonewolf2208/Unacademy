@@ -15,12 +15,14 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.unacademy.Activities.StudentStoryActivity
+import com.example.unacademy.Adapter.RecyclerAdapterLectureTeachersSide
 import com.example.unacademy.Adapter.StudentSideAdapters.RecyclerAdapterLatestSeries
 import com.example.unacademy.Adapter.StudentSideAdapters.RecyclerAdapterOurEducatorsStudentSide
 import com.example.unacademy.Adapter.StudentSideAdapters.RecyclerAdapterQuizTEachersSide
 import com.example.unacademy.Adapter.StudentSideAdapters.RecyclerAdapterStudentStory
 import com.example.unacademy.R
 import com.example.unacademy.Repository.Response
+import com.example.unacademy.Repository.StudentSideRepo.StudentStoryProfileRepo
 import com.example.unacademy.Ui.TeachersSide.HomePageTeachersSide
 import com.example.unacademy.databinding.FragmentHomePageStudentSideBinding
 import com.example.unacademy.models.StudentSideGetQuiz.StudentSideGetQuizModelItem
@@ -71,15 +73,13 @@ class homePageStudentSide : Fragment() {
                     {
                         is Response.Success->
                         {
-
                             layoutManager= LinearLayoutManager(container?.context,LinearLayoutManager.HORIZONTAL, true)
                             binding.recyclerViewStoriesStudentSide.layoutManager=layoutManager
                             storiesAdapter= RecyclerAdapterStudentStory(it.data)
                             binding.recyclerViewStoriesStudentSide.adapter=storiesAdapter
                             storiesAdapter.onClickListener(object : RecyclerAdapterStudentStory.ClickListener {
                                 override fun OnClick(position: Int) {
-                                    studentStoryId=
-                                        storiesAdapter.studentStoryModelItem?.get(position)!!.educator
+                                    studentStoryId=StudentStoryProfileRepo.studentStoryId[position]
                                     val intent=Intent(activity,StudentStoryActivity::class.java)
                                     startActivity(intent)
                                 }
@@ -100,30 +100,17 @@ class homePageStudentSide : Fragment() {
                         {
                             layoutManager= LinearLayoutManager(container?.context,LinearLayoutManager.HORIZONTAL, true)
                             binding.recyclerViewLatestSeriesStudentSide.layoutManager=layoutManager
-                            adapter= RecyclerAdapterLatestSeries(it.data)
+                            adapter= RecyclerAdapterLatestSeries(requireContext(),it.data)
                             binding.recyclerViewLatestSeriesStudentSide.adapter=adapter
                             adapter.onClickListener(object : RecyclerAdapterLatestSeries.ClickListener {
                                 override fun OnClick(position: Int) {
                                     HomePageTeachersSide.seriesid = adapter.getStudentSeries?.get(position)?.id!!.toInt()
-                                    HomePageTeachersSide.thumbnail =adapter.getStudentSeries?.get(position)?.icon!!.toString()
-                                   findNavController().navigate(R.id.action_homePageStudentSide_to_lecturesTeachersSide2)
+                                    RecyclerAdapterLectureTeachersSide.series_name=adapter.getStudentSeries?.get(position)?.name.toString()
+                                   RecyclerAdapterLectureTeachersSide.seriesDescription=adapter.getStudentSeries?.get(position)?.description.toString()
+                                    RecyclerAdapterLectureTeachersSide.seriesThumbnail=adapter.getStudentSeries?.get(position)?.icon.toString()
+                                    findNavController().navigate(R.id.action_homePageStudentSide_to_lecturesTeachersSide2)
                                 }
                             })
-                            adapter.wishListClickListener(object : RecyclerAdapterLatestSeries.ClickListener {
-                                override fun OnClick(position: Int) {
-                                    lifecycleScope.launch {
-                                var result=homePageStudentSideViewModel.StudentWishlist(adapter.getStudentSeries!![position].id.toInt())
-                                result.observe(viewLifecycleOwner,
-                                    {
-                                        when(it) {
-                                            is Response.Success ->{Toast.makeText(context,"Item add to wishlist",Toast.LENGTH_LONG).show()}
-                                            is Response.Error->{Toast.makeText(context,it.errorMessage.toString(),Toast.LENGTH_LONG).show()}
-                                        }
-                                    })
-                                    }
-                                }
-                            })
-
                         }
                     }
                 })
@@ -136,31 +123,32 @@ class homePageStudentSide : Fragment() {
                         {
                             layoutManager= LinearLayoutManager(container?.context,LinearLayoutManager.HORIZONTAL, true)
                             binding.OurEducatorsRecyclerViewStudentSide.layoutManager=layoutManager
-                            adapterOurEducators= RecyclerAdapterOurEducatorsStudentSide(it.data)
+                            adapterOurEducators= RecyclerAdapterOurEducatorsStudentSide(requireContext(),it.data)
                             binding.OurEducatorsRecyclerViewStudentSide.adapter=adapterOurEducators
-                            adapterOurEducators.onClickListener(object : RecyclerAdapterOurEducatorsStudentSide.ClickListener {
-                                override fun OnClick(position: Int) {
-                                    educatorId= it.data?.get(position)!!.id
-                                    lifecycleScope.launch {
-                                     var result=   homePageStudentSideViewModel.addFollowing()
-                                        result.observe(viewLifecycleOwner,
-                                            {
-                                                when(it) {
-                                                    is Response.Success -> {
-                                                        view?.findViewById<Button>(R.id.FollowButton)?.text="Following"
-                                                    }
-                                                    is Response.Error -> {
-                                                        Toast.makeText(
-                                                            context,
-                                                            it.errorMessage.toString(),
-                                                            Toast.LENGTH_LONG
-                                                        ).show()
-                                                    }
-                                                }
-                                            })
-                                    }
-                                }
-                            })
+//                            adapterOurEducators.onClickListener(object : RecyclerAdapterOurEducatorsStudentSide.ClickListener {
+//                                override fun OnClick(position: Int) {
+//                                    educatorId= it.data?.get(position)!!.id
+//
+//                                    lifecycleScope.launch {
+//                                     var result=   homePageStudentSideViewModel.addFollowing()
+//                                        result.observe(viewLifecycleOwner,
+//                                            {
+//                                                when(it) {
+//                                                    is Response.Success -> {
+//                                                        view?.findViewById<Button>(R.id.FollowButton)?.text="Following"
+//                                                    }
+//                                                    is Response.Error -> {
+//                                                        Toast.makeText(
+//                                                            context,
+//                                                            it.errorMessage.toString(),
+//                                                            Toast.LENGTH_LONG
+//                                                        ).show()
+//                                                    }
+//                                                }
+//                                            })
+//                                    }
+//                                }
+//                            })
 
                         }
                         is Response.Error->Toast.makeText(context,it.errorMessage.toString(),Toast.LENGTH_LONG).show()

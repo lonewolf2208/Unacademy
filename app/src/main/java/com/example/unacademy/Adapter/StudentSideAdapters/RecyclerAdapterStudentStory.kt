@@ -1,5 +1,6 @@
 package com.example.unacademy.Adapter.StudentSideAdapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -12,8 +13,7 @@ import com.example.unacademy.models.StudentStory.studentStoryModelItem
 
 class RecyclerAdapterStudentStory(var studentStoryModelItem: List<studentStoryModelItem>?): RecyclerView.Adapter<RecyclerAdapterStudentStory.ViewHolder>() {
     var clickListener:ClickListener?=null
-    var name=ArrayList<String>()
-    var size =0
+    var StudentStoryPicture=StudentStoryProfileRepo.studetStoryDataPicture
     fun onClickListener( clickListener:ClickListener)
     {
         this.clickListener=clickListener
@@ -37,26 +37,12 @@ class RecyclerAdapterStudentStory(var studentStoryModelItem: List<studentStoryMo
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-
-        var flag=0
-        for(i in name)
-        {
-            if(studentStoryModelItem!![position].name == i)
-            {
-                flag=1
-                break
-            }
-        }
-        if(flag==0)
-        {
-            name.add(studentStoryModelItem!![position].name.toString())
-            size++
-            holder.binding.storiStudentSide.load(studentStoryModelItem!![position].picture.toString())
-        }
+       holder.binding.storiStudentSide.load(StudentStoryPicture[position].toString())
     }
 
     override fun getItemCount(): Int {
-        return StudentStoryProfileRepo.studentStoryData.size
+        Log.d("Sisdasdwad", StudentStoryProfileRepo.studentStoryDataName.size.toString())
+        return StudentStoryProfileRepo.studentStoryDataName.size
     }
 
 }

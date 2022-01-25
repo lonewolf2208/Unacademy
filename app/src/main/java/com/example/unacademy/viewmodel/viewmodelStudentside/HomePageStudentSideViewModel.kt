@@ -3,6 +3,7 @@ package com.example.unacademy.viewmodel.viewmodelStudentside
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.unacademy.Adapter.StudentSideAdapters.RecyclerAdapterOurEducatorsStudentSide
 import com.example.unacademy.Repository.Response
 import com.example.unacademy.Repository.StudentSideRepo.*
 import com.example.unacademy.Ui.Auth.Splash_Screen
@@ -44,7 +45,7 @@ class HomePageStudentSideViewModel:ViewModel()
         ourEducatorsResult=getEducatorRepo.ourEducatorApi(token.toString())
         return ourEducatorsResult
     }
-    suspend fun getStudentStoryProfile(): MutableLiveData<Response<List<studentStoryModelItem>>> {
+    suspend fun getStudentStoryProfile(): MutableLiveData<Response<ArrayList<studentStoryModelItem>>> {
         var Api= RetrofitClient.init()
         val job= viewModelScope.launch {
             var AccessToken = Splash_Screen.readInfo("access").toString()
@@ -52,8 +53,8 @@ class HomePageStudentSideViewModel:ViewModel()
         }
         job.join()
         var studentStoryProfileRepo=StudentStoryProfileRepo(Api)
-        studentStoryProfileResult=studentStoryProfileRepo.getStudentStoryApi(token.toString())
-        return studentStoryProfileResult
+        var result=studentStoryProfileRepo.getStudentStoryApi(token.toString())
+        return result
     }
     suspend fun addFollowing(): MutableLiveData<Response<ResponseBody>> {
         var Api= RetrofitClient.init()
@@ -63,7 +64,7 @@ class HomePageStudentSideViewModel:ViewModel()
         }
         job.join()
         var TeacherFollowingRepo=TeacherFollowingRepo(Api)
-        var result=TeacherFollowingRepo.teacherFollowingApi(homePageStudentSide.educatorId.toInt(),token.toString())
+        var result=TeacherFollowingRepo.teacherFollowingApi(RecyclerAdapterOurEducatorsStudentSide.educatorId.toInt(),token.toString())
         return result
     }
     suspend fun getQuiz(): MutableLiveData<Response<List<StudentSideGetQuizModelItem>>> {
@@ -88,5 +89,26 @@ class HomePageStudentSideViewModel:ViewModel()
         var result=wishlisRepo.studentStoryInfoApi(id,token.toString())
         return result
     }
-
+    suspend fun DeleteStudentWishlist( id :Int): MutableLiveData<Response<ResponseBody>> {
+        var Api=RetrofitClient.init()
+        val job= viewModelScope.launch {
+            var AccessToken = Splash_Screen.readInfo("access").toString()
+            token = AccessToken
+        }
+        job.join()
+        var wishlisRepo=DeleteWishlistRepo(Api)
+        var result=wishlisRepo.DeletestudentStoryInfoApi(id,token.toString())
+        return result
+    }
+    suspend fun teacherUnfollowing(): MutableLiveData<Response<ResponseBody>> {
+        var Api= RetrofitClient.init()
+        val job= viewModelScope.launch {
+            var AccessToken = Splash_Screen.readInfo("access").toString()
+            token = AccessToken
+        }
+        job.join()
+        var TeacherFollowingRepo=TeacherUnfollowingRepo(Api)
+        var result=TeacherFollowingRepo.teacherUnFollowingApi(RecyclerAdapterOurEducatorsStudentSide.educatorId,token.toString())
+        return result
+    }
 }
