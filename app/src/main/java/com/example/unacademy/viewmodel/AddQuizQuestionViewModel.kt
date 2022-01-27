@@ -50,11 +50,11 @@ class AddQuizQuestionViewModel:ViewModel()
         if (option2.value.isNullOrEmpty()) {
             helperTextOption2.postValue("Enter Option 2")
         }
-        if (option3.value.isNullOrEmpty()) {
-            helperTextOption3.postValue("Enter Option 3")
-        }
-        if (option4.value.isNullOrEmpty())
-        {helperTextOption4.postValue("Enter Option 4")}
+//        if (option3.value.isNullOrEmpty()) {
+//            helperTextOption3.postValue("Enter Option 3")
+//        }
+//        if (option4.value.isNullOrEmpty())
+//        {helperTextOption4.postValue("Enter Option 4")}
         if(answer.value.isNullOrEmpty() || answer.value=="Select Your Options")
         {helperTextAnswer.postValue("Select Your Answer")}
         else

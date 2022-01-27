@@ -24,7 +24,7 @@ class AddQuizQuestions : Fragment(),View.OnClickListener{
 
     lateinit var binding:FragmentAddQuizQuestionsBinding
     lateinit var addQuizQuestionViewModel: AddQuizQuestionViewModel
-
+    var options=1
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         addQuizQuestionViewModel=ViewModelProvider(this)[AddQuizQuestionViewModel::class.java]
@@ -50,6 +50,7 @@ class AddQuizQuestions : Fragment(),View.OnClickListener{
             override fun onNothingSelected(parent: AdapterView<*>?) {
             }
         })
+        binding.AddOptions.setOnClickListener(this)
         return binding.root
     }
 
@@ -92,6 +93,27 @@ class AddQuizQuestions : Fragment(),View.OnClickListener{
                 {
                     Toast.makeText(context,"Quiz has been created",Toast.LENGTH_LONG).show()
                     findNavController().navigate(R.id.action_addQuizQuestions_to_homePageTeachersSide)
+                }
+                R.id.AddOptions->
+                {
+                    if(options==1)
+                    {
+                        binding.Option3.visibility=View.VISIBLE
+                        binding.Option3.text=binding.AddOptionsText.text
+                        binding.textView78.visibility=View.VISIBLE
+                        options++
+                    }
+                    else if(options==2)
+                    {
+                        binding.Option4.visibility=View.VISIBLE
+                        binding.Option4.text=binding.AddOptionsText.text
+                        binding.textView79.visibility=View.VISIBLE
+                        options++
+                    }
+                     else
+                    {
+                        Toast.makeText(context,"Not more than 4 Options can be added ",Toast.LENGTH_LONG).show()
+                    }
                 }
             }
         }

@@ -12,9 +12,9 @@ import com.example.unacademy.api.RetrofitClient
 import com.example.unacademy.models.StudentSideModel.getStudentSeries.getStudentSeriesItem
 import kotlinx.coroutines.launch
 
-class WishlistStudentSideViewModel:ViewModel() {
+class StudentProfileViewModel:ViewModel() {
     var token :String=""
-    suspend fun getWishlistSeries(): MutableLiveData<Response<List<getStudentSeriesItem>>> {
+    suspend fun getWishlistSeries(): MutableLiveData<Response<ArrayList<getStudentSeriesItem>>> {
         val Api= RetrofitClient.init()
 
         val job =viewModelScope.launch {

@@ -13,7 +13,7 @@
     </fragment>
     <fragment
         android:id="@+id/lecturesTeachersSide"
-        android:name="com.example.unacademy.Ui.TeachersSide.lecturesTeachersSide"
+        android:name="com.example.unacademy.Ui.TeachersSide.LecturesTeachersSide"
         android:label="lecturesTeachersSide" >
         <action
             android:id="@+id/action_lecturesTeachersSide_to_upload_lectures"

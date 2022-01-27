@@ -28,6 +28,7 @@
                     android:layout_width="167dp"
                     android:layout_height="87dp"
                     android:src="@drawable/gradient"
+                    android:scaleType="centerCrop"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 

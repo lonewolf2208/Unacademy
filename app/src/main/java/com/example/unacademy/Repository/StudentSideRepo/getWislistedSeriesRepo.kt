@@ -8,15 +8,15 @@ import retrofit2.Call
 import retrofit2.Callback
 
 class getWislistedSeriesRepo(var Api:Api) {
-    private val getWislistedSeriesRepoLiveData = MutableLiveData<Response<List<getStudentSeriesItem>>>()
+    private val getWislistedSeriesRepoLiveData = MutableLiveData<Response<ArrayList<getStudentSeriesItem>>>()
     fun studentWishlistedSeriesApi(
         token: String
-    ): MutableLiveData<Response<List<getStudentSeriesItem>>> {
+    ): MutableLiveData<Response<ArrayList<getStudentSeriesItem>>> {
         val result = Api.getWishlistedSeries("Bearer ${token}")
-        result.enqueue(object : Callback<List<getStudentSeriesItem>?> {
+        result.enqueue(object : Callback<ArrayList<getStudentSeriesItem>?> {
             override fun onResponse(
-                call: Call<List<getStudentSeriesItem>?>,
-                response: retrofit2.Response<List<getStudentSeriesItem>?>
+                call: Call<ArrayList<getStudentSeriesItem>?>,
+                response: retrofit2.Response<ArrayList<getStudentSeriesItem>?>
             ) {
                 if (response.isSuccessful) {
                     getWislistedSeriesRepoLiveData.postValue(Response.Success(response.body()))
@@ -29,7 +29,7 @@ class getWislistedSeriesRepo(var Api:Api) {
                 }
             }
 
-            override fun onFailure(call: Call<List<getStudentSeriesItem>?>, t: Throwable) {
+            override fun onFailure(call: Call<ArrayList<getStudentSeriesItem>?>, t: Throwable) {
                 getWislistedSeriesRepoLiveData.postValue(Response.Error(t.message.toString()))
             }
         })

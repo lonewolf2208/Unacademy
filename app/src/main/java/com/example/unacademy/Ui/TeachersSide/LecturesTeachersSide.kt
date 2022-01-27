@@ -23,7 +23,7 @@ import com.example.unacademy.databinding.FragmentLecturesTeachersSideBinding
 import com.example.unacademy.viewmodel.LectureTeachersSideViewModel
 import kotlinx.coroutines.launch
 
-class lecturesTeachersSide : Fragment() {
+class LecturesTeachersSide : Fragment() {
 
     lateinit var binding: FragmentLecturesTeachersSideBinding
     lateinit var lectureTeachersSideViewModel: LectureTeachersSideViewModel
@@ -65,6 +65,10 @@ class lecturesTeachersSide : Fragment() {
                 {
                     when (it) {
                         is com.example.unacademy.Repository.Response.Success -> {
+                            if (it.data!!.isEmpty())
+                            {
+                                binding.EmptyLecture.text="Series Is Empty . Upload Lectures"
+                            }
                             binding.shimmerFrameLayoutLectureSide.stopShimmerAnimation()
                             binding.shimmerFrameLayoutLectureSide.visibility=View.GONE
                             layoutManager = LinearLayoutManager(container?.context)

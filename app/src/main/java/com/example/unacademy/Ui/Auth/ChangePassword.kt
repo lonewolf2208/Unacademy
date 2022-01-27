@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.unacademy.Activities.NavBarActivity
+import com.example.unacademy.Activities.StudentSideActivity
 import com.example.unacademy.R
 import com.example.unacademy.Repository.AuthRepo.ChangePasswordRepo
 import com.example.unacademy.Repository.Response
@@ -29,7 +30,6 @@ class ChangePassword : Fragment() ,View.OnClickListener{
     ): View? {
         // Inflate the layout for this fragment
         _binding= FragmentChangePasswordBinding.inflate(inflater,container,false)
-
         binding?.doneButtonChangePassword?.setOnClickListener(this)
         passwordFocusListener()
         return binding?.root
@@ -104,8 +104,14 @@ class ChangePassword : Fragment() ,View.OnClickListener{
                                 if(navController.previousBackStackEntry?.destination?.label.toString()=="fragment_log_in") {
                                     navController.navigate(R.id.logIn)
                                 }
+                                else if(navController.previousBackStackEntry?.destination?.label.toString()=="fragment_email_verification")
+                                {
+                                    val intent=Intent(activity,StudentSideActivity::class.java)
+                                    startActivity(intent)
+                                }
                                 else
                                 {
+                                    Toast.makeText(context,navController.previousBackStackEntry?.destination?.label.toString(),Toast.LENGTH_LONG).show()
                                     val intent=Intent(activity,NavBarActivity::class.java)
                                     startActivity(intent)
                                 }

@@ -8,15 +8,13 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.unacademy.R
-import com.example.unacademy.Repository.Response
 import com.example.unacademy.databinding.FragmentCardViewHomePageStudentsSideBinding
 import com.example.unacademy.models.StudentSideModel.getStudentSeries.getStudentSeriesItem
 import com.example.unacademy.viewmodel.viewmodelStudentside.HomePageStudentSideViewModel
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
-import java.security.acl.Owner
 
-class RecyclerAdapterLatestSeries(val context:Context,var getStudentSeries:ArrayList<getStudentSeriesItem>): RecyclerView.Adapter<RecyclerAdapterLatestSeries.ViewHolder>(){
+class RecyclerAdapterStudentWishlist(val context: Context, var getStudentSeries:ArrayList<getStudentSeriesItem>): RecyclerView.Adapter<RecyclerAdapterStudentWishlist.ViewHolder>(){
     var clickListener: ClickListener?=null
     var wishListFlag=true
 
@@ -25,7 +23,7 @@ class RecyclerAdapterLatestSeries(val context:Context,var getStudentSeries:Array
         this.clickListener=clickListener
 
     }
-    inner class ViewHolder(var binding: FragmentCardViewHomePageStudentsSideBinding):RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(var binding: FragmentCardViewHomePageStudentsSideBinding): RecyclerView.ViewHolder(binding.root) {
         init {
             binding.imageView10.setOnClickListener {
                 clickListener?.OnClick(adapterPosition)
@@ -34,7 +32,7 @@ class RecyclerAdapterLatestSeries(val context:Context,var getStudentSeries:Array
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater= LayoutInflater.from(parent.context)
-        val cardViewLecturesBinding:FragmentCardViewHomePageStudentsSideBinding= DataBindingUtil.inflate(layoutInflater,
+        val cardViewLecturesBinding: FragmentCardViewHomePageStudentsSideBinding = DataBindingUtil.inflate(layoutInflater,
             R.layout.fragment_card_view_home_page_students_side,parent,false)
         return ViewHolder(cardViewLecturesBinding)
     }
@@ -48,7 +46,7 @@ class RecyclerAdapterLatestSeries(val context:Context,var getStudentSeries:Array
         holder.binding.WishListStudentSide.setOnClickListener {
             if(getStudentSeries?.get(position)?.is_wishlisted==true)
             {
-               wishListFlag=true
+                wishListFlag=true
             }
             if(getStudentSeries?.get(position)?.is_wishlisted==false)
             {
@@ -57,9 +55,9 @@ class RecyclerAdapterLatestSeries(val context:Context,var getStudentSeries:Array
             if(wishListFlag==false) {
                 holder.binding.WishListStudentSide.setBackgroundResource(R.drawable.ic_wishlist_student_side_selected)
                 MainScope().launch {
-                        HomePageStudentSideViewModel().StudentWishlist(getStudentSeries!![position].id.toInt())
+                    HomePageStudentSideViewModel().StudentWishlist(getStudentSeries!![position].id.toInt())
 
-                   Toast.makeText(context,"Series added to wishlist",Toast.LENGTH_LONG).show()
+                    Toast.makeText(context,"Series added to wishlist", Toast.LENGTH_LONG).show()
                 }
                 wishListFlag = true
             }
@@ -67,7 +65,9 @@ class RecyclerAdapterLatestSeries(val context:Context,var getStudentSeries:Array
             {
                 MainScope().launch {
                     HomePageStudentSideViewModel().DeleteStudentWishlist(getStudentSeries!![position].id.toInt())
-                    Toast.makeText(context,"Series removed from Wishlist",Toast.LENGTH_LONG).show()
+                    getStudentSeries.removeAt(position)
+                    notifyDataSetChanged()
+                    Toast.makeText(context,"Series removed from Wishlist", Toast.LENGTH_LONG).show()
                 }
                 holder.binding.WishListStudentSide.setBackgroundResource(R.drawable.ic_wishlist_student_side_deselected)
                 wishListFlag=false

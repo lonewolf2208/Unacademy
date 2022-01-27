@@ -23,9 +23,11 @@ class ChooseRole : Fragment() {
         // Inflate the layout for this fragment
         _binding= FragmentChooseRoleBinding.inflate(inflater,container,false)
         binding?.checkBoxTeacher?.setOnClickListener {
+            binding!!.checkBoxTeacher.isChecked=false
             findNavController().navigate(R.id.action_chooseRole_to_teachers_profile)
         }
         binding?.checkBoxStudent?.setOnClickListener {
+            binding!!.checkBoxStudent.isChecked=false
             findNavController().navigate(R.id.action_chooseRole_to_studentInfo)
         }
         return binding?.root

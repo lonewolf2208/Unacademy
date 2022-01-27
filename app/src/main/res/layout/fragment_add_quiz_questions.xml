@@ -90,13 +90,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="100dp"
                 android:fontFamily="@font/rosario_bold"
                 android:text="Answer"
                 android:textColor="#003356"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textInputLayout14" />
+                app:layout_constraintTop_toBottomOf="@+id/textView94" />
 
             <Button
                 android:id="@+id/AddNextQuestion"
@@ -105,7 +105,8 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="24dp"
-                android:text="AddNextQuestion"
+                android:textAllCaps="false"
+            android:text="Add Next `Question"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/spinner2Container" />
@@ -141,7 +142,6 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/border"
                     android:ems="10"
-
                     android:text="@={addQuizQuestionsViewModel.option1}"
                     android:hint="Option 1"
                     android:inputType="textPersonName" />
@@ -192,6 +192,7 @@
                 android:text="(C)"
                 android:textColor="#00416D"
                 android:textSize="20sp"
+                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView77" />
 
@@ -211,12 +212,13 @@
                     android:id="@+id/Option3"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:ems="10"
-                    app:helperTextTextColor="@android:color/holo_red_dark"
                     android:background="@drawable/border"
-                    android:text="@={addQuizQuestionsViewModel.option3}"
+                    android:ems="10"
                     android:hint="Option3"
-                    android:inputType="textPersonName" />
+                    android:inputType="textPersonName"
+                    android:text="@={addQuizQuestionsViewModel.option3}"
+                    android:visibility="gone"
+                    app:helperTextTextColor="@android:color/holo_red_dark" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
@@ -228,6 +230,7 @@
                 android:text="(D)"
                 android:textColor="#00416D"
                 android:textSize="20sp"
+                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView78" />
 
@@ -250,9 +253,10 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/border"
                     android:ems="10"
-                    android:text="@={addQuizQuestionsViewModel.helperTextOption4}"
                     android:hint="Option4"
-                    android:inputType="textPersonName" />
+                    android:inputType="textPersonName"
+                    android:text="@={addQuizQuestionsViewModel.helperTextOption4}"
+                    android:visibility="gone" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -288,6 +292,46 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/AddNextQuestion" />
 
+            <TextView
+                android:id="@+id/textView94"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:fontFamily="@font/rosario_bold"
+                android:text="More Options"
+                android:textColor="#003356"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayout14" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout15"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="120dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView94">
+
+                <EditText
+                    android:id="@+id/AddOptionsText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/border"
+                    android:ems="10"
+                    android:inputType="textPersonName" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/AddOptions"
+                android:layout_width="wrap_content"
+                android:layout_height="65dp"
+                android:text="Add +"
+                app:layout_constraintStart_toEndOf="@+id/textInputLayout15"
+                app:layout_constraintTop_toBottomOf="@+id/textView94" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>
     </FrameLayout>

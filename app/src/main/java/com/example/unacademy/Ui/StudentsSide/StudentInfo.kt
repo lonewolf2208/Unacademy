@@ -28,7 +28,7 @@ import kotlinx.coroutines.launch
 import java.util.*
 
 
-class StudentInfo : Fragment(),View.OnClickListener {
+class   StudentInfo : Fragment(),View.OnClickListener {
     lateinit var binding:FragmentStudentInfoBinding
     lateinit var createStudentViewModel: CreateStudentViewModel
     private lateinit var imageUri: Uri
@@ -106,16 +106,6 @@ class StudentInfo : Fragment(),View.OnClickListener {
             R.id.shapeableImageView -> pickImageGallery()
             R.id.submitStudentInfo -> {
                 if (createStudentViewModel.validations() == null) {
-                    Toast.makeText(
-                        context,
-                        createStudentViewModel.name.value.toString(),
-                        Toast.LENGTH_LONG
-                    ).show()
-                    Toast.makeText(
-                        context,
-                        createStudentViewModel.mobileno.value.toString(),
-                        Toast.LENGTH_LONG
-                    ).show()
                     lifecycleScope.launch {
                         var result = createStudentViewModel.createStudent()
                         result.observe(viewLifecycleOwner, {

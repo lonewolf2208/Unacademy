@@ -63,6 +63,10 @@ class HomePageTeachersSide : Fragment() {
                when(it)
                {
                    is com.example.unacademy.Repository.Response.Success -> {
+                       if(it.data!!.isEmpty())
+                       {
+                           binding.EmptySeries.text="Upload Series !! "
+                       }
                        var shimmerFrameLayoutHomePage=view?.findViewById<ShimmerFrameLayout>(R.id.shimmerFrameLayoutHomePage)
                        shimmerFrameLayoutHomePage?.stopShimmerAnimation()
                        shimmerFrameLayoutHomePage?.visibility=View.GONE

@@ -48,7 +48,7 @@ class StudentSideActivity : AppCompatActivity(), View.OnClickListener {
             dialodView.findViewById<ImageView>(R.id.Feedback).setOnClickListener(this)
             dialodView.findViewById<ImageView>(R.id.Feedback).setOnClickListener(this)
             dialodView.findViewById<ImageView>(R.id.changePasswordDialogBox).setOnClickListener {
-                var navController = Navigation.findNavController(this, R.id.fragment_container)
+                var navController = Navigation.findNavController(this, R.id.fragment_container_student_side)
                 navController.navigate(R.id.emailVerification)
                 alertDialog.cancel()
             }

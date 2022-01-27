@@ -3,9 +3,7 @@
 <item android:id="@+id/homePageStudentSide"
     android:title="Home"
     android:icon="@drawable/home_selection_teachers_side"/>
-    <item android:id="@+id/wishListStudentSide"
-        android:title="WishList"
-        android:icon="@drawable/wishlist_selection_student_side"/>
+
 <item android:id="@+id/selfStudyStudentSide"
     android:title="Self Study"
     android:icon="@drawable/self_study_selection_student_side"/>

@@ -5,6 +5,46 @@
     android:id="@+id/student_side_navigation"
     app:startDestination="@id/homePageStudentSide">
 
+    <action
+        android:id="@+id/action_otpChangePassword_to_changePassword"
+        app:destination="@id/changePassword"
+        app:popUpTo="@id/logIn" />
+    <fragment
+        android:id="@+id/emailVerification"
+        android:name="com.example.unacademy.Ui.Auth.EmailVerification"
+        android:label="fragment_email_verification"
+        tools:layout="@layout/fragment_email_verification">
+        <action
+            android:id="@+id/action_emailVerification_to_otpChangePassword"
+            app:destination="@id/otpChangePassword"
+            app:popUpTo="@id/emailVerification" />
+    </fragment>
+    <action
+        android:id="@+id/action_otpChangePassword_to_changePassword2"
+        app:destination="@id/changePassword"
+        app:popUpTo="@id/logIn" />
+    <action
+        android:id="@+id/action_emailVerification_to_otpChangePassword"
+        app:destination="@id/otpChangePassword"
+        app:popUpTo="@id/logIn" />
+    <fragment
+        android:id="@+id/otpChangePassword"
+        android:name="com.example.unacademy.Ui.Auth.OtpChangePassword"
+        android:label="fragment_otp_change_password"
+        tools:layout="@layout/fragment_otp_change_password">
+        <action
+            android:id="@+id/action_otpChangePassword_to_changePassword"
+            app:destination="@id/changePassword"
+            app:popUpTo="@id/emailVerification" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/changePassword"
+        android:name="com.example.unacademy.Ui.Auth.ChangePassword"
+        android:label="fragment_change_password"
+        tools:layout="@layout/fragment_change_password">
+
+    </fragment>
     <activity
         android:id="@+id/studentSideActivity"
         android:name="com.example.unacademy.Activities.StudentSideActivity"
@@ -25,7 +65,7 @@
     </fragment>
     <fragment
         android:id="@+id/lecturesTeachersSide2"
-        android:name="com.example.unacademy.Ui.TeachersSide.lecturesTeachersSide"
+        android:name="com.example.unacademy.Ui.TeachersSide.LecturesTeachersSide"
         android:label="lecturesTeachersSide" />
     <fragment
         android:id="@+id/profileStudentSide"
@@ -57,9 +97,12 @@
         android:name="com.example.unacademy.Ui.StudentsSide.QuestionPageStudentSide"
         android:label="QuestionPageStudentSide" >
         <action
-            android:id="@+id/action_questionPageStudentSide_to_homePageStudentSide"
-            app:destination="@id/homePageStudentSide"
-            app:popUpTo="@id/questionPageStudentSide"
-            app:popUpToInclusive="true" />
+            android:id="@+id/action_questionPageStudentSide_to_quizResultPage"
+            app:destination="@id/quizResultPage"
+            app:popUpTo="@id/homePageStudentSide" />
     </fragment>
+    <fragment
+        android:id="@+id/quizResultPage"
+        android:name="com.example.unacademy.Ui.StudentsSide.QuizResultPage"
+        android:label="QuizResultPage" />
 </navigation>

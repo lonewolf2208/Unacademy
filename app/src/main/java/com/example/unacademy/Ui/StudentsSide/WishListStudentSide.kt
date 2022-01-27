@@ -17,18 +17,18 @@ import com.example.unacademy.R
 import com.example.unacademy.Repository.Response
 import com.example.unacademy.Ui.TeachersSide.HomePageTeachersSide
 import com.example.unacademy.databinding.FragmentWishListStudentSideBinding
-import com.example.unacademy.viewmodel.viewmodelStudentside.WishlistStudentSideViewModel
+import com.example.unacademy.viewmodel.viewmodelStudentside.StudentProfileViewModel
 import kotlinx.coroutines.launch
 
 
 class WishListStudentSide : Fragment() {
 lateinit var bindiing:FragmentWishListStudentSideBinding
-lateinit var wishListSTudentSideViewModel:WishlistStudentSideViewModel
+lateinit var wishListSTudentSideViewModel:StudentProfileViewModel
     private var layoutManager: RecyclerView.LayoutManager?=null
     lateinit var adapter: RecyclerAdapterLatestSeries
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-       wishListSTudentSideViewModel=ViewModelProvider(this)[WishlistStudentSideViewModel::class.java]
+       wishListSTudentSideViewModel=ViewModelProvider(this)[StudentProfileViewModel::class.java]
     }
 
     override fun onCreateView(
@@ -48,17 +48,16 @@ lateinit var wishListSTudentSideViewModel:WishlistStudentSideViewModel
                             layoutManager = LinearLayoutManager(
                                 container?.context)
                             bindiing.RecyclerViewWishlistedSeries.layoutManager = layoutManager
-                            adapter = RecyclerAdapterLatestSeries(requireContext(),it.data)
+                            adapter = RecyclerAdapterLatestSeries(requireContext(), it.data!!)
                             bindiing.RecyclerViewWishlistedSeries.adapter = adapter
                             adapter.notifyDataSetChanged()
-                            adapter.onClickListener(object :
-                                RecyclerAdapterLatestSeries.ClickListener {
+                            adapter.onClickListener(object : RecyclerAdapterLatestSeries.ClickListener {
                                 override fun OnClick(position: Int) {
-                                    HomePageTeachersSide.seriesid =
-                                        adapter.getStudentSeries?.get(position)?.id!!.toInt()
+                                    HomePageTeachersSide.seriesid = adapter.getStudentSeries?.get(position)?.id!!.toInt()
                                     RecyclerAdapterLectureTeachersSide.series_name=adapter.getStudentSeries?.get(position)?.name.toString()
                                     RecyclerAdapterLectureTeachersSide.seriesDescription=adapter.getStudentSeries?.get(position)?.description.toString()
                                     RecyclerAdapterLectureTeachersSide.seriesThumbnail=adapter.getStudentSeries?.get(position)?.icon.toString()
+                                    findNavController().navigate(R.id.lecturesTeachersSide2)
                                 }
                             })
                         }

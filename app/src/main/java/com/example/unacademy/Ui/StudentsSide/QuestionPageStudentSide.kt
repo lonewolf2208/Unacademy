@@ -82,7 +82,7 @@ class QuestionPageStudentSide : Fragment() {
             } else {
                 i++
                 if (i == (questionsQuiz!!.size)) {
-                    findNavController().navigate(R.id.action_questionPageStudentSide_to_homePageStudentSide)
+                    findNavController().navigate(R.id.action_questionPageStudentSide_to_quizResultPage)
                 }
                 if (i < questionsQuiz!!.size) {
                     if (i == (questionsQuiz!!.size - 1)) {

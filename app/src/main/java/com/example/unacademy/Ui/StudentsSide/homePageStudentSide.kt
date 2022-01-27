@@ -26,6 +26,7 @@ import com.example.unacademy.Repository.StudentSideRepo.StudentStoryProfileRepo
 import com.example.unacademy.Ui.TeachersSide.HomePageTeachersSide
 import com.example.unacademy.databinding.FragmentHomePageStudentSideBinding
 import com.example.unacademy.models.StudentSideGetQuiz.StudentSideGetQuizModelItem
+import com.example.unacademy.models.StudentSideModel.getStudentSeries.getStudentSeriesItem
 import com.example.unacademy.viewmodel.viewmodelStudentside.HomePageStudentSideViewModel
 import kotlinx.coroutines.launch
 
@@ -41,7 +42,6 @@ class homePageStudentSide : Fragment() {
     companion object
     {
         var studentStoryId:Int=0
-        var educatorId:Int=0
         var quizid=0
         var quizTitle:String=""
         var quizDescription:String=""
@@ -100,7 +100,9 @@ class homePageStudentSide : Fragment() {
                         {
                             layoutManager= LinearLayoutManager(container?.context,LinearLayoutManager.HORIZONTAL, true)
                             binding.recyclerViewLatestSeriesStudentSide.layoutManager=layoutManager
-                            adapter= RecyclerAdapterLatestSeries(requireContext(),it.data)
+                            adapter= RecyclerAdapterLatestSeries(requireContext(),
+                                it.data as ArrayList<getStudentSeriesItem>
+                            )
                             binding.recyclerViewLatestSeriesStudentSide.adapter=adapter
                             adapter.onClickListener(object : RecyclerAdapterLatestSeries.ClickListener {
                                 override fun OnClick(position: Int) {

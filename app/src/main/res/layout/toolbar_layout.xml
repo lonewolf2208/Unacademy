@@ -36,7 +36,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/rosario_bold"
-            android:text="Unacademy"
+            android:text="Omega"
             android:textColor="#163A53"
             android:textSize="24sp"
             app:layout_constraintStart_toEndOf="@+id/MenuButton"
