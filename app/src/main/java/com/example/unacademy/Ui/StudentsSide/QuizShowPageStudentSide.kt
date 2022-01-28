@@ -48,6 +48,7 @@ lateinit var binding:FragmentQuizShowPageStudentSideBinding
         binding.QUestionCountHomePageStudentSide.text = homePageStudentSide.quizLectureCount
         binding.QuizDescriptionHomePage.text = homePageStudentSide.quizDescription
         binding.QuizTitleHomePage.text=homePageStudentSide.quizTitle
+        binding.textView97.text=homePageStudentSide.quizDuration.toString() + " Mins"
         layoutManager= StaggeredGridLayoutManager(2,LinearLayoutManager.VERTICAL)
         binding.RecyclerAdapterMoreQuizes.layoutManager=layoutManager
         adapterGetQuiz= RecyclerAdapterQuizTEachersSide(homePageStudentSide.totalQuiz)
@@ -58,6 +59,7 @@ lateinit var binding:FragmentQuizShowPageStudentSideBinding
                 homePageStudentSide.quizDescription =homePageStudentSide.totalQuiz!!.get(position).description.toString()
                 homePageStudentSide.quizLectureCount =homePageStudentSide.totalQuiz!!.get(position).questions.toString()
                 homePageStudentSide.quizid =homePageStudentSide.totalQuiz!!.get(position).id.toInt()
+                homePageStudentSide.quizDuration= homePageStudentSide.totalQuiz!![position].duration
                 findNavController().navigate(R.id.quizShowPageStudentSide)
             }
         })

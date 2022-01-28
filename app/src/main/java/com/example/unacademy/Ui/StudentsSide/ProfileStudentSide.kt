@@ -46,12 +46,20 @@ class ProfileStudentSide : Fragment() {
                 {
                     when (it) {
                         is Response.Success -> {
+                            if(it.data!!.isEmpty())
+                            {
+                                binding.EmptyWishlistStudentSide.text="Your Wishlist is Empty"
+                            }
                             layoutManager = LinearLayoutManager(
-                                container?.context,LinearLayoutManager.HORIZONTAL,true)
+                                container?.context,LinearLayoutManager.HORIZONTAL,false)
                             binding.RecyclerAdapterWishlistStudentSide.layoutManager = layoutManager
                             adapter = RecyclerAdapterStudentWishlist(requireContext(), it.data!!)
                             binding.RecyclerAdapterWishlistStudentSide.adapter = adapter
                             adapter.notifyDataSetChanged()
+                            if(it.data!!.isEmpty())
+                            {
+                                binding.EmptyWishlistStudentSide.text="Your Wishlist is Empty"
+                            }
                             adapter.onClickListener(object : RecyclerAdapterStudentWishlist.ClickListener {
                                 override fun OnClick(position: Int) {
                                     HomePageTeachersSide.seriesid = adapter.getStudentSeries?.get(position)?.id!!.toInt()

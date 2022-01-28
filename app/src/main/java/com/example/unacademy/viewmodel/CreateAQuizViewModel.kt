@@ -25,7 +25,10 @@ suspend fun CreateAQuiz(): MutableLiveData<Response<CreateQuizModel>> {
         token = AccessToken
     }
     job.join()
-    var result = createAQuizRepo.CreateAQuizApi(title.value.toString(),description.value.toString(),token)
+    var result = createAQuizRepo.CreateAQuizApi(title.value.toString(),description.value.toString(),
+        duration.value!!.toInt(),token)
     return result
 }
+
+
 }

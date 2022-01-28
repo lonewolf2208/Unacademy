@@ -186,6 +186,7 @@ interface Api {
     fun createAQuiz(
         @Field("title") title: String,
         @Field("description") description: String,
+        @Field("duration")duration:Int,
         @Header("Authorization") token: String
     ): Call<CreateQuizModel>
 
@@ -258,7 +259,7 @@ interface Api {
 
     @GET("/student/quiz/{quiz_id}/analysis/")
     fun getQuizResult(
-        @Path("quiz_id")id:Int,
+        @Path("quiz_id") id: Int,
         @Header("Authorization") token: String
-    ):Call<List<QuizResultModelItem>>
+    ): Call<List<QuizResultModelItem>>
 }

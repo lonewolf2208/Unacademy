@@ -1,5 +1,6 @@
 package com.example.unacademy.Repository.StudentSideRepo
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.unacademy.Repository.Response
 import com.example.unacademy.api.Api
@@ -15,7 +16,7 @@ class QuizResultRepo(var Api:Api) {
         id: Int,
         token: String
     ): MutableLiveData<Response<List<QuizResultModelItem>>> {
-        val result = Api.getQuizResult(id.toInt(), "{Bearer ${token}}")
+        val result = Api.getQuizResult(id.toInt(), "Bearer ${token}")
         result.enqueue(object : Callback<List<QuizResultModelItem>?> {
             override fun onResponse(
                 call: Call<List<QuizResultModelItem>?>,
@@ -27,7 +28,6 @@ class QuizResultRepo(var Api:Api) {
                     QuizResultRepoLiveData.postValue(Response.Error(response.code().toString()))
                 }
             }
-
             override fun onFailure(call: Call<List<QuizResultModelItem>?>, t: Throwable) {
                 QuizResultRepoLiveData.postValue(Response.Error(t.localizedMessage.toString()))
             }

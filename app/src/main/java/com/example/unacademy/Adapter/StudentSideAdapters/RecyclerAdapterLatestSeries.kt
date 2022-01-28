@@ -46,30 +46,19 @@ class RecyclerAdapterLatestSeries(val context:Context,var getStudentSeries:Array
             holder.binding.WishListStudentSide.setBackgroundResource(R.drawable.ic_wishlist_student_side_selected)
         }
         holder.binding.WishListStudentSide.setOnClickListener {
-            if(getStudentSeries?.get(position)?.is_wishlisted==true)
-            {
-               wishListFlag=true
-            }
-            if(getStudentSeries?.get(position)?.is_wishlisted==false)
-            {
-                wishListFlag=false
-            }
             if(wishListFlag==false) {
                 holder.binding.WishListStudentSide.setBackgroundResource(R.drawable.ic_wishlist_student_side_selected)
                 MainScope().launch {
                         HomePageStudentSideViewModel().StudentWishlist(getStudentSeries!![position].id.toInt())
-
-                   Toast.makeText(context,"Series added to wishlist",Toast.LENGTH_LONG).show()
                 }
                 wishListFlag = true
             }
             else
             {
+                holder.binding.WishListStudentSide.setBackgroundResource(R.drawable.ic_wishlist_student_side_deselected)
                 MainScope().launch {
                     HomePageStudentSideViewModel().DeleteStudentWishlist(getStudentSeries!![position].id.toInt())
-                    Toast.makeText(context,"Series removed from Wishlist",Toast.LENGTH_LONG).show()
                 }
-                holder.binding.WishListStudentSide.setBackgroundResource(R.drawable.ic_wishlist_student_side_deselected)
                 wishListFlag=false
             }
         }

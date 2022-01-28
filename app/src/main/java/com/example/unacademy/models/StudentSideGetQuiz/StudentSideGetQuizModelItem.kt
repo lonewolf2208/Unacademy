@@ -4,6 +4,7 @@ data class StudentSideGetQuizModelItem(
     val description: String,
     val educator: Int,
     val educator_details: EducatorDetails,
+    val duration:Int,
     val id: Int,
     val questions: Int,
     val title: String

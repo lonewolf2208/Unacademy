@@ -44,14 +44,7 @@ class RecyclerAdapterStudentWishlist(val context: Context, var getStudentSeries:
             holder.binding.WishListStudentSide.setBackgroundResource(R.drawable.ic_wishlist_student_side_selected)
         }
         holder.binding.WishListStudentSide.setOnClickListener {
-            if(getStudentSeries?.get(position)?.is_wishlisted==true)
-            {
-                wishListFlag=true
-            }
-            if(getStudentSeries?.get(position)?.is_wishlisted==false)
-            {
-                wishListFlag=false
-            }
+
             if(wishListFlag==false) {
                 holder.binding.WishListStudentSide.setBackgroundResource(R.drawable.ic_wishlist_student_side_selected)
                 MainScope().launch {

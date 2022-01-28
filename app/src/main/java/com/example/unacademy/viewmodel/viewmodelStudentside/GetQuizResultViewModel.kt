@@ -25,9 +25,10 @@ class GetQuizResultViewModel:ViewModel() {
             token = AccessToken
         }
         job.join()
-        var QuizResultRepo=QuizResultRepo(Api)
-        var result=QuizResultRepo.QuizResultApi(homePageStudentSide.quizid.toInt(),token.toString())
-        Log.d("QuizIdToken",homePageStudentSide.quizid.toString())
+        var quizResultRepo=QuizResultRepo(Api)
+        Log.d("QuizIdToken",token.toString())
+        var result=quizResultRepo.QuizResultApi(homePageStudentSide.quizid.toInt(),token.toString())
+
         return result
     }
 

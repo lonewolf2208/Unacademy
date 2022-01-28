@@ -74,7 +74,7 @@ class NavBarActivity : AppCompatActivity() ,View.OnClickListener{
         dialodView.findViewById<ImageView>(R.id.Feedback).setOnClickListener(this)
         dialodView.findViewById<ImageView>(R.id.changePasswordDialogBox).setOnClickListener {
             var navController = Navigation.findNavController(this,R.id.fragment_container)
-            navController.navigate(R.id.emailVerification)
+            navController.navigate(R.id.action_homePageTeachersSide_to_changePassword)
             alertDialog.cancel()
         }
 

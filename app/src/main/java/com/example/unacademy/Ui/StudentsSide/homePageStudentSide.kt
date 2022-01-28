@@ -46,10 +46,9 @@ class homePageStudentSide : Fragment() {
         var quizTitle:String=""
         var quizDescription:String=""
         var quizLectureCount:String=""
+        var quizDuration=0
         var totalQuiz:List<StudentSideGetQuizModelItem>?=null
     }
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -73,7 +72,7 @@ class homePageStudentSide : Fragment() {
                     {
                         is Response.Success->
                         {
-                            layoutManager= LinearLayoutManager(container?.context,LinearLayoutManager.HORIZONTAL, true)
+                            layoutManager= LinearLayoutManager(container?.context,LinearLayoutManager.HORIZONTAL, false)
                             binding.recyclerViewStoriesStudentSide.layoutManager=layoutManager
                             storiesAdapter= RecyclerAdapterStudentStory(it.data)
                             binding.recyclerViewStoriesStudentSide.adapter=storiesAdapter
@@ -98,7 +97,7 @@ class homePageStudentSide : Fragment() {
                     {
                         is Response.Success->
                         {
-                            layoutManager= LinearLayoutManager(container?.context,LinearLayoutManager.HORIZONTAL, true)
+                            layoutManager= LinearLayoutManager(container?.context,LinearLayoutManager.HORIZONTAL, false)
                             binding.recyclerViewLatestSeriesStudentSide.layoutManager=layoutManager
                             adapter= RecyclerAdapterLatestSeries(requireContext(),
                                 it.data as ArrayList<getStudentSeriesItem>
@@ -123,7 +122,7 @@ class homePageStudentSide : Fragment() {
                     {
                         is Response.Success->
                         {
-                            layoutManager= LinearLayoutManager(container?.context,LinearLayoutManager.HORIZONTAL, true)
+                            layoutManager= LinearLayoutManager(container?.context,LinearLayoutManager.HORIZONTAL, false)
                             binding.OurEducatorsRecyclerViewStudentSide.layoutManager=layoutManager
                             adapterOurEducators= RecyclerAdapterOurEducatorsStudentSide(requireContext(),it.data)
                             binding.OurEducatorsRecyclerViewStudentSide.adapter=adapterOurEducators
@@ -168,7 +167,7 @@ class homePageStudentSide : Fragment() {
                         {
 
                            totalQuiz=it.data
-                            layoutManager= LinearLayoutManager(container?.context,LinearLayoutManager.HORIZONTAL, true)
+                            layoutManager= LinearLayoutManager(container?.context,LinearLayoutManager.HORIZONTAL, false)
                             binding.RecyclerAdapterDailQuizStudentSide.layoutManager=layoutManager
                             adapterGetQuiz= RecyclerAdapterQuizTEachersSide(it.data)
                             binding.RecyclerAdapterDailQuizStudentSide.adapter=adapterGetQuiz
@@ -178,6 +177,7 @@ class homePageStudentSide : Fragment() {
                                     quizDescription=it.data[position].description.toString()
                                     quizLectureCount=it.data[position].questions.toString()
                                     quizid=it.data[position].id.toInt()
+                                    quizDuration=it.data[position].duration
                                     findNavController().navigate(R.id.action_homePageStudentSide_to_quizShowPageStudentSide)
                                 }
                             })

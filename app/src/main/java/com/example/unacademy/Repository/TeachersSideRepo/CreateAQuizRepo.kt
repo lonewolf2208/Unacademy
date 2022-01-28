@@ -14,9 +14,10 @@ class CreateAQuizRepo(val Api:Api) {
     fun CreateAQuizApi(
         title: String,
         description: String,
+        duration:Int,
         token: String
     ): MutableLiveData<Response<CreateQuizModel>> {
-        val result = Api.createAQuiz(title, description, "Bearer ${token}")
+        val result = Api.createAQuiz(title, description,duration, "Bearer ${token}")
         result.enqueue(object : Callback<CreateQuizModel?> {
             override fun onResponse(
                 call: Call<CreateQuizModel?>,

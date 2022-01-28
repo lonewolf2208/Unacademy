@@ -21,7 +21,8 @@ class QuizResultPage : Fragment() {
     lateinit var binding:FragmentQuizResultPageBinding
     lateinit var getQuizResultViewModel: GetQuizResultViewModel
     var correctedQuestions=0
-    var totalQuestions=0
+    var totalScore=0
+    var score=0
     var wrongQuestions=0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,11 +46,13 @@ class QuizResultPage : Fragment() {
                         is Response.Success->
                         {
                             binding.NoOfQuestionsResult.text= it.data!!.size.toString()
-                            for(i in 0..it.data.size)
+                            for(i in 0..(it.data.size-1))
                             {
+                                totalScore+=it.data[i].question.marks
                                 if(it.data[i].attempted_answer==it.data[i].correct_answer)
                                 {
                                     correctedQuestions++
+                                    score+=it.data[i].question.marks
                                 }
                                 else
                                 {
@@ -58,6 +61,7 @@ class QuizResultPage : Fragment() {
                             }
                             binding.CorrectedQuestionsQuizResult.text=correctedQuestions.toString()
                             binding.WrongQuestionsQuizResult.text=wrongQuestions.toString()
+                            binding.QuizResultScore.text=score.toString() + "/" + totalScore.toString()
 
                         }
                         is Response.Error-> Toast.makeText(context,it.errorMessage.toString(),Toast.LENGTH_LONG).show()

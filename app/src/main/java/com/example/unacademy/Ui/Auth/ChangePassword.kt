@@ -79,29 +79,21 @@ class ChangePassword : Fragment() ,View.OnClickListener{
         when(v?.id) {
             R.id.doneButtonChangePassword ->
             {
+                var email=EmailVerification.emailChangePassword
                 binding?.oldPasswordChangePassword?.clearFocus()
                 binding?.ConfirmPasswordChangePassword?.clearFocus()
                 if(validationFlagPassword1==1  && validationFlagPassword2==1)
                 {
                     ChangePasswordRepo= ChangePasswordRepo(RetrofitClient.init())
-                    ChangePasswordRepo?.PasswordApi(EmailVerification.emailChangePassword, binding?.ConfirmPasswordChangePassword?.text.toString())
+                    ChangePasswordRepo?.PasswordApi(email, binding?.ConfirmPasswordChangePassword?.text.toString())
                     ChangePasswordRepo?.ChangePasswordResponse?.observe(this@ChangePassword,{
                         when (it) {
                             is Response.Success ->
                             {
                                 binding?.progressBarChangePassword?.visibility=View.INVISIBLE
                                 binding?.doneButtonChangePassword?.isEnabled=true
-//                                var GetTokenRepo= GetTokenRepo(RetrofitClient.init())
-//                                GetTokenRepo.getToken(EmailVerification.emailChangePassword,binding?.ConfirmPasswordChangePassword?.text.toString())
-//                                Toast.makeText(context,com.example.unacademy.Repository.AuthRepo.GetTokenRepo.accessToken,
-//                                    Toast.LENGTH_LONG).show()
-//                                GetTokenRepo.TokenResponse.observe(this@CreatePassword,
-//                                    {
-//                                        Toast.makeText(context,com.example.unacademy.Repository.AuthRepo.GetTokenRepo.accessToken,Toast.LENGTH_LONG).show()
-//                                    })
-//                                binding.progressBarCreatePassword.visibility=View.INVISIBLE
                                 Toast.makeText(context,"Password Created", Toast.LENGTH_LONG).show()
-                                if(navController.previousBackStackEntry?.destination?.label.toString()=="fragment_log_in") {
+                                if(navController.previousBackStackEntry?.destination?.label.toString()=="fragment_home_page_teachers_side") {
                                     navController.navigate(R.id.logIn)
                                 }
                                 else if(navController.previousBackStackEntry?.destination?.label.toString()=="fragment_email_verification")

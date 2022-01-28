@@ -54,14 +54,7 @@ class RecyclerAdapterOurEducatorsStudentSide(val context:Context,var educationDe
         }
         holder.binding.FollowButton.setOnClickListener {
             educatorId= educationDetails?.get(position)?.id!!.toInt()
-            if(educationDetails?.get(position)?.is_followed==true)
-            {
-                is_following=true
-            }
-            if(educationDetails?.get(position)?.is_followed==false)
-            {
-                is_following=false
-            }
+
             if(is_following==false) {
                 holder.binding.FollowButton.text="Following"
                 MainScope().launch {

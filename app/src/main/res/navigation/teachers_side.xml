@@ -18,6 +18,9 @@
         <action
             android:id="@+id/action_homePageTeachersSide_to_createYourSeries2"
             app:destination="@id/createYourSeries" />
+        <action
+            android:id="@+id/action_homePageTeachersSide_to_changePassword"
+            app:destination="@id/changePassword" />
     </fragment>
     <fragment
         android:id="@+id/profileTeachersSide"

@@ -1,10 +1,14 @@
 package com.example.unacademy.Ui.StudentsSide
 
+import android.graphics.Color
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -24,6 +28,7 @@ class QuestionPageStudentSide : Fragment() {
     lateinit var getQuizQuestionsViewModel:GetQuizQuestionsViewModel
     var i=0
     var ans =0
+    var timer =0
      var questionsQuiz: List<quizQuestionsModel>?=null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +43,7 @@ class QuestionPageStudentSide : Fragment() {
         binding= DataBindingUtil.inflate(inflater,R.layout.fragment_question_page_student_side, container, false)
         binding.lifecycleOwner=this
         binding.getQuizQuestionViewModel=getQuizQuestionsViewModel
+        binding.QuizTitleQuestionPage.text=homePageStudentSide.quizTitle
         binding.Option1QuizPage.setOnClickListener {
             ans=1
         }
@@ -59,7 +65,7 @@ class QuestionPageStudentSide : Fragment() {
                         is Response.Success->
                         {
                             Toast.makeText(context,"Success",Toast.LENGTH_LONG)
-                          questionsQuiz=it.data
+                            questionsQuiz=it.data
                             binding.QuestionsQuizPage.text= questionsQuiz?.get(i)!!.question
                             binding.Option1QuizPage.text=questionsQuiz?.get(i)!!.option1
                             binding.Option2QuizPage.text=questionsQuiz?.get(i)!!.option2
@@ -94,7 +100,6 @@ class QuestionPageStudentSide : Fragment() {
                             ans
                         )
                         binding.RadioGroup.clearCheck()
-
                     }
                     ans=0
                     binding.QuestionsQuizPage.text = questionsQuiz?.get(i)!!.question
@@ -108,12 +113,24 @@ class QuestionPageStudentSide : Fragment() {
         }
             return binding.root
     }
-//    fun onBackPressed() {
-//        val fragment: Myfragment =
-//            getSupportFragmentManager().findFragmentByTag(TAG_FRAGMENT) as Myfragment
-//        if (fragment.allowBackPressed()) { // and then you define a method allowBackPressed with the logic to allow back pressed or not
-//            super.onBackPressed()
-//        }
-//    }
+
+    fun startTimer() {
+       var timerCountDownTimer = object : CountDownTimer(30000, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                val timeLeft = millisUntilFinished / 1000
+                if (timeLeft.toString().length == 2)
+                    binding.timer.text = "00:" + timeLeft.toString()
+                else
+                    binding.timer.text = "00:0" + timeLeft.toString()
+
+            }
+
+            override fun onFinish() {
+                binding.timer.text = "00:00"
+
+            }
+
+        }.start()
+    }
 
 }
