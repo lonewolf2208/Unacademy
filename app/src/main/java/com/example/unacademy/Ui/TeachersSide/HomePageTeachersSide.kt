@@ -2,6 +2,7 @@ package com.example.unacademy.Ui.TeachersSide
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 
 import android.view.LayoutInflater
 import android.view.View
@@ -13,23 +14,31 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.example.unacademy.Activities.LectureActivity
 import com.example.unacademy.Adapter.RecyclerAdapterLectureTeachersSide
 import com.example.unacademy.Adapter.RecyclerAdapterTeachersSideHomePage
 import com.example.unacademy.R
+import com.example.unacademy.Repository.Response
+import com.example.unacademy.Repository.getNewToken
+import com.example.unacademy.Ui.Auth.Splash_Screen
+import com.example.unacademy.api.RetrofitClient
 import com.example.unacademy.databinding.FragmentHomePageTeachersSideBinding
+import com.example.unacademy.models.TeachersSideModels.getTeachersProfile.getTeachersProfileModel
 import com.example.unacademy.viewmodel.HomePageViewModel
 import com.facebook.shimmer.ShimmerFrameLayout
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
+import okhttp3.internal.wait
+import retrofit2.Call
+import retrofit2.Callback
 
 class HomePageTeachersSide : Fragment() {
 
     companion object
     {
         var seriesid:Int?=null
-        var thumbnail:String?=null
-        var seriesName:String=""
-        var seriesDescription:String=""
+       var teachersInfo:getTeachersProfileModel?=null
     }
     lateinit var binding :FragmentHomePageTeachersSideBinding
     lateinit var homePageViewModel:HomePageViewModel
@@ -62,7 +71,7 @@ class HomePageTeachersSide : Fragment() {
            {
                when(it)
                {
-                   is com.example.unacademy.Repository.Response.Success -> {
+                   is Response.Success -> {
                        if(it.data!!.isEmpty())
                        {
                            binding.EmptySeries.text="Upload Series !! "
@@ -85,12 +94,36 @@ class HomePageTeachersSide : Fragment() {
                            }
                        })
                    }
+                   is Response.TokenExpire->
+                   {
+                       Toast.makeText(context,"Token Expired",Toast.LENGTH_LONG).show()
+                       suspend fun GetToken() {
+//                           var job=lifecycleScope.async {
+//                               getNewToken(RetrofitClient.init()).getToken()
+//                           }
+//                           job.join()
+                           homePageViewModel.getSeries()
+                           Log.w("JKFJLASFJKLAFJ","Home Page::::::: "+Splash_Screen.readInfo("access").toString())
+                       }
+                       lifecycleScope.launch {
+                           GetToken()
+                       }
 
-                   is com.example.unacademy.Repository.Response.Error -> Toast.makeText(
-                       context,
-                       it.errorMessage.toString(),
-                       Toast.LENGTH_LONG
-                   ).show()
+                   }
+
+                   is Response.Error -> {
+                       Toast.makeText(
+                           context,
+                           it.errorMessage.toString(),
+                           Toast.LENGTH_LONG
+                       ).show()
+
+//
+////                           var tpken= Splash_Screen.readInfo("access")
+//
+//                           Toast.makeText(context,tpken.toString(),Toast.LENGTH_LONG).show()
+
+                   }
                    is com.example.unacademy.Repository.Response.Loading -> Toast.makeText(
                        context,
                        "Loading",
@@ -99,6 +132,30 @@ class HomePageTeachersSide : Fragment() {
                }
 
            })
+        lifecycleScope.launch {
+            var AccessToken = Splash_Screen.readInfo("access").toString()
+           var token = AccessToken
+            RetrofitClient.init().getTeachersProfile("Bearer ${token}").enqueue(object :
+                Callback<getTeachersProfileModel?> {
+                override fun onResponse(
+                    call: Call<getTeachersProfileModel?>,
+                    response: retrofit2.Response<getTeachersProfileModel?>
+                ) {
+                    if(response.isSuccessful)
+                    {
+                     teachersInfo=response.body()
+                    }
+                    else
+                    {
+                        Toast.makeText(context,response.message().toString(),Toast.LENGTH_LONG).show()
+                    }
+                }
+
+                override fun onFailure(call: Call<getTeachersProfileModel?>, t: Throwable) {
+                    TODO("Not yet implemented")
+                }
+            })
+        }
 
 
         return binding.root

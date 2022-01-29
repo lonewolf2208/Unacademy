@@ -1,6 +1,7 @@
 package com.example.unacademy.Ui.StudentsSide
 
 import android.app.Activity
+import android.app.DatePickerDialog
 import android.app.ProgressDialog
 import android.content.Intent
 import android.net.Uri
@@ -10,6 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
+import android.widget.DatePicker
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
@@ -28,7 +30,7 @@ import kotlinx.coroutines.launch
 import java.util.*
 
 
-class   StudentInfo : Fragment(),View.OnClickListener {
+class StudentInfo : Fragment(),View.OnClickListener,DatePickerDialog.OnDateSetListener{
     lateinit var binding:FragmentStudentInfoBinding
     lateinit var createStudentViewModel: CreateStudentViewModel
     private lateinit var imageUri: Uri
@@ -49,6 +51,8 @@ class   StudentInfo : Fragment(),View.OnClickListener {
         binding.lifecycleOwner=this
         binding.createStudentViewModel=createStudentViewModel
         binding.shapeableImageView.setOnClickListener(this)
+
+        binding.DobCalendar.setOnClickListener(this)
         binding.submitStudentInfo.setOnClickListener(this)
         binding.spinnerStudent.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View, pos: Int, id: Long) {
@@ -124,6 +128,31 @@ class   StudentInfo : Fragment(),View.OnClickListener {
                     }
                 }
             }
+            R.id.DobCalendar -> {
+                var calendar = Calendar.getInstance()
+                var year = calendar.get(Calendar.YEAR)
+                var month = calendar.get(Calendar.MONTH)
+                var day = calendar.get(Calendar.DAY_OF_MONTH)
+                var datePickerDialog=DatePickerDialog(requireContext(),this,year,month,day)
+                datePickerDialog.show()
+            }
         }
+    }
+
+    override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
+        var Selectedmonth=month.toString()
+        var SelectedDate=dayOfMonth.toString()
+
+        if(month/10==0)
+        {
+            Selectedmonth="0"+(month+1).toString()
+        }
+        if(dayOfMonth/10==0)
+        {
+            Toast.makeText(context,"dsadasdadsad",Toast.LENGTH_LONG).show()
+            SelectedDate="0"+(dayOfMonth).toString()
+        }
+       var date=year.toString()+"-" + (Selectedmonth).toString()+"-"+SelectedDate.toString()
+        binding.createStudentViewModel?.dob?.value=date
     }
 }

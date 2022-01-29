@@ -43,11 +43,10 @@ class TeachersProfileRepo(private val Api: Api) {
                     Log.w("sda", "Successsfull")
                     teacherProfileLiveData.postValue(Response.Success(response.body()))
                 }
-                else if(response.code()==400)
-                {
-                    getNewToken(Api).getToken()
-
-                }
+//                else if(response.code()==400)
+//                {
+//                    getNewToken(Api).getToken()
+//                }
                 else {
                     teacherProfileLiveData.postValue(Response.Error("Some Error has occured please try again!!"))
                 }

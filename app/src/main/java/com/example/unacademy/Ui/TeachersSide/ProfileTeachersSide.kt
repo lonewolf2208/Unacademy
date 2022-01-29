@@ -37,17 +37,13 @@ import java.util.*
 
 class ProfileTeachersSide : Fragment(),View.OnClickListener {
     companion object{
-        var result:getTeachersProfileModel?=null
-        var story=0
-        var imageUrl:String=""
+        var teachersInfo=HomePageTeachersSide.teachersInfo
     }
     private lateinit var imageUri: Uri
     private var IMAGE_REQUEST_CODE=100
     var storage: FirebaseStorage = FirebaseStorage.getInstance()
    lateinit var binding:FragmentProfileTeachersSideBinding
    lateinit var profileTeachersSideVIewModel:ProfileTeachersSideVIewModel
-    private var token:String?=null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         profileTeachersSideVIewModel= ViewModelProvider(this)[com.example.unacademy.viewmodel.ProfileTeachersSideVIewModel::class.java]
@@ -65,31 +61,9 @@ class ProfileTeachersSide : Fragment(),View.OnClickListener {
         binding.ViewProfile.setOnClickListener(this)
         binding.AddQuiz.setOnClickListener(this)
         binding.UploadStory.setOnClickListener(this)
-            lifecycleScope.launch {
-            var AccessToken = Splash_Screen.readInfo("access").toString()
-            token = AccessToken
-                RetrofitClient.init().getTeachersProfile("Bearer ${token}").enqueue(object : Callback<getTeachersProfileModel?>{
-                    override fun onResponse(
-                        call: Call<getTeachersProfileModel?>,
-                        response: Response<getTeachersProfileModel?>
-                    ) {
-                        if(response.isSuccessful)
-                        {
-                            result=response.body()
-                            binding?.setProfileImageTeachersCardView?.load(response.body()?.picture)
-                            binding.FacultyName.text=response.body()?.name.toString()
-                        }
-                        else
-                        {
-                            Toast.makeText(context,response.message().toString(),Toast.LENGTH_LONG).show()
-                        }
-                    }
+        binding?.setProfileImageTeachersCardView?.load(teachersInfo!!.picture)
+        binding.FacultyName.text=teachersInfo?.name.toString()
 
-                    override fun onFailure(call: Call<getTeachersProfileModel?>, t: Throwable) {
-                        TODO("Not yet implemented")
-                    }
-                })
-        }
 
         return binding!!.root
     }

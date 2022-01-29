@@ -36,52 +36,7 @@ class CreateStudentViewModel: ViewModel() {
             mobileno.value!!.toLong(),bio.value.toString(),token)
         return result
     }
-    fun dobValidations():Unit?
-    {
-        var dob = dob.value.toString()
-        if(dob.isNullOrEmpty())
-        {
-            helpertextdob.postValue("Invalid Format")
-            return Unit
-        }
 
-        if(dob.length<10)
-        {
-            helpertextdob.postValue("Invalid Format")
-            return Unit
-        }
-        for(i in 0..3)
-        {
-            var value = dob[i].toInt()
-            if(!(value in 0..9))
-            {
-                helpertextdob.postValue("Invalid Format")
-            }
-        }
-        for (j in 5..6)
-        {
-            var value = dob[j].toInt()
-            if(!(value in 0..9))
-            {
-                helpertextdob.postValue("Invalid Format")
-            }
-
-        }
-        for (j in 8..9)
-        {
-            var value = dob[j].toInt()
-            if(!(value in 0..9))
-            {
-                helpertextdob.postValue("Invalid Format")
-            }
-
-        }
-        if((dob[4] != '-')  && (dob[7] !='-'))
-        {
-            helpertextdob.postValue("Invalid Format")
-        }
-        return null
-    }
     fun validations(): Unit?{
         if(mobileno.value.isNullOrEmpty())
         {
@@ -99,9 +54,9 @@ class CreateStudentViewModel: ViewModel() {
         {
             helperTextGender.postValue("Please Select Your Gender")
         }
-        if(dobValidations()!=null)
+        if(dob.value.isNullOrEmpty())
         {
-            return Unit
+            helpertextdob.postValue("Enter DOB")
         }
         else
         {

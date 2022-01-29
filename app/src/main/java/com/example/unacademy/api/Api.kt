@@ -95,7 +95,9 @@ interface Api {
 
     @FormUrlEncoded
     @POST("/api/token/refresh/")
-    fun refreshToken(@Header("Authorization") token: String): Call<tokenModel>
+    fun refreshToken(
+        @Field("refresh")refresh:String
+    ): Call<tokenModel>
 
     @GET("/educator/series/")
     fun getSeries(@Header("Authorization") token: String): Call<List<educatorSeriesModelItem>>

@@ -203,16 +203,18 @@
                 app:layout_constraintStart_toEndOf="@+id/spinnerStudentContainer"
                 app:layout_constraintTop_toBottomOf="@+id/textView61">
 
-               <EditText
-                   android:id="@+id/editTextTextPersonName7"
+               <TextView
+                   android:id="@+id/DobCalendar"
                    android:layout_width="match_parent"
                    android:layout_height="match_parent"
                    android:background="@drawable/border"
                    android:text="@={createStudentViewModel.dob}"
                    android:ems="10"
+                   android:paddingTop="15dp"
+                   android:paddingBottom="15dp"
+                   android:paddingStart="4dp"
                    android:hint="YYYY-MM-DD"
                    android:inputType="textPersonName"
-
                    android:textSize="16sp" />
             </com.google.android.material.textfield.TextInputLayout>
 

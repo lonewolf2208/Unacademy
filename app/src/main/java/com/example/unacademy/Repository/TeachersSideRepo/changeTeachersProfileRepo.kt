@@ -31,17 +31,11 @@ class changeTeachersProfileRepo(val Api:Api) {
                 call: Call<teachersProfileDataClass?>,
                 response: retrofit2.Response<teachersProfileDataClass?>
             ) {
-                if (response.isSuccessful) {
-                    Log.w("sda", "Successsfull")
-                    changeTeacherProfileLiveData.postValue(Response.Success(response.body()))
-                }
-                else if(response.code()==400)
+                when
                 {
-                    getNewToken(Api).getToken()
-
-                }
-                else {
-                    changeTeacherProfileLiveData.postValue(Response.Error("Some Error has occured please try again!!"))
+                    response.isSuccessful->changeTeacherProfileLiveData.postValue(Response.Success(response.body()))
+                    response.code()==400->changeTeacherProfileLiveData.postValue(Response.TokenExpire())
+                    else->changeTeacherProfileLiveData.postValue(Response.Error("Some Error has occured please try again!!"))
                 }
             }
 

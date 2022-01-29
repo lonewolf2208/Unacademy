@@ -19,7 +19,7 @@ class AddQuizQuestionViewModel:ViewModel()
     var option3= MutableLiveData<String>()
     var option4=MutableLiveData<String>()
     var answer=MutableLiveData<String>()
-    var marks=MutableLiveData<String>()
+    var marks=MutableLiveData<String>("4")
     var helperTextQuestion=MutableLiveData<String>()
     var helperTextOption1=MutableLiveData<String>()
     var helperTextOption2=MutableLiveData<String>()
@@ -36,7 +36,8 @@ class AddQuizQuestionViewModel:ViewModel()
             token = AccessToken
         }
         job.join()
-        var result=uploadQuizQuestionRepo.uploadQuizQuestionApi(question.value.toString(),4, option1.value.toString(),option2.value.toString(),option3.value.toString(),option4.value.toString(),
+        var result=uploadQuizQuestionRepo.uploadQuizQuestionApi(question.value.toString(),
+            marks.value!!.toInt(), option1.value.toString(),option2.value.toString(),option3.value.toString(),option4.value.toString(),
             answer.value!!.toInt(),token)
         return result
     }
@@ -51,11 +52,6 @@ class AddQuizQuestionViewModel:ViewModel()
         if (option2.value.isNullOrEmpty()) {
             helperTextOption2.postValue("Enter Option 2")
         }
-//        if (option3.value.isNullOrEmpty()) {
-//            helperTextOption3.postValue("Enter Option 3")
-//        }
-//        if (option4.value.isNullOrEmpty())
-//        {helperTextOption4.postValue("Enter Option 4")}
         if(answer.value.isNullOrEmpty() || answer.value=="Select Your Options")
         {helperTextAnswer.postValue("Select Your Answer")}
         else

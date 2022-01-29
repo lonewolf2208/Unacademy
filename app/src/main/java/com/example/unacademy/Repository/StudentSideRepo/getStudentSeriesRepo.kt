@@ -19,10 +19,11 @@ class getStudentSeriesRepo(val Api:Api) {
                 call: Call<List<getStudentSeriesItem>?>,
                 response: retrofit2.Response<List<getStudentSeriesItem>?>
             ) {
-                if (response.isSuccessful) {
-                    getStudentSeriesLiveData.postValue(Response.Success(response.body()))
-                } else {
-                    getStudentSeriesLiveData.postValue(
+                when
+                {
+                    response.isSuccessful->getStudentSeriesLiveData.postValue(Response.Success(response.body()))
+                    response.code()==403->getStudentSeriesLiveData.postValue(Response.TokenExpire())
+                    else ->getStudentSeriesLiveData.postValue(
                         Response.Error(
                             response.message().toString()
                         )

@@ -35,6 +35,10 @@ class RecyclerAdapterQuizTEachersSide(var studentSideGetQuizModelItem: List<Stud
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        if(studentSideGetQuizModelItem!![position].is_attempted==true)
+        {
+            holder.binding.imageView14.setBackgroundResource(R.drawable.ic_bgauth)
+        }
         holder.binding.QuizDescription.text= studentSideGetQuizModelItem?.get(position)?.description.toString()
         holder.binding.QuizTitle.text= studentSideGetQuizModelItem?.get(position)!!.title.toString()
         holder.binding.QuestionCountQuiz.text= studentSideGetQuizModelItem!![position].questions.toString()

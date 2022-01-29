@@ -53,52 +53,7 @@ class TeachersProfileViewModel():ViewModel()
 
 
 
-    fun dobValidations():Unit?
-    {
-        var dob = dateofbirth.value.toString()
-        if(dob.isNullOrEmpty())
-        {
-            helpertextdon.postValue("Invalid Format")
-            return Unit
-        }
-        if(dob.length<10)
-        {
-            helpertextdon.postValue("Invalid Format")
-            return Unit
-        }
-        for(i in 0..3)
-        {
-            var value = dob[i].toInt()
-            if(!(value in 0..9))
-            {
-                helpertextdon.postValue("Invalid Format")
-            }
-        }
-        for (j in 5..6)
-        {
-            var value = dob[j].toInt()
-            if(!(value in 0..9))
-            {
-                helpertextdon.postValue("Invalid Format")
-            }
 
-        }
-        for (j in 8..9)
-        {
-            var value = dob[j].toInt()
-            if(!(value in 0..9))
-            {
-                helpertextdon.postValue("Invalid Format")
-            }
-
-        }
-        if((dob[4] != '-')  && (dob[7] !='-'))
-        {
-            helpertextdon.postValue("Invalid Format")
-
-        }
-        return null
-    }
     fun validations(): Unit?{
         if(mobileno.value.isNullOrEmpty())
         {
@@ -113,9 +68,9 @@ class TeachersProfileViewModel():ViewModel()
         {
             helperTextGender.postValue("Please Select Your Gender")
         }
-        if(dobValidations()!=null)
+        if(dateofbirth.value.isNullOrEmpty())
         {
-            return Unit
+            helpertextdon.value="Enter DOB"
         }
         else
         {

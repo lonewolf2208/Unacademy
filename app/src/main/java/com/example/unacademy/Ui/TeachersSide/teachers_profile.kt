@@ -1,6 +1,7 @@
 package com.example.unacademy.Ui.TeachersSide
 
 import android.app.Activity
+import android.app.DatePickerDialog
 import android.app.ProgressDialog
 import android.content.Intent
 import android.net.Uri
@@ -24,10 +25,11 @@ import com.google.firebase.storage.OnProgressListener
 import kotlinx.coroutines.launch
 import java.util.*
 import android.widget.AdapterView
+import android.widget.DatePicker
 import com.example.unacademy.Ui.Auth.Splash_Screen
 
 
-class teachers_profile : Fragment(),View.OnClickListener {
+class teachers_profile : Fragment(),View.OnClickListener,DatePickerDialog.OnDateSetListener {
     private lateinit var imageUri: Uri
     private var IMAGE_REQUEST_CODE=100
     lateinit var binding: FragmentTeachersProfileBinding
@@ -49,6 +51,7 @@ class teachers_profile : Fragment(),View.OnClickListener {
         binding.lifecycleOwner=this
         binding.teachersProfileViewModel=teachersProfileViewModel
         binding.teachersImage.setOnClickListener(this)
+        binding.DobTeachersSide.setOnClickListener(this)
         binding.VideoUpload.setOnClickListener(this)
         binding.sunmitButtonTeachersProfile.setOnClickListener(this)
         binding.spinner.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
@@ -160,8 +163,34 @@ class teachers_profile : Fragment(),View.OnClickListener {
                         })
                 }
             }
+            R.id.DobTeachersSide->
+            {
+                var calendar = Calendar.getInstance()
+                var year = calendar.get(Calendar.YEAR)
+                var month = calendar.get(Calendar.MONTH)
+                var day = calendar.get(Calendar.DAY_OF_MONTH)
+                var datePickerDialog=DatePickerDialog(requireContext(),this,year,month,day)
+                datePickerDialog.show()
+            }
         }
 
+    }
+
+    override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
+        var Selectedmonth=month.toString()
+        var SelectedDate=dayOfMonth.toString()
+
+        if(month/10==0)
+        {
+            Selectedmonth="0"+(month+1).toString()
+        }
+        if(dayOfMonth/10==0)
+        {
+            Toast.makeText(context,"dsadasdadsad",Toast.LENGTH_LONG).show()
+            SelectedDate="0"+(dayOfMonth).toString()
+        }
+        var date=year.toString()+"-" + (Selectedmonth).toString()+"-"+SelectedDate.toString()
+        binding.teachersProfileViewModel.dateofbirth.value=date
     }
 }
 //lifecycleScope.launch {

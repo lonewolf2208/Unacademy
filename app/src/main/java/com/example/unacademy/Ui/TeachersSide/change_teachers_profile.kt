@@ -47,13 +47,13 @@ class change_teachers_profile : Fragment(),View.OnClickListener{
         binding  = DataBindingUtil.inflate(inflater,R.layout.fragment_change_teachers_profile,container,false)
         binding.lifecycleOwner=this
         binding.teachersProfileViewModel=changeteachersProfileViewModel
-        binding.changeTeachersImage.load(ProfileTeachersSide.result?.picture.toString())
+        binding.changeTeachersImage.load(ProfileTeachersSide.teachersInfo?.picture.toString())
         binding.changeTeachersImage.setOnClickListener(this)
-        if(ProfileTeachersSide.result!!.gender=="Male")
+        if(ProfileTeachersSide.teachersInfo!!.gender=="Male")
         {
             binding.changeGender.setSelection(1)
         }
-        else if(ProfileTeachersSide.result!!.gender=="Female")
+        else if(ProfileTeachersSide.teachersInfo!!.gender=="Female")
         {
             binding.changeGender.setSelection(2)
         }

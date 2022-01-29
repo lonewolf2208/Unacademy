@@ -23,7 +23,9 @@ import com.example.unacademy.Adapter.StudentSideAdapters.RecyclerAdapterStudentS
 import com.example.unacademy.R
 import com.example.unacademy.Repository.Response
 import com.example.unacademy.Repository.StudentSideRepo.StudentStoryProfileRepo
+import com.example.unacademy.Repository.getNewToken
 import com.example.unacademy.Ui.TeachersSide.HomePageTeachersSide
+import com.example.unacademy.api.RetrofitClient
 import com.example.unacademy.databinding.FragmentHomePageStudentSideBinding
 import com.example.unacademy.models.StudentSideGetQuiz.StudentSideGetQuizModelItem
 import com.example.unacademy.models.StudentSideModel.getStudentSeries.getStudentSeriesItem
@@ -112,6 +114,13 @@ class homePageStudentSide : Fragment() {
                                     findNavController().navigate(R.id.action_homePageStudentSide_to_lecturesTeachersSide2)
                                 }
                             })
+                        }
+                        is Response.TokenExpire->{
+                            Toast.makeText(requireContext(),"Token Exxpired",Toast.LENGTH_LONG).show()
+                            getNewToken(RetrofitClient.init())
+                            lifecycleScope.launch {
+                                homePageStudentSideViewModel.getSeries()
+                            }
                         }
                     }
                 })

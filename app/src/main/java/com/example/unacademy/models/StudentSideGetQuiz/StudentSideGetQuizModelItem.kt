@@ -7,5 +7,6 @@ data class StudentSideGetQuizModelItem(
     val duration:Int,
     val id: Int,
     val questions: Int,
+    val  is_attempted:Boolean,
     val title: String
 )
