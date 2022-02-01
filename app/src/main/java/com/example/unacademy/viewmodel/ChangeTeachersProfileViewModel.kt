@@ -18,12 +18,12 @@ class ChangeTeachersProfileViewModel:ViewModel() {
     var helperTextGender= MutableLiveData<String>()
     var imageUrl= MutableLiveData<String>()
     var VideoUrl= MutableLiveData<String>()
-    var name= MutableLiveData<String>(ProfileTeachersSide.result?.name.toString())
-    var mobileno= MutableLiveData<String>(ProfileTeachersSide.result?.mobile.toString())
+    var name= MutableLiveData<String>(ProfileTeachersSide.teachersInfo?.name.toString())
+    var mobileno= MutableLiveData<String>(ProfileTeachersSide.teachersInfo?.mobile.toString())
     var gender= MutableLiveData<String>()
-    var dateofbirth= MutableLiveData<String>(ProfileTeachersSide.result?.birth.toString())
-    var educationdetails= MutableLiveData<String>(ProfileTeachersSide.result?.bio.toString())
-    var experience = MutableLiveData<String>(ProfileTeachersSide.result?.qual.toString())
+    var dateofbirth= MutableLiveData<String>(ProfileTeachersSide.teachersInfo?.birth.toString())
+    var educationdetails= MutableLiveData<String>(ProfileTeachersSide.teachersInfo?.bio.toString())
+    var experience = MutableLiveData<String>(ProfileTeachersSide.teachersInfo?.qual.toString())
     var token:String?=null
     var result= MutableLiveData<Response<teachersProfileDataClass>>()
 

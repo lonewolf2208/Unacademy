@@ -135,7 +135,7 @@
             </lecho.lib.hellocharts.view.PieChartView>
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/ViewAnalysisStudentSide"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
@@ -162,7 +162,7 @@
                 android:textAllCaps="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/button2" />
+                app:layout_constraintTop_toBottomOf="@+id/ViewAnalysisStudentSide" />
 
             <TextView
                 android:id="@+id/NoOfQuestionsResult"

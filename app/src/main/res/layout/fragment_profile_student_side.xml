@@ -8,7 +8,9 @@
       name="wishlistViewModel"
       type="com.example.unacademy.viewmodel.viewmodelStudentside.StudentProfileViewModel" />
  </data>
-
+<androidx.core.widget.NestedScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
  <FrameLayout
      android:layout_width="match_parent"
      android:layout_height="match_parent"
@@ -82,13 +84,38 @@
        android:layout_width="0dp"
        android:layout_height="wrap_content"
        android:layout_marginStart="16dp"
-       android:layout_marginTop="64dp"
+       android:layout_marginTop="40dp"
        android:layout_marginEnd="16dp"
        android:textColor="#000000"
        android:textSize="20sp"
        app:layout_constraintEnd_toEndOf="parent"
        app:layout_constraintStart_toStartOf="parent"
        app:layout_constraintTop_toBottomOf="@+id/textView96" />
+
+   <TextView
+       android:id="@+id/textView99"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_marginStart="16dp"
+       android:layout_marginTop="16dp"
+       android:fontFamily="@font/rosario_bold"
+       android:text="Attempted Quizes"
+       android:textColor="#000000"
+       android:textSize="24sp"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toBottomOf="@+id/RecyclerAdapterWishlistStudentSide" />
+
+
+   <androidx.recyclerview.widget.RecyclerView
+       android:id="@+id/RecyclerAdapterAttemptedQuizes"
+       android:layout_width="0dp"
+       android:layout_height="wrap_content"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toBottomOf="@+id/textView99"
+        />
   </androidx.constraintlayout.widget.ConstraintLayout>
+
  </FrameLayout>
+</androidx.core.widget.NestedScrollView>
 </layout>

@@ -1,6 +1,7 @@
 package com.example.unacademy.Adapter.StudentSideAdapters
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
@@ -23,7 +24,9 @@ class RecyclerAdapterLatestSeries(val context:Context,var getStudentSeries:Array
     fun onClickListener( clickListener: ClickListener)
     {
         this.clickListener=clickListener
-
+    }
+    interface ClickListener{
+        fun OnClick(position:Int)
     }
     inner class ViewHolder(var binding: FragmentCardViewHomePageStudentsSideBinding):RecyclerView.ViewHolder(binding.root) {
         init {
@@ -40,11 +43,15 @@ class RecyclerAdapterLatestSeries(val context:Context,var getStudentSeries:Array
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.binding.SeriesNameStudentSide.text= getStudentSeries?.get(position)?.name.toString()
+        holder.binding.SeriesNameStudentSide.text= getStudentSeries[holder.adapterPosition].name.toString()
         if(getStudentSeries?.get(position)?.is_wishlisted==true)
         {
             holder.binding.WishListStudentSide.setBackgroundResource(R.drawable.ic_wishlist_student_side_selected)
         }
+        Log.w("Size",position.toString())
+        holder.binding.SeriesDescriptionStudentSide.text= getStudentSeries[holder.adapterPosition].description.toString()
+        holder.binding.imageView10.load(getStudentSeries?.get(holder.adapterPosition)?.icon.toString())
+        holder.binding.LectureCountStudentSide.text=getStudentSeries?.get(holder.adapterPosition)?.lectures.toString()
         holder.binding.WishListStudentSide.setOnClickListener {
             if(wishListFlag==false) {
                 holder.binding.WishListStudentSide.setBackgroundResource(R.drawable.ic_wishlist_student_side_selected)
@@ -62,15 +69,11 @@ class RecyclerAdapterLatestSeries(val context:Context,var getStudentSeries:Array
                 wishListFlag=false
             }
         }
-        holder.binding.SeriesDescriptionStudentSide.text= getStudentSeries?.get(position)?.description.toString()
-        holder.binding.imageView10.load(getStudentSeries?.get(position)?.icon.toString())
-        holder.binding.LectureCountStudentSide.text=getStudentSeries?.get(position)?.lectures.toString()
     }
 
     override fun getItemCount(): Int {
+        Log.w("Size",getStudentSeries.size.toString())
         return getStudentSeries!!.size
     }
-    interface ClickListener{
-        fun OnClick(position:Int)
-    }
+
 }

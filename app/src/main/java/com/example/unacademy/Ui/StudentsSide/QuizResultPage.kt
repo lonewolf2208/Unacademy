@@ -9,15 +9,21 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.example.unacademy.R
 import com.example.unacademy.Repository.Response
 import com.example.unacademy.databinding.FragmentQuizResultPageBinding
+import com.example.unacademy.models.StudentSideModel.QuizResultRepo.QuizResultModelItem
 import com.example.unacademy.viewmodel.viewmodelStudentside.GetQuizResultViewModel
 import kotlinx.coroutines.launch
 
 
 class QuizResultPage : Fragment() {
 
+    companion object
+    {
+        var quizresult=ArrayList<QuizResultModelItem>()
+    }
     lateinit var binding:FragmentQuizResultPageBinding
     lateinit var getQuizResultViewModel: GetQuizResultViewModel
     var correctedQuestions=0
@@ -37,6 +43,9 @@ class QuizResultPage : Fragment() {
         binding=DataBindingUtil.inflate(inflater,R.layout.fragment_quiz_result_page, container, false)
         binding.lifecycleOwner=this
         binding.quizResultViewModel=getQuizResultViewModel
+        binding.ViewAnalysisStudentSide.setOnClickListener {
+            findNavController().navigate(R.id.resultAnalysisPageStudentSide)
+        }
         lifecycleScope.launch {
             var result=getQuizResultViewModel.QuizResult()
             result.observe(viewLifecycleOwner,
@@ -45,6 +54,7 @@ class QuizResultPage : Fragment() {
                     {
                         is Response.Success->
                         {
+                            quizresult= it.data as ArrayList<QuizResultModelItem>
                             binding.NoOfQuestionsResult.text= it.data!!.size.toString()
                             for(i in 0..(it.data.size-1))
                             {

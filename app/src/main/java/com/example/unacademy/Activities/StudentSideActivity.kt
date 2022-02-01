@@ -48,8 +48,8 @@ class StudentSideActivity : AppCompatActivity(), View.OnClickListener {
             dialodView.findViewById<ImageView>(R.id.Feedback).setOnClickListener(this)
             dialodView.findViewById<ImageView>(R.id.Feedback).setOnClickListener(this)
             dialodView.findViewById<ImageView>(R.id.changePasswordDialogBox).setOnClickListener {
-                var navController = Navigation.findNavController(this, R.id.fragment_container_student_side)
-                navController.navigate(R.id.emailVerification)
+                var navController = Navigation.findNavController(this,R.id.fragment_container_student_side)
+                navController.navigate(R.id.change_Password_Inside)
                 alertDialog.cancel()
             }
 
@@ -96,6 +96,7 @@ class StudentSideActivity : AppCompatActivity(), View.OnClickListener {
     override fun onBackPressed() {
         when (findNavController(R.id.fragment_container_student_side).currentDestination?.id) {
             R.id.questionPageStudentSide -> alertBox()
+            R.id.homePageStudentSide->alertBoxClose()
             else -> super.onBackPressed()
         }
     }
@@ -107,5 +108,15 @@ class StudentSideActivity : AppCompatActivity(), View.OnClickListener {
             .setMessage("Are you sure you want to leave the quiz?")
             .setPositiveButton("No"){dialog,id->dialog.cancel()}
             .setNegativeButton("Yes"){dialog,id->super.onBackPressed()}
+        builder.show()
+    }
+    private fun alertBoxClose()
+    {
+        val builder= AlertDialog.Builder(this)
+        builder.setTitle("Leave Quiz")
+            .setMessage("Are you sure you want to leave the App?")
+            .setPositiveButton("No"){dialog,id->dialog.cancel()}
+            .setNegativeButton("Yes"){dialog,id->finishAffinity()}
+        builder.show()
     }
 }

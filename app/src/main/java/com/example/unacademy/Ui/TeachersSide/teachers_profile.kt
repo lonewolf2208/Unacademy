@@ -190,7 +190,7 @@ class teachers_profile : Fragment(),View.OnClickListener,DatePickerDialog.OnDate
             SelectedDate="0"+(dayOfMonth).toString()
         }
         var date=year.toString()+"-" + (Selectedmonth).toString()+"-"+SelectedDate.toString()
-        binding.teachersProfileViewModel.dateofbirth.value=date
+        binding.teachersProfileViewModel?.dateofbirth?.value=date
     }
 }
 //lifecycleScope.launch {

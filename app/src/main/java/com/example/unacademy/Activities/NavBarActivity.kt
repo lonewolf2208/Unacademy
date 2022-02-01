@@ -74,7 +74,7 @@ class NavBarActivity : AppCompatActivity() ,View.OnClickListener{
         dialodView.findViewById<ImageView>(R.id.Feedback).setOnClickListener(this)
         dialodView.findViewById<ImageView>(R.id.changePasswordDialogBox).setOnClickListener {
             var navController = Navigation.findNavController(this,R.id.fragment_container)
-            navController.navigate(R.id.action_homePageTeachersSide_to_changePassword)
+            navController.navigate(R.id.change_Password_Inside)
             alertDialog.cancel()
         }
 
@@ -125,5 +125,20 @@ class NavBarActivity : AppCompatActivity() ,View.OnClickListener{
            }
 
        }
+    }
+    override fun onBackPressed() {
+        when (findNavController(R.id.fragment_container).currentDestination?.id) {
+            R.id.homePageTeachersSide -> alertBox()
+            else -> super.onBackPressed()
+        }
+    }
+    private fun alertBox()
+    {
+        val builder= AlertDialog.Builder(this)
+        builder.setTitle("Leave Quiz")
+            .setMessage("Are you sure you want to leave the App?")
+            .setPositiveButton("No"){dialog,id->dialog.cancel()}
+            .setNegativeButton("Yes"){dialog,id->finishAffinity()}
+        builder.show()
     }
 }

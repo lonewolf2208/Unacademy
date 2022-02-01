@@ -49,7 +49,6 @@ class RecyclerAdapterStudentWishlist(val context: Context, var getStudentSeries:
                 holder.binding.WishListStudentSide.setBackgroundResource(R.drawable.ic_wishlist_student_side_selected)
                 MainScope().launch {
                     HomePageStudentSideViewModel().StudentWishlist(getStudentSeries!![position].id.toInt())
-
                     Toast.makeText(context,"Series added to wishlist", Toast.LENGTH_LONG).show()
                 }
                 wishListFlag = true

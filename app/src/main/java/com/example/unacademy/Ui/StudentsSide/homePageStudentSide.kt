@@ -49,7 +49,7 @@ class homePageStudentSide : Fragment() {
         var quizDescription:String=""
         var quizLectureCount:String=""
         var quizDuration=0
-        var totalQuiz:List<StudentSideGetQuizModelItem>?=null
+        var totalQuiz=ArrayList<StudentSideGetQuizModelItem>()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -99,6 +99,7 @@ class homePageStudentSide : Fragment() {
                     {
                         is Response.Success->
                         {
+                            Toast.makeText(requireContext(), it.data!!.size.toString(),Toast.LENGTH_LONG).show()
                             layoutManager= LinearLayoutManager(container?.context,LinearLayoutManager.HORIZONTAL, false)
                             binding.recyclerViewLatestSeriesStudentSide.layoutManager=layoutManager
                             adapter= RecyclerAdapterLatestSeries(requireContext(),
@@ -175,7 +176,7 @@ class homePageStudentSide : Fragment() {
                         is Response.Success->
                         {
 
-                           totalQuiz=it.data
+                           totalQuiz= it.data as ArrayList<StudentSideGetQuizModelItem>
                             layoutManager= LinearLayoutManager(container?.context,LinearLayoutManager.HORIZONTAL, false)
                             binding.RecyclerAdapterDailQuizStudentSide.layoutManager=layoutManager
                             adapterGetQuiz= RecyclerAdapterQuizTEachersSide(it.data)

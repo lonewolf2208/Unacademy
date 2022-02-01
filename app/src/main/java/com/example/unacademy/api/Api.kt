@@ -264,4 +264,13 @@ interface Api {
         @Path("quiz_id") id: Int,
         @Header("Authorization") token: String
     ): Call<List<QuizResultModelItem>>
+
+
+    @FormUrlEncoded
+    @POST("/user/change-password/")
+    fun changePasswordInside(
+        @Field("old_password")password:String,
+        @Field("new_password")new_password:String,
+        @Header("Authorization") token: String
+    ):Call<ResponseBody>
 }

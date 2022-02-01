@@ -34,16 +34,13 @@ class getSeriesRepo(val Api:Api){
                         else->
                         {
                             getSeriesLiveData.postValue(Response.TokenExpire())
-                            MainScope().launch {
-                                getNewToken(RetrofitClient.init()).getToken()
-                            }
                         }
                     }
 
                 }
 
                 override fun onFailure(call: Call<List<educatorSeriesModelItem>?>, t: Throwable) {
-                    getSeriesLiveData.postValue(Response.Error(t.message.toString()))
+                    getSeriesLiveData.postValue(Response.Error("on Failure"))
                 }
             })
             return getSeriesLiveData

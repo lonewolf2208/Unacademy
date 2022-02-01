@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -12,12 +13,15 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.unacademy.Adapter.RecyclerAdapterLectureTeachersSide
+import com.example.unacademy.Adapter.StudentSideAdapters.RecyclerAdapterAttemptedQuizesStudentSide
 import com.example.unacademy.Adapter.StudentSideAdapters.RecyclerAdapterLatestSeries
+import com.example.unacademy.Adapter.StudentSideAdapters.RecyclerAdapterQuizTEachersSide
 import com.example.unacademy.Adapter.StudentSideAdapters.RecyclerAdapterStudentWishlist
 import com.example.unacademy.R
 import com.example.unacademy.Repository.Response
 import com.example.unacademy.Ui.TeachersSide.HomePageTeachersSide
 import com.example.unacademy.databinding.FragmentProfileStudentSideBinding
+import com.example.unacademy.models.StudentSideGetQuiz.StudentSideGetQuizModelItem
 import com.example.unacademy.viewmodel.viewmodelStudentside.StudentProfileViewModel
 import kotlinx.coroutines.launch
 
@@ -27,7 +31,9 @@ class ProfileStudentSide : Fragment() {
     lateinit var profileSTudentSideViewModel: StudentProfileViewModel
     private var layoutManager: RecyclerView.LayoutManager?=null
     lateinit var adapter: RecyclerAdapterStudentWishlist
-    override fun onCreate(savedInstanceState: Bundle?) {
+    lateinit var adapterGetQuiz:RecyclerAdapterAttemptedQuizesStudentSide
+    override fun onCreate(savedInstanceState: Bundle?)
+    {
         super.onCreate(savedInstanceState)
     profileSTudentSideViewModel= ViewModelProvider(this)[StudentProfileViewModel::class.java]
     }
@@ -40,6 +46,14 @@ class ProfileStudentSide : Fragment() {
         binding=DataBindingUtil.inflate(inflater,R.layout.fragment_profile_student_side, container, false)
         binding.wishlistViewModel=profileSTudentSideViewModel
         binding.lifecycleOwner=this
+        var attemptedQuiz=ArrayList<StudentSideGetQuizModelItem>()
+        for(i in 0..(homePageStudentSide.totalQuiz.size-1))
+        {
+            if(homePageStudentSide.totalQuiz[i].is_attempted==true)
+            {
+                attemptedQuiz.add(homePageStudentSide.totalQuiz[i])
+            }
+        }
         lifecycleScope.launch {
             var result = profileSTudentSideViewModel.getWishlistSeries()
             result.observe(viewLifecycleOwner,
@@ -71,12 +85,20 @@ class ProfileStudentSide : Fragment() {
                             })
                         }
                     }
-
-
-                })
-        }
+                }) }
+        layoutManager= LinearLayoutManager(container?.context,LinearLayoutManager.HORIZONTAL, false)
+        binding.RecyclerAdapterAttemptedQuizes.layoutManager=layoutManager
+        adapterGetQuiz= RecyclerAdapterAttemptedQuizesStudentSide(attemptedQuiz as ArrayList<StudentSideGetQuizModelItem>)
+        binding.RecyclerAdapterAttemptedQuizes.adapter=adapterGetQuiz
+        adapterGetQuiz.onClickListener(object : RecyclerAdapterAttemptedQuizesStudentSide.ClickListener {
+            override fun OnClick(position: Int) {
+                homePageStudentSide.quizTitle = homePageStudentSide.totalQuiz!!?.get(position).title.toString()
+                homePageStudentSide.quizDescription = homePageStudentSide.totalQuiz!![position].description.toString()
+                homePageStudentSide.quizLectureCount = homePageStudentSide.totalQuiz!![position].questions.toString()
+                homePageStudentSide.quizid = homePageStudentSide.totalQuiz!![position].id.toInt()
+                homePageStudentSide.quizDuration = homePageStudentSide.totalQuiz!![position].duration
+            }
+        })
         return binding.root
     }
-
-
 }

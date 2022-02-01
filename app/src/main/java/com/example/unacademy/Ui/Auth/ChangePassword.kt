@@ -13,6 +13,7 @@ import com.example.unacademy.Activities.StudentSideActivity
 import com.example.unacademy.R
 import com.example.unacademy.Repository.AuthRepo.ChangePasswordRepo
 import com.example.unacademy.Repository.Response
+import com.example.unacademy.Ui.TeachersSide.HomePageTeachersSide
 import com.example.unacademy.api.RetrofitClient
 import com.example.unacademy.databinding.FragmentChangePasswordBinding
 
@@ -80,6 +81,10 @@ class ChangePassword : Fragment() ,View.OnClickListener{
             R.id.doneButtonChangePassword ->
             {
                 var email=EmailVerification.emailChangePassword
+                if(navController.previousBackStackEntry?.destination?.label.toString()=="fragment_home_page_teachers_side")
+                {
+                    email= HomePageTeachersSide.teachersInfo!!.educator.email
+                }
                 binding?.oldPasswordChangePassword?.clearFocus()
                 binding?.ConfirmPasswordChangePassword?.clearFocus()
                 if(validationFlagPassword1==1  && validationFlagPassword2==1)
@@ -94,7 +99,8 @@ class ChangePassword : Fragment() ,View.OnClickListener{
                                 binding?.doneButtonChangePassword?.isEnabled=true
                                 Toast.makeText(context,"Password Created", Toast.LENGTH_LONG).show()
                                 if(navController.previousBackStackEntry?.destination?.label.toString()=="fragment_home_page_teachers_side") {
-                                    navController.navigate(R.id.logIn)
+                                    val intent=Intent(activity,NavBarActivity::class.java)
+                                    startActivity(intent)
                                 }
                                 else if(navController.previousBackStackEntry?.destination?.label.toString()=="fragment_email_verification")
                                 {
@@ -103,9 +109,8 @@ class ChangePassword : Fragment() ,View.OnClickListener{
                                 }
                                 else
                                 {
-                                    Toast.makeText(context,navController.previousBackStackEntry?.destination?.label.toString(),Toast.LENGTH_LONG).show()
-                                    val intent=Intent(activity,NavBarActivity::class.java)
-                                    startActivity(intent)
+
+                                    navController.navigate(R.id.logIn)
                                 }
                             }
                             is Response.Error -> {

@@ -98,17 +98,16 @@ class HomePageTeachersSide : Fragment() {
                    {
                        Toast.makeText(context,"Token Expired",Toast.LENGTH_LONG).show()
                        suspend fun GetToken() {
-//                           var job=lifecycleScope.async {
-//                               getNewToken(RetrofitClient.init()).getToken()
-//                           }
-//                           job.join()
+                           var job=lifecycleScope.async{
+                               getNewToken(RetrofitClient.init()).getToken()
+                           }
+                           job.onAwait
                            homePageViewModel.getSeries()
                            Log.w("JKFJLASFJKLAFJ","Home Page::::::: "+Splash_Screen.readInfo("access").toString())
                        }
                        lifecycleScope.launch {
                            GetToken()
                        }
-
                    }
 
                    is Response.Error -> {
@@ -117,11 +116,6 @@ class HomePageTeachersSide : Fragment() {
                            it.errorMessage.toString(),
                            Toast.LENGTH_LONG
                        ).show()
-
-//
-////                           var tpken= Splash_Screen.readInfo("access")
-//
-//                           Toast.makeText(context,tpken.toString(),Toast.LENGTH_LONG).show()
 
                    }
                    is com.example.unacademy.Repository.Response.Loading -> Toast.makeText(
@@ -147,7 +141,7 @@ class HomePageTeachersSide : Fragment() {
                     }
                     else
                     {
-                        Toast.makeText(context,response.message().toString(),Toast.LENGTH_LONG).show()
+                        Toast.makeText(requireContext(),response.message().toString(),Toast.LENGTH_LONG).show()
                     }
                 }
 
