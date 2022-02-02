@@ -3,6 +3,7 @@ package com.example.unacademy.Repository.StudentSideRepo
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.unacademy.Repository.Response
+import com.example.unacademy.Repository.getNewToken
 import com.example.unacademy.api.Api
 import com.example.unacademy.models.StudentStory.studentStoryModelItem
 import retrofit2.Call
@@ -27,9 +28,11 @@ class StudentStoryProfileRepo(val Api:Api) {
                 call: Call<ArrayList<studentStoryModelItem>?>,
                 response: retrofit2.Response<ArrayList<studentStoryModelItem>?>
             ) {
-
-                if (response.isSuccessful) {
-                    for(i in 0..(response.body()!!.size-1))
+                when
+                {
+                    response.isSuccessful->
+                    {
+                        for(i in 0..(response.body()!!.size-1))
                         {
                             var flag=0
                             if(response.body()!![i].name in StudentStoryProfileRepo.studentStoryDataName)
@@ -38,22 +41,22 @@ class StudentStoryProfileRepo(val Api:Api) {
                             }
                             else
                             {
-                                studentStoryDataName.add(response.body()!![i].name)
-                                studetStoryDataPicture.add(response.body()!![i].picture)
-                                studentStoryId.add(response.body()!![i].educator)
+                                StudentStoryProfileRepo.studentStoryDataName.add(response.body()!![i].name)
+                                StudentStoryProfileRepo.studetStoryDataPicture.add(response.body()!![i].picture)
+                                StudentStoryProfileRepo.studentStoryId.add(response.body()!![i].educator)
                             }
-                            Log.d("Sisdas", studentStoryDataName.size.toString())
+                            Log.d("Sisdas", StudentStoryProfileRepo.studentStoryDataName.size.toString())
+                        }
+                        getStudentStoryProfileLiveData.postValue(Response.Success(response.body()))
                     }
-                    getStudentStoryProfileLiveData.postValue(Response.Success(response.body()))
-
-                } else {
-                    getStudentStoryProfileLiveData.postValue(
-                        Response.Error(
-                            response.message().toString()
-                        )
-                    )
-
+                    else->
+                    {
+                        getNewToken(Api).getToken()
+                       getStudentStoryApi( getNewToken.acessTOken.toString())
+                    }
                 }
+
+
             }
             override fun onFailure(call: Call<ArrayList<studentStoryModelItem>?>, t: Throwable) {
                 getStudentStoryProfileLiveData.postValue(Response.Error(t.localizedMessage.toString()))
@@ -62,7 +65,6 @@ class StudentStoryProfileRepo(val Api:Api) {
         return getStudentStoryProfileLiveData
     }
 }
-
 
 
 

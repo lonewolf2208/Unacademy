@@ -2,6 +2,7 @@ package com.example.unacademy.Repository.TeachersSideRepo
 
 import androidx.lifecycle.MutableLiveData
 import com.example.unacademy.Repository.Response
+import com.example.unacademy.Repository.getNewToken
 import com.example.unacademy.Ui.TeachersSide.CreateAQuizTeacherSide
 import com.example.unacademy.api.Api
 import com.example.unacademy.models.TeachersSideModels.CreateQuizModel.CreateQuizModel
@@ -32,7 +33,8 @@ class UploadQuizQuestionRepo(var Api:Api) {
                     uploadQuizQuestionLiveData.postValue(Response.Success())
 
                 } else {
-                    uploadQuizQuestionLiveData.postValue(Response.Error(response.message().toString()))
+                    getNewToken(Api).getToken()
+                    uploadQuizQuestionApi(question, marks, option1, option2, option3, option4, answer,getNewToken.acessTOken.toString())
                 }
             }
 

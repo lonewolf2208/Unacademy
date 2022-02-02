@@ -60,6 +60,7 @@ class ProfileStudentSide : Fragment() {
                 {
                     when (it) {
                         is Response.Success -> {
+                            Toast.makeText(requireContext(),"Successs",Toast.LENGTH_LONG).show()
                             if(it.data!!.isEmpty())
                             {
                                 binding.EmptyWishlistStudentSide.text="Your Wishlist is Empty"
@@ -70,10 +71,6 @@ class ProfileStudentSide : Fragment() {
                             adapter = RecyclerAdapterStudentWishlist(requireContext(), it.data!!)
                             binding.RecyclerAdapterWishlistStudentSide.adapter = adapter
                             adapter.notifyDataSetChanged()
-                            if(it.data!!.isEmpty())
-                            {
-                                binding.EmptyWishlistStudentSide.text="Your Wishlist is Empty"
-                            }
                             adapter.onClickListener(object : RecyclerAdapterStudentWishlist.ClickListener {
                                 override fun OnClick(position: Int) {
                                     HomePageTeachersSide.seriesid = adapter.getStudentSeries?.get(position)?.id!!.toInt()
@@ -84,6 +81,7 @@ class ProfileStudentSide : Fragment() {
                                 }
                             })
                         }
+                        is Response.Error->Toast.makeText(requireContext(),it.errorMessage.toString(),Toast.LENGTH_LONG).show()
                     }
                 }) }
         layoutManager= LinearLayoutManager(container?.context,LinearLayoutManager.HORIZONTAL, false)

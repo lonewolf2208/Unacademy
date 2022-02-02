@@ -48,8 +48,8 @@ class TeachersProfileRepo(private val Api: Api) {
 //                    getNewToken(Api).getToken()
 //                }
                 else {
-                    teacherProfileLiveData.postValue(Response.Error("Some Error has occured please try again!!"))
-                }
+                    getNewToken(Api).getToken()
+                    teachersProfileApi(teachersProfileDataClass,getNewToken.acessTOken.toString())   }
             }
 
             override fun onFailure(call: Call<teachersProfileDataClass?>, t: Throwable) {

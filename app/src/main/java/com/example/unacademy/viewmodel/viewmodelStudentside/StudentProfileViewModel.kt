@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.unacademy.Repository.Response
 import com.example.unacademy.Repository.StudentSideRepo.StudentStoryInfoRepo
-import com.example.unacademy.Repository.StudentSideRepo.StudentWishlisRepo
 import com.example.unacademy.Repository.StudentSideRepo.getWislistedSeriesRepo
 import com.example.unacademy.Ui.Auth.Splash_Screen
 import com.example.unacademy.api.RetrofitClient

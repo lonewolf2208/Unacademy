@@ -35,6 +35,8 @@ class StudentSideActivity : AppCompatActivity(), View.OnClickListener {
         val navController: NavController = navHostFragment.navController
         binding.bottomNavigationViewStudentSide.setupWithNavController(navController)
         var menu_button = findViewById<ImageView>(R.id.MenuButton)
+        var notification_button=findViewById<ImageView>(R.id.NotificationButtonStudentSide)
+        notification_button.setOnClickListener(this)
         menu_button.setOnClickListener {
             val dialodView =
                 LayoutInflater.from(this).inflate(R.layout.fragment_dialog__box, null)
@@ -89,6 +91,11 @@ class StudentSideActivity : AppCompatActivity(), View.OnClickListener {
                 intent.putExtra(Intent.EXTRA_SUBJECT, "your_subject");
                 intent.putExtra(Intent.EXTRA_TEXT, "your_text");
                 startActivity(intent);
+            }
+            R.id.NotificationButtonStudentSide->
+            {
+                var navController = Navigation.findNavController(this,R.id.fragment_container_student_side)
+                navController.navigate(R.id.notificationsStudentSide)
             }
         }
     }

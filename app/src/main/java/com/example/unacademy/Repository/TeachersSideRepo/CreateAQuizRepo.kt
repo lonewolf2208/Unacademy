@@ -2,6 +2,7 @@ package com.example.unacademy.Repository.TeachersSideRepo
 
 import androidx.lifecycle.MutableLiveData
 import com.example.unacademy.Repository.Response
+import com.example.unacademy.Repository.getNewToken
 import com.example.unacademy.api.Api
 import com.example.unacademy.models.TeachersSideModels.CreateQuizModel.CreateQuizModel
 import com.example.unacademy.models.TeachersSideModels.getLectureModelItem
@@ -27,8 +28,8 @@ class CreateAQuizRepo(val Api:Api) {
                     CreateQuizLiveData.postValue(Response.Success(response.body()))
 
                 } else {
-                    CreateQuizLiveData.postValue(Response.Error(response.message().toString()))
-
+                    getNewToken(Api).getToken()
+                    CreateAQuizApi(title,description,duration,getNewToken.acessTOken.toString())
                 }
             }
 

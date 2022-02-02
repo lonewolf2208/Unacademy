@@ -29,7 +29,8 @@ class getLectureRepo(val Api:Api) {
             }
             else
             {
-                getLectureLiveData.postValue(Response.Error(response.message().toString()))
+                getNewToken(Api).getToken()
+                getLectureApi(series,getNewToken.acessTOken.toString())
             }
         }
 

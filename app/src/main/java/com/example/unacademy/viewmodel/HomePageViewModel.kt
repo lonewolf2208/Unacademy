@@ -1,5 +1,6 @@
 package com.example.unacademy.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -20,6 +21,7 @@ class HomePageViewModel():ViewModel() {
             var AccessToken = Splash_Screen.readInfo("access").toString()
             token = AccessToken
         }
+        Log.w("getSeries","Called")
         job.join()
         var getSeriesRepo=getSeriesRepo(Api)
         result=getSeriesRepo.getSeriesApi(token.toString())

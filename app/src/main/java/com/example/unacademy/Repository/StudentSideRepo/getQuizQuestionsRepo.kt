@@ -2,6 +2,7 @@ package com.example.unacademy.Repository.StudentSideRepo
 
 import androidx.lifecycle.MutableLiveData
 import com.example.unacademy.Repository.Response
+import com.example.unacademy.Repository.getNewToken
 import com.example.unacademy.api.Api
 import com.example.unacademy.models.QuizQuestionsModel.quizQuestionsModel
 import com.example.unacademy.models.StudentSideGetQuiz.StudentSideGetQuizModelItem
@@ -21,14 +22,14 @@ class getQuizQuestionsRepo(var Api:Api) {
                call: Call<List<quizQuestionsModel>?>,
                response: retrofit2.Response<List<quizQuestionsModel>?>
            ) {
-               if(response.isSuccessful)
-               {
-                   getQuizQuestionsLiveData.postValue(Response.Success(response.body()))
-               }
-               else
-               {
-                   getQuizQuestionsLiveData.postValue(Response.Error(response.message().toString()))
-               }
+              when{
+                  response.isSuccessful-> getQuizQuestionsLiveData.postValue(Response.Success(response.body()))
+                  else->
+                  {
+                      getNewToken(Api).getToken()
+                      getQuizStudentSideApi(id,getNewToken.acessTOken.toString())
+                  }
+              }
            }
 
            override fun onFailure(call: Call<List<quizQuestionsModel>?>, t: Throwable) {

@@ -2,6 +2,7 @@ package com.example.unacademy.Repository.StudentSideRepo
 
 import androidx.lifecycle.MutableLiveData
 import com.example.unacademy.Repository.Response
+import com.example.unacademy.Repository.getNewToken
 import com.example.unacademy.api.Api
 import com.example.unacademy.models.StudentSideModel.getStudentSeries.getStudentSeriesItem
 import okhttp3.ResponseBody
@@ -23,11 +24,11 @@ class getStudentSeriesRepo(val Api:Api) {
                 {
                     response.isSuccessful->getStudentSeriesLiveData.postValue(Response.Success(response.body()))
                     response.code()==403->getStudentSeriesLiveData.postValue(Response.TokenExpire())
-                    else ->getStudentSeriesLiveData.postValue(
-                        Response.Error(
-                            response.message().toString()
-                        )
-                    )
+                    else ->
+                    {
+                        getNewToken(Api).getToken()
+                        studentSeriesApi(getNewToken.acessTOken.toString())
+                    }
                 }
             }
 

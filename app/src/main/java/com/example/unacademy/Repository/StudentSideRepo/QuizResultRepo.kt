@@ -3,6 +3,7 @@ package com.example.unacademy.Repository.StudentSideRepo
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.unacademy.Repository.Response
+import com.example.unacademy.Repository.getNewToken
 import com.example.unacademy.api.Api
 import com.example.unacademy.models.StudentSideModel.QuizResultRepo.QuizResultModelItem
 import com.example.unacademy.models.StudentSideModel.getStudentSeries.getStudentSeriesItem
@@ -22,11 +23,16 @@ class QuizResultRepo(var Api:Api) {
                 call: Call<List<QuizResultModelItem>?>,
                 response: retrofit2.Response<List<QuizResultModelItem>?>
             ) {
-                if (response.isSuccessful) {
-                    QuizResultRepoLiveData.postValue(Response.Success(response.body()))
-                } else {
-                    QuizResultRepoLiveData.postValue(Response.Error(response.code().toString()))
+                when
+                {
+                    response.isSuccessful-> QuizResultRepoLiveData.postValue(Response.Success(response.body()))
+                    else->
+                    {
+                        getNewToken(Api).getToken()
+                        QuizResultApi(id,getNewToken.acessTOken.toString())
+                    }
                 }
+
             }
             override fun onFailure(call: Call<List<QuizResultModelItem>?>, t: Throwable) {
                 QuizResultRepoLiveData.postValue(Response.Error(t.localizedMessage.toString()))
@@ -35,6 +41,7 @@ class QuizResultRepo(var Api:Api) {
         return QuizResultRepoLiveData
     }
 }
+
 
 
 

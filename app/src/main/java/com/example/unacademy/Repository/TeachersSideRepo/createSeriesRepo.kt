@@ -3,6 +3,7 @@ package com.example.unacademy.Repository.TeachersSideRepo
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.unacademy.Repository.Response
+import com.example.unacademy.Repository.getNewToken
 import com.example.unacademy.api.Api
 import com.example.unacademy.models.TeachersSideModels.teachersProfileDataClass
 import okhttp3.ResponseBody
@@ -28,7 +29,8 @@ class createSeriesRepo(private val Api:Api) {
                 }
                 else
                 {
-                    createSeriesLiveData.postValue(Response.Error(response.message().toString()))
+                    getNewToken(Api).getToken()
+                    createSeriesApi(name,description,icon,getNewToken.acessTOken.toString())
                 }
             }
 

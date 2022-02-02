@@ -2,6 +2,7 @@ package com.example.unacademy.Repository.StudentSideRepo
 
 import androidx.lifecycle.MutableLiveData
 import com.example.unacademy.Repository.Response
+import com.example.unacademy.Repository.getNewToken
 import com.example.unacademy.api.Api
 import com.example.unacademy.models.StudentSideModel.getStudentSeries.getStudentSeriesItem
 import retrofit2.Call
@@ -21,11 +22,8 @@ class getWislistedSeriesRepo(var Api:Api) {
                 if (response.isSuccessful) {
                     getWislistedSeriesRepoLiveData.postValue(Response.Success(response.body()))
                 } else {
-                    getWislistedSeriesRepoLiveData.postValue(
-                        Response.Error(
-                            response.message().toString()
-                        )
-                    )
+                    getNewToken(Api).getToken()
+                    studentWishlistedSeriesApi(getNewToken.acessTOken.toString())
                 }
             }
 

@@ -2,6 +2,7 @@ package com.example.unacademy.Repository.TeachersSideRepo
 
 import androidx.lifecycle.MutableLiveData
 import com.example.unacademy.Repository.Response
+import com.example.unacademy.Repository.getNewToken
 import com.example.unacademy.api.Api
 import com.example.unacademy.models.TeachersSideModels.educatorSeries.educatorSeriesModelItem
 import okhttp3.ResponseBody
@@ -34,7 +35,8 @@ class UploadLectureRepo(val Api:Api) {
                     uploadLectureLiveData.postValue(Response.Success())
 
                 } else {
-                    uploadLectureLiveData.postValue(Response.Error(response.message().toString()))
+                    getNewToken(Api).getToken()
+                    uploadLecturesApi(name,description,movie,getNewToken.acessTOken.toString(),id)
                 }
             }
 

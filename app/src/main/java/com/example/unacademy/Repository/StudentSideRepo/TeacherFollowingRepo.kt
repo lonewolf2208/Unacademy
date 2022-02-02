@@ -3,6 +3,7 @@ package com.example.unacademy.Repository.StudentSideRepo
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.unacademy.Repository.Response
+import com.example.unacademy.Repository.getNewToken
 import com.example.unacademy.api.Api
 import com.example.unacademy.models.StudentSideModel.getStudentSeries.studentStories.StudentStoryInfoModelItem
 import okhttp3.ResponseBody
@@ -22,16 +23,14 @@ class TeacherFollowingRepo(var Api:Api) {
                 response: retrofit2.Response<ResponseBody?>
             ) {
                 Log.w("Followinggg",response.message().toString())
-                if (response.isSuccessful) {
-
-                    teacherFollowingInfoLiveData.postValue(Response.Success())
-
-                } else {
-                    teacherFollowingInfoLiveData.postValue(
-                        Response.Error(
-                            response.message().toString()
-                        )
-                    )
+                when
+                {
+                    response.isSuccessful-> teacherFollowingInfoLiveData.postValue(Response.Success())
+                    else->
+                    {
+                        getNewToken(Api).getToken()
+                       teacherFollowingApi(following, getNewToken.acessTOken.toString())
+                    }
                 }
             }
 

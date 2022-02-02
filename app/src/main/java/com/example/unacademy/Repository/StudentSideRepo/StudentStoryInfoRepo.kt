@@ -2,6 +2,7 @@ package com.example.unacademy.Repository.StudentSideRepo
 
 import androidx.lifecycle.MutableLiveData
 import com.example.unacademy.Repository.Response
+import com.example.unacademy.Repository.getNewToken
 import com.example.unacademy.api.Api
 import com.example.unacademy.models.StudentSideModel.getStudentSeries.getStudentSeriesItem
 import com.example.unacademy.models.StudentSideModel.getStudentSeries.studentStories.StudentStoryInfoModelItem
@@ -20,14 +21,16 @@ class StudentStoryInfoRepo(val Api:Api) {
                call: Call<List<StudentStoryInfoModelItem>?>,
                response: retrofit2.Response<List<StudentStoryInfoModelItem>?>
            ) {
-               if(response.isSuccessful)
+               when
                {
-                   getStudentStoryInfoLiveData.postValue(Response.Success(response.body()))
+                   response.isSuccessful->getStudentStoryInfoLiveData.postValue(Response.Success(response.body()))
+                   else->
+                   {
+                       getNewToken(Api).getToken()
+                       studentStoryInfoApi(id, getNewToken.acessTOken.toString())
+                   }
                }
-               else
-               {
-                   getStudentStoryInfoLiveData.postValue(Response.Error(response.message().toString()))
-               }
+
            }
 
            override fun onFailure(call: Call<List<StudentStoryInfoModelItem>?>, t: Throwable) {

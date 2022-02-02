@@ -96,18 +96,18 @@ class HomePageTeachersSide : Fragment() {
                    }
                    is Response.TokenExpire->
                    {
-                       Toast.makeText(context,"Token Expired",Toast.LENGTH_LONG).show()
-                       suspend fun GetToken() {
-                           var job=lifecycleScope.async{
-                               getNewToken(RetrofitClient.init()).getToken()
-                           }
-                           job.onAwait
-                           homePageViewModel.getSeries()
-                           Log.w("JKFJLASFJKLAFJ","Home Page::::::: "+Splash_Screen.readInfo("access").toString())
-                       }
-                       lifecycleScope.launch {
-                           GetToken()
-                       }
+//                       Toast.makeText(context,"Token Expired",Toast.LENGTH_LONG).show()
+//                      var result= getNewToken(RetrofitClient.init()).getToken()
+//                      result.observe(viewLifecycleOwner,
+//                          {
+//                              when(it)
+//                              {
+//                              is Response.Success->
+//                              {
+//
+//                              }
+//                                  z
+//                          })
                    }
 
                    is Response.Error -> {

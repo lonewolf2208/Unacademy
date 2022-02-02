@@ -17,6 +17,7 @@
         <entry key="..\:/Users/Dell/AndroidStudioProjects/Unacademy/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.2703125" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/Unacademy/app/src/main/res/drawable/ic_launcher_background.xml" value="0.14635416666666667" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/Unacademy/app/src/main/res/drawable/ic_loginimage.xml" value="0.2611111111111111" />
+        <entry key="..\:/Users/Dell/AndroidStudioProjects/Unacademy/app/src/main/res/drawable/ic_notificationbutton.xml" value="0.1609375" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/Unacademy/app/src/main/res/drawable/ic_profile_homepagw.xml" value="0.15260416666666668" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/Unacademy/app/src/main/res/drawable/ic_profile_selected_navdrawer.xml" value="0.15260416666666668" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/Unacademy/app/src/main/res/drawable/ic_story_border.xml" value="0.2703125" />
@@ -41,6 +42,7 @@
         <entry key="..\:/Users/Dell/AndroidStudioProjects/Unacademy/app/src/main/res/layout/card_view_daily_quiz_student_side.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/Unacademy/app/src/main/res/layout/card_view_our_educators_student_side.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/Unacademy/app/src/main/res/layout/card_view_stories_student_side.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Dell/AndroidStudioProjects/Unacademy/app/src/main/res/layout/cardview_student_notifications_student_side.xml" value="0.23854166666666668" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/Unacademy/app/src/main/res/layout/change_teachers_profile.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/Unacademy/app/src/main/res/layout/custom_controller.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/Unacademy/app/src/main/res/layout/fragment_add_quiz_questions.xml" value="0.25025641025641027" />
@@ -67,6 +69,7 @@
         <entry key="..\:/Users/Dell/AndroidStudioProjects/Unacademy/app/src/main/res/layout/fragment_log_in.xml" value="0.264" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/Unacademy/app/src/main/res/layout/fragment_make_announcement.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/Unacademy/app/src/main/res/layout/fragment_notifications.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Dell/AndroidStudioProjects/Unacademy/app/src/main/res/layout/fragment_notifications_student_side.xml" value="0.23854166666666668" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/Unacademy/app/src/main/res/layout/fragment_otp.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/Unacademy/app/src/main/res/layout/fragment_otp_change_password.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/Unacademy/app/src/main/res/layout/fragment_profile_student_side.xml" value="0.25416666666666665" />

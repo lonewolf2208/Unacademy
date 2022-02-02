@@ -2,6 +2,7 @@ package com.example.unacademy.Repository.StudentSideRepo
 
 import androidx.lifecycle.MutableLiveData
 import com.example.unacademy.Repository.Response
+import com.example.unacademy.Repository.getNewToken
 import com.example.unacademy.api.Api
 import com.example.unacademy.models.StudentSideGetQuiz.StudentSideGetQuizModelItem
 import okhttp3.ResponseBody
@@ -22,14 +23,15 @@ class UploadAnsRepo(var Api:Api)
                 call: Call<ResponseBody?>,
                 response: retrofit2.Response<ResponseBody?>
             ) {
-                if(response.isSuccessful)
+                when
                 {
-                    uploadAnsLiveData.postValue(Response.Success())
+                    response.isSuccessful->uploadAnsLiveData.postValue(Response.Success())
+                    else-> {
+                        getNewToken(Api).getToken()
+                        uploadAnsApi(id,answer, getNewToken.acessTOken.toString())
+                    }
                 }
-                else
-                {
-                    uploadAnsLiveData.postValue(Response.Error(response.message().toString()))
-                }
+
             }
 
             override fun onFailure(call: Call<ResponseBody?>, t: Throwable) {

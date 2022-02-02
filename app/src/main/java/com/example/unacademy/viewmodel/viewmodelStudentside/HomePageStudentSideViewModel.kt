@@ -86,7 +86,7 @@ class HomePageStudentSideViewModel:ViewModel()
         }
         job.join()
         var wishlisRepo=StudentWishlisRepo(Api)
-        var result=wishlisRepo.studentStoryInfoApi(id,token.toString())
+        var result=wishlisRepo.StudentWishlistApi(id,token.toString())
         return result
     }
     suspend fun DeleteStudentWishlist( id :Int): MutableLiveData<Response<ResponseBody>> {

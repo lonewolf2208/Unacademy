@@ -34,9 +34,12 @@ class changeTeachersProfileRepo(val Api:Api) {
                 when
                 {
                     response.isSuccessful->changeTeacherProfileLiveData.postValue(Response.Success(response.body()))
-                    response.code()==400->changeTeacherProfileLiveData.postValue(Response.TokenExpire())
-                    else->changeTeacherProfileLiveData.postValue(Response.Error("Some Error has occured please try again!!"))
-                }
+//                    response.code()==400->changeTeacherProfileLiveData.postValue(Response.TokenExpire())
+                    else-> {
+                        getNewToken(Api).getToken()
+                        ChangeTeachersProfileApi(teachersProfileDataClass,getNewToken.acessTOken.toString())
+                    }
+                    }
             }
 
             override fun onFailure(call: Call<teachersProfileDataClass?>, t: Throwable) {

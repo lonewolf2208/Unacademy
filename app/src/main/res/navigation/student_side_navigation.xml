@@ -79,4 +79,8 @@
         android:id="@+id/resultAnalysisPageStudentSide"
         android:name="com.example.unacademy.Ui.StudentsSide.ResultAnalysisPageStudentSide"
         android:label="ResultAnalysisPageStudentSide" />
+    <fragment
+        android:id="@+id/notificationsStudentSide"
+        android:name="com.example.unacademy.Ui.StudentsSide.NotificationsStudentSide"
+        android:label="NotificationsStudentSide" />
 </navigation>

@@ -64,7 +64,6 @@ class homePageStudentSide : Fragment() {
         // Inflate the layout for this fragment
         binding= DataBindingUtil.inflate(inflater,R.layout.fragment_home_page_student_side, container, false)
         binding.lifecycleOwner=this
-
         binding.homePageStudentSideModel=homePageStudentSideViewModel
         lifecycleScope.launch {
         var resultStudentStoryProfile=homePageStudentSideViewModel.getStudentStoryProfile()
@@ -92,6 +91,32 @@ class homePageStudentSide : Fragment() {
                         }
                     }
                 })
+            var getQuizresult=homePageStudentSideViewModel.getQuiz()
+            getQuizresult.observe(viewLifecycleOwner,
+                {
+                    when(it)
+                    {
+                        is Response.Success->
+                        {
+                            totalQuiz= it.data as ArrayList<StudentSideGetQuizModelItem>
+                            layoutManager= LinearLayoutManager(container?.context,LinearLayoutManager.HORIZONTAL, false)
+                            binding.RecyclerAdapterDailQuizStudentSide.layoutManager=layoutManager
+                            adapterGetQuiz= RecyclerAdapterQuizTEachersSide(it.data)
+                            binding.RecyclerAdapterDailQuizStudentSide.adapter=adapterGetQuiz
+                            adapterGetQuiz.onClickListener(object : RecyclerAdapterQuizTEachersSide.ClickListener {
+                                override fun OnClick(position: Int) {
+                                    quizTitle= it.data!!?.get(position).title.toString()
+                                    quizDescription=it.data[position].description.toString()
+                                    quizLectureCount=it.data[position].questions.toString()
+                                    quizid=it.data[position].id.toInt()
+                                    quizDuration=it.data[position].duration
+                                    findNavController().navigate(R.id.action_homePageStudentSide_to_quizShowPageStudentSide)
+                                }
+                            })
+                        }
+                        is Response.Error->Toast.makeText(context,it.errorMessage.toString(),Toast.LENGTH_LONG).show()
+                    }
+                })
             var result=homePageStudentSideViewModel.getSeries()
             result.observe(viewLifecycleOwner,
                 {
@@ -99,7 +124,6 @@ class homePageStudentSide : Fragment() {
                     {
                         is Response.Success->
                         {
-                            Toast.makeText(requireContext(), it.data!!.size.toString(),Toast.LENGTH_LONG).show()
                             layoutManager= LinearLayoutManager(container?.context,LinearLayoutManager.HORIZONTAL, false)
                             binding.recyclerViewLatestSeriesStudentSide.layoutManager=layoutManager
                             adapter= RecyclerAdapterLatestSeries(requireContext(),
@@ -166,35 +190,6 @@ class homePageStudentSide : Fragment() {
                     }
                 })
 
-
-
-            var GetQuizresult=homePageStudentSideViewModel.getQuiz()
-            GetQuizresult.observe(viewLifecycleOwner,
-                {
-                    when(it)
-                    {
-                        is Response.Success->
-                        {
-
-                           totalQuiz= it.data as ArrayList<StudentSideGetQuizModelItem>
-                            layoutManager= LinearLayoutManager(container?.context,LinearLayoutManager.HORIZONTAL, false)
-                            binding.RecyclerAdapterDailQuizStudentSide.layoutManager=layoutManager
-                            adapterGetQuiz= RecyclerAdapterQuizTEachersSide(it.data)
-                            binding.RecyclerAdapterDailQuizStudentSide.adapter=adapterGetQuiz
-                            adapterGetQuiz.onClickListener(object : RecyclerAdapterQuizTEachersSide.ClickListener {
-                                override fun OnClick(position: Int) {
-                                    quizTitle= it.data!!?.get(position).title.toString()
-                                    quizDescription=it.data[position].description.toString()
-                                    quizLectureCount=it.data[position].questions.toString()
-                                    quizid=it.data[position].id.toInt()
-                                    quizDuration=it.data[position].duration
-                                    findNavController().navigate(R.id.action_homePageStudentSide_to_quizShowPageStudentSide)
-                                }
-                            })
-                        }
-                        is Response.Error->Toast.makeText(context,it.errorMessage.toString(),Toast.LENGTH_LONG).show()
-                    }
-                })
         }
         return binding.root
     }

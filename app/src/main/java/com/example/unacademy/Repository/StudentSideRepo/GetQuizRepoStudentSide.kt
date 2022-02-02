@@ -1,7 +1,10 @@
 package com.example.unacademy.Repository.StudentSideRepo
 
+import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import com.example.unacademy.Repository.Response
+import com.example.unacademy.Repository.getNewToken
 import com.example.unacademy.api.Api
 import com.example.unacademy.models.StudentSideGetQuiz.StudentSideGetQuizModelItem
 import com.example.unacademy.models.StudentSideModel.getStudentSeries.getStudentSeriesItem
@@ -22,9 +25,11 @@ class GetQuizRepoStudentSide(var Api:Api) {
                 if (response.isSuccessful) {
                     getQuizLiveData.postValue(Response.Success(response.body()))
 
-                } else {
+                }
+                else {
+                    getNewToken(Api).getToken()
+                    getQuizStudentSideApi(getNewToken.acessTOken)
                     getQuizLiveData.postValue(Response.Error(response.message().toString()))
-
                 }
             }
 

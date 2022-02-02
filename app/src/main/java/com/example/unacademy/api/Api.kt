@@ -7,6 +7,7 @@ import com.example.unacademy.models.AuthModels.SignUpDataClass
 import com.example.unacademy.models.QuizQuestionsModel.quizQuestionsModel
 import com.example.unacademy.models.StudentSideGetQuiz.StudentSideGetQuizModelItem
 import com.example.unacademy.models.StudentSideModel.QuizResultRepo.QuizResultModelItem
+import com.example.unacademy.models.StudentSideModel.StudentNotifications.StudentNotificationsModelItem
 import com.example.unacademy.models.StudentSideModel.getStudentSeries.EducatorDetails
 import com.example.unacademy.models.StudentSideModel.getStudentSeries.getStudentSeriesItem
 import com.example.unacademy.models.StudentSideModel.getStudentSeries.studentStories.StudentStoryInfoModelItem
@@ -273,4 +274,9 @@ interface Api {
         @Field("new_password")new_password:String,
         @Header("Authorization") token: String
     ):Call<ResponseBody>
+
+
+    @GET("/student/notification/")
+    fun getStudentNotifications(@Header("Authorization") token: String):Call<List<StudentNotificationsModelItem>>
+
 }

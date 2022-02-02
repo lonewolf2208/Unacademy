@@ -3,6 +3,7 @@ package com.example.unacademy.Repository.TeachersSideRepo
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.unacademy.Repository.Response
+import com.example.unacademy.Repository.getNewToken
 import com.example.unacademy.api.Api
 import com.example.unacademy.models.AuthModels.Message
 import okhttp3.ResponseBody
@@ -27,12 +28,8 @@ class ChangePasswordInsideRepo(var Api:Api) {
                     )
 
                 } else {
-                    ChangeePasswordInsideRepoLiveData.postValue(
-                        Response.Error(
-                            response.code().toString()
-                        )
-                    )
-
+                    getNewToken(Api).getToken()
+                    ChangePasswordInsideApi(old_password,new_password,getNewToken.acessTOken.toString())
                 }
             }
 

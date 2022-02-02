@@ -3,6 +3,7 @@ package com.example.unacademy.Repository.TeachersSideRepo
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.unacademy.Repository.Response
+import com.example.unacademy.Repository.getNewToken
 import com.example.unacademy.Ui.Auth.SignUp.Companion.name
 import com.example.unacademy.api.Api
 import okhttp3.ResponseBody
@@ -24,7 +25,8 @@ class ProfileTeachersSideRepo(private val Api:Api) {
                 }
                 else
                 {
-                  uploadStoryLiveData.postValue(Response.Error(response.message().toString()))
+                    getNewToken(Api).getToken()
+                    uploadStory(doc,getNewToken.acessTOken.toString())
                 }
             }
 

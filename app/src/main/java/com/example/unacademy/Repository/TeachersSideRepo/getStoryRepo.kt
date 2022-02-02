@@ -2,6 +2,7 @@ package com.example.unacademy.Repository.TeachersSideRepo
 
 import androidx.lifecycle.MutableLiveData
 import com.example.unacademy.Repository.Response
+import com.example.unacademy.Repository.getNewToken
 import com.example.unacademy.api.Api
 import com.example.unacademy.models.TeachersSideModels.getLectureModelItem
 import com.example.unacademy.models.TeachersSideModels.getStoryModel
@@ -29,7 +30,8 @@ class getStoryRepo(val Api:Api) {
                }
                else
                {
-                   getStoryLiveData.postValue(Response.Error(response.code().toString()))
+                   getNewToken(Api).getToken()
+                   getStoryApi(getNewToken.acessTOken.toString())
                }
 
            }
