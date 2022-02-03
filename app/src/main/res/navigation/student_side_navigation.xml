@@ -21,6 +21,9 @@
         <action
             android:id="@+id/action_homePageStudentSide_to_quizShowPageStudentSide"
             app:destination="@id/quizShowPageStudentSide" />
+        <action
+            android:id="@+id/action_homePageStudentSide_to_quizResultPage"
+            app:destination="@id/quizResultPage" />
     </fragment>
     <fragment
         android:id="@+id/lecturesTeachersSide2"

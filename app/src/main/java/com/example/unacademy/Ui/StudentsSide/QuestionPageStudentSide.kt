@@ -44,6 +44,7 @@ class QuestionPageStudentSide : Fragment() {
         binding.lifecycleOwner=this
         binding.getQuizQuestionViewModel=getQuizQuestionsViewModel
         binding.QuizTitleQuestionPage.text=homePageStudentSide.quizTitle
+        startTimer()
         binding.Option1QuizPage.setOnClickListener {
             ans=1
         }
@@ -115,19 +116,17 @@ class QuestionPageStudentSide : Fragment() {
     }
 
     fun startTimer() {
-       var timerCountDownTimer = object : CountDownTimer(30000, 1000) {
+       var timerCountDownTimer = object : CountDownTimer(homePageStudentSide.quizDuration.toLong()*60000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 val timeLeft = millisUntilFinished / 1000
                 if (timeLeft.toString().length == 2)
                     binding.timer.text = "00:" + timeLeft.toString()
                 else
                     binding.timer.text = "00:0" + timeLeft.toString()
-
             }
-
             override fun onFinish() {
                 binding.timer.text = "00:00"
-
+                findNavController().navigate(R.id.action_questionPageStudentSide_to_quizResultPage)
             }
 
         }.start()

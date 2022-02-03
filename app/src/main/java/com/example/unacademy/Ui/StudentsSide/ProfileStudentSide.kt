@@ -60,7 +60,6 @@ class ProfileStudentSide : Fragment() {
                 {
                     when (it) {
                         is Response.Success -> {
-                            Toast.makeText(requireContext(),"Successs",Toast.LENGTH_LONG).show()
                             if(it.data!!.isEmpty())
                             {
                                 binding.EmptyWishlistStudentSide.text="Your Wishlist is Empty"

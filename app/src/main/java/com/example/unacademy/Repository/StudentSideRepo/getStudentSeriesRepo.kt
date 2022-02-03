@@ -1,5 +1,6 @@
 package com.example.unacademy.Repository.StudentSideRepo
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.unacademy.Repository.Response
 import com.example.unacademy.Repository.getNewToken
@@ -20,13 +21,15 @@ class getStudentSeriesRepo(val Api:Api) {
                 call: Call<List<getStudentSeriesItem>?>,
                 response: retrofit2.Response<List<getStudentSeriesItem>?>
             ) {
+                Log.w("ddsadasd",response.message().toString())
                 when
                 {
                     response.isSuccessful->getStudentSeriesLiveData.postValue(Response.Success(response.body()))
-                    response.code()==403->getStudentSeriesLiveData.postValue(Response.TokenExpire())
+//                    response.code()==403->getStudentSeriesLiveData.postValue(Response.TokenExpire())
                     else ->
                     {
                         getNewToken(Api).getToken()
+
                         studentSeriesApi(getNewToken.acessTOken.toString())
                     }
                 }

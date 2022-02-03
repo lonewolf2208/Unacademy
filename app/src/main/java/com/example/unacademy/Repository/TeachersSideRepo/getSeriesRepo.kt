@@ -36,7 +36,19 @@ class getSeriesRepo(val Api:Api){
                         response.isSuccessful->getSeriesLiveData.postValue(Response.Success(response.body()))
                         else->
                         {
+                            MainScope().launch {
+                                Log.w(
+                                    "OTKENSDASDASD",
+                                    "Before+++++++" + Splash_Screen.readInfo("access").toString()
+                                )
+                            }
                             getNewToken(Api).getToken()
+                            MainScope().launch {
+                                Log.w(
+                                    "OTKENSDASDASD",
+                                    "After:::::::::" +getNewToken.acessTOken
+                                )
+                            }
                             getSeriesApi(getNewToken.acessTOken.toString())
                         }
 

@@ -22,6 +22,7 @@ class HomePageStudentSideViewModel:ViewModel()
     var token:String?=null
     var result= MutableLiveData<Response<List<getStudentSeriesItem>>>()
     var ourEducatorsResult=MutableLiveData<Response<List<EducatorDetails>>>()
+    var getQuizREsult=MutableLiveData<Response<List<StudentSideGetQuizModelItem>>>()
     var studentStoryProfileResult=MutableLiveData<Response<List<studentStoryModelItem>>>()
     suspend fun getSeries(): MutableLiveData<Response<List<getStudentSeriesItem>>> {
         var Api= RetrofitClient.init()
@@ -75,8 +76,8 @@ class HomePageStudentSideViewModel:ViewModel()
         }
         job.join()
         var  getQuizRepoStudentSide=GetQuizRepoStudentSide(Api)
-        var result=getQuizRepoStudentSide.getQuizStudentSideApi(token.toString())
-        return result
+        getQuizREsult=getQuizRepoStudentSide.getQuizStudentSideApi(token.toString())
+        return getQuizREsult
     }
     suspend fun StudentWishlist( id :Int): MutableLiveData<Response<ResponseBody>> {
         var Api=RetrofitClient.init()

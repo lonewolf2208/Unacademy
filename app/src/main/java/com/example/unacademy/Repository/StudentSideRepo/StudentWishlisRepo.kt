@@ -1,5 +1,6 @@
 package com.example.unacademy.Repository.StudentSideRepo
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.unacademy.Repository.Response
 import com.example.unacademy.Repository.getNewToken
@@ -22,6 +23,7 @@ class StudentWishlisRepo(var Api:Api)
                 call: Call<ResponseBody?>,
                 response: retrofit2.Response<ResponseBody?>
             ) {
+                Log.w("ddsadasd",response.raw().code.toString())
                when
                {
                    response.isSuccessful->StudentWishlisRepoLiveData.postValue(Response.Success(response.body()))

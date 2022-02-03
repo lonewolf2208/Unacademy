@@ -22,33 +22,37 @@ import java.util.function.LongFunction
 class getNewToken(private val Api:Api) {
     companion object
     {
-        var acessTOken=""
+        var acessTOken:String=""
     }
     var refreshToken:String?=null
 
     fun getToken(): String {
          Log.d("TokewnExpired", refreshToken.toString())
-             Api.refreshToken("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTY0NDY5MTMzNCwiaWF0IjoxNjQzMzk1MzM0LCJqdGkiOiI4NDIxN2I0MWZjMTE0ODg5OTE3N2E5MmU3MDFiNWNjNyIsInVzZXJfaWQiOjN9.5H_TCkFbXuSxnxKAYcOwj3q8_563V9-AYpInuHmds74")
-                 .enqueue(object : Callback<tokenModel?> {
-                     override fun onResponse(
-                         call: Call<tokenModel?>,
-                         response: retrofit2.Response<tokenModel?>
-                     ) {
-                         Log.w("RESSESES", response.body()!!.access.toString())
-                         if (response.isSuccessful) {
-                             acessTOken= response.body()!!.access.toString()
-                             GlobalScope.launch {
-                                 Splash_Screen.saveInfo(
-                                     "access",
-                                     response.body()!!.access.toString()
-                                 )
-                             }
-                         }
-                     }
-                     override fun onFailure(call: Call<tokenModel?>, t: Throwable) {
-                         Log.d("TokewnExpired", t.localizedMessage.toString())
-                     }
-                 })
+        GlobalScope.launch {
+            var result = Api.refreshToken(Splash_Screen.readInfo("refresh").toString())
+                .enqueue(object : Callback<tokenModel?> {
+                    override fun onResponse(
+                        call: Call<tokenModel?>,
+                        response: retrofit2.Response<tokenModel?>
+                    ) {
+
+                        Log.w("RESSESES", response.body()!!.access.toString())
+                        if (response.isSuccessful) {
+                            acessTOken= response.body()!!.access.toString()
+                            GlobalScope.launch {
+                                Splash_Screen.saveInfo(
+                                    "access",
+                                    response.body()!!.access.toString()
+                                )
+                            }
+                        }
+                    }
+
+                    override fun onFailure(call: Call<tokenModel?>, t: Throwable) {
+                        Log.d("TokewnExpired", t.localizedMessage.toString())
+                    }
+                })
+        }
         return acessTOken
     }
 }
