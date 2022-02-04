@@ -29,6 +29,7 @@ class QuestionPageStudentSide : Fragment() {
     var i=0
     var ans =0
     var timer =0
+    lateinit var timerCountDownTimer:CountDownTimer
      var questionsQuiz: List<quizQuestionsModel>?=null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -95,19 +96,31 @@ class QuestionPageStudentSide : Fragment() {
                     if (i == (questionsQuiz!!.size - 1)) {
                         binding.NextQuestionQuizPAge.text = "Complete Quiz"
                     }
-                    lifecycleScope.launch {
-                        getQuizQuestionsViewModel.UploadQuestion(
+                    var job=lifecycleScope.launch {
+                        var result=getQuizQuestionsViewModel.UploadQuestion(
                             questionsQuiz?.get(i - 1)!!.id,
                             ans
                         )
-                        binding.RadioGroup.clearCheck()
+                        result.observe(viewLifecycleOwner,
+                            {
+                                when(it)
+                                {
+                                    is Response.Success->
+                                    {
+                                        ans=0
+                                        binding.QuestionsQuizPage.text = questionsQuiz?.get(i)!!.question
+                                        binding.Option1QuizPage.text = questionsQuiz?.get(i)!!.option1
+                                        binding.Option2QuizPage.text = questionsQuiz?.get(i)!!.option2
+                                        binding.Option3QuizPage.text = questionsQuiz?.get(i)!!.option3
+                                        binding.Option4QuizPage.text = questionsQuiz?.get(i)!!.option4
+                                        binding.RadioGroup.clearCheck()
+                                    }
+                                }
+                            })
+
                     }
-                    ans=0
-                    binding.QuestionsQuizPage.text = questionsQuiz?.get(i)!!.question
-                    binding.Option1QuizPage.text = questionsQuiz?.get(i)!!.option1
-                    binding.Option2QuizPage.text = questionsQuiz?.get(i)!!.option2
-                    binding.Option3QuizPage.text = questionsQuiz?.get(i)!!.option3
-                    binding.Option4QuizPage.text = questionsQuiz?.get(i)!!.option4
+
+
                 }
 
             }
@@ -116,7 +129,7 @@ class QuestionPageStudentSide : Fragment() {
     }
 
     fun startTimer() {
-       var timerCountDownTimer = object : CountDownTimer(homePageStudentSide.quizDuration.toLong()*60000, 1000) {
+       timerCountDownTimer = object : CountDownTimer(homePageStudentSide.quizDuration.toLong()*60000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 val timeLeft = millisUntilFinished / 1000
                 if (timeLeft.toString().length == 2)
@@ -132,4 +145,8 @@ class QuestionPageStudentSide : Fragment() {
         }.start()
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        timerCountDownTimer.cancel()
+    }
 }

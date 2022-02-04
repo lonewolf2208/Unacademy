@@ -48,10 +48,9 @@ class StudentSideActivity : AppCompatActivity(), View.OnClickListener {
             alertDialog.show()
             dialodView.findViewById<ImageView>(R.id.LogOutButton).setOnClickListener(this)
             dialodView.findViewById<ImageView>(R.id.Feedback).setOnClickListener(this)
-            dialodView.findViewById<ImageView>(R.id.Feedback).setOnClickListener(this)
             dialodView.findViewById<ImageView>(R.id.changePasswordDialogBox).setOnClickListener {
                 var navController = Navigation.findNavController(this,R.id.fragment_container_student_side)
-                navController.navigate(R.id.change_Password_Inside)
+                navController.navigate(R.id.changePassworsInsideStudentSide)
                 alertDialog.cancel()
             }
 

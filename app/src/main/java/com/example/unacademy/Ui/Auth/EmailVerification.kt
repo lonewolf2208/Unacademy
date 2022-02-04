@@ -56,7 +56,6 @@ class EmailVerification : Fragment(),View.OnClickListener {
                         when (it) {
                             is Response.Success -> {
                                 binding?.progressBarEmailVerification?.visibility=View.INVISIBLE
-//
                                 Toast.makeText(context,"Otp Has Been Sent to your email", Toast.LENGTH_LONG).show()
                                 navController.navigate(R.id.action_emailVerification_to_otpChangePassword)
                             }

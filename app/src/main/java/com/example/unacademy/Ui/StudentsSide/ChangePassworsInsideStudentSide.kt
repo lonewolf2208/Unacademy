@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.unacademy.R
@@ -22,7 +23,7 @@ class ChangePassworsInsideStudentSide : Fragment(),View.OnClickListener {
     lateinit var changePasswordInsideViewModel: ChangePasswordInsideViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        changePasswordInsideViewModel=ViewModelProvider(this)[ChangePasswordInsideViewModel::class.java]
     }
 
     override fun onCreateView(

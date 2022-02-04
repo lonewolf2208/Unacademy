@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Ui.StudentsSide.EditYourProfileStudentSide">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+   <androidx.constraintlayout.widget.ConstraintLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+
+       <TextView
+           android:id="@+id/textView105"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginStart="24dp"
+           android:layout_marginTop="30dp"
+           android:fontFamily="@font/rosario_bold"
+           android:text="Edit Your Profile"
+           android:textColor="#000000"
+           android:textSize="24sp"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toTopOf="parent" />
+
+       <com.google.android.material.imageview.ShapeableImageView
+           android:id="@+id/setProfileImageTeachersCardView"
+           android:layout_width="110dp"
+           android:layout_height="110dp"
+           android:layout_marginStart="150dp"
+           android:layout_marginTop="24dp"
+           android:layout_marginEnd="150dp"
+           android:background="@drawable/profile_teachers_side"
+           android:elevation="12dp"
+           android:scaleType="centerCrop"
+           app:layout_constraintCircleRadius="50dp"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toBottomOf="@+id/textView105"
+           app:shapeAppearanceOverlay="@style/Circular"
+           app:strokeWidth="5dp">
+
+
+       </com.google.android.material.imageview.ShapeableImageView>
+
+       <TextView
+           android:id="@+id/textView106"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginStart="24dp"
+           android:layout_marginTop="16dp"
+           android:fontFamily="@font/rosario_bold"
+           android:text="Name"
+           android:textColor="#000000"
+           android:textSize="20sp"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toBottomOf="@+id/setProfileImageTeachersCardView" />
+
+       <EditText
+           android:id="@+id/NameStudentProfileStudentSide"
+           android:layout_width="0dp"
+           android:layout_height="wrap_content"
+           android:layout_marginStart="16dp"
+           android:layout_marginTop="4dp"
+           android:layout_marginEnd="16dp"
+           android:ems="10"
+           android:inputType="textPersonName"
+           android:text="Name"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toBottomOf="@+id/textView106" />
+
+       <TextView
+           android:id="@+id/textView107"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginStart="24dp"
+           android:layout_marginTop="16dp"
+           android:fontFamily="@font/rosario_bold"
+           android:text="Date Of Birth"
+           android:textColor="#000000"
+           android:textSize="20sp"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toBottomOf="@+id/NameStudentProfileStudentSide" />
+
+       <EditText
+           android:id="@+id/DateOfBirthStudentPRofile"
+           android:layout_width="0dp"
+           android:layout_height="wrap_content"
+           android:layout_marginStart="16dp"
+           android:layout_marginTop="4dp"
+           android:layout_marginEnd="16dp"
+           android:ems="10"
+           android:inputType="textPersonName"
+           android:text="Name"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toBottomOf="@+id/textView107" />
+
+       <TextView
+           android:id="@+id/textView108"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginStart="24dp"
+           android:layout_marginTop="16dp"
+           android:fontFamily="@font/rosario_bold"
+           android:text="Class"
+           android:textColor="#000000"
+           android:textSize="20sp"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toBottomOf="@+id/DateOfBirthStudentPRofile" />
+
+       <EditText
+           android:id="@+id/ClassStudentProfile"
+           android:layout_width="0dp"
+           android:layout_height="wrap_content"
+           android:layout_marginStart="16dp"
+           android:layout_marginTop="4dp"
+           android:layout_marginEnd="16dp"
+           android:ems="10"
+           android:inputType="textPersonName"
+           android:text="Name"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toBottomOf="@+id/textView108" />
+
+       <TextView
+           android:id="@+id/textView109"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginStart="24dp"
+           android:layout_marginTop="16dp"
+           android:fontFamily="@font/rosario_bold"
+           android:text="Bio"
+           android:textColor="#000000"
+           android:textSize="20sp"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toBottomOf="@+id/ClassStudentProfile" />
+
+       <EditText
+           android:id="@+id/BioStudentProfile"
+           android:layout_width="0dp"
+           android:layout_height="wrap_content"
+           android:layout_marginStart="16dp"
+           android:layout_marginTop="4dp"
+           android:layout_marginEnd="16dp"
+           android:ems="10"
+           android:inputType="textPersonName"
+           android:text="Name"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toBottomOf="@+id/textView109" />
+
+       <TextView
+           android:id="@+id/textView110"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginStart="24dp"
+           android:layout_marginTop="16dp"
+           android:fontFamily="@font/rosario_bold"
+           android:text="Mobile No."
+           android:textColor="#000000"
+           android:textSize="20sp"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toBottomOf="@+id/BioStudentProfile" />
+
+       <EditText
+           android:id="@+id/MobileNoStudentProfile"
+           android:layout_width="0dp"
+           android:layout_height="wrap_content"
+           android:layout_marginStart="16dp"
+           android:layout_marginTop="4dp"
+           android:layout_marginEnd="16dp"
+           android:ems="10"
+           android:inputType="textPersonName"
+           android:text="Name"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toBottomOf="@+id/textView110" />
+
+       <TextView
+           android:id="@+id/textView111"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginStart="24dp"
+           android:layout_marginTop="16dp"
+           android:fontFamily="@font/rosario_bold"
+           android:text="Gender"
+           android:textColor="#000000"
+           android:textSize="20sp"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toBottomOf="@+id/MobileNoStudentProfile" />
+
+   </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</FrameLayout>

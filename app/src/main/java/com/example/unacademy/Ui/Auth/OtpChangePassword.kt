@@ -1,11 +1,15 @@
 package com.example.unacademy.Ui.Auth
 
+import android.graphics.Color
 import android.os.Bundle
+import android.os.CountDownTimer
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
 import com.example.unacademy.R
 import com.example.unacademy.Repository.AuthRepo.OtpRepo
@@ -21,13 +25,14 @@ class OtpChangePassword : Fragment(),View.OnClickListener {
     private val binding
         get() =_binding!!
     private  var otp: OtpRepo?=null
+    lateinit var timerCountDownTimer:CountDownTimer
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         _binding= FragmentOtpChangePasswordBinding.inflate(inflater, container, false)
-       Toast.makeText(context,findNavController().previousBackStackEntry?.destination?.label.toString(),Toast.LENGTH_LONG).show()
+        startTimer()
         binding.otpVerifyButtonChangePassword.setOnClickListener(this)
         binding.ResendOtpChangePassword.setOnClickListener(this)
         return binding.root
@@ -70,12 +75,40 @@ class OtpChangePassword : Fragment(),View.OnClickListener {
 
             }
             R.id.ResendOtpChangePassword->
-            { var SignUpRepo= SignUpRepo(RetrofitClient.init())
+            {
+                startTimer()
+                var SignUpRepo= SignUpRepo(RetrofitClient.init())
                 SignUpRepo?.SignUpApi(SignUp.email,SignUp.name)
                 Toast.makeText(context,"Otp has been Sent Successfully", Toast.LENGTH_LONG).show()
             }
         }
     }
+
+    fun startTimer() {
+        timerCountDownTimer = object : CountDownTimer(30000, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                val timeLeft = millisUntilFinished / 1000
+                if (timeLeft.toString().length == 2)
+                    binding.TImerChangePassword.text = "00:" + timeLeft.toString()
+                else
+                    binding.TImerChangePassword.text = "00:0" + timeLeft.toString()
+                binding.ResendOtpChangePassword.isClickable=false
+                binding.ResendOtpChangePassword.setTextColor(Color.DKGRAY)
+            }
+
+            override fun onFinish() {
+                binding.TImerChangePassword.text = "00:00"
+                binding.ResendOtpChangePassword.isClickable=true
+                binding.ResendOtpChangePassword.setTextColor(Color.parseColor("#C2003356"))
+            }
+
+        }.start()
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        timerCountDownTimer.cancel()
+    }
+}
 
 

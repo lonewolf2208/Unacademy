@@ -1,10 +1,10 @@
 package com.example.unacademy.Repository.StudentSideRepo
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.unacademy.Repository.Response
 import com.example.unacademy.Repository.getNewToken
 import com.example.unacademy.api.Api
-import com.example.unacademy.models.StudentSideGetQuiz.StudentSideGetQuizModelItem
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
@@ -23,6 +23,7 @@ class UploadAnsRepo(var Api:Api)
                 call: Call<ResponseBody?>,
                 response: retrofit2.Response<ResponseBody?>
             ) {
+                Log.w("ASNSNSSSDA",response.message().toString())
                 when
                 {
                     response.isSuccessful->uploadAnsLiveData.postValue(Response.Success())

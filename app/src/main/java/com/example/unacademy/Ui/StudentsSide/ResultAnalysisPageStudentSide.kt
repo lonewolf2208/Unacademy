@@ -34,6 +34,7 @@ class ResultAnalysisPageStudentSide : Fragment() {
             container,
             false
         )
+        binding.QuizHEadingREsultAnalysis.text=homePageStudentSide.quizTitle.toString()
         layoutManager= LinearLayoutManager(container?.context)
         binding.RecyclerAdapterResultAnalysisStudentSide.layoutManager=layoutManager
         adapter= RecyclerAdapterResultAnalysisStudentSide(QuizResultPage.quizresult)

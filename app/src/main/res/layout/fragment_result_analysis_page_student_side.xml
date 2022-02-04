@@ -17,11 +17,18 @@
       android:layout_height="match_parent">
 
    <TextView
-       android:id="@+id/textView105"
-       android:layout_width="wrap_content"
+       android:id="@+id/QuizHEadingREsultAnalysis"
+       android:layout_width="0dp"
        android:layout_height="wrap_content"
-       android:layout_marginStart="80dp"
+       android:layout_marginStart="16dp"
+       android:layout_marginTop="24dp"
+       android:layout_marginEnd="16dp"
+       android:fontFamily="@font/rosario_bold"
        android:text="TextView"
+       android:textAlignment="center"
+       android:textColor="#000000"
+       android:textSize="28sp"
+       app:layout_constraintEnd_toEndOf="parent"
        app:layout_constraintStart_toStartOf="parent"
        app:layout_constraintTop_toTopOf="parent" />
 
@@ -32,7 +39,7 @@
        android:layout_marginTop="24dp"
        app:layout_constraintEnd_toEndOf="parent"
        app:layout_constraintStart_toStartOf="parent"
-       app:layout_constraintTop_toBottomOf="@+id/textView105" />
+       app:layout_constraintTop_toBottomOf="@+id/QuizHEadingREsultAnalysis" />
 
    <Button
        android:id="@+id/DoneButtonQuizResult"

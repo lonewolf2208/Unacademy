@@ -1,6 +1,7 @@
 package com.example.unacademy.Adapter.StudentSideAdapters
 
 import android.annotation.SuppressLint
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -40,36 +41,36 @@ class RecyclerAdapterResultAnalysisStudentSide(var studentSideGetQuizModelItem: 
             {
                 1-> {
                     holder.binding.Option1QuizResultPageAnalysis.isChecked = true
-                    holder.binding.Option1QuizResultPageAnalysis.setBackgroundColor(R.color.Red)
+                    holder.binding.Option1QuizResultPageAnalysis.setBackgroundColor(Color.RED)
                 }
                 2-> {
                     holder.binding.Option2QuizResultPageAnalysis.isChecked = true
-                    holder.binding.Option1QuizResultPageAnalysis.setBackgroundColor(R.color.Red)
+                    holder.binding.Option2QuizResultPageAnalysis.setBackgroundColor(Color.RED)
                 }
                 3-> {
                     holder.binding.Option3QuizResultPageAnalysis.isChecked = true
-                    holder.binding.Option1QuizResultPageAnalysis.setBackgroundColor(R.color.Red)
+                    holder.binding.Option3QuizResultPageAnalysis.setBackgroundColor(Color.RED)
                 }
                 4-> {
                     holder.binding.Option4QuizResultPageAnalysis.isChecked = true
-                    holder.binding.Option1QuizResultPageAnalysis.setBackgroundColor(R.color.Red)
+                    holder.binding.Option4QuizResultPageAnalysis.setBackgroundColor(Color.RED)
                 }
             }
             when (correctedAnswer) {
                 1 -> {
-                    holder.binding.Option1QuizResultPageAnalysis.setBackgroundColor(R.color.green)
+                    holder.binding.Option1QuizResultPageAnalysis.setBackgroundColor(Color.GREEN)
                 }
                 2 -> {
 
-                    holder.binding.Option1QuizResultPageAnalysis.setBackgroundColor(R.color.green)
+                    holder.binding.Option2QuizResultPageAnalysis.setBackgroundColor(Color.GREEN)
                 }
                 3 -> {
 
-                    holder.binding.Option1QuizResultPageAnalysis.setBackgroundColor(R.color.green)
+                    holder.binding.Option3QuizResultPageAnalysis.setBackgroundColor(Color.GREEN)
                 }
                 4 -> {
 
-                    holder.binding.Option1QuizResultPageAnalysis.setBackgroundColor(R.color.green)
+                    holder.binding.Option4QuizResultPageAnalysis.setBackgroundColor(Color.GREEN)
                 }
             }
         }
@@ -77,19 +78,19 @@ class RecyclerAdapterResultAnalysisStudentSide(var studentSideGetQuizModelItem: 
             when (attemptedAnswer) {
                 1 -> {
                     holder.binding.Option1QuizResultPageAnalysis.isChecked = true
-                    holder.binding.Option1QuizResultPageAnalysis.setBackgroundColor(R.color.green)
+                    holder.binding.Option1QuizResultPageAnalysis.setBackgroundColor(Color.GREEN)
                 }
                 2 -> {
                     holder.binding.Option2QuizResultPageAnalysis.isChecked = true
-                    holder.binding.Option1QuizResultPageAnalysis.setBackgroundColor(R.color.green)
+                    holder.binding.Option2QuizResultPageAnalysis.setBackgroundColor(Color.GREEN)
                 }
                 3 -> {
                     holder.binding.Option3QuizResultPageAnalysis.isChecked = true
-                    holder.binding.Option1QuizResultPageAnalysis.setBackgroundColor(R.color.green)
+                    holder.binding.Option3QuizResultPageAnalysis.setBackgroundColor(Color.GREEN)
                 }
                 4 -> {
                     holder.binding.Option4QuizResultPageAnalysis.isChecked = true
-                    holder.binding.Option1QuizResultPageAnalysis.setBackgroundColor(R.color.green)
+                    holder.binding.Option4QuizResultPageAnalysis.setBackgroundColor(Color.GREEN)
                 }
             }
         }

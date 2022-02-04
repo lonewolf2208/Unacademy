@@ -1,20 +1,10 @@
 package com.example.unacademy.Repository.StudentSideRepo
 
-import android.util.Log
-import android.widget.Toast
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import com.example.unacademy.Repository.Response
 import com.example.unacademy.Repository.getNewToken
-import com.example.unacademy.Ui.Auth.Splash_Screen
 import com.example.unacademy.api.Api
 import com.example.unacademy.models.StudentSideGetQuiz.StudentSideGetQuizModelItem
-import com.example.unacademy.models.StudentSideModel.getStudentSeries.getStudentSeriesItem
-import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
-import okhttp3.internal.wait
 import retrofit2.Call
 import retrofit2.Callback
 

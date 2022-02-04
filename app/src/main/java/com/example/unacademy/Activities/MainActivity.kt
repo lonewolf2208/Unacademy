@@ -16,7 +16,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 //        binding = DataBindingUtil.setContentView(this,R.layout.activity_main)
 //        Navigation.findNavController(this,R.id.mainActivity).navigate(R.id.logIn)
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setContentView(R.layout.activity_main)
 
     }

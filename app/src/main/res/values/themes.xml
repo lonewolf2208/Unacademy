@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.Unacademy" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.Unacademy" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">#003356</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
@@ -14,7 +14,7 @@
         <!-- Customize your theme here. -->
     </style>
 
-    t<style name="TeachersSideHomePage" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    t<style name="TeachersSideHomePage" parent="Theme.MaterialComponents.Light.NoActionBar">
     <item name="colorPrimary">#003356</item>
     <item name="colorPrimaryVariant">@color/purple_700</item>
     <item name="colorOnPrimary">@color/white</item>

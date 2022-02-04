@@ -25,7 +25,6 @@ import kotlinx.coroutines.launch
 class LogIn : Fragment() ,View.OnClickListener{
     private var binding:FragmentLogInBinding?=null
     private var validationFlagEmail = 0
-    private var validationFlagPassword = 0
     lateinit var ApiRepo: ApiRepo
 //     var logInViewModel= LogInViewModel()
     override fun onCreateView(
@@ -35,7 +34,6 @@ class LogIn : Fragment() ,View.OnClickListener{
     {
         binding = FragmentLogInBinding.inflate(inflater,container,false)
         emailFocusListener()
-        passwordFocusListener()
         binding!!.SignUpButtonLogIn.setOnClickListener(this)
         binding!!.LogInButton.setOnClickListener(this)
         binding!!.ForgotPassword.setOnClickListener(this)
@@ -57,7 +55,7 @@ class LogIn : Fragment() ,View.OnClickListener{
             R.id.LogInButton -> {
                 emailText?.clearFocus()
                 passText?.clearFocus()
-                if (validationFlagEmail == 1 && validationFlagPassword == 1)
+                if (validationFlagEmail == 1 )
                 {
                     ApiRepo= ApiRepo(RetrofitClient.init())
                     binding?.LogInButton?.isEnabled = false
@@ -140,28 +138,10 @@ class LogIn : Fragment() ,View.OnClickListener{
             }
         }
 
-    private fun passwordFocusListener()
-    {
-        binding?.LoginPassword?.setOnFocusChangeListener { _, focused ->
-            if(!focused) {
-                var passText= binding?.LoginPassword?.text.toString().trim()
-                if(Validations.validPassword(passText) ==null){
-                    binding!!.LoginPasswordContainer.helperText=""
-                    validationFlagPassword=1
-                }
-                else {
 
-                    binding!!.LoginPasswordContainer.helperText =
-                        Validations.validPassword(passText).toString()
-                    validationFlagPassword=0
-                }
-            }
-        }
-    }
     private fun emailFocusListener()
 
     {
-
         binding?.LoginEmailAdress?.setOnFocusChangeListener { _, focused ->
             if(!focused) {
                 var emailText= binding?.LoginEmailAdress?.text.toString().trim()

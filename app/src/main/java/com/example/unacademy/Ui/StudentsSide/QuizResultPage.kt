@@ -1,5 +1,6 @@
 package com.example.unacademy.Ui.StudentsSide
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -16,6 +17,7 @@ import com.example.unacademy.databinding.FragmentQuizResultPageBinding
 import com.example.unacademy.models.StudentSideModel.QuizResultRepo.QuizResultModelItem
 import com.example.unacademy.viewmodel.viewmodelStudentside.GetQuizResultViewModel
 import kotlinx.coroutines.launch
+import org.eazegraph.lib.models.PieModel
 
 
 class QuizResultPage : Fragment() {
@@ -26,10 +28,10 @@ class QuizResultPage : Fragment() {
     }
     lateinit var binding:FragmentQuizResultPageBinding
     lateinit var getQuizResultViewModel: GetQuizResultViewModel
-    var correctedQuestions=0
-    var totalScore=0
-    var score=0
-    var wrongQuestions=0
+    var correctedQuestions:Float= 0F
+    var totalScore:Float= 0F
+    var score:Float= 0F
+    var wrongQuestions:Float= 0F
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     getQuizResultViewModel=ViewModelProvider(this)[GetQuizResultViewModel()::class.java]
@@ -69,6 +71,31 @@ class QuizResultPage : Fragment() {
                                     wrongQuestions++
                                 }
                             }
+                            binding.pieChartCorrectedAnswer.addPieSlice(PieModel(
+                                 "Corrected Questions",(correctedQuestions/it.data.size)*100.toFloat(), Color.parseColor("#4CAF50")
+                            ))
+                            binding.pieChartCorrectedAnswer.addPieSlice(
+                                PieModel(
+                                "UncorrectQuestions",100-(correctedQuestions/it.data.size)*100.toFloat(),Color.GRAY
+                                )
+                            )
+                            binding.pieChartAttemptedQuestions.addPieSlice(
+                                PieModel(
+                                    "Attempted Questions",(correctedQuestions+wrongQuestions).toFloat(),Color.parseColor("#E79300"))
+                            )
+                            binding.WrongQuestionsPieChart.addPieSlice(
+                                PieModel(
+                                    "Wrong Questions",(wrongQuestions/it.data.size)*100,Color.RED
+                                )
+                            )
+                            binding.WrongQuestionsPieChart.addPieSlice(
+                                PieModel(
+                                    "Un-Wrong Questions",100-(wrongQuestions/it.data.size)*100.toFloat(),Color.GRAY)
+                                )
+
+                            binding.pieChartAttemptedQuestions.startAnimation()
+                            binding.pieChartCorrectedAnswer.startAnimation()
+                            binding.WrongQuestionsPieChart.startAnimation()
                             binding.CorrectedQuestionsQuizResult.text=correctedQuestions.toString()
                             binding.WrongQuestionsQuizResult.text=wrongQuestions.toString()
                             binding.QuizResultScore.text=score.toString() + "/" + totalScore.toString()

@@ -96,18 +96,7 @@ class HomePageTeachersSide : Fragment() {
                    }
                    is Response.TokenExpire->
                    {
-//                       Toast.makeText(context,"Token Expired",Toast.LENGTH_LONG).show()
-//                      var result= getNewToken(RetrofitClient.init()).getToken()
-//                      result.observe(viewLifecycleOwner,
-//                          {
-//                              when(it)
-//                              {
-//                              is Response.Success->
-//                              {
-//
-//                              }
-//                                  z
-//                          })
+
                    }
 
                    is Response.Error -> {
@@ -127,31 +116,24 @@ class HomePageTeachersSide : Fragment() {
 
            })
         lifecycleScope.launch {
-            var AccessToken = Splash_Screen.readInfo("access").toString()
-           var token = AccessToken
-            RetrofitClient.init().getTeachersProfile("Bearer ${token}").enqueue(object :
-                Callback<getTeachersProfileModel?> {
-                override fun onResponse(
-                    call: Call<getTeachersProfileModel?>,
-                    response: retrofit2.Response<getTeachersProfileModel?>
-                ) {
-                    if(response.isSuccessful)
-                    {
-                     teachersInfo=response.body()
+            var result = homePageViewModel.GetProfile()
+            result.observe(viewLifecycleOwner,
+                {
+                    when (it) {
+                        is Response.Success -> {
+                            teachersInfo = it.data
+                        }
+                        is Response.Error -> {
+                            Toast.makeText(
+                                requireContext(),
+                                "Something went wrong please try again",
+                                Toast.LENGTH_LONG
+                            ).show()
+                        }
                     }
-                    else
-                    {
-                        Toast.makeText(requireContext(),response.message().toString(),Toast.LENGTH_LONG).show()
-                    }
-                }
+                })
 
-                override fun onFailure(call: Call<getTeachersProfileModel?>, t: Throwable) {
-                    TODO("Not yet implemented")
-                }
-            })
         }
-
-
         return binding.root
     }
 }

@@ -22,13 +22,17 @@ class SignUpRepo(private var Api:Api) {
                 call: Call<ResponseBody?>,
                 response: retrofit2.Response<ResponseBody?>
             ) {
-                if(response.code()==201)
+                if(response.isSuccessful)
+                {
+                    SignUpLiveData.postValue(Response.Success())
+                }
+                else if(response.code()==302)
                 {
                     SignUpLiveData.postValue(Response.Success())
                 }
                 else
                 {
-                    SignUpLiveData.postValue(Response.Error(response.message()))
+                    SignUpLiveData.postValue(Response.Error(response.code().toString()))
                 }
             }
 

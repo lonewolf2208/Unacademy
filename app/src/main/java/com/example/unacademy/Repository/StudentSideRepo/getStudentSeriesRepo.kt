@@ -6,7 +6,6 @@ import com.example.unacademy.Repository.Response
 import com.example.unacademy.Repository.getNewToken
 import com.example.unacademy.api.Api
 import com.example.unacademy.models.StudentSideModel.getStudentSeries.getStudentSeriesItem
-import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 

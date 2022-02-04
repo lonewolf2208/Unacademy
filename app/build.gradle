@@ -78,6 +78,7 @@ dependencies {
     implementation 'com.facebook.shimmer:shimmer:0.1.0@aar'
     //Image Slider
     implementation 'com.github.denzcoskun:ImageSlideshow:0.0.6'
-    //PieChart
-    implementation 'com.github.lecho:hellocharts-library:1.5.8@aar'
+    // Chart and graph library
+    implementation 'com.github.blackfizz:eazegraph:1.2.5l@aar'
+    implementation 'com.nineoldandroids:library:2.4.0'
 }

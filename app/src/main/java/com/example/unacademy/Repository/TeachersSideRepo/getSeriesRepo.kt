@@ -6,13 +6,9 @@ import com.example.unacademy.Repository.Response
 import com.example.unacademy.Repository.getNewToken
 import com.example.unacademy.Ui.Auth.Splash_Screen
 import com.example.unacademy.api.Api
-import com.example.unacademy.api.RetrofitClient
 import com.example.unacademy.models.TeachersSideModels.educatorSeries.educatorSeriesModelItem
-import com.example.unacademy.models.TeachersSideModels.teachersProfileDataClass
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import retrofit2.Call
 import retrofit2.Callback
 

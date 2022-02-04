@@ -57,6 +57,7 @@ class AddQuizQuestions : Fragment(),View.OnClickListener{
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.AddNextQuestion -> {
+                options=1
                 lifecycleScope.launch {
                     if (addQuizQuestionViewModel.Validations() == null) {
                         var result = addQuizQuestionViewModel.UploadQuizQuestion()
@@ -64,6 +65,11 @@ class AddQuizQuestions : Fragment(),View.OnClickListener{
                             {
                                 when (it) {
                                     is Response.Success -> {
+                                        binding.Option3.visibility=View.GONE
+                                        binding.Option4.visibility=View.GONE
+                                        binding.textView78.visibility=View.GONE
+                                        binding.textView79.visibility=View.GONE
+                                        binding.spinner2.isSelected=false
                                         Toast.makeText(
                                             context,
                                             "Question Created",
@@ -101,6 +107,7 @@ class AddQuizQuestions : Fragment(),View.OnClickListener{
                         binding.Option3.visibility=View.VISIBLE
                         binding.Option3.text=binding.AddOptionsText.text
                         binding.textView78.visibility=View.VISIBLE
+                        binding.AddOptionsText.setText("")
                         options++
                     }
                     else if(options==2)
@@ -108,6 +115,7 @@ class AddQuizQuestions : Fragment(),View.OnClickListener{
                         binding.Option4.visibility=View.VISIBLE
                         binding.Option4.text=binding.AddOptionsText.text
                         binding.textView79.visibility=View.VISIBLE
+                        binding.AddOptionsText.setText("")
                         options++
                     }
                      else

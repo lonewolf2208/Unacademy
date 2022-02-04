@@ -123,16 +123,16 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView92" />
 
-            <lecho.lib.hellocharts.view.PieChartView
-                android:id="@+id/pieChartView"
+            <org.eazegraph.lib.charts.PieChart
+                android:id="@+id/pieChartCorrectedAnswer"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
-                android:layout_marginStart="100dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginStart="56dp"
+                android:layout_marginTop="20dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView93">
 
-            </lecho.lib.hellocharts.view.PieChartView>
+            </org.eazegraph.lib.charts.PieChart>
 
             <Button
                 android:id="@+id/ViewAnalysisStudentSide"
@@ -145,7 +145,7 @@
                 android:textAllCaps="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/pieChartView" />
+                app:layout_constraintTop_toBottomOf="@+id/pieChartAttemptedQuestions" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button3"
@@ -228,6 +228,24 @@
                 app:layout_constraintStart_toEndOf="@+id/textView89"
                 app:layout_constraintTop_toBottomOf="@+id/textView88" />
 
+
+            <org.eazegraph.lib.charts.PieChart
+                android:id="@+id/WrongQuestionsPieChart"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintStart_toEndOf="@+id/pieChartCorrectedAnswer"
+                app:layout_constraintTop_toBottomOf="@+id/textView93"></org.eazegraph.lib.charts.PieChart>
+
+            <org.eazegraph.lib.charts.PieChart
+                android:id="@+id/pieChartAttemptedQuestions"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginStart="120dp"
+                android:layout_marginTop="4dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pieChartCorrectedAnswer"></org.eazegraph.lib.charts.PieChart>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </FrameLayout>

@@ -5,7 +5,6 @@ import com.example.unacademy.Repository.Response
 import com.example.unacademy.Repository.getNewToken
 import com.example.unacademy.api.Api
 import com.example.unacademy.models.StudentSideModel.getStudentSeries.EducatorDetails
-import com.example.unacademy.models.StudentSideModel.getStudentSeries.getStudentSeriesItem
 import retrofit2.Call
 import retrofit2.Callback
 
