@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.example.unacademy.Repository.Response
 import com.example.unacademy.Repository.getNewToken
 import com.example.unacademy.api.Api
-import com.example.unacademy.models.StudentStory.studentStoryModelItem
+import com.example.unacademy.models.StudentSideModel.StudentStory.studentStoryModelItem
 import retrofit2.Call
 import retrofit2.Callback
 
@@ -34,7 +34,7 @@ class StudentStoryProfileRepo(val Api:Api) {
                     {
                         for(i in 0..(response.body()!!.size-1))
                         {
-                            var flag=0
+
                             if(response.body()!![i].name in StudentStoryProfileRepo.studentStoryDataName)
                             {
                                 continue

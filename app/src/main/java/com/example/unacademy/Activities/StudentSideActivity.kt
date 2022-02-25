@@ -119,7 +119,7 @@ class StudentSideActivity : AppCompatActivity(), View.OnClickListener {
     private fun alertBoxClose()
     {
         val builder= AlertDialog.Builder(this)
-        builder.setTitle("Leave Quiz")
+        builder.setTitle("Quit App")
             .setMessage("Are you sure you want to leave the App?")
             .setPositiveButton("No"){dialog,id->dialog.cancel()}
             .setNegativeButton("Yes"){dialog,id->finishAffinity()}

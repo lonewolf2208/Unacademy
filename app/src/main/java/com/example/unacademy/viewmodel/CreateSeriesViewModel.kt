@@ -40,10 +40,6 @@ class CreateSeriesViewModel:ViewModel() {
         {
             helperTextDescription.postValue("Add Description")
         }
-        if(icon.value.isNullOrEmpty())
-        {
-
-        }
         else
         {
             return null

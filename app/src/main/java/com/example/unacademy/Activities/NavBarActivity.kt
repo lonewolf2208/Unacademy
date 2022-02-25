@@ -56,6 +56,8 @@ class NavBarActivity : AppCompatActivity() ,View.OnClickListener{
         }
         binding.bottomNavigationView.itemIconTintList=null
         binding.bottomNavigationView.background=null
+        var notifications=findViewById<ImageView>(R.id.NotificationButtonStudentSide)
+        notifications.visibility=View.GONE
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragment_container) as NavHostFragment
         val navController: NavController = navHostFragment.navController
         binding.bottomNavigationView.setupWithNavController(navController)
@@ -135,7 +137,7 @@ class NavBarActivity : AppCompatActivity() ,View.OnClickListener{
     private fun alertBox()
     {
         val builder= AlertDialog.Builder(this)
-        builder.setTitle("Leave Quiz")
+        builder.setTitle("Quit App")
             .setMessage("Are you sure you want to leave the App?")
             .setPositiveButton("No"){dialog,id->dialog.cancel()}
             .setNegativeButton("Yes"){dialog,id->finishAffinity()}

@@ -1,4 +1,4 @@
-package com.example.unacademy.models.StudentStory
+package com.example.unacademy.models.StudentSideModel.StudentStory
 
 data class studentStoryModelItem(
     val educator: Int,

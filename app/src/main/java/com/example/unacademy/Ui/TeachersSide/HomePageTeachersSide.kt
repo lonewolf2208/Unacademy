@@ -38,7 +38,7 @@ class HomePageTeachersSide : Fragment() {
     companion object
     {
         var seriesid:Int?=null
-       var teachersInfo:getTeachersProfileModel?=null
+
     }
     lateinit var binding :FragmentHomePageTeachersSideBinding
     lateinit var homePageViewModel:HomePageViewModel
@@ -62,7 +62,7 @@ class HomePageTeachersSide : Fragment() {
         )
 
         binding.lifecycleOwner=this
-
+        binding.shimmerFrameLayoutHomePage.startShimmerAnimation()
         lifecycleScope.launch {
             homePageViewModel.getSeries()
         }
@@ -72,13 +72,14 @@ class HomePageTeachersSide : Fragment() {
                when(it)
                {
                    is Response.Success -> {
+                       var shimmerFrameLayoutHomePage=view?.findViewById<ShimmerFrameLayout>(R.id.shimmerFrameLayoutHomePage)
+                       shimmerFrameLayoutHomePage?.stopShimmerAnimation()
+                       shimmerFrameLayoutHomePage?.visibility=View.GONE
                        if(it.data!!.isEmpty())
                        {
                            binding.EmptySeries.text="Upload Series !! "
                        }
-                       var shimmerFrameLayoutHomePage=view?.findViewById<ShimmerFrameLayout>(R.id.shimmerFrameLayoutHomePage)
-                       shimmerFrameLayoutHomePage?.stopShimmerAnimation()
-                       shimmerFrameLayoutHomePage?.visibility=View.GONE
+
                        layoutManager=LinearLayoutManager(container?.context)
                        binding.recyclerViewHomePage.layoutManager=layoutManager
                        adapter=RecyclerAdapterTeachersSideHomePage(it.data)
@@ -94,15 +95,11 @@ class HomePageTeachersSide : Fragment() {
                            }
                        })
                    }
-                   is Response.TokenExpire->
-                   {
-
-                   }
 
                    is Response.Error -> {
                        Toast.makeText(
                            context,
-                           it.errorMessage.toString(),
+                           "Error",
                            Toast.LENGTH_LONG
                        ).show()
 
@@ -115,25 +112,7 @@ class HomePageTeachersSide : Fragment() {
                }
 
            })
-        lifecycleScope.launch {
-            var result = homePageViewModel.GetProfile()
-            result.observe(viewLifecycleOwner,
-                {
-                    when (it) {
-                        is Response.Success -> {
-                            teachersInfo = it.data
-                        }
-                        is Response.Error -> {
-                            Toast.makeText(
-                                requireContext(),
-                                "Something went wrong please try again",
-                                Toast.LENGTH_LONG
-                            ).show()
-                        }
-                    }
-                })
 
-        }
         return binding.root
     }
 }

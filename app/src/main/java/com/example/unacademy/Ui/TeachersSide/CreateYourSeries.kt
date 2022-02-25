@@ -68,6 +68,7 @@ class CreateYourSeries : Fragment() ,View.OnClickListener{
             var progressDialog = ProgressDialog(context)
             progressDialog.setTitle("Uploading File ")
             progressDialog.show()
+            progressDialog.setCancelable(false)
             storageReference.putFile(imageUri)
                 .addOnSuccessListener{
                     it.storage.downloadUrl.addOnSuccessListener {
@@ -117,6 +118,7 @@ class CreateYourSeries : Fragment() ,View.OnClickListener{
                                         "Series Created",
                                         Toast.LENGTH_LONG
                                     ).show()}
+
                                     is Response.Error -> Toast.makeText(
                                         context,
                                         it.errorMessage,

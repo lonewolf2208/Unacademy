@@ -1,5 +1,6 @@
 package com.example.unacademy.Ui.StudentsSide
 
+import android.app.ProgressDialog
 import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -43,6 +44,10 @@ class QuizResultPage : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding=DataBindingUtil.inflate(inflater,R.layout.fragment_quiz_result_page, container, false)
+        var progressDialog = ProgressDialog(context)
+        progressDialog.setTitle("Fetching Result ")
+        progressDialog.setCancelable(false)
+        progressDialog.show()
         binding.lifecycleOwner=this
         binding.quizResultViewModel=getQuizResultViewModel
         binding.ViewAnalysisStudentSide.setOnClickListener {
@@ -99,6 +104,7 @@ class QuizResultPage : Fragment() {
                             binding.CorrectedQuestionsQuizResult.text=correctedQuestions.toString()
                             binding.WrongQuestionsQuizResult.text=wrongQuestions.toString()
                             binding.QuizResultScore.text=score.toString() + "/" + totalScore.toString()
+                            progressDialog.dismiss()
 
                         }
                         is Response.Error-> Toast.makeText(context,it.errorMessage.toString(),Toast.LENGTH_LONG).show()

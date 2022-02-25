@@ -9,7 +9,7 @@ import coil.load
 import com.example.unacademy.R
 import com.example.unacademy.Repository.StudentSideRepo.StudentStoryProfileRepo
 import com.example.unacademy.databinding.CardViewStoriesStudentSideBinding
-import com.example.unacademy.models.StudentStory.studentStoryModelItem
+import com.example.unacademy.models.StudentSideModel.StudentStory.studentStoryModelItem
 
 class RecyclerAdapterStudentStory(var studentStoryModelItem: List<studentStoryModelItem>?): RecyclerView.Adapter<RecyclerAdapterStudentStory.ViewHolder>() {
     var clickListener:ClickListener?=null
@@ -38,6 +38,7 @@ class RecyclerAdapterStudentStory(var studentStoryModelItem: List<studentStoryMo
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
        holder.binding.storiStudentSide.load(StudentStoryPicture[position].toString())
+        holder.binding.StoryNameStudentSide.text=StudentStoryProfileRepo.studentStoryDataName[position].toString()
     }
 
     override fun getItemCount(): Int {

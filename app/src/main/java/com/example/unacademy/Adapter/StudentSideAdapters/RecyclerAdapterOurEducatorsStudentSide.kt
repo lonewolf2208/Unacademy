@@ -1,6 +1,8 @@
 package com.example.unacademy.Adapter.StudentSideAdapters
 
 import android.content.Context
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
@@ -21,18 +23,18 @@ class RecyclerAdapterOurEducatorsStudentSide(val context:Context,var educationDe
         var educatorId = 0
     }
     var is_following=false
-//    var clickListener:ClickListener?=null
-//
-//    fun onClickListener( clickListener:ClickListener)
-//    {
-//        this.clickListener=clickListener
-//    }
+    var clickListener:ClickListener?=null
+
+    fun onClickListener( clickListener:ClickListener)
+    {
+        this.clickListener=clickListener
+    }
     inner class ViewHolder(var binding:CardViewOurEducatorsStudentSideBinding):RecyclerView.ViewHolder(binding.root) {
-//        init {
-//            binding.FollowButton.setOnClickListener {
-//                clickListener?.OnClick(adapterPosition)
-//            }
-//        }
+        init {
+            itemView.setOnClickListener {
+                clickListener?.OnClick(adapterPosition)
+            }
+        }
     }
     interface ClickListener{
         fun OnClick(position:Int)
@@ -50,12 +52,16 @@ class RecyclerAdapterOurEducatorsStudentSide(val context:Context,var educationDe
         holder.binding.educatorImageStudentSide.load(educationDetails?.get(position)?.picture.toString())
         if(educationDetails?.get(position)?.is_followed==true)
         {
+//            holder.binding.FollowButton.setBackgroundResource(R.drawable.follow_button_border)
+
             holder.binding.FollowButton.text="Following"
         }
         holder.binding.FollowButton.setOnClickListener {
             educatorId= educationDetails?.get(position)?.id!!.toInt()
 
-            if(is_following==false) {
+            if(is_following==false)
+            {
+//                holder.binding.FollowButton.setBackgroundResource(R.drawable.follow_button_border)
                 holder.binding.FollowButton.text="Following"
                 MainScope().launch {
                     HomePageStudentSideViewModel().addFollowing()

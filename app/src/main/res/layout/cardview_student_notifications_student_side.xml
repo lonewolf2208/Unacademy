@@ -49,29 +49,33 @@
                     app:layout_constraintCircleRadius="50dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/DateNotificationsStudentSide"
-                    app:shapeAppearanceOverlay="@style/Circular"
+                    app:shapeAppearance="@style/Circular"
                     app:strokeWidth="5dp"/>
 
                 <TextView
                     android:id="@+id/TitleNotificationStudentSide"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="19dp"
                     android:layout_marginTop="23dp"
+                    android:layout_marginEnd="8dp"
                     android:fontFamily="@font/rosario_bold"
                     android:text="TextView"
                     android:textColor="#000000"
                     android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/setProfileImageTeachersCardView"
                     app:layout_constraintTop_toBottomOf="@+id/DateNotificationsStudentSide" />
 
                 <TextView
                     android:id="@+id/BodyNotificationStudentSide"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="19dp"
                     android:layout_marginTop="1dp"
+                    android:layout_marginEnd="8dp"
                     android:text="TextView"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/setProfileImageTeachersCardView"
                     app:layout_constraintTop_toBottomOf="@+id/TitleNotificationStudentSide" />
             </androidx.constraintlayout.widget.ConstraintLayout>

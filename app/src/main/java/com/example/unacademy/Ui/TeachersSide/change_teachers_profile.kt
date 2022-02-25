@@ -90,6 +90,7 @@ class change_teachers_profile : Fragment(),View.OnClickListener{
             var storageReference = storage.getReference("images/"+randomKey)
             var progressDialog = ProgressDialog(context)
             progressDialog.setTitle("Uploading File ")
+            progressDialog.setCancelable(false)
             progressDialog.show()
             storageReference.putFile(imageUri)
                 .addOnSuccessListener{

@@ -5,21 +5,22 @@ import com.example.unacademy.models.AuthModels.LoginDataClass
 import com.example.unacademy.models.AuthModels.Message
 import com.example.unacademy.models.AuthModels.SignUpDataClass
 import com.example.unacademy.models.QuizQuestionsModel.quizQuestionsModel
-import com.example.unacademy.models.StudentSideGetQuiz.StudentSideGetQuizModelItem
+import com.example.unacademy.models.StudentSideModel.StudentSideGetQuiz.StudentSideGetQuizModelItem
 import com.example.unacademy.models.StudentSideModel.QuizResultRepo.QuizResultModelItem
 import com.example.unacademy.models.StudentSideModel.StudentNotifications.StudentNotificationsModelItem
 import com.example.unacademy.models.StudentSideModel.getStudentSeries.EducatorDetails
 import com.example.unacademy.models.StudentSideModel.getStudentSeries.getStudentSeriesItem
 import com.example.unacademy.models.StudentSideModel.getStudentSeries.studentStories.StudentStoryInfoModelItem
-import com.example.unacademy.models.StudentStory.studentStoryModelItem
+import com.example.unacademy.models.StudentSideModel.StudentStory.studentStoryModelItem
+import com.example.unacademy.models.StudentSideModel.getStudentProfileModel.getStudentProfileModel
+import com.example.unacademy.models.StudentSideModel.teachersProfileModel.teacher_profile_student_side
 import com.example.unacademy.models.TeachersSideModels.CreateQuizModel.CreateQuizModel
-import com.example.unacademy.models.TeachersSideModels.educatorSeries.educatorSeriesModelItem
+
 import com.example.unacademy.models.TeachersSideModels.getLectureModelItem
 import com.example.unacademy.models.TeachersSideModels.getStoryModelItem
 import com.example.unacademy.models.TeachersSideModels.getTeachersProfile.getTeachersProfileModel
 import com.example.unacademy.models.TeachersSideModels.teachersProfileDataClass
 import com.example.unacademy.models.tokenModel
-import com.example.unacademy.viewmodel.CreateAQuizViewModel
 import okhttp3.ResponseBody
 import retrofit2.Call
 
@@ -101,7 +102,7 @@ interface Api {
     ): Call<tokenModel>
 
     @GET("/educator/series/")
-    fun getSeries(@Header("Authorization") token: String): Call<List<educatorSeriesModelItem>>
+    fun getSeries(@Header("Authorization") token: String): Call<List<getStudentSeriesItem>>
 
     @GET("/educator/create/")
     fun getTeachersProfile(@Header("Authorization") token: String): Call<getTeachersProfileModel>
@@ -274,9 +275,13 @@ interface Api {
         @Field("new_password")new_password:String,
         @Header("Authorization") token: String
     ):Call<ResponseBody>
-
-
     @GET("/student/notification/")
     fun getStudentNotifications(@Header("Authorization") token: String):Call<List<StudentNotificationsModelItem>>
 
+    @GET("/student/profile/")
+    fun GetStudentProfile(@Header("Authorization") token: String):Call<getStudentProfileModel>
+
+
+    @GET("/student/educator-profile/{educator_id}/")
+    fun getTeachersProfileStudentSide(@Path("educator_id") id: Int,@Header("Authorization") token: String):Call<teacher_profile_student_side>
 }

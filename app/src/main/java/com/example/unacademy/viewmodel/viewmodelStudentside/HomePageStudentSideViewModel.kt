@@ -7,13 +7,11 @@ import com.example.unacademy.Adapter.StudentSideAdapters.RecyclerAdapterOurEduca
 import com.example.unacademy.Repository.Response
 import com.example.unacademy.Repository.StudentSideRepo.*
 import com.example.unacademy.Ui.Auth.Splash_Screen
-import com.example.unacademy.Ui.StudentsSide.homePageStudentSide
-import com.example.unacademy.Ui.TeachersSide.HomePageTeachersSide
 import com.example.unacademy.api.RetrofitClient
-import com.example.unacademy.models.StudentSideGetQuiz.StudentSideGetQuizModelItem
+import com.example.unacademy.models.StudentSideModel.StudentSideGetQuiz.StudentSideGetQuizModelItem
 import com.example.unacademy.models.StudentSideModel.getStudentSeries.EducatorDetails
 import com.example.unacademy.models.StudentSideModel.getStudentSeries.getStudentSeriesItem
-import com.example.unacademy.models.StudentStory.studentStoryModelItem
+import com.example.unacademy.models.StudentSideModel.StudentStory.studentStoryModelItem
 import kotlinx.coroutines.launch
 import okhttp3.ResponseBody
 

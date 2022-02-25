@@ -65,10 +65,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
                     android:layout_marginTop="12dp"
+                    android:layout_marginBottom="8dp"
                     android:fontFamily="@font/rosario_bold"
                     android:text="Total No. of lectures : "
                     android:textColor="#000000"
                     android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/descriptionhomepageteachersSide" />
 
@@ -78,10 +80,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
                     android:layout_marginTop="12dp"
+                    android:layout_marginBottom="8dp"
                     android:fontFamily="@font/rosario_bold"
                     android:text=""
                     android:textColor="#020000"
                     android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/textView41"
                     app:layout_constraintTop_toBottomOf="@+id/descriptionhomepageteachersSide" />
 

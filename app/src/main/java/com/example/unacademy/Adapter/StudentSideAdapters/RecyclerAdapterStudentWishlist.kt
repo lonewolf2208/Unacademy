@@ -45,25 +45,14 @@ class RecyclerAdapterStudentWishlist(val context: Context, var getStudentSeries:
         }
         holder.binding.WishListStudentSide.setOnClickListener {
 
-            if(wishListFlag==false) {
-                holder.binding.WishListStudentSide.setBackgroundResource(R.drawable.ic_wishlist_student_side_selected)
-                MainScope().launch {
-                    HomePageStudentSideViewModel().StudentWishlist(getStudentSeries!![position].id.toInt())
-                    Toast.makeText(context,"Series added to wishlist", Toast.LENGTH_LONG).show()
-                }
-                wishListFlag = true
+//
+            MainScope().launch {
+                HomePageStudentSideViewModel().DeleteStudentWishlist(getStudentSeries!![position].id.toInt())
+                getStudentSeries.removeAt(position)
+                notifyDataSetChanged()
+                Toast.makeText(context, "Series removed from Wishlist", Toast.LENGTH_LONG).show()
             }
-            else
-            {
-                MainScope().launch {
-                    HomePageStudentSideViewModel().DeleteStudentWishlist(getStudentSeries!![position].id.toInt())
-                    getStudentSeries.removeAt(position)
-                    notifyDataSetChanged()
-                    Toast.makeText(context,"Series removed from Wishlist", Toast.LENGTH_LONG).show()
-                }
-                holder.binding.WishListStudentSide.setBackgroundResource(R.drawable.ic_wishlist_student_side_deselected)
-                wishListFlag=false
-            }
+
         }
         holder.binding.SeriesDescriptionStudentSide.text= getStudentSeries?.get(position)?.description.toString()
         holder.binding.imageView10.load(getStudentSeries?.get(position)?.icon.toString())

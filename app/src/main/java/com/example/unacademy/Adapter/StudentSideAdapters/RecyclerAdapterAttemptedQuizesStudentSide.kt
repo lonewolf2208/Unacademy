@@ -7,7 +7,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.unacademy.R
 import com.example.unacademy.databinding.CardViewDailyQuizStudentSideBinding
-import com.example.unacademy.models.StudentSideGetQuiz.StudentSideGetQuizModelItem
+import com.example.unacademy.models.StudentSideModel.StudentSideGetQuiz.StudentSideGetQuizModelItem
 
 class RecyclerAdapterAttemptedQuizesStudentSide(var studentSideGetQuizModelItem: ArrayList<StudentSideGetQuizModelItem>): RecyclerView.Adapter<RecyclerAdapterAttemptedQuizesStudentSide.ViewHolder>() {
     var attemptedQuiz=ArrayList<StudentSideGetQuizModelItem>()

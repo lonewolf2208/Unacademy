@@ -14,7 +14,7 @@
         <!-- Customize your theme here. -->
     </style>
 
-    t<style name="TeachersSideHomePage" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <style name="TeachersSideHomePage" parent="Theme.MaterialComponents.Light.NoActionBar">
     <item name="colorPrimary">#003356</item>
     <item name="colorPrimaryVariant">@color/purple_700</item>
     <item name="colorOnPrimary">@color/white</item>

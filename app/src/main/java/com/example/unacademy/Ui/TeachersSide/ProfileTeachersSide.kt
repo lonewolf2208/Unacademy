@@ -37,7 +37,7 @@ import java.util.*
 
 class ProfileTeachersSide : Fragment(),View.OnClickListener {
     companion object{
-        var teachersInfo=HomePageTeachersSide.teachersInfo
+        lateinit var teachersInfo:getTeachersProfileModel
     }
     private lateinit var imageUri: Uri
     private var IMAGE_REQUEST_CODE=100
@@ -54,15 +54,40 @@ class ProfileTeachersSide : Fragment(),View.OnClickListener {
     ): View? {
         // Inflate the layout for this fragment
         binding=DataBindingUtil.inflate(inflater,R.layout.fragment_profile_teachers_side,container,false)
-       binding.lifecycleOwner=this
+
+
+        binding.lifecycleOwner=this
         binding.profileteacherSideViewModel=profileTeachersSideVIewModel
+
+        lifecycleScope.launch {
+            var result = profileTeachersSideVIewModel.GetProfile()
+            result.observe(viewLifecycleOwner,
+                {
+                    when (it)
+                    {
+                        is com.example.unacademy.Repository.Response.Success -> {
+                            binding?.setProfileImageTeachersCardView?.load(it.data!!.picture)
+                            binding.FacultyName.text= it.data!!.name.toString()
+                            teachersInfo = it.data!!
+                        }
+                        is com.example.unacademy.Repository.Response.Error -> {
+                            Toast.makeText(
+                                requireContext(),
+                                "Something went wrong please try again",
+                                Toast.LENGTH_LONG
+                            ).show()
+                        }
+                    }
+                })
+
+        }
         binding.makeAnnouncement.setOnClickListener(this)
         binding.setProfileImageTeachersCardView.setOnClickListener(this)
         binding.ViewProfile.setOnClickListener(this)
         binding.AddQuiz.setOnClickListener(this)
         binding.UploadStory.setOnClickListener(this)
-        binding?.setProfileImageTeachersCardView?.load(teachersInfo!!.picture)
-        binding.FacultyName.text=teachersInfo?.name.toString()
+
+
 
 
         return binding!!.root

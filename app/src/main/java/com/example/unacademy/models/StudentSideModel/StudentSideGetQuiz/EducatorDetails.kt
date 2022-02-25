@@ -1,4 +1,4 @@
-package com.example.unacademy.models.StudentSideGetQuiz
+package com.example.unacademy.models.StudentSideModel.StudentSideGetQuiz
 
 data class EducatorDetails(
     val attachment: Any,

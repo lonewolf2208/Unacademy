@@ -7,9 +7,10 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.unacademy.R
 import com.example.unacademy.databinding.FragmentCardViewHomePageTeachersSideBinding
+import com.example.unacademy.models.StudentSideModel.getStudentSeries.getStudentSeriesItem
 import com.example.unacademy.models.TeachersSideModels.educatorSeries.educatorSeriesModelItem
 
-class RecyclerAdapterTeachersSideHomePage(val educatorSeriesModelItem: List<educatorSeriesModelItem>?):RecyclerView.Adapter<RecyclerAdapterTeachersSideHomePage.ViewHolder>() {
+class RecyclerAdapterTeachersSideHomePage(val educatorSeriesModelItem: List<getStudentSeriesItem>?):RecyclerView.Adapter<RecyclerAdapterTeachersSideHomePage.ViewHolder>() {
     var clickListener:ClickListener?=null
 
     fun onClickListeer( clickListener:ClickListener)

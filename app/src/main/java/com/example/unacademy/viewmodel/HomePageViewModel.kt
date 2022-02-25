@@ -9,13 +9,14 @@ import com.example.unacademy.Repository.TeachersSideRepo.GetTeachersProfileTeach
 import com.example.unacademy.Repository.TeachersSideRepo.getSeriesRepo
 import com.example.unacademy.Ui.Auth.Splash_Screen
 import com.example.unacademy.api.RetrofitClient
+import com.example.unacademy.models.StudentSideModel.getStudentSeries.getStudentSeriesItem
 import com.example.unacademy.models.TeachersSideModels.educatorSeries.educatorSeriesModelItem
 import com.example.unacademy.models.TeachersSideModels.getTeachersProfile.getTeachersProfileModel
 import kotlinx.coroutines.launch
 
 class HomePageViewModel():ViewModel() {
     var token:String?=null
-    var result=MutableLiveData<Response<List<educatorSeriesModelItem>>>()
+    var result=MutableLiveData<Response<List<getStudentSeriesItem>>>()
     suspend fun getSeries()
     {
         var Api= RetrofitClient.init()

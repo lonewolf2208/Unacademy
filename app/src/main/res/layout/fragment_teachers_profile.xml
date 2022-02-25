@@ -287,6 +287,7 @@
                     android:layout_marginStart="80dp"
                     android:layout_marginTop="32dp"
                     android:layout_marginEnd="80dp"
+                    android:layout_marginBottom="43dp"
                     android:backgroundTint="#003356"
                     android:fontFamily="@font/reem_kufi"
                     android:paddingTop="10dp"
@@ -294,6 +295,7 @@
                     android:text="Submit"
                     android:textAllCaps="false"
                     android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/VideoUploadContainer" />

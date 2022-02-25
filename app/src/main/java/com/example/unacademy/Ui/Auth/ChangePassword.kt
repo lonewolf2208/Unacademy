@@ -81,10 +81,7 @@ class ChangePassword : Fragment() ,View.OnClickListener{
             R.id.doneButtonChangePassword ->
             {
                 var email=EmailVerification.emailChangePassword
-                if(navController.previousBackStackEntry?.destination?.label.toString()=="fragment_home_page_teachers_side")
-                {
-                    email= HomePageTeachersSide.teachersInfo!!.educator.email
-                }
+
                 binding?.oldPasswordChangePassword?.clearFocus()
                 binding?.ConfirmPasswordChangePassword?.clearFocus()
                 if(validationFlagPassword1==1  && validationFlagPassword2==1)

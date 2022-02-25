@@ -86,9 +86,6 @@ class LogIn : Fragment() ,View.OnClickListener{
                                                         )
                                                     }
                                                     if (teacher == true) {
-                                                        lifecycleScope.launch {
-                                                            Splash_Screen.save("loggedIn",true)
-                                                        }
                                                         val intent = Intent(
                                                             activity,
                                                             NavBarActivity::class.java

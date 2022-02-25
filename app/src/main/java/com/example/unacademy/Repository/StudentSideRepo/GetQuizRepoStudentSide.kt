@@ -4,11 +4,15 @@ import androidx.lifecycle.MutableLiveData
 import com.example.unacademy.Repository.Response
 import com.example.unacademy.Repository.getNewToken
 import com.example.unacademy.api.Api
-import com.example.unacademy.models.StudentSideGetQuiz.StudentSideGetQuizModelItem
+import com.example.unacademy.models.StudentSideModel.StudentSideGetQuiz.StudentSideGetQuizModelItem
 import retrofit2.Call
 import retrofit2.Callback
 
 class GetQuizRepoStudentSide(var Api:Api) {
+    companion object
+    {
+        var studentQuizWithNoZeroQuestions=ArrayList<StudentSideGetQuizModelItem>()
+    }
     private val getQuizLiveData = MutableLiveData<Response<List<StudentSideGetQuizModelItem>>>()
     fun getQuizStudentSideApi(
         token: String
@@ -21,6 +25,14 @@ class GetQuizRepoStudentSide(var Api:Api) {
             ) {
 
                 if (response.isSuccessful) {
+                    studentQuizWithNoZeroQuestions= ArrayList<StudentSideGetQuizModelItem>()
+                    for(i in 0 until response.body()?.size!!.toInt())
+                    {
+                        if(response.body()!![i].questions!=0)
+                        {
+                            studentQuizWithNoZeroQuestions.add(response.body()!![i])
+                        }
+                    }
                     getQuizLiveData.postValue(Response.Success(response.body()))
                 }
                 else

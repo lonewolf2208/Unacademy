@@ -6,6 +6,7 @@ import com.example.unacademy.Repository.Response
 import com.example.unacademy.Repository.getNewToken
 import com.example.unacademy.Ui.Auth.Splash_Screen
 import com.example.unacademy.api.Api
+import com.example.unacademy.models.StudentSideModel.getStudentSeries.getStudentSeriesItem
 import com.example.unacademy.models.TeachersSideModels.educatorSeries.educatorSeriesModelItem
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
@@ -13,18 +14,18 @@ import retrofit2.Call
 import retrofit2.Callback
 
 class getSeriesRepo(val Api:Api){
-        private val getSeriesLiveData = MutableLiveData<Response<List<educatorSeriesModelItem>>>()
+        private val getSeriesLiveData = MutableLiveData<Response<List<getStudentSeriesItem>>>()
         fun getSeriesApi(
             token: String
-        ): MutableLiveData<Response<List<educatorSeriesModelItem>>> {
+        ): MutableLiveData<Response<List<getStudentSeriesItem>>> {
 
             val result = Api.getSeries(
                 "Bearer ${token}"
             )
-            result.enqueue(object : Callback<List<educatorSeriesModelItem>?> {
+            result.enqueue(object : Callback<List<getStudentSeriesItem>?> {
                 override fun onResponse(
-                    call: Call<List<educatorSeriesModelItem>?>,
-                    response: retrofit2.Response<List<educatorSeriesModelItem>?>
+                    call: Call<List<getStudentSeriesItem>?>,
+                    response: retrofit2.Response<List<getStudentSeriesItem>?>
                 ) {
                     Log.d("ddsadasd",response.message().toString())
                     when
@@ -32,26 +33,14 @@ class getSeriesRepo(val Api:Api){
                         response.isSuccessful->getSeriesLiveData.postValue(Response.Success(response.body()))
                         else->
                         {
-                            MainScope().launch {
-                                Log.w(
-                                    "OTKENSDASDASD",
-                                    "Before+++++++" + Splash_Screen.readInfo("access").toString()
-                                )
-                            }
                             getNewToken(Api).getToken()
-                            MainScope().launch {
-                                Log.w(
-                                    "OTKENSDASDASD",
-                                    "After:::::::::" +getNewToken.acessTOken
-                                )
-                            }
                             getSeriesApi(getNewToken.acessTOken.toString())
                         }
 
                     }
                 }
 
-                override fun onFailure(call: Call<List<educatorSeriesModelItem>?>, t: Throwable) {
+                override fun onFailure(call: Call<List<getStudentSeriesItem>?>, t: Throwable) {
                     getSeriesLiveData.postValue(Response.Error("on Failure"))
                 }
             })

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.unacademy.Adapter.StudentSideAdapters.RecyclerAdapterLatestSeries
@@ -34,9 +35,13 @@ class ResultAnalysisPageStudentSide : Fragment() {
             container,
             false
         )
+
         binding.QuizHEadingREsultAnalysis.text=homePageStudentSide.quizTitle.toString()
         layoutManager= LinearLayoutManager(container?.context)
         binding.RecyclerAdapterResultAnalysisStudentSide.layoutManager=layoutManager
+        binding.DoneButtonQuizResult.setOnClickListener{
+            findNavController().navigate(R.id.action_resultAnalysisPageStudentSide_to_homePageStudentSide)
+        }
         adapter= RecyclerAdapterResultAnalysisStudentSide(QuizResultPage.quizresult)
         binding.RecyclerAdapterResultAnalysisStudentSide.adapter=adapter
         return binding.root

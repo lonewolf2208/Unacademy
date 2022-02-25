@@ -56,6 +56,7 @@ class upload_lectures : Fragment(),View.OnClickListener {
             var storageReference = storage.getReference("images/"+randomKey)
             var progressDialog = ProgressDialog(context)
             progressDialog.setTitle("Uploading File ")
+            progressDialog.setCancelable(false)
             progressDialog.show()
             storageReference.putFile(imageUri).addOnSuccessListener{
                     it.storage.downloadUrl.addOnSuccessListener {

@@ -1,14 +1,11 @@
 package com.example.unacademy.Ui.StudentsSide
 
-import android.graphics.Color
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import android.widget.Toast
-import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -20,6 +17,7 @@ import com.example.unacademy.databinding.FragmentQuestionPageStudentSideBinding
 import com.example.unacademy.models.QuizQuestionsModel.quizQuestionsModel
 import com.example.unacademy.viewmodel.viewmodelStudentside.GetQuizQuestionsViewModel
 import kotlinx.coroutines.launch
+import java.util.concurrent.TimeUnit
 
 
 class QuestionPageStudentSide : Fragment() {
@@ -130,12 +128,13 @@ class QuestionPageStudentSide : Fragment() {
 
     fun startTimer() {
        timerCountDownTimer = object : CountDownTimer(homePageStudentSide.quizDuration.toLong()*60000, 1000) {
-            override fun onTick(millisUntilFinished: Long) {
-                val timeLeft = millisUntilFinished / 1000
-                if (timeLeft.toString().length == 2)
-                    binding.timer.text = "00:" + timeLeft.toString()
-                else
-                    binding.timer.text = "00:0" + timeLeft.toString()
+            override fun onTick(millisUntilFinished: Long)
+            {
+                var minutes=TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millisUntilFinished))
+                var seconds=TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished))
+                var hours=TimeUnit.MILLISECONDS.toHours(millisUntilFinished)
+                var text =  "Time Remaining ${hours}hrs:${minutes} min: ${seconds} sec"
+                binding.timer.setText(text)
             }
             override fun onFinish() {
                 binding.timer.text = "00:00"

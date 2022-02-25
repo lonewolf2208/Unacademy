@@ -58,10 +58,10 @@
        android:textColor="#000000"
        android:textSize="24sp"
        app:layout_constraintStart_toStartOf="parent"
-       app:layout_constraintTop_toBottomOf="@+id/button4" />
+       app:layout_constraintTop_toBottomOf="@+id/ViewProfileStudent" />
 
    <Button
-       android:id="@+id/button4"
+       android:id="@+id/ViewProfileStudent"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
        android:layout_marginStart="130dp"
@@ -84,10 +84,12 @@
        android:layout_width="0dp"
        android:layout_height="wrap_content"
        android:layout_marginStart="16dp"
-       android:layout_marginTop="40dp"
+       android:layout_marginTop="60dp"
        android:layout_marginEnd="16dp"
        android:textColor="#000000"
-       android:textSize="20sp"
+       android:elevation="6dp"
+       android:fontFamily="@font/rhodium_libre"
+       android:textSize="24sp"
        app:layout_constraintEnd_toEndOf="parent"
        app:layout_constraintStart_toStartOf="parent"
        app:layout_constraintTop_toBottomOf="@+id/textView96" />
@@ -97,23 +99,67 @@
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
        android:layout_marginStart="16dp"
-       android:layout_marginTop="16dp"
+       android:layout_marginTop="24dp"
        android:fontFamily="@font/rosario_bold"
        android:text="Attempted Quizes"
        android:textColor="#000000"
        android:textSize="24sp"
        app:layout_constraintStart_toStartOf="parent"
-       app:layout_constraintTop_toBottomOf="@+id/RecyclerAdapterWishlistStudentSide" />
+       app:layout_constraintTop_toBottomOf="@+id/shimmerFrameLayoutLatestSeriesProfilePageStudentSide" />
 
 
    <androidx.recyclerview.widget.RecyclerView
        android:id="@+id/RecyclerAdapterAttemptedQuizes"
        android:layout_width="0dp"
        android:layout_height="wrap_content"
+       android:layout_marginTop="16dp"
        app:layout_constraintEnd_toEndOf="parent"
        app:layout_constraintStart_toStartOf="parent"
-       app:layout_constraintTop_toBottomOf="@+id/textView99"
-        />
+       app:layout_constraintTop_toBottomOf="@+id/textView99" />
+
+   <com.facebook.shimmer.ShimmerFrameLayout
+       android:id="@+id/shimmerFrameLayoutLatestSeriesProfilePageStudentSide"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:gravity="center"
+
+       android:orientation="horizontal"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toBottomOf="@+id/textView96">
+
+    <LinearLayout
+        android:id="@+id/linearLayoutlatestSeries"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+     <include
+
+         layout="@layout/shimmer_effect_latest_series" />
+
+     <include
+
+         layout="@layout/shimmer_effect_latest_series" />
+     />
+    </LinearLayout>
+   </com.facebook.shimmer.ShimmerFrameLayout>
+
+   <TextView
+       android:id="@+id/EmptyAttemptedQuiz"
+       android:layout_width="0dp"
+       android:layout_height="wrap_content"
+       android:layout_marginStart="16dp"
+       android:layout_marginTop="24dp"
+       android:layout_marginEnd="16dp"
+       android:text="You Haven't attempted any quiz till now"
+       android:textSize="24sp"
+       android:visibility="invisible"
+       android:textColor="@color/black"
+       android:fontFamily="@font/rhodium_libre"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toBottomOf="@+id/textView99" />
   </androidx.constraintlayout.widget.ConstraintLayout>
 
  </FrameLayout>

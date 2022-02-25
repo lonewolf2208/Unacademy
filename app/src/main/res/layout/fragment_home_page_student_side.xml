@@ -28,7 +28,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginBottom="5dp"
-                android:fontFamily="@font/rosario_bold"
+                android:fontFamily="@font/roboto_bold"
                 android:text="Latest Series"
                 android:textColor="#000000"
                 android:textSize="24sp"
@@ -37,15 +37,14 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView65" />
 
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerViewLatestSeriesStudentSide"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView60" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewLatestSeriesStudentSide"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView60" />
 
 
             <TextView
@@ -53,36 +52,30 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="200dp"
-                android:fontFamily="@font/rosario_bold"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/roboto_bold"
                 android:text="Our Educators"
                 android:textColor="#000000"
                 android:textSize="24sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView81" />
+                app:layout_constraintTop_toBottomOf="@+id/shimmerFrameLayoutQuizHomePageTeachersSide" />
 
-            <HorizontalScrollView
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                android:scrollbarThumbHorizontal="@null"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView64">
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/OurEducatorsRecyclerViewStudentSide"
+                    android:layout_marginTop="8dp"
                     android:layout_width="match_parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView64"
                     android:layout_height="match_parent" />
-            </HorizontalScrollView>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerViewStoriesStudentSide"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
+
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -90,12 +83,12 @@
                 android:id="@+id/textView65"
                 android:layout_width="0dp"
                 android:layout_height="2dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="24dp"
                 android:background="#63574D4D"
                 android:backgroundTint="#444749"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/recyclerViewStoriesStudentSide" />
+                app:layout_constraintTop_toBottomOf="@+id/shimmerFrameLayoutStoryHomePageTeachersSide" />
 
             <TextView
                 android:id="@+id/textView81"
@@ -103,12 +96,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="24dp"
-                android:fontFamily="@font/rosario_bold"
+                android:fontFamily="@font/roboto_bold"
                 android:text="Daily Quiz"
                 android:textColor="#000000"
                 android:textSize="24sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/recyclerViewLatestSeriesStudentSide" />
+                app:layout_constraintTop_toBottomOf="@+id/shimmerFrameLayoutLatestSeriesHomePageTeachersSide" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/RecyclerAdapterDailQuizStudentSide"
@@ -118,6 +111,144 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView81" />
+
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/shimmerFrameLayoutQuizHomePageTeachersSide"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="61dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/shimmerFrameLayoutLatestSeriesHomePageTeachersSide">
+
+                <LinearLayout
+                    android:id="@+id/linearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <include
+                        android:id="@+id/include2DailyQUiz"
+                        layout="@layout/shimmer_effect_quiz_" />
+
+                    <include
+                        android:id="@+id/include3DailyQUiz"
+                        layout="@layout/shimmer_effect_quiz_" />
+                    />
+                </LinearLayout>
+            </com.facebook.shimmer.ShimmerFrameLayout>
+
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/shimmerFrameLayoutOurEducatorsHomePageTeachersSide"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="56dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/shimmerFrameLayoutQuizHomePageTeachersSide">
+
+                <LinearLayout
+                    android:id="@+id/linearLayoutOurEducators"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <include
+                        android:id="@+id/include2"
+                        layout="@layout/shimmer_effect_our_educators" />
+
+                    <include
+                        android:id="@+id/include3"
+                        layout="@layout/shimmer_effect_our_educators" />
+                    />
+                </LinearLayout>
+            </com.facebook.shimmer.ShimmerFrameLayout>
+
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/shimmerFrameLayoutLatestSeriesHomePageTeachersSide"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView60">
+
+                <LinearLayout
+                    android:id="@+id/linearLayoutlatestSeries"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <include
+
+                        layout="@layout/shimmer_effect_latest_series" />
+
+                    <include
+
+                        layout="@layout/shimmer_effect_latest_series" />
+                    />
+                </LinearLayout>
+            </com.facebook.shimmer.ShimmerFrameLayout>
+
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/shimmerFrameLayoutStoryHomePageTeachersSide"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <LinearLayout
+                    android:id="@+id/linearLayoutStory"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <include
+                        layout="@layout/shimmer_effect_story" />
+
+                    <include layout="@layout/shimmer_effect_story" />
+
+                    <include layout="@layout/shimmer_effect_story" />
+
+                    <include
+
+                        layout="@layout/shimmer_effect_story" />
+
+                </LinearLayout>
+            </com.facebook.shimmer.ShimmerFrameLayout>
+
+            <TextView
+                android:id="@+id/SeeMoreDailyQuiz"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/roboto_bold"
+                android:text="@string/SeeMore"
+                android:textColor="#000000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/shimmerFrameLayoutLatestSeriesHomePageTeachersSide" />
+
+            <TextView
+                android:id="@+id/SeeMoreLatestSeries"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="14dp"
+                android:fontFamily="@font/roboto_bold"
+                android:text="@string/SeeMore"
+                android:textColor="#000000"
+                app:layout_constraintBottom_toTopOf="@+id/shimmerFrameLayoutLatestSeriesHomePageTeachersSide"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </FrameLayout>

@@ -3,6 +3,9 @@
     <array name="preloaded_fonts" translatable="false">
         <item>@font/reem_kufi</item>
         <item>@font/rhodium_libre</item>
+        <item>@font/roboto_black</item>
+        <item>@font/roboto_bold</item>
+        <item>@font/roboto_thin</item>
         <item>@font/rosario</item>
         <item>@font/rosario_bold</item>
         <item>@font/rubik_mono_one</item>

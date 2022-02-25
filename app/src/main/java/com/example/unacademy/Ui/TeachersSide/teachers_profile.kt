@@ -83,6 +83,7 @@ class teachers_profile : Fragment(),View.OnClickListener,DatePickerDialog.OnDate
             var storageReference = storage.getReference("images/"+randomKey)
             var progressDialog = ProgressDialog(context)
             progressDialog.setTitle("Uploading File ")
+            progressDialog.setCancelable(false)
             progressDialog.show()
             storageReference.putFile(imageUri)
                 .addOnSuccessListener{

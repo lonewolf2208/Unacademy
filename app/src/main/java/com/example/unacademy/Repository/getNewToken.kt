@@ -27,8 +27,9 @@ class getNewToken(private val Api:Api) {
     var refreshToken:String?=null
 
     fun getToken(): String {
-         Log.d("TokewnExpired", refreshToken.toString())
+
         GlobalScope.launch {
+            Log.d("TokewnExpired", Splash_Screen.readInfo("refresh").toString())
             var result = Api.refreshToken(Splash_Screen.readInfo("refresh").toString())
                 .enqueue(object : Callback<tokenModel?> {
                     override fun onResponse(
@@ -36,7 +37,7 @@ class getNewToken(private val Api:Api) {
                         response: retrofit2.Response<tokenModel?>
                     ) {
 
-                        Log.w("RESSESES", response.body()!!.access.toString())
+                        Log.w("RESSESES", response.message().toString())
                         if (response.isSuccessful) {
                             acessTOken= response.body()!!.access.toString()
                             GlobalScope.launch {
@@ -46,6 +47,7 @@ class getNewToken(private val Api:Api) {
                                 )
                             }
                         }
+
                     }
 
                     override fun onFailure(call: Call<tokenModel?>, t: Throwable) {

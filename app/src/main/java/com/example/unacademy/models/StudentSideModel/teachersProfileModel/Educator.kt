@@ -1,4 +1,4 @@
-package com.example.unacademy.models.StudentSideGetQuiz
+package com.example.unacademy.models.StudentSideModel.teachersProfileModel
 
 data class Educator(
     val email: String,

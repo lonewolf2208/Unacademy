@@ -14,19 +14,22 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.unacademy.Adapter.RecyclerAdapterLectureTeachersSide
 import com.example.unacademy.Adapter.StudentSideAdapters.RecyclerAdapterAttemptedQuizesStudentSide
-import com.example.unacademy.Adapter.StudentSideAdapters.RecyclerAdapterLatestSeries
-import com.example.unacademy.Adapter.StudentSideAdapters.RecyclerAdapterQuizTEachersSide
 import com.example.unacademy.Adapter.StudentSideAdapters.RecyclerAdapterStudentWishlist
 import com.example.unacademy.R
 import com.example.unacademy.Repository.Response
 import com.example.unacademy.Ui.TeachersSide.HomePageTeachersSide
 import com.example.unacademy.databinding.FragmentProfileStudentSideBinding
-import com.example.unacademy.models.StudentSideGetQuiz.StudentSideGetQuizModelItem
+import com.example.unacademy.models.StudentSideModel.StudentSideGetQuiz.StudentSideGetQuizModelItem
+import com.example.unacademy.models.StudentSideModel.getStudentProfileModel.getStudentProfileModel
 import com.example.unacademy.viewmodel.viewmodelStudentside.StudentProfileViewModel
 import kotlinx.coroutines.launch
 
 class ProfileStudentSide : Fragment() {
 
+    companion object
+    {
+        var studentProfile:getStudentProfileModel?=null
+    }
     lateinit var binding:FragmentProfileStudentSideBinding
     lateinit var profileSTudentSideViewModel: StudentProfileViewModel
     private var layoutManager: RecyclerView.LayoutManager?=null
@@ -45,6 +48,10 @@ class ProfileStudentSide : Fragment() {
         // Inflate the layout for this fragment
         binding=DataBindingUtil.inflate(inflater,R.layout.fragment_profile_student_side, container, false)
         binding.wishlistViewModel=profileSTudentSideViewModel
+        binding.shimmerFrameLayoutLatestSeriesProfilePageStudentSide.startShimmerAnimation()
+        binding.ViewProfileStudent.setOnClickListener {
+            findNavController().navigate(R.id.action_profileStudentSide_to_editYourProfileStudentSide)
+        }
         binding.lifecycleOwner=this
         var attemptedQuiz=ArrayList<StudentSideGetQuizModelItem>()
         for(i in 0..(homePageStudentSide.totalQuiz.size-1))
@@ -60,6 +67,9 @@ class ProfileStudentSide : Fragment() {
                 {
                     when (it) {
                         is Response.Success -> {
+                            var shimmerFrameLayoutHomePageQuiz=binding.shimmerFrameLayoutLatestSeriesProfilePageStudentSide
+                            shimmerFrameLayoutHomePageQuiz?.stopShimmerAnimation()
+                            shimmerFrameLayoutHomePageQuiz?.visibility=View.INVISIBLE
                             if(it.data!!.isEmpty())
                             {
                                 binding.EmptyWishlistStudentSide.text="Your Wishlist is Empty"
@@ -83,6 +93,10 @@ class ProfileStudentSide : Fragment() {
                         is Response.Error->Toast.makeText(requireContext(),it.errorMessage.toString(),Toast.LENGTH_LONG).show()
                     }
                 }) }
+        if(attemptedQuiz.isEmpty())
+        {
+            binding.EmptyAttemptedQuiz.visibility=View.VISIBLE
+        }
         layoutManager= LinearLayoutManager(container?.context,LinearLayoutManager.HORIZONTAL, false)
         binding.RecyclerAdapterAttemptedQuizes.layoutManager=layoutManager
         adapterGetQuiz= RecyclerAdapterAttemptedQuizesStudentSide(attemptedQuiz as ArrayList<StudentSideGetQuizModelItem>)
@@ -94,8 +108,26 @@ class ProfileStudentSide : Fragment() {
                 homePageStudentSide.quizLectureCount = homePageStudentSide.totalQuiz!![position].questions.toString()
                 homePageStudentSide.quizid = homePageStudentSide.totalQuiz!![position].id.toInt()
                 homePageStudentSide.quizDuration = homePageStudentSide.totalQuiz!![position].duration
+                findNavController().navigate(R.id.action_profileStudentSide_to_quizResultPage)
             }
         })
+        lifecycleScope.launch {
+            var result=profileSTudentSideViewModel.getProfile()
+            result.observe(viewLifecycleOwner,
+                {
+                    when(it)
+                    {
+                        is Response.Success->
+                        {
+                            studentProfile= it.data
+                        }
+                        is Response.Error->
+                        {
+                            Toast.makeText(requireContext(),it.errorMessage.toString(),Toast.LENGTH_LONG).show()
+                        }
+                    }
+                })
+        }
         return binding.root
     }
 }

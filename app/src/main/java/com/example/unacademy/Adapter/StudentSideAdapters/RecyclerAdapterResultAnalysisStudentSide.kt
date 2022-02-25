@@ -7,9 +7,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.unacademy.R
-import com.example.unacademy.databinding.CardViewDailyQuizStudentSideBinding
 import com.example.unacademy.databinding.FragmentCardViewResultAnalysisStudentSideBinding
-import com.example.unacademy.models.StudentSideGetQuiz.StudentSideGetQuizModelItem
 import com.example.unacademy.models.StudentSideModel.QuizResultRepo.QuizResultModelItem
 
 class RecyclerAdapterResultAnalysisStudentSide(var studentSideGetQuizModelItem: List<QuizResultModelItem>?): RecyclerView.Adapter<RecyclerAdapterResultAnalysisStudentSide.ViewHolder>() {
@@ -41,19 +39,19 @@ class RecyclerAdapterResultAnalysisStudentSide(var studentSideGetQuizModelItem: 
             {
                 1-> {
                     holder.binding.Option1QuizResultPageAnalysis.isChecked = true
-                    holder.binding.Option1QuizResultPageAnalysis.setBackgroundColor(Color.RED)
+                    holder.binding.Option1QuizResultPageAnalysis.setBackgroundColor(Color.parseColor("#CD0000"))
                 }
                 2-> {
                     holder.binding.Option2QuizResultPageAnalysis.isChecked = true
-                    holder.binding.Option2QuizResultPageAnalysis.setBackgroundColor(Color.RED)
+                    holder.binding.Option2QuizResultPageAnalysis.setBackgroundColor(Color.parseColor("#CD0000"))
                 }
                 3-> {
                     holder.binding.Option3QuizResultPageAnalysis.isChecked = true
-                    holder.binding.Option3QuizResultPageAnalysis.setBackgroundColor(Color.RED)
+                    holder.binding.Option3QuizResultPageAnalysis.setBackgroundColor(Color.parseColor("#CD0000"))
                 }
                 4-> {
                     holder.binding.Option4QuizResultPageAnalysis.isChecked = true
-                    holder.binding.Option4QuizResultPageAnalysis.setBackgroundColor(Color.RED)
+                    holder.binding.Option4QuizResultPageAnalysis.setBackgroundColor(Color.parseColor("#CD0000"))
                 }
             }
             when (correctedAnswer) {

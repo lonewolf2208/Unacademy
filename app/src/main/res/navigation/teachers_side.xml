@@ -17,7 +17,8 @@
         tools:layout="@layout/fragment_home_page_teachers_side" >
         <action
             android:id="@+id/action_homePageTeachersSide_to_createYourSeries2"
-            app:destination="@id/createYourSeries" />
+            app:destination="@id/createYourSeries"
+            app:popUpTo="@id/homePageTeachersSide" />
     </fragment>
     <fragment
         android:id="@+id/profileTeachersSide"
@@ -46,7 +47,8 @@
         android:label="CreateYourSeries" >
         <action
             android:id="@+id/action_createYourSeries_to_homePageTeachersSide"
-            app:destination="@id/homePageTeachersSide" />
+            app:destination="@id/homePageTeachersSide"
+            app:popUpTo="@id/createYourSeries" />
     </fragment>
     <fragment
         android:id="@+id/makeAnnouncement2"

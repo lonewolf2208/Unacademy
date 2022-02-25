@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -22,17 +21,20 @@ import com.example.unacademy.Adapter.StudentSideAdapters.RecyclerAdapterQuizTEac
 import com.example.unacademy.Adapter.StudentSideAdapters.RecyclerAdapterStudentStory
 import com.example.unacademy.R
 import com.example.unacademy.Repository.Response
+import com.example.unacademy.Repository.StudentSideRepo.GetQuizRepoStudentSide
 import com.example.unacademy.Repository.StudentSideRepo.StudentStoryProfileRepo
 import com.example.unacademy.Repository.getNewToken
 import com.example.unacademy.Ui.TeachersSide.HomePageTeachersSide
 import com.example.unacademy.api.RetrofitClient
 import com.example.unacademy.databinding.FragmentHomePageStudentSideBinding
-import com.example.unacademy.models.StudentSideGetQuiz.StudentSideGetQuizModelItem
+import com.example.unacademy.models.StudentSideModel.StudentSideGetQuiz.StudentSideGetQuizModelItem
 import com.example.unacademy.models.StudentSideModel.getStudentSeries.getStudentSeriesItem
+import com.example.unacademy.models.TeachersSideModels.educatorSeries.educatorSeriesModelItem
 import com.example.unacademy.viewmodel.viewmodelStudentside.HomePageStudentSideViewModel
+import com.facebook.shimmer.ShimmerFrameLayout
 import kotlinx.coroutines.launch
 
-class homePageStudentSide : Fragment() {
+class homePageStudentSide : Fragment(),View.OnClickListener {
 
     lateinit var binding:FragmentHomePageStudentSideBinding
     lateinit var homePageStudentSideViewModel:HomePageStudentSideViewModel
@@ -50,6 +52,8 @@ class homePageStudentSide : Fragment() {
         var quizLectureCount:String=""
         var quizDuration=0
         var totalQuiz=ArrayList<StudentSideGetQuizModelItem>()
+        var teacher_id:Int=0
+        var series=ArrayList<getStudentSeriesItem>()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -64,13 +68,22 @@ class homePageStudentSide : Fragment() {
         // Inflate the layout for this fragment
         binding= DataBindingUtil.inflate(inflater,R.layout.fragment_home_page_student_side, container, false)
         binding.lifecycleOwner=this
+        binding.shimmerFrameLayoutLatestSeriesHomePageTeachersSide.startShimmerAnimation()
+        binding.shimmerFrameLayoutOurEducatorsHomePageTeachersSide.startShimmerAnimation()
+        binding.shimmerFrameLayoutQuizHomePageTeachersSide.startShimmerAnimation()
+        binding.shimmerFrameLayoutStoryHomePageTeachersSide.startShimmerAnimation() 
         binding.homePageStudentSideModel=homePageStudentSideViewModel
+        binding.SeeMoreDailyQuiz.setOnClickListener(this)
+        binding.SeeMoreLatestSeries.setOnClickListener(this)
         lifecycleScope.launch {
             var resultStudentStoryProfile = homePageStudentSideViewModel.getStudentStoryProfile()
             resultStudentStoryProfile.observe(viewLifecycleOwner,
                 {
                     when (it) {
                         is Response.Success -> {
+                            var shimmerFrameLayoutHomePageQuiz=binding.shimmerFrameLayoutStoryHomePageTeachersSide
+                            shimmerFrameLayoutHomePageQuiz?.stopShimmerAnimation()
+                            shimmerFrameLayoutHomePageQuiz?.visibility=View.INVISIBLE
                             layoutManager = LinearLayoutManager(
                                 container?.context,
                                 LinearLayoutManager.HORIZONTAL,
@@ -101,6 +114,10 @@ class homePageStudentSide : Fragment() {
                 {
                     when (it) {
                         is Response.Success -> {
+                            series= it.data as ArrayList<getStudentSeriesItem>
+                            var shimmerFrameLayoutHomePageQuiz=binding.shimmerFrameLayoutLatestSeriesHomePageTeachersSide
+                            shimmerFrameLayoutHomePageQuiz?.stopShimmerAnimation()
+                            shimmerFrameLayoutHomePageQuiz?.visibility=View.INVISIBLE
                             layoutManager = LinearLayoutManager(
                                 container?.context,
                                 LinearLayoutManager.HORIZONTAL,
@@ -113,7 +130,7 @@ class homePageStudentSide : Fragment() {
                                 it.data as ArrayList<getStudentSeriesItem>
                             )
                             binding.recyclerViewLatestSeriesStudentSide.adapter = adapter
-                            adapter.onClickListener(object :
+                                    adapter.onClickListener(object :
                                 RecyclerAdapterLatestSeries.ClickListener {
                                 override fun OnClick(position: Int) {
                                     HomePageTeachersSide.seriesid =
@@ -143,6 +160,9 @@ class homePageStudentSide : Fragment() {
                 {
                     when (it) {
                         is Response.Success -> {
+                            var shimmerFrameLayoutHomePage=binding.shimmerFrameLayoutOurEducatorsHomePageTeachersSide
+                            shimmerFrameLayoutHomePage?.stopShimmerAnimation()
+                            shimmerFrameLayoutHomePage?.visibility=View.INVISIBLE
                             layoutManager = LinearLayoutManager(
                                 container?.context,
                                 LinearLayoutManager.HORIZONTAL,
@@ -154,6 +174,12 @@ class homePageStudentSide : Fragment() {
                                 RecyclerAdapterOurEducatorsStudentSide(requireContext(), it.data)
                             binding.OurEducatorsRecyclerViewStudentSide.adapter =
                                 adapterOurEducators
+                            adapterOurEducators.onClickListener(object : RecyclerAdapterOurEducatorsStudentSide.ClickListener {
+                                override fun OnClick(position: Int) {
+                                    teacher_id= adapterOurEducators.educationDetails!![position].id
+                                    findNavController().navigate(R.id.action_homePageStudentSide_to_fragmentTeachersProfileShowPageStudentSide)
+                                }
+                            })
 //                            adapterOurEducators.onClickListener(object : RecyclerAdapterOurEducatorsStudentSide.ClickListener {
 //                                override fun OnClick(position: Int) {
 //                                    educatorId= it.data?.get(position)!!.id
@@ -196,10 +222,21 @@ class homePageStudentSide : Fragment() {
                     {
                         is Response.Success->
                         {
-                            totalQuiz= it.data as ArrayList<StudentSideGetQuizModelItem>
+                            var shimmerFrameLayoutHomePageQuiz=binding.shimmerFrameLayoutQuizHomePageTeachersSide
+                            shimmerFrameLayoutHomePageQuiz?.stopShimmerAnimation()
+                            shimmerFrameLayoutHomePageQuiz?.visibility=View.INVISIBLE
+//                            for (i in 0..(it.data!!.size-1))
+//                            {
+//                                if (it.data[i].questions!=0)
+//                                {
+//                                    totalQuiz.add(it.data[i])
+//                                }
+//
+//                            }
+                            totalQuiz=GetQuizRepoStudentSide.studentQuizWithNoZeroQuestions
                             layoutManager= LinearLayoutManager(container?.context,LinearLayoutManager.HORIZONTAL, false)
                             binding.RecyclerAdapterDailQuizStudentSide.layoutManager=layoutManager
-                            adapterGetQuiz= RecyclerAdapterQuizTEachersSide(it.data)
+                            adapterGetQuiz= RecyclerAdapterQuizTEachersSide(GetQuizRepoStudentSide.studentQuizWithNoZeroQuestions)
                             binding.RecyclerAdapterDailQuizStudentSide.adapter=adapterGetQuiz
                             adapterGetQuiz.onClickListener(object : RecyclerAdapterQuizTEachersSide.ClickListener {
                                 override fun OnClick(position: Int) {
@@ -224,6 +261,13 @@ class homePageStudentSide : Fragment() {
 
         }
         return binding.root
+    }
+
+    override fun onClick(v: View?) {
+        when(v?.id)
+        {
+            R.id.SeeMoreDailyQuiz->findNavController().navigate(R.id.action_homePageStudentSide_to_selfStudyStudentSide)
+        }
     }
 
 

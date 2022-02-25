@@ -29,4 +29,9 @@ class ExoPlayer : AppCompatActivity() {
         simpleExoPlayer.prepare()
         simpleExoPlayer.play()
     }
+
+    override fun onPause() {
+        super.onPause()
+        simpleExoPlayer.release()
+    }
 }

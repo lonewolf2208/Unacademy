@@ -20,6 +20,7 @@ import coil.load
 import com.example.unacademy.Activities.StudentSideActivity
 import com.example.unacademy.R
 import com.example.unacademy.Repository.Response
+import com.example.unacademy.Ui.Auth.Splash_Screen
 import com.example.unacademy.databinding.FragmentStudentInfoBinding
 import com.example.unacademy.viewmodel.viewmodelStudentside.CreateStudentViewModel
 
@@ -80,6 +81,7 @@ class StudentInfo : Fragment(),View.OnClickListener,DatePickerDialog.OnDateSetLi
             var storageReference = storage.getReference("images/" + randomKey)
             var progressDialog = ProgressDialog(context)
             progressDialog.setTitle("Uploading File ")
+            progressDialog.setCancelable(false)
             progressDialog.show()
             storageReference.putFile(imageUri)
                 .addOnSuccessListener {
@@ -115,6 +117,9 @@ class StudentInfo : Fragment(),View.OnClickListener,DatePickerDialog.OnDateSetLi
                         result.observe(viewLifecycleOwner, {
                             when (it) {
                                 is Response.Success -> {
+                                    lifecycleScope.launch {
+                                        Splash_Screen.save("studentloggedIn",true)
+                                    }
                                     val intent = Intent(activity, StudentSideActivity::class.java)
                                     startActivity(intent)
                                 }

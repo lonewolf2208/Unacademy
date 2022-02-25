@@ -24,6 +24,15 @@
         <action
             android:id="@+id/action_homePageStudentSide_to_quizResultPage"
             app:destination="@id/quizResultPage" />
+        <action
+            android:id="@+id/action_homePageStudentSide_to_fragmentTeachersProfileShowPageStudentSide"
+            app:destination="@id/fragmentTeachersProfileShowPageStudentSide" />
+        <action
+            android:id="@+id/action_homePageStudentSide_to_selfStudyStudentSide"
+            app:destination="@id/selfStudyStudentSide" />
+        <action
+            android:id="@+id/action_homePageStudentSide_to_latestSeriesPageStudentSide"
+            app:destination="@id/latestSeriesPageStudentSide" />
     </fragment>
     <fragment
         android:id="@+id/lecturesTeachersSide2"
@@ -33,7 +42,14 @@
         android:id="@+id/profileStudentSide"
         android:name="com.example.unacademy.Ui.StudentsSide.ProfileStudentSide"
         android:label="fragment_profile_student_side"
-        tools:layout="@layout/fragment_profile_student_side" />
+        tools:layout="@layout/fragment_profile_student_side" >
+        <action
+            android:id="@+id/action_profileStudentSide_to_editYourProfileStudentSide"
+            app:destination="@id/editYourProfileStudentSide" />
+        <action
+            android:id="@+id/action_profileStudentSide_to_quizResultPage"
+            app:destination="@id/quizResultPage" />
+    </fragment>
     <fragment
         android:id="@+id/wishListStudentSide"
         android:name="com.example.unacademy.Ui.StudentsSide.WishListStudentSide"
@@ -81,9 +97,25 @@
     <fragment
         android:id="@+id/resultAnalysisPageStudentSide"
         android:name="com.example.unacademy.Ui.StudentsSide.ResultAnalysisPageStudentSide"
-        android:label="ResultAnalysisPageStudentSide" />
+        android:label="ResultAnalysisPageStudentSide" >
+        <action
+            android:id="@+id/action_resultAnalysisPageStudentSide_to_homePageStudentSide"
+            app:destination="@id/homePageStudentSide" />
+    </fragment>
     <fragment
         android:id="@+id/notificationsStudentSide"
         android:name="com.example.unacademy.Ui.StudentsSide.NotificationsStudentSide"
         android:label="NotificationsStudentSide" />
+    <fragment
+        android:id="@+id/editYourProfileStudentSide"
+        android:name="com.example.unacademy.Ui.StudentsSide.EditYourProfileStudentSide"
+        android:label="EditYourProfileStudentSide" />
+    <fragment
+        android:id="@+id/fragmentTeachersProfileShowPageStudentSide"
+        android:name="com.example.unacademy.Ui.StudentsSide.FragmentTeachersProfileShowPageStudentSide"
+        android:label="FragmentTeachersProfileShowPageStudentSide" />
+    <fragment
+        android:id="@+id/latestSeriesPageStudentSide"
+        android:name="com.example.unacademy.Ui.StudentsSide.LatestSeriesPageStudentSide"
+        android:label="LatestSeriesPageStudentSide" />
 </navigation>

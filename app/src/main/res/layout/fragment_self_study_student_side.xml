@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
  <data>
-
+ <variable
+     name="selfStudyViewModel"
+     type="com.example.unacademy.viewmodel.viewmodelStudentside.SelfStudyStudentSideViewModel" />
  </data>
 
  <FrameLayout
@@ -53,6 +55,83 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView86" />
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmerFrameLayoutSelfStudyStudentSide0"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/textView86">
+
+     <LinearLayout
+         android:id="@+id/linearLayout"
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+         android:orientation="horizontal">
+
+      <include
+          android:id="@+id/include2DailyQUiz"
+          layout="@layout/shimmer_effect_quiz_" />
+
+      <include
+          android:id="@+id/include3DailyQUiz"
+          layout="@layout/shimmer_effect_quiz_" />
+      />
+     </LinearLayout>
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmerFrameLayoutSelfStudyStudentSide1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/shimmerFrameLayoutSelfStudyStudentSide0">
+
+     <LinearLayout
+         android:id="@+id/linearLayout2"
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+         android:orientation="horizontal">
+
+      <include
+
+          layout="@layout/shimmer_effect_quiz_" />
+
+      <include
+
+          layout="@layout/shimmer_effect_quiz_" />
+      />
+     </LinearLayout>
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmerFrameLayoutSelfStudyStudentSide2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/shimmerFrameLayoutSelfStudyStudentSide1">
+
+     <LinearLayout
+         android:id="@+id/linearLayout3"
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+         android:orientation="horizontal">
+
+      <include
+
+          layout="@layout/shimmer_effect_quiz_" />
+
+      <include
+
+          layout="@layout/shimmer_effect_quiz_" />
+      />
+     </LinearLayout>
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
    </androidx.constraintlayout.widget.ConstraintLayout>
   </androidx.core.widget.NestedScrollView>
  </FrameLayout>
