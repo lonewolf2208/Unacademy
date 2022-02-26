@@ -1,5 +1,6 @@
 package com.example.unacademy.Repository.StudentSideRepo
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.unacademy.Repository.Response
 import com.example.unacademy.Repository.getNewToken
@@ -23,6 +24,7 @@ class GetQuizRepoStudentSide(var Api:Api) {
                 call: Call<List<StudentSideGetQuizModelItem>?>,
                 response: retrofit2.Response<List<StudentSideGetQuizModelItem>?>
             ) {
+                Log.w("sdasdwqrq",response.body().toString())
 
                 if (response.isSuccessful) {
                     studentQuizWithNoZeroQuestions= ArrayList<StudentSideGetQuizModelItem>()

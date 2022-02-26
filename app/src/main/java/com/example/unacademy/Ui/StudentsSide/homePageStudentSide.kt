@@ -267,6 +267,7 @@ class homePageStudentSide : Fragment(),View.OnClickListener {
         when(v?.id)
         {
             R.id.SeeMoreDailyQuiz->findNavController().navigate(R.id.action_homePageStudentSide_to_selfStudyStudentSide)
+            R.id.SeeMoreLatestSeries->findNavController().navigate(R.id.action_homePageStudentSide_to_latestSeriesPageStudentSide)
         }
     }
 

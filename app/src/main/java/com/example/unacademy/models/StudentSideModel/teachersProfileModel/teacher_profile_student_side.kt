@@ -12,6 +12,7 @@ data class teacher_profile_student_side(
     val educator_quiz: List<StudentSideGetQuizModelItem>,
     val educator_series: List<getStudentSeriesItem>,
     val gender: String,
+    val followers:Int,
     val id: Int,
     val mobile: Long,
     val name: String,

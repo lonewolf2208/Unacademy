@@ -65,6 +65,7 @@ class FragmentTeachersProfileShowPageStudentSide : Fragment() {
                        is com.example.unacademy.Repository.Response.Success ->
                        {
                            binding.shapeableImageView2.load(it.data?.picture)
+                           binding.TeacherProfileShowPageFollowerCount.text= it.data!!.followers.toString()
                            binding.TeacherProfileShowPageSeriesCount.text= it.data!!.educator_series.size.toString()
                            binding.QuizzesShowPageTeacherProfileShowPage.text=it.data.educator_quiz.size.toString()
                            binding.TeacherNameTeacherProfile.text=it.data.name

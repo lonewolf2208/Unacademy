@@ -10,6 +10,9 @@
 
     </data>
 
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -48,6 +51,7 @@
 
                     <com.google.android.material.imageview.ShapeableImageView
                         android:id="@+id/shapeableImageView2"
+                        android:scaleType="centerCrop"
                         android:layout_width="85dp"
                         android:layout_height="140dp"
                         android:layout_marginStart="22dp"
@@ -61,24 +65,29 @@
 
                     <TextView
                         android:id="@+id/TeacherNameTeacherProfile"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="16dp"
+                        android:singleLine="true"
+                        android:layout_marginEnd="8dp"
                         android:fontFamily="@font/rosario_bold"
                         android:text="TeacherName"
                         android:textColor="#000000"
                         android:textSize="24sp"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/shapeableImageView2"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/TeacherDescriptionTeacherProfileShowPage"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
+                        android:layout_marginEnd="8dp"
                         android:text="TextView"
                         android:textColor="#00416D"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/shapeableImageView2"
                         app:layout_constraintTop_toBottomOf="@+id/TeacherNameTeacherProfile" />
 
@@ -97,7 +106,7 @@
                         android:id="@+id/textView116"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="24dp"
+                        android:layout_marginStart="20dp"
                         android:layout_marginTop="8dp"
                         android:text="Followers"
                         app:layout_constraintStart_toEndOf="@+id/shapeableImageView2"
@@ -117,9 +126,11 @@
                         android:id="@+id/textView118"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="24dp"
+                        android:layout_marginStart="25dp"
                         android:layout_marginTop="8dp"
+                        android:layout_marginEnd="26dp"
                         android:text="Quizzes"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/textView117"
                         app:layout_constraintTop_toBottomOf="@+id/textView115" />
 
@@ -166,7 +177,7 @@
                         android:layout_marginEnd="30dp"
                         android:layout_marginBottom="16dp"
                         android:backgroundTint="#FFA60A"
-                        android:text="Button"
+                        android:text="Follow"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -198,7 +209,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@+id/tabLayout"></androidx.viewpager2.widget.ViewPager2>
+
+            <TextView
+                android:id="@+id/textView114"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+
+                android:background="#63574D4D"
+                android:backgroundTint="#444749"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/view_pager" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </FrameLayout>
+    </androidx.core.widget.NestedScrollView>
 </layout>
