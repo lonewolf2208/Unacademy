@@ -63,12 +63,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="90dp"
                 android:fontFamily="@font/rosario_bold"
-                android:text="Score"
+                android:text="Score : "
                 android:textColor="#003356"
                 android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/QuizResultScore"
                 app:layout_constraintTop_toBottomOf="@+id/textView88" />
 
             <TextView
@@ -154,15 +153,15 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="24dp"
-                app:strokeColor="#003356"
-                app:strokeWidth="1dp"
-                android:textColor="#003356"
                 android:backgroundTint="#FFFFFF"
                 android:text="Go To Home"
                 android:textAllCaps="false"
+                android:textColor="#003356"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ViewAnalysisStudentSide" />
+                app:layout_constraintTop_toBottomOf="@+id/ViewAnalysisStudentSide"
+                app:strokeColor="#003356"
+                app:strokeWidth="1dp" />
 
             <TextView
                 android:id="@+id/NoOfQuestionsResult"
@@ -171,8 +170,8 @@
                 android:layout_marginStart="4dp"
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/rosario_bold"
-                android:textColor="#003356"
                 android:text="@{QuizResultViewModel.noofQuestions}"
+                android:textColor="#003356"
                 android:textSize="20sp"
                 app:layout_constraintStart_toEndOf="@+id/textView90"
                 app:layout_constraintTop_toBottomOf="@+id/textView89" />
@@ -182,9 +181,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
-                android:text="@{QuizResultViewModel.attemptedQuestions}"
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/rosario_bold"
+                android:text="@{QuizResultViewModel.attemptedQuestions}"
                 android:textColor="#003356"
                 android:textSize="20sp"
                 app:layout_constraintStart_toEndOf="@+id/textView91"
@@ -197,9 +196,9 @@
                 android:layout_marginStart="4dp"
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/rosario_bold"
+                android:text="@{QuizResultViewModel.correctedQuestions}"
                 android:textColor="#003356"
                 android:textSize="20sp"
-                android:text="@{QuizResultViewModel.correctedQuestions}"
                 app:layout_constraintStart_toEndOf="@+id/textView92"
                 app:layout_constraintTop_toBottomOf="@+id/textView91" />
 
@@ -210,8 +209,8 @@
                 android:layout_marginStart="4dp"
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/rosario_bold"
-                android:textColor="#003356"
                 android:text="@{QuizResultViewModel.wrongQuestions}"
+                android:textColor="#003356"
                 android:textSize="20sp"
                 app:layout_constraintStart_toEndOf="@+id/textView93"
                 app:layout_constraintTop_toBottomOf="@+id/textView92" />
@@ -220,12 +219,10 @@
                 android:id="@+id/QuizResultScore"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="24dp"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/textView89"
                 app:layout_constraintTop_toBottomOf="@+id/textView88" />
 
 

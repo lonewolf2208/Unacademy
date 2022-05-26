@@ -7,6 +7,9 @@
 <item android:id="@+id/selfStudyStudentSide"
     android:title="Self Study"
     android:icon="@drawable/self_study_selection_student_side"/>
+    <item android:id="@+id/searchFragment"
+        android:title="Search"
+        android:icon="@drawable/ic_search"/>
     <item android:id="@+id/profileStudentSide"
         android:title="Profile"
         android:icon="@drawable/profile_selection_teachers_side" />

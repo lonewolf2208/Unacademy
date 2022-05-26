@@ -38,6 +38,10 @@ class SeriesShowPageTeacherProfile : Fragment() {
         layoutManager= LinearLayoutManager(container?.context)
         binding.RecyclerView.layoutManager=layoutManager
         adapter= RecyclerAdapterTeachersSideHomePage(FragmentTeachersProfileShowPageStudentSide.teacher_profile_series)
+        if(FragmentTeachersProfileShowPageStudentSide.teacher_profile_series?.size==0)
+        {
+            binding.NoSeries.visibility=View.VISIBLE
+        }
         binding.RecyclerView.adapter=adapter
         adapter.onClickListeer(object : RecyclerAdapterTeachersSideHomePage.ClickListener {
             override fun OnClick(position: Int) {

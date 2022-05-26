@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.unacademy.Adapter.StudentSideAdapters.RecyclerAdapterQuizTEachersSide
 import com.example.unacademy.R
 import com.example.unacademy.Repository.Response
+import com.example.unacademy.Repository.StudentSideRepo.TeacherProfileRepoStudentSide
 import com.example.unacademy.databinding.FragmentQuizShowPageTeachersProfileBinding
 import com.example.unacademy.viewmodel.viewmodelStudentside.QuizShowPageTeachersProfileViewModel
 import kotlinx.coroutines.launch
@@ -53,10 +54,14 @@ class QuizShowPageTeachersProfile : Fragment() {
                     {
                         is Response.Success->
                         {
+                            if(it.data!!.educator_quiz.size==0)
+                            {
+                                binding.NoQuizzes.visibility=View.VISIBLE
+                            }
                             layoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
                             binding.RecyclerViewStudentSideQuiz.layoutManager = layoutManager
                             adapterGetQuiz =
-                                RecyclerAdapterQuizTEachersSide(it.data !!.educator_quiz)
+                                RecyclerAdapterQuizTEachersSide(TeacherProfileRepoStudentSide.studentQuizWithNoZeroQuestions)
 
                             binding.RecyclerViewStudentSideQuiz.adapter = adapterGetQuiz
                             adapterGetQuiz.onClickListener(object : RecyclerAdapterQuizTEachersSide.ClickListener {

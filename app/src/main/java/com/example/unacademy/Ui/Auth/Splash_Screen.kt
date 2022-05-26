@@ -67,7 +67,7 @@ class Splash_Screen : Fragment() {
         val view=inflater.inflate(R.layout.fragment_splash__screen, container, false)
         android.os.Handler().postDelayed(
             {
-                lifecycleScope.launch {
+                lifecycleScope.launch{
                     var teacherloggedIn = read("teacherloggedIn")
                     var studentloggedIn=read("studentloggedIn")
                     if (teacherloggedIn== true)

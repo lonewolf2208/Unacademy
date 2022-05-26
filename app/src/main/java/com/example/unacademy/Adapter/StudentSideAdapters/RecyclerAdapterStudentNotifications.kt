@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.example.unacademy.R
 import com.example.unacademy.databinding.CardviewStudentNotificationsStudentSideBinding
 import com.example.unacademy.models.StudentSideModel.StudentNotifications.StudentNotificationsModelItem
@@ -26,6 +27,7 @@ class RecyclerAdapterStudentNotifications(var studentSideGetQuizModelItem: List<
         holder: RecyclerAdapterStudentNotifications.ViewHolder,
         position: Int
     ) {
+
         holder.binding.TitleNotificationStudentSide.text= studentSideGetQuizModelItem!![position].subject.toString()
         holder.binding.BodyNotificationStudentSide.text= studentSideGetQuizModelItem!![position].message.toString()
     }

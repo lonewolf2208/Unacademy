@@ -5,12 +5,17 @@ import androidx.lifecycle.MutableLiveData
 import com.example.unacademy.Repository.Response
 import com.example.unacademy.Repository.getNewToken
 import com.example.unacademy.api.Api
+import com.example.unacademy.models.StudentSideModel.StudentSideGetQuiz.StudentSideGetQuizModelItem
 import com.example.unacademy.models.StudentSideModel.teachersProfileModel.teacher_profile_student_side
 import retrofit2.Call
 import retrofit2.Callback
 
 class TeacherProfileRepoStudentSide(var Api:Api)
 {
+    companion object
+    {
+        var studentQuizWithNoZeroQuestions=ArrayList<StudentSideGetQuizModelItem>()
+    }
     private val teacherFollowingInfoLiveData = MutableLiveData<Response<teacher_profile_student_side>>()
     fun teacherProfileApi(
         teacherid: Int,
@@ -25,7 +30,17 @@ class TeacherProfileRepoStudentSide(var Api:Api)
                Log.d("asdqqgqvz",response.body().toString())
                when
                {
-                   response.isSuccessful-> teacherFollowingInfoLiveData.postValue(Response.Success(response.body()))
+                   response.isSuccessful-> {
+                       studentQuizWithNoZeroQuestions = ArrayList<StudentSideGetQuizModelItem>()
+                       for(i in 0 until response.body()?.educator_quiz!!.size)
+                       {
+                           if(response.body()!!.educator_quiz[i].questions!=0)
+                           {
+                              studentQuizWithNoZeroQuestions.add(response.body()!!.educator_quiz[i])
+                           }
+                       }
+                       teacherFollowingInfoLiveData.postValue(Response.Success(response.body()))
+                   }
                    else->
                    {
 

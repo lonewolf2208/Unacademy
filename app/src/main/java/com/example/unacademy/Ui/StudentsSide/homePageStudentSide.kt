@@ -77,109 +77,114 @@ class homePageStudentSide : Fragment(),View.OnClickListener {
         binding.SeeMoreLatestSeries.setOnClickListener(this)
         lifecycleScope.launch {
             var resultStudentStoryProfile = homePageStudentSideViewModel.getStudentStoryProfile()
-            resultStudentStoryProfile.observe(viewLifecycleOwner,
-                {
-                    when (it) {
-                        is Response.Success -> {
-                            var shimmerFrameLayoutHomePageQuiz=binding.shimmerFrameLayoutStoryHomePageTeachersSide
-                            shimmerFrameLayoutHomePageQuiz?.stopShimmerAnimation()
-                            shimmerFrameLayoutHomePageQuiz?.visibility=View.INVISIBLE
-                            layoutManager = LinearLayoutManager(
-                                container?.context,
-                                LinearLayoutManager.HORIZONTAL,
-                                false
-                            )
-                            binding.recyclerViewStoriesStudentSide.layoutManager = layoutManager
-                            storiesAdapter = RecyclerAdapterStudentStory(it.data)
-                            binding.recyclerViewStoriesStudentSide.adapter = storiesAdapter
-                            storiesAdapter.onClickListener(object :
-                                RecyclerAdapterStudentStory.ClickListener {
-                                override fun OnClick(position: Int) {
-                                    studentStoryId =
-                                        StudentStoryProfileRepo.studentStoryId[position]
-                                    val intent = Intent(activity, StudentStoryActivity::class.java)
-                                    startActivity(intent)
-                                }
-                            })
-                        }
-                        is Response.Error -> {
-                            Toast.makeText(context, it.errorMessage.toString(), Toast.LENGTH_LONG)
-                                .show()
-                        }
+            resultStudentStoryProfile.observe(viewLifecycleOwner
+            ) {
+                when (it) {
+                    is Response.Success -> {
+                        var shimmerFrameLayoutHomePageQuiz =
+                            binding.shimmerFrameLayoutStoryHomePageTeachersSide
+                        shimmerFrameLayoutHomePageQuiz?.stopShimmerAnimation()
+                        shimmerFrameLayoutHomePageQuiz?.visibility = View.INVISIBLE
+                        layoutManager = LinearLayoutManager(
+                            container?.context,
+                            LinearLayoutManager.HORIZONTAL,
+                            false
+                        )
+                        binding.recyclerViewStoriesStudentSide.layoutManager = layoutManager
+                        storiesAdapter = RecyclerAdapterStudentStory(it.data)
+                        binding.recyclerViewStoriesStudentSide.adapter = storiesAdapter
+                        storiesAdapter.onClickListener(object :
+                            RecyclerAdapterStudentStory.ClickListener {
+                            override fun OnClick(position: Int) {
+                                studentStoryId =
+                                    StudentStoryProfileRepo.studentStoryId[position]
+                                val intent = Intent(activity, StudentStoryActivity::class.java)
+                                startActivity(intent)
+                            }
+                        })
                     }
-                })
+                    is Response.Error -> {
+                        Toast.makeText(context, it.errorMessage.toString(), Toast.LENGTH_LONG)
+                            .show()
+                    }
+                }
+            }
 
             var result = homePageStudentSideViewModel.getSeries()
-            result.observe(viewLifecycleOwner,
-                {
-                    when (it) {
-                        is Response.Success -> {
-                            series= it.data as ArrayList<getStudentSeriesItem>
-                            var shimmerFrameLayoutHomePageQuiz=binding.shimmerFrameLayoutLatestSeriesHomePageTeachersSide
-                            shimmerFrameLayoutHomePageQuiz?.stopShimmerAnimation()
-                            shimmerFrameLayoutHomePageQuiz?.visibility=View.INVISIBLE
-                            layoutManager = LinearLayoutManager(
-                                container?.context,
-                                LinearLayoutManager.HORIZONTAL,
-                                false
-                            )
-                            binding.recyclerViewLatestSeriesStudentSide.layoutManager =
-                                layoutManager
-                            adapter = RecyclerAdapterLatestSeries(
-                                requireContext(),
-                                it.data as ArrayList<getStudentSeriesItem>
-                            )
-                            binding.recyclerViewLatestSeriesStudentSide.adapter = adapter
-                                    adapter.onClickListener(object :
-                                RecyclerAdapterLatestSeries.ClickListener {
-                                override fun OnClick(position: Int) {
-                                    HomePageTeachersSide.seriesid =
-                                        adapter.getStudentSeries?.get(position)?.id!!.toInt()
-                                    RecyclerAdapterLectureTeachersSide.series_name =
-                                        adapter.getStudentSeries?.get(position)?.name.toString()
-                                    RecyclerAdapterLectureTeachersSide.seriesDescription =
-                                        adapter.getStudentSeries?.get(position)?.description.toString()
-                                    RecyclerAdapterLectureTeachersSide.seriesThumbnail =
-                                        adapter.getStudentSeries?.get(position)?.icon.toString()
-                                    findNavController().navigate(R.id.action_homePageStudentSide_to_lecturesTeachersSide2)
-                                }
-                            })
-                        }
-                        is Response.TokenExpire -> {
-                            Toast.makeText(requireContext(), "Token Exxpired", Toast.LENGTH_LONG)
-                                .show()
-                            getNewToken(RetrofitClient.init())
-                            lifecycleScope.launch {
-                                homePageStudentSideViewModel.getSeries()
+            result.observe(viewLifecycleOwner
+            ) {
+                when (it) {
+                    is Response.Success -> {
+                        series = it.data as ArrayList<getStudentSeriesItem>
+                        var shimmerFrameLayoutHomePageQuiz =
+                            binding.shimmerFrameLayoutLatestSeriesHomePageTeachersSide
+                        shimmerFrameLayoutHomePageQuiz?.stopShimmerAnimation()
+                        shimmerFrameLayoutHomePageQuiz?.visibility = View.INVISIBLE
+                        layoutManager = LinearLayoutManager(
+                            container?.context,
+                            LinearLayoutManager.HORIZONTAL,
+                            false
+                        )
+                        binding.recyclerViewLatestSeriesStudentSide.layoutManager =
+                            layoutManager
+                        adapter = RecyclerAdapterLatestSeries(
+                            requireContext(),
+                            it.data as ArrayList<getStudentSeriesItem>
+                        )
+                        binding.recyclerViewLatestSeriesStudentSide.adapter = adapter
+                        adapter.onClickListener(object :
+                            RecyclerAdapterLatestSeries.ClickListener {
+                            override fun OnClick(position: Int) {
+                                HomePageTeachersSide.seriesid =
+                                    adapter.getStudentSeries?.get(position)?.id!!.toInt()
+                                RecyclerAdapterLectureTeachersSide.series_name =
+                                    adapter.getStudentSeries?.get(position)?.name.toString()
+                                RecyclerAdapterLectureTeachersSide.seriesDescription =
+                                    adapter.getStudentSeries?.get(position)?.description.toString()
+                                RecyclerAdapterLectureTeachersSide.seriesThumbnail =
+                                    adapter.getStudentSeries?.get(position)?.icon.toString()
+                                findNavController().navigate(R.id.action_homePageStudentSide_to_lecturesTeachersSide2)
                             }
+                        })
+                    }
+                    is Response.TokenExpire -> {
+                        Toast.makeText(requireContext(), "Token Exxpired", Toast.LENGTH_LONG)
+                            .show()
+                        getNewToken(RetrofitClient.init())
+                        lifecycleScope.launch {
+                            homePageStudentSideViewModel.getSeries()
                         }
                     }
-                })
+                }
+            }
             var oureducators = homePageStudentSideViewModel.getEducators()
-            oureducators.observe(viewLifecycleOwner,
-                {
-                    when (it) {
-                        is Response.Success -> {
-                            var shimmerFrameLayoutHomePage=binding.shimmerFrameLayoutOurEducatorsHomePageTeachersSide
-                            shimmerFrameLayoutHomePage?.stopShimmerAnimation()
-                            shimmerFrameLayoutHomePage?.visibility=View.INVISIBLE
-                            layoutManager = LinearLayoutManager(
-                                container?.context,
-                                LinearLayoutManager.HORIZONTAL,
-                                false
-                            )
-                            binding.OurEducatorsRecyclerViewStudentSide.layoutManager =
-                                layoutManager
-                            adapterOurEducators =
-                                RecyclerAdapterOurEducatorsStudentSide(requireContext(), it.data)
-                            binding.OurEducatorsRecyclerViewStudentSide.adapter =
-                                adapterOurEducators
-                            adapterOurEducators.onClickListener(object : RecyclerAdapterOurEducatorsStudentSide.ClickListener {
-                                override fun OnClick(position: Int) {
-                                    teacher_id= adapterOurEducators.educationDetails!![position].id
-                                    findNavController().navigate(R.id.action_homePageStudentSide_to_fragmentTeachersProfileShowPageStudentSide)
-                                }
-                            })
+            oureducators.observe(viewLifecycleOwner
+            ) {
+                when (it) {
+                    is Response.Success -> {
+                        var shimmerFrameLayoutHomePage =
+                            binding.shimmerFrameLayoutOurEducatorsHomePageTeachersSide
+                        shimmerFrameLayoutHomePage?.stopShimmerAnimation()
+                        shimmerFrameLayoutHomePage?.visibility = View.INVISIBLE
+                        layoutManager = LinearLayoutManager(
+                            container?.context,
+                            LinearLayoutManager.HORIZONTAL,
+                            false
+                        )
+                        binding.OurEducatorsRecyclerViewStudentSide.layoutManager =
+                            layoutManager
+                        adapterOurEducators =
+                            RecyclerAdapterOurEducatorsStudentSide(requireContext(), it.data)
+                        binding.OurEducatorsRecyclerViewStudentSide.adapter =
+                            adapterOurEducators
+                        adapterOurEducators.onClickListener(object :
+                            RecyclerAdapterOurEducatorsStudentSide.ClickListener {
+                            override fun OnClick(position: Int) {
+                                teacher_id = adapterOurEducators.educationDetails!![position].id
+                                RecyclerAdapterOurEducatorsStudentSide.educatorId = teacher_id
+                                findNavController().navigate(R.id.action_homePageStudentSide_to_fragmentTeachersProfileShowPageStudentSide)
+                            }
+                        })
 //                            adapterOurEducators.onClickListener(object : RecyclerAdapterOurEducatorsStudentSide.ClickListener {
 //                                override fun OnClick(position: Int) {
 //                                    educatorId= it.data?.get(position)!!.id
@@ -205,26 +210,25 @@ class homePageStudentSide : Fragment(),View.OnClickListener {
 //                                }
 //                            })
 
-                        }
-                        is Response.Error -> Toast.makeText(
-                            context,
-                            it.errorMessage.toString(),
-                            Toast.LENGTH_LONG
-                        ).show()
                     }
-                })
+                    is Response.Error -> Toast.makeText(
+                        context,
+                        it.errorMessage.toString(),
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            }
         }
         lifecycleScope.launch {
             var getQuizresult=homePageStudentSideViewModel.getQuiz()
-            getQuizresult.observe(viewLifecycleOwner,
-                {
-                    when(it)
-                    {
-                        is Response.Success->
-                        {
-                            var shimmerFrameLayoutHomePageQuiz=binding.shimmerFrameLayoutQuizHomePageTeachersSide
-                            shimmerFrameLayoutHomePageQuiz?.stopShimmerAnimation()
-                            shimmerFrameLayoutHomePageQuiz?.visibility=View.INVISIBLE
+            getQuizresult.observe(viewLifecycleOwner
+            ) {
+                when (it) {
+                    is Response.Success -> {
+                        var shimmerFrameLayoutHomePageQuiz =
+                            binding.shimmerFrameLayoutQuizHomePageTeachersSide
+                        shimmerFrameLayoutHomePageQuiz?.stopShimmerAnimation()
+                        shimmerFrameLayoutHomePageQuiz?.visibility = View.INVISIBLE
 //                            for (i in 0..(it.data!!.size-1))
 //                            {
 //                                if (it.data[i].questions!=0)
@@ -233,31 +237,39 @@ class homePageStudentSide : Fragment(),View.OnClickListener {
 //                                }
 //
 //                            }
-                            totalQuiz=GetQuizRepoStudentSide.studentQuizWithNoZeroQuestions
-                            layoutManager= LinearLayoutManager(container?.context,LinearLayoutManager.HORIZONTAL, false)
-                            binding.RecyclerAdapterDailQuizStudentSide.layoutManager=layoutManager
-                            adapterGetQuiz= RecyclerAdapterQuizTEachersSide(GetQuizRepoStudentSide.studentQuizWithNoZeroQuestions)
-                            binding.RecyclerAdapterDailQuizStudentSide.adapter=adapterGetQuiz
-                            adapterGetQuiz.onClickListener(object : RecyclerAdapterQuizTEachersSide.ClickListener {
-                                override fun OnClick(position: Int) {
-                                    quizTitle= it.data!!?.get(position).title.toString()
-                                    quizDescription=it.data[position].description.toString()
-                                    quizLectureCount=it.data[position].questions.toString()
-                                    quizid=it.data[position].id.toInt()
-                                    quizDuration=it.data[position].duration
-                                    if(it.data[position].is_attempted==true)
-                                    {
-                                        findNavController().navigate(R.id.action_homePageStudentSide_to_quizResultPage)
-                                    }
-                                    else {
-                                        findNavController().navigate(R.id.action_homePageStudentSide_to_quizShowPageStudentSide)
-                                    }
-                                    }
-                            })
-                        }
-                        is Response.Error->Toast.makeText(context,it.errorMessage.toString(),Toast.LENGTH_LONG).show()
+                        totalQuiz = GetQuizRepoStudentSide.studentQuizWithNoZeroQuestions
+                        layoutManager = LinearLayoutManager(
+                            container?.context,
+                            LinearLayoutManager.HORIZONTAL,
+                            false
+                        )
+                        binding.RecyclerAdapterDailQuizStudentSide.layoutManager = layoutManager
+                        adapterGetQuiz =
+                            RecyclerAdapterQuizTEachersSide(GetQuizRepoStudentSide.studentQuizWithNoZeroQuestions)
+                        binding.RecyclerAdapterDailQuizStudentSide.adapter = adapterGetQuiz
+                        adapterGetQuiz.onClickListener(object :
+                            RecyclerAdapterQuizTEachersSide.ClickListener {
+                            override fun OnClick(position: Int) {
+                                quizTitle = it.data!!?.get(position)?.title.toString()
+                                quizDescription = it.data[position].description.toString()
+                                quizLectureCount = it.data[position].questions.toString()
+                                quizid = it.data[position].id.toInt()
+                                quizDuration = it.data[position].duration
+                                if (it.data[position].is_attempted == true) {
+                                    findNavController().navigate(R.id.action_homePageStudentSide_to_quizResultPage)
+                                } else {
+                                    findNavController().navigate(R.id.action_homePageStudentSide_to_quizShowPageStudentSide)
+                                }
+                            }
+                        })
                     }
-                })
+                    is Response.Error -> Toast.makeText(
+                        context,
+                        it.errorMessage.toString(),
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            }
 
         }
         return binding.root

@@ -118,4 +118,20 @@
         android:id="@+id/latestSeriesPageStudentSide"
         android:name="com.example.unacademy.Ui.StudentsSide.LatestSeriesPageStudentSide"
         android:label="LatestSeriesPageStudentSide" />
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.example.unacademy.Ui.StudentsSide.SearchFragment"
+        android:label="SearchFragment" />
+    <fragment
+        android:id="@+id/coursesSearchStudentSide"
+        android:name="com.example.unacademy.Ui.StudentsSide.CoursesSearchStudentSide"
+        android:label="CoursesSearchStudentSide" >
+        <action
+            android:id="@+id/action_coursesSearchStudentSide_to_lecturesTeachersSide2"
+            app:destination="@id/lecturesTeachersSide2" />
+    </fragment>
+    <fragment
+        android:id="@+id/educatorSearchStudentSide"
+        android:name="com.example.unacademy.Ui.StudentsSide.EducatorSearchStudentSide"
+        android:label="EducatorSearchStudentSide" />
 </navigation>

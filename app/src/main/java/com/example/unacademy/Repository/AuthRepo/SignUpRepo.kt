@@ -32,7 +32,7 @@ class SignUpRepo(private var Api:Api) {
                 }
                 else
                 {
-                    SignUpLiveData.postValue(Response.Error(response.code().toString()))
+                    SignUpLiveData.postValue(Response.Error("Something went wrong . Please try again !!"))
                 }
             }
 

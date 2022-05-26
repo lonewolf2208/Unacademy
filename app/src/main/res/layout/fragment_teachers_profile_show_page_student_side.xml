@@ -169,7 +169,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/textView118" />
 
                     <Button
-                        android:id="@+id/button2"
+                        android:id="@+id/FollowBUttonTeachersProfile"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="130dp"
@@ -214,10 +214,8 @@
                 android:id="@+id/textView114"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-
                 android:background="#63574D4D"
                 android:backgroundTint="#444749"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/view_pager" />

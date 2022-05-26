@@ -7,11 +7,13 @@ import com.example.unacademy.models.AuthModels.SignUpDataClass
 import com.example.unacademy.models.QuizQuestionsModel.quizQuestionsModel
 import com.example.unacademy.models.StudentSideModel.StudentSideGetQuiz.StudentSideGetQuizModelItem
 import com.example.unacademy.models.StudentSideModel.QuizResultRepo.QuizResultModelItem
+import com.example.unacademy.models.StudentSideModel.SearchStudentSide.SearchStudentSideItem
 import com.example.unacademy.models.StudentSideModel.StudentNotifications.StudentNotificationsModelItem
 import com.example.unacademy.models.StudentSideModel.getStudentSeries.EducatorDetails
 import com.example.unacademy.models.StudentSideModel.getStudentSeries.getStudentSeriesItem
 import com.example.unacademy.models.StudentSideModel.getStudentSeries.studentStories.StudentStoryInfoModelItem
 import com.example.unacademy.models.StudentSideModel.StudentStory.studentStoryModelItem
+import com.example.unacademy.models.StudentSideModel.getSearchCourseModel.SearchCourseModelItem
 import com.example.unacademy.models.StudentSideModel.getStudentProfileModel.getStudentProfileModel
 import com.example.unacademy.models.StudentSideModel.teachersProfileModel.teacher_profile_student_side
 import com.example.unacademy.models.TeachersSideModels.CreateQuizModel.CreateQuizModel
@@ -275,13 +277,20 @@ interface Api {
         @Field("new_password")new_password:String,
         @Header("Authorization") token: String
     ):Call<ResponseBody>
+
     @GET("/student/notification/")
     fun getStudentNotifications(@Header("Authorization") token: String):Call<List<StudentNotificationsModelItem>>
 
     @GET("/student/profile/")
     fun GetStudentProfile(@Header("Authorization") token: String):Call<getStudentProfileModel>
 
-
     @GET("/student/educator-profile/{educator_id}/")
     fun getTeachersProfileStudentSide(@Path("educator_id") id: Int,@Header("Authorization") token: String):Call<teacher_profile_student_side>
+
+    @GET("/student/search/profile/{username}/")
+    fun searchProfile(@Path("username") username:String,@Header("Authorization") token: String):Call<List<SearchStudentSideItem>>
+
+    @GET("/student/search/series/{name}/")
+    fun searchCourse(@Path("name")name:String,@Header("Authorization") token: String):Call<List<SearchCourseModelItem>>
+
 }

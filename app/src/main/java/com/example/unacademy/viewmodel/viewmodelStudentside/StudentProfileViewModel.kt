@@ -29,7 +29,6 @@ class StudentProfileViewModel:ViewModel() {
     }
     suspend fun getProfile(): MutableLiveData<Response<getStudentProfileModel>> {
         val Api= RetrofitClient.init()
-
         val job =viewModelScope.launch {
             var AccessToken = Splash_Screen.readInfo("access").toString()
             token = AccessToken

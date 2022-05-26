@@ -1,6 +1,10 @@
 package com.example.unacademy.Ui.StudentsSide
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
+import android.app.ProgressDialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.text.Layout
 import androidx.fragment.app.Fragment
@@ -28,10 +32,11 @@ import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.coroutines.launch
 
 
-class FragmentTeachersProfileShowPageStudentSide : Fragment() {
+class FragmentTeachersProfileShowPageStudentSide : Fragment(),View.OnClickListener{
 
     lateinit var binding:FragmentTeachersProfileShowPageStudentSideBinding
     lateinit var viewModel:TeacherProfileShowStudentSideViewModel
+    var flag=0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel=ViewModelProvider(this)[TeacherProfileShowStudentSideViewModel::class.java]
@@ -54,8 +59,17 @@ class FragmentTeachersProfileShowPageStudentSide : Fragment() {
             container,
             false
         )
+        val dialodView =
+            LayoutInflater.from(requireContext()).inflate(R.layout.lottie_file_loader, null)
+
+        val mBuilder = AlertDialog.Builder(requireContext())
+            .setView(dialodView)
+        val alertDialog: AlertDialog = mBuilder.create()
+        alertDialog.getWindow()!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT));
+        alertDialog.show()
         binding.lifecycleOwner=this
         binding.teacherProfileModel=viewModel
+        binding.FollowBUttonTeachersProfile.setOnClickListener(this)
         lifecycleScope.launch {
             var result=viewModel.getProfile(homePageStudentSide.teacher_id)
             result.observe(viewLifecycleOwner,
@@ -64,6 +78,8 @@ class FragmentTeachersProfileShowPageStudentSide : Fragment() {
                     {
                        is com.example.unacademy.Repository.Response.Success ->
                        {
+                           alertDialog.dismiss()
+
                            binding.shapeableImageView2.load(it.data?.picture)
                            binding.TeacherProfileShowPageFollowerCount.text= it.data!!.followers.toString()
                            binding.TeacherProfileShowPageSeriesCount.text= it.data!!.educator_series.size.toString()
@@ -86,6 +102,43 @@ class FragmentTeachersProfileShowPageStudentSide : Fragment() {
         }.attach()
 
         return binding.root
+    }
+
+    override fun onClick(v: View?) {
+        when(v?.id) {
+            R.id.FollowBUttonTeachersProfile ->
+            {
+                lifecycleScope.launch {
+                    if (flag % 2 == 0) {
+                        var result = viewModel.addFollowing()
+                        result.observe(viewLifecycleOwner,
+                            {
+                                when (it) {
+                                    is com.example.unacademy.Repository.Response.Success -> {
+                                        binding.FollowBUttonTeachersProfile.text = "Following"
+                                        flag++
+                                    }
+                                }
+                            })
+                    }
+                    else
+                    {
+                        var result=viewModel.teacherUnfollowing()
+                        result.observe(viewLifecycleOwner,
+                            {
+                                when(it)
+                                {
+                                    is com.example.unacademy.Repository.Response.Success->
+                                    {
+                                        flag++
+                                        binding.FollowBUttonTeachersProfile.text="Follow"
+                                    }
+                                }
+                            })
+                    }
+                }
+            }
+        }
     }
 
 

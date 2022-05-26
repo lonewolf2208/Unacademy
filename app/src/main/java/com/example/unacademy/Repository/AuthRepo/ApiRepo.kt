@@ -12,7 +12,6 @@ import java.lang.Exception
 class ApiRepo(private var Api:Api) {
 
     private val ApiLiveData = MutableLiveData<Response<LoginDataClass>>()
-
     val ApiResponse:LiveData<Response<LoginDataClass>>
     get() = ApiLiveData
    fun getLoginApi(email:String,password:String)

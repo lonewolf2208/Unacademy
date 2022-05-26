@@ -1,12 +1,15 @@
 package com.example.unacademy.Ui.StudentsSide
 
+import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
@@ -44,10 +47,15 @@ class QuizResultPage : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding=DataBindingUtil.inflate(inflater,R.layout.fragment_quiz_result_page, container, false)
-        var progressDialog = ProgressDialog(context)
-        progressDialog.setTitle("Fetching Result ")
-        progressDialog.setCancelable(false)
-        progressDialog.show()
+        val dialodView =
+            LayoutInflater.from(requireContext()).inflate(R.layout.lottie_file_loader, null)
+
+        val mBuilder = AlertDialog.Builder(requireContext())
+            .setView(dialodView)
+        val alertDialog: AlertDialog = mBuilder.create()
+        alertDialog.getWindow()!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT));
+        alertDialog.show()
+
         binding.lifecycleOwner=this
         binding.quizResultViewModel=getQuizResultViewModel
         binding.ViewAnalysisStudentSide.setOnClickListener {
@@ -97,14 +105,14 @@ class QuizResultPage : Fragment() {
                                 PieModel(
                                     "Un-Wrong Questions",100-(wrongQuestions/it.data.size)*100.toFloat(),Color.GRAY)
                                 )
-
+                            
                             binding.pieChartAttemptedQuestions.startAnimation()
                             binding.pieChartCorrectedAnswer.startAnimation()
                             binding.WrongQuestionsPieChart.startAnimation()
                             binding.CorrectedQuestionsQuizResult.text=correctedQuestions.toString()
                             binding.WrongQuestionsQuizResult.text=wrongQuestions.toString()
                             binding.QuizResultScore.text=score.toString() + "/" + totalScore.toString()
-                            progressDialog.dismiss()
+                            alertDialog.dismiss()
 
                         }
                         is Response.Error-> Toast.makeText(context,it.errorMessage.toString(),Toast.LENGTH_LONG).show()

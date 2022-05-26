@@ -38,7 +38,7 @@ class ProfileStudentSide : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
-    profileSTudentSideViewModel= ViewModelProvider(this)[StudentProfileViewModel::class.java]
+        profileSTudentSideViewModel= ViewModelProvider(this)[StudentProfileViewModel::class.java]
     }
 
     override fun onCreateView(
@@ -103,7 +103,7 @@ class ProfileStudentSide : Fragment() {
         binding.RecyclerAdapterAttemptedQuizes.adapter=adapterGetQuiz
         adapterGetQuiz.onClickListener(object : RecyclerAdapterAttemptedQuizesStudentSide.ClickListener {
             override fun OnClick(position: Int) {
-                homePageStudentSide.quizTitle = homePageStudentSide.totalQuiz!!?.get(position).title.toString()
+                homePageStudentSide.quizTitle = homePageStudentSide.totalQuiz!!?.get(position)?.title.toString()
                 homePageStudentSide.quizDescription = homePageStudentSide.totalQuiz!![position].description.toString()
                 homePageStudentSide.quizLectureCount = homePageStudentSide.totalQuiz!![position].questions.toString()
                 homePageStudentSide.quizid = homePageStudentSide.totalQuiz!![position].id.toInt()
