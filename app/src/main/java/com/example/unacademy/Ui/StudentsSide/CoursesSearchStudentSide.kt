@@ -35,6 +35,13 @@ class CoursesSearchStudentSide : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding=DataBindingUtil.inflate(inflater,R.layout.fragment_courses_search_student_side, container, false)
+        layoutManager = LinearLayoutManager(
+            container?.context,
+            LinearLayoutManager.HORIZONTAL,
+            false
+        )
+        binding.RecyclerViewCourseSearch.layoutManager =
+            layoutManager
         SearchFragment.searchCourseData.observe(viewLifecycleOwner
         ) {
             when (it) {
@@ -42,26 +49,19 @@ class CoursesSearchStudentSide : Fragment() {
                 is Response.Success -> {
 //                    binding.progressBarCourse.visibility=View.INVISIBLE
 //                    Toast.makeText(requireContext(),it.data.toString(),Toast.LENGTH_LONG).show()
-                    layoutManager = LinearLayoutManager(
-                        container?.context,
-                        LinearLayoutManager.HORIZONTAL,
-                        false
-                    )
-                    binding.RecyclerViewCourseSearch.layoutManager =
-                        layoutManager
                     adapter = RecyclerAdapterCourseSearchStudentSide(it.data)
                     binding.RecyclerViewCourseSearch.adapter = adapter
                     adapter.onClickListener(object : RecyclerAdapterCourseSearchStudentSide.ClickListener {
                         override fun OnClick(position: Int) {
-                            HomePageTeachersSide.seriesid =
-                                adapter.courseSearch?.get(position)?.id?.toInt()
-                            RecyclerAdapterLectureTeachersSide.series_name =
-                                adapter.courseSearch?.get(position)?.name.toString()
-                            RecyclerAdapterLectureTeachersSide.seriesDescription =
-                                adapter.courseSearch?.get(position)?.description.toString()
-                            RecyclerAdapterLectureTeachersSide.seriesThumbnail =
-                                adapter.courseSearch?.get(position)?.icon.toString()
-                            findNavController().navigate(R.id.lecturesTeachersSide2)
+//                            HomePageTeachersSide.seriesid =
+//                                adapter.courseSearch?.get(position)?.id?.toInt()
+//                            RecyclerAdapterLectureTeachersSide.series_name =
+//                                adapter.courseSearch?.get(position)?.name.toString()
+//                            RecyclerAdapterLectureTeachersSide.seriesDescription =
+//                                adapter.courseSearch?.get(position)?.description.toString()
+//                            RecyclerAdapterLectureTeachersSide.seriesThumbnail =
+//                                adapter.courseSearch?.get(position)?.icon.toString()
+//                            findNavController().navigate(R.id.lecturesTeachersSide2)
                         }
                     })
                 }

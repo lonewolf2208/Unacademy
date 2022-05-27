@@ -60,72 +60,83 @@ class LogIn : Fragment() ,View.OnClickListener{
                     ApiRepo= ApiRepo(RetrofitClient.init())
                     binding?.LogInButton?.isEnabled = false
                         ApiRepo?.getLoginApi(emailText?.text.toString(),passText?.text.toString())
-                        ApiRepo?.ApiResponse?.observe(this@LogIn,{
-                            when (it) {
-                                is Response.Success ->
-                                {
-                                    binding?.LogInButton?.isEnabled = true
-                                    var teacher= it.data?.is_educator
-                                    var student =it.data?.is_student
-                                    binding?.progressBarLogin?.visibility=View.INVISIBLE
-                                    var GetTokenRepo= GetTokenRepo(RetrofitClient.init())
-                                    GetTokenRepo.getToken(emailText?.text.toString(),passText?.text.toString())
-                                    GetTokenRepo.TokenResponse.observe(this@LogIn,
-                                        {
-                                            when(it)
-                                            {
-                                                is Response.Success-> {
-                                                    lifecycleScope.launch {
-                                                        Splash_Screen.saveInfo(
-                                                            "access",
-                                                            it.data?.access.toString()
-                                                        )
-                                                        Splash_Screen.saveInfo(
-                                                            "refresh",
-                                                            it.data?.refresh.toString()
-                                                        )
-                                                    }
-                                                    if (teacher == true) {
-                                                        val intent = Intent(
-                                                            activity,
-                                                            NavBarActivity::class.java
-                                                        )
-                                                        lifecycleScope.launch {
-                                                            Splash_Screen.save("teacherloggedIn",true)
-                                                        }
-                                                        startActivity(intent)
-                                                    } else if (student == true)
-                                                    {
-                                                        val intent=Intent(
-                                                            activity,
-                                                            StudentSideActivity::class.java
-                                                        )
-                                                        lifecycleScope.launch {
-                                                            Splash_Screen.save("studentloggedIn",true)
-                                                        }
-                                                        startActivity(intent)
-                                                    }
-                                                    else
-                                                    {
-                                                        findNavController().navigate(R.id.action_logIn_to_chooseRole)
-                                                    }
-                                                }
-                                                is Response.Error->Toast.makeText(context,it.errorMessage.toString(),Toast.LENGTH_LONG).show()
+                    ApiRepo?.ApiResponse.observe(this@LogIn) {
+                        when (it) {
+                            is Response.Success -> {
+                                binding?.LogInButton?.isEnabled = true
+                                var teacher = it.data?.is_educator
+                                var student = it.data?.is_student
+                                binding?.progressBarLogin?.visibility = View.INVISIBLE
+                                var GetTokenRepo = GetTokenRepo(RetrofitClient.init())
+                                GetTokenRepo.getToken(
+                                    emailText?.text.toString(),
+                                    passText?.text.toString()
+                                )
+                                GetTokenRepo.TokenResponse.observe(this@LogIn
+                                ) {
+                                    when (it) {
+                                        is Response.Success -> {
+                                            lifecycleScope.launch {
+                                                Splash_Screen.saveInfo(
+                                                    "access",
+                                                    it.data?.access.toString()
+                                                )
+                                                Splash_Screen.saveInfo(
+                                                    "refresh",
+                                                    it.data?.refresh.toString()
+                                                )
                                             }
-                                        })
+                                            if (teacher == true) {
+                                                val intent = Intent(
+                                                    activity,
+                                                    NavBarActivity::class.java
+                                                )
+                                                lifecycleScope.launch {
+                                                    Splash_Screen.save(
+                                                        "teacherloggedIn",
+                                                        true
+                                                    )
+                                                }
+                                                startActivity(intent)
+                                            } else if (student == true) {
+                                                val intent = Intent(
+                                                    activity,
+                                                    StudentSideActivity::class.java
+                                                )
+                                                lifecycleScope.launch {
+                                                    Splash_Screen.save(
+                                                        "studentloggedIn",
+                                                        true
+                                                    )
+                                                }
+                                                startActivity(intent)
+                                            } else {
+                                                findNavController().navigate(R.id.action_logIn_to_chooseRole)
+                                            }
+                                        }
+                                        is Response.Error -> Toast.makeText(
+                                            context,
+                                            it.errorMessage.toString(),
+                                            Toast.LENGTH_LONG
+                                        ).show()
+                                    }
+                                }
 
-                                }
-                                is Response.Error -> {
-                                    binding?.LogInButton?.isEnabled = true
-                                    binding?.progressBarLogin?.visibility=View.INVISIBLE
-                                    Toast.makeText(context,it.errorMessage.toString(), Toast.LENGTH_LONG).show()
-                                }
-                                is Response.Loading->
-                                {
-                                    binding?.progressBarLogin?.visibility=View.VISIBLE
-                                }
                             }
-                        })
+                            is Response.Error -> {
+                                binding?.LogInButton?.isEnabled = true
+                                binding?.progressBarLogin?.visibility = View.INVISIBLE
+                                Toast.makeText(
+                                    context,
+                                    it.errorMessage.toString(),
+                                    Toast.LENGTH_LONG
+                                ).show()
+                            }
+                            is Response.Loading -> {
+                                binding?.progressBarLogin?.visibility = View.VISIBLE
+                            }
+                        }
+                    }
 
                 }
 

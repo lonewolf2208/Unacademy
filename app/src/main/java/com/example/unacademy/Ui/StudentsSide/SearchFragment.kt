@@ -56,58 +56,58 @@ class SearchFragment : Fragment() {
                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
 //                   Toast.makeText(requireContext(),"Called",Toast.LENGTH_LONG).show()
 //                   Toast.makeText(requireContext(),binding.SearchContainer.text.toString(),Toast.LENGTH_LONG).show()
-                    lifecycleScope.launch {
-//                        Toast.makeText(requireContext(),binding.SearchContainer.text.toString(),Toast.LENGTH_LONG).show()
-                        if (!binding.SearchContainer.text.isEmpty()) {
-                            var searchProfile =
-                                searchPageStudentSideViewModel.getProfile(binding.SearchContainer.text.toString())
-                            searchProfile.observe(
-                                viewLifecycleOwner
-                            ) {
 
-                                when (it) {
-                                    is Response.Loading -> binding.progressBarSearch.visibility =
-                                        View.VISIBLE
-                                    is Response.Success -> {
-                                        binding.progressBarSearch.visibility = View.INVISIBLE
-//                                       Toast.makeText(requireContext(),it.data.toString(),Toast.LENGTH_LONG).show()
-                                        searchProfileData.postValue(Response.Success(it.data))
-                                    }
-                                    is Response.Error -> Toast.makeText(
-                                        requireContext(),
-                                        it.errorMessage.toString(),
-                                        Toast.LENGTH_LONG
-                                    ).show()
-                                }
-                            }
-
-                            var searchCourse =
-                                searchPageStudentSideViewModel.getCourse(binding.SearchContainer.text.toString())
-                            searchCourse.observe(
-                                viewLifecycleOwner
-                            ) {
-                                when (it) {
-                                    is Response.Loading -> binding.progressBarSearch.visibility =
-                                        View.VISIBLE
-                                    is Response.Success -> {
-                                        binding.progressBarSearch.visibility = View.INVISIBLE
-//                                       Toast.makeText(requireContext(),it.data.toString(),Toast.LENGTH_LONG).show()
-                                        searchCourseData.postValue(Response.Success(it.data))
-                                    }
-                                    is Response.Error -> Toast.makeText(
-                                        requireContext(),
-                                        it.errorMessage.toString(),
-                                        Toast.LENGTH_LONG
-                                    ).show()
-                                }
-                            }
-
-                        }
-                    }
                }
 
                override fun afterTextChanged(p0: Editable?) {
+                   lifecycleScope.launch {
+//                        Toast.makeText(requireContext(),binding.SearchContainer.text.toString(),Toast.LENGTH_LONG).show()
+                       if (!binding.SearchContainer.text.isEmpty()) {
+                           var searchProfile =
+                               searchPageStudentSideViewModel.getProfile(binding.SearchContainer.text.toString())
+                           searchProfile.observe(
+                               viewLifecycleOwner
+                           ) {
 
+                               when (it) {
+                                   is Response.Loading -> binding.progressBarSearch.visibility =
+                                       View.VISIBLE
+                                   is Response.Success -> {
+                                       binding.progressBarSearch.visibility = View.INVISIBLE
+//                                       Toast.makeText(requireContext(),it.data.toString(),Toast.LENGTH_LONG).show()
+                                       searchProfileData.postValue(Response.Success(it.data))
+                                   }
+                                   is Response.Error -> Toast.makeText(
+                                       requireContext(),
+                                       it.errorMessage.toString(),
+                                       Toast.LENGTH_LONG
+                                   ).show()
+                               }
+                           }
+
+                           var searchCourse =
+                               searchPageStudentSideViewModel.getCourse(binding.SearchContainer.text.toString())
+                           searchCourse.observe(
+                               viewLifecycleOwner
+                           ) {
+                               when (it) {
+                                   is Response.Loading -> binding.progressBarSearch.visibility =
+                                       View.VISIBLE
+                                   is Response.Success -> {
+                                       binding.progressBarSearch.visibility = View.INVISIBLE
+//                                       Toast.makeText(requireContext(),it.data.toString(),Toast.LENGTH_LONG).show()
+                                       searchCourseData.postValue(Response.Success(it.data))
+                                   }
+                                   is Response.Error -> Toast.makeText(
+                                       requireContext(),
+                                       it.errorMessage.toString(),
+                                       Toast.LENGTH_LONG
+                                   ).show()
+                               }
+                           }
+
+                       }
+                   }
                }
            }
        )

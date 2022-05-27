@@ -9,8 +9,8 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:context=".card_view_home_page_teachers_side">
+        android:layout_height="match_parent"
+       >
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -40,7 +40,7 @@
                     android:layout_marginStart="12dp"
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/rosario_bold"
-                    android:text=""
+                    android:text="SANDEEP"
                     android:textColor="#000000"
                     android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="parent"
