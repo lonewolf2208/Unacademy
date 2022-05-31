@@ -5,10 +5,15 @@
       <map>
         <entry key="..\:/AndroidStudioProjects/Unacademy/app/src/main/res/drawable/border.xml" value="0.2225" />
         <entry key="..\:/AndroidStudioProjects/Unacademy/app/src/main/res/drawable/customise_button_toggle.xml" value="0.2265" />
+        <entry key="..\:/AndroidStudioProjects/Unacademy/app/src/main/res/drawable/follow_button_border.xml" value="0.186" />
+        <entry key="..\:/AndroidStudioProjects/Unacademy/app/src/main/res/drawable/gradient.xml" value="0.186" />
         <entry key="..\:/AndroidStudioProjects/Unacademy/app/src/main/res/drawable/home_selection_teachers_side.xml" value="0.186" />
+        <entry key="..\:/AndroidStudioProjects/Unacademy/app/src/main/res/drawable/ic_about_us.xml" value="0.186" />
+        <entry key="..\:/AndroidStudioProjects/Unacademy/app/src/main/res/drawable/ic_add_button.xml" value="0.186" />
         <entry key="..\:/AndroidStudioProjects/Unacademy/app/src/main/res/drawable/ic_frame_2.xml" value="0.2265" />
         <entry key="..\:/AndroidStudioProjects/Unacademy/app/src/main/res/drawable/ic_profile_homepagw.xml" value="0.2265" />
         <entry key="..\:/AndroidStudioProjects/Unacademy/app/src/main/res/drawable/ic_search.xml" value="0.2265" />
+        <entry key="..\:/AndroidStudioProjects/Unacademy/app/src/main/res/drawable/image_border.xml" value="0.186" />
         <entry key="..\:/AndroidStudioProjects/Unacademy/app/src/main/res/drawable/profile_selection_teachers_side.xml" value="0.186" />
         <entry key="..\:/AndroidStudioProjects/Unacademy/app/src/main/res/drawable/search_border.xml" value="0.2225" />
         <entry key="..\:/AndroidStudioProjects/Unacademy/app/src/main/res/drawable/toggleselector.xml" value="0.2265" />
@@ -17,6 +22,7 @@
         <entry key="..\:/AndroidStudioProjects/Unacademy/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/AndroidStudioProjects/Unacademy/app/src/main/res/layout/activity_nav_bar.xml" value="0.25" />
         <entry key="..\:/AndroidStudioProjects/Unacademy/app/src/main/res/layout/activity_stroy.xml" value="0.25416666666666665" />
+        <entry key="..\:/AndroidStudioProjects/Unacademy/app/src/main/res/layout/activity_student_side.xml" value="0.25" />
         <entry key="..\:/AndroidStudioProjects/Unacademy/app/src/main/res/layout/activity_student_story.xml" value="0.22826086956521738" />
         <entry key="..\:/AndroidStudioProjects/Unacademy/app/src/main/res/layout/card_view_daily_quiz_student_side.xml" value="0.25416666666666665" />
         <entry key="..\:/AndroidStudioProjects/Unacademy/app/src/main/res/layout/card_view_educator_search.xml" value="0.25" />
@@ -24,9 +30,10 @@
         <entry key="..\:/AndroidStudioProjects/Unacademy/app/src/main/res/layout/card_view_stories_student_side.xml" value="0.22826086956521738" />
         <entry key="..\:/AndroidStudioProjects/Unacademy/app/src/main/res/layout/cardview_student_notifications_student_side.xml" value="0.22826086956521738" />
         <entry key="..\:/AndroidStudioProjects/Unacademy/app/src/main/res/layout/cardviewcoursesearch.xml" value="0.264" />
+        <entry key="..\:/AndroidStudioProjects/Unacademy/app/src/main/res/layout/course_for_you.xml" value="0.24895833333333334" />
         <entry key="..\:/AndroidStudioProjects/Unacademy/app/src/main/res/layout/fragment_about_us_omega.xml" value="0.25416666666666665" />
         <entry key="..\:/AndroidStudioProjects/Unacademy/app/src/main/res/layout/fragment_add_quiz_questions.xml" value="0.25416666666666665" />
-        <entry key="..\:/AndroidStudioProjects/Unacademy/app/src/main/res/layout/fragment_card_view_home_page_students_side.xml" value="0.22826086956521738" />
+        <entry key="..\:/AndroidStudioProjects/Unacademy/app/src/main/res/layout/fragment_card_view_home_page_students_side.xml" value="0.536" />
         <entry key="..\:/AndroidStudioProjects/Unacademy/app/src/main/res/layout/fragment_card_view_home_page_teachers_side.xml" value="0.22826086956521738" />
         <entry key="..\:/AndroidStudioProjects/Unacademy/app/src/main/res/layout/fragment_card_view_lectures.xml" value="0.22826086956521738" />
         <entry key="..\:/AndroidStudioProjects/Unacademy/app/src/main/res/layout/fragment_card_view_result_analysis_student_side.xml" value="0.25416666666666665" />
@@ -66,6 +73,7 @@
         <entry key="..\:/AndroidStudioProjects/Unacademy/app/src/main/res/layout/fragment_series_show_page_teacher_profile.xml" value="0.25" />
         <entry key="..\:/AndroidStudioProjects/Unacademy/app/src/main/res/layout/fragment_sign_up.xml" value="0.22826086956521738" />
         <entry key="..\:/AndroidStudioProjects/Unacademy/app/src/main/res/layout/fragment_sign_up_login_page.xml" value="0.25" />
+        <entry key="..\:/AndroidStudioProjects/Unacademy/app/src/main/res/layout/fragment_story_slider.xml" value="0.25" />
         <entry key="..\:/AndroidStudioProjects/Unacademy/app/src/main/res/layout/fragment_student_info.xml" value="0.25416666666666665" />
         <entry key="..\:/AndroidStudioProjects/Unacademy/app/src/main/res/layout/fragment_student_story_slider.xml" value="0.25416666666666665" />
         <entry key="..\:/AndroidStudioProjects/Unacademy/app/src/main/res/layout/fragment_teachers_profile.xml" value="0.25416666666666665" />
@@ -73,7 +81,10 @@
         <entry key="..\:/AndroidStudioProjects/Unacademy/app/src/main/res/layout/fragment_upload_lectures.xml" value="0.25416666666666665" />
         <entry key="..\:/AndroidStudioProjects/Unacademy/app/src/main/res/layout/fragment_wish_list_student_side.xml" value="0.25416666666666665" />
         <entry key="..\:/AndroidStudioProjects/Unacademy/app/src/main/res/layout/lottie_file_loader.xml" value="0.25416666666666665" />
+        <entry key="..\:/AndroidStudioProjects/Unacademy/app/src/main/res/layout/shimmer_effect_latest_series.xml" value="0.25" />
+        <entry key="..\:/AndroidStudioProjects/Unacademy/app/src/main/res/layout/shimmer_effect_layout.xml" value="0.25" />
         <entry key="..\:/AndroidStudioProjects/Unacademy/app/src/main/res/layout/shimmer_effect_lectureside.xml" value="0.25416666666666665" />
+        <entry key="..\:/AndroidStudioProjects/Unacademy/app/src/main/res/layout/shimmer_effect_our_educators.xml" value="0.25" />
         <entry key="..\:/AndroidStudioProjects/Unacademy/app/src/main/res/layout/shimmer_effect_quiz_.xml" value="0.25416666666666665" />
         <entry key="..\:/AndroidStudioProjects/Unacademy/app/src/main/res/layout/shimmer_effect_story.xml" value="0.25" />
         <entry key="..\:/AndroidStudioProjects/Unacademy/app/src/main/res/layout/toolbar_layout.xml" value="0.264" />

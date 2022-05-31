@@ -35,24 +35,24 @@ class student_story_slider : Fragment() {
         binding.storyInfoViewModel=storyInfoViewModel
         lifecycleScope.launch {
             var result= storyInfoViewModel.StudentStoryInfo()
-            result.observe(viewLifecycleOwner,
-                {
-                    when(it) {
-                        is Response.Success -> {
-                            var size = it.data?.size?.toInt()
-                            var imageList: MutableList<String>? = null
-                            var slideModel = ArrayList<SlideModel>()
-                            for (i in 0..(size!!.toInt()-1)) {
-                                slideModel.add(SlideModel(it.data!![i].doc, centerCrop = true ))
-                            }
-                            binding.imageSliderFragmentStudentStory.setImageList(slideModel, true)
+            result.observe(viewLifecycleOwner
+            ) {
+                when (it) {
+                    is Response.Success -> {
+                        var size = it.data?.size?.toInt()
+                        var imageList: MutableList<String>? = null
+                        var slideModel = ArrayList<SlideModel>()
+                        for (i in 0..(size!!.toInt() - 1)) {
+                            slideModel.add(SlideModel(it.data!![i].doc, centerCrop = true))
                         }
-                        is Response.Error -> {
-                            Toast.makeText(context, it.errorMessage.toString(), Toast.LENGTH_LONG)
-                                .show()
-                        }
+                        binding.imageSliderFragmentStudentStory.setImageList(slideModel, true)
                     }
-                })
+                    is Response.Error -> {
+                        Toast.makeText(context, it.errorMessage.toString(), Toast.LENGTH_LONG)
+                            .show()
+                    }
+                }
+            }
         }
         return binding.root
     }

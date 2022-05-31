@@ -8,94 +8,147 @@
     </data>
 
     <FrameLayout
-        android:layout_width="250dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:context=".Ui.StudentsSide.cardViewHomePageStudentsSide">
+      <androidx.constraintlayout.widget.ConstraintLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent">
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            app:cardElevation="5dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="8dp"
-            android:layout_height="match_parent">
+          <TextView
+              android:id="@+id/textView120"
+              android:layout_width="0dp"
+              android:layout_height="3dp"
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+              android:layout_marginStart="20dp"
+              android:layout_marginTop="5dp"
+              android:layout_marginEnd="20dp"
+              android:background="#DDD9D9"
+              app:layout_constraintEnd_toEndOf="parent"
+              app:layout_constraintHorizontal_bias="0.0"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintTop_toBottomOf="@+id/textView121" />
 
-                <ImageView
-                    android:id="@+id/imageView10"
-                    android:layout_width="235dp"
-                    android:layout_height="160dp"
-                    android:src="@drawable/gradient"
-                    android:scaleType="centerCrop"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+          <TextView
+              android:id="@+id/textView121"
+              android:layout_width="0dp"
+              android:layout_height="3dp"
+              android:layout_marginStart="26dp"
+              android:layout_marginTop="5dp"
+              android:layout_marginEnd="26dp"
+              android:background="#DDD9D9"
+              app:layout_constraintEnd_toEndOf="parent"
+              app:layout_constraintHorizontal_bias="0.0"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintTop_toBottomOf="@+id/textView122" />
 
-                <TextView
-                    android:id="@+id/SeriesNameStudentSide"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="10dp"
-                    android:fontFamily="@font/rosario_bold"
-                    android:text="TextView"
-                    android:singleLine="true"
-                    android:textColor="#000000"
-                    android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView10" />
+          <TextView
+              android:id="@+id/textView122"
+              android:layout_width="0dp"
+              android:layout_height="3dp"
+              android:layout_marginStart="32dp"
+              android:layout_marginTop="4dp"
+              android:layout_marginEnd="32dp"
+              android:background="#DDD9D9"
+              android:text="TextView"
+              app:layout_constraintEnd_toEndOf="parent"
+              app:layout_constraintHorizontal_bias="0.0"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/SeriesDescriptionStudentSide"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginEnd="16dp"
-                    android:text="TextView"
-                    android:singleLine="true"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/SeriesNameStudentSide" />
+          <androidx.cardview.widget.CardView
+              android:id="@+id/cardView3"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:layout_marginStart="16dp"
+              app:cardCornerRadius="5dp"
+              android:layout_marginTop="4dp"
+              android:layout_marginEnd="16dp"
+              android:layout_marginBottom="16dp"
+              app:cardElevation="6dp"
+              app:layout_constraintBottom_toBottomOf="parent"
+              app:layout_constraintEnd_toEndOf="parent"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintTop_toBottomOf="@+id/textView120">
 
-                <TextView
-                    android:id="@+id/textView66"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="10dp"
-                    android:maxLines="1"
-                    android:text="Total no.of lectures"
-                    android:textColor="#000000"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/SeriesDescriptionStudentSide" />
+              <androidx.constraintlayout.widget.ConstraintLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent">
 
-                <TextView
-                    android:id="@+id/LectureCountStudentSide"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginTop="10dp"
-                    android:text="TextView"
-                    app:layout_constraintStart_toEndOf="@+id/textView66"
-                    app:layout_constraintTop_toBottomOf="@+id/SeriesDescriptionStudentSide" />
 
-                <ImageView
-                    android:id="@+id/WishListStudentSide"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="60dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginBottom="10dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView10"
-                    app:srcCompat="@drawable/ic_wishlist_student_side_deselected" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.cardview.widget.CardView>
+                  <ImageView
+                      android:id="@+id/imageView10"
+                      android:layout_width="235dp"
+                      android:layout_height="160dp"
+                      android:scaleType="centerCrop"
+                      android:src="@drawable/gradient"
+                      app:layout_constraintEnd_toEndOf="parent"
+                      app:layout_constraintHorizontal_bias="0.333"
+                      app:layout_constraintStart_toStartOf="parent"
+                      app:layout_constraintTop_toTopOf="parent" />
+
+                  <TextView
+                      android:id="@+id/SeriesNameStudentSide"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_marginStart="8dp"
+                      android:layout_marginTop="10dp"
+                      android:fontFamily="@font/rosario_bold"
+                      android:singleLine="true"
+                      android:text="TextView"
+                      android:textColor="#000000"
+                      android:textSize="16sp"
+                      app:layout_constraintStart_toStartOf="parent"
+                      app:layout_constraintTop_toBottomOf="@+id/imageView10" />
+
+                  <TextView
+                      android:id="@+id/SeriesDescriptionStudentSide"
+                      android:layout_width="0dp"
+                      android:layout_height="wrap_content"
+                      android:layout_marginStart="8dp"
+                      android:layout_marginTop="4dp"
+                      android:layout_marginEnd="16dp"
+                      android:singleLine="true"
+                      android:text="TextView"
+                      app:layout_constraintEnd_toEndOf="parent"
+                      app:layout_constraintStart_toStartOf="parent"
+                      app:layout_constraintTop_toBottomOf="@+id/SeriesNameStudentSide" />
+
+                  <TextView
+                      android:id="@+id/textView66"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_marginStart="8dp"
+                      android:layout_marginTop="10dp"
+                      android:maxLines="1"
+                      android:text="Total no.of lectures"
+                      android:textColor="#000000"
+                      app:layout_constraintStart_toStartOf="parent"
+                      app:layout_constraintTop_toBottomOf="@+id/SeriesDescriptionStudentSide" />
+
+                  <TextView
+                      android:id="@+id/LectureCountStudentSide"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_marginStart="4dp"
+                      android:layout_marginTop="10dp"
+                      android:text="TextView"
+                      app:layout_constraintStart_toEndOf="@+id/textView66"
+                      app:layout_constraintTop_toBottomOf="@+id/SeriesDescriptionStudentSide" />
+
+                  <ImageView
+                      android:id="@+id/WishListStudentSide"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_marginTop="60dp"
+                      android:layout_marginEnd="10dp"
+                      android:layout_marginBottom="10dp"
+                      app:layout_constraintBottom_toBottomOf="parent"
+                      app:layout_constraintEnd_toEndOf="parent"
+                      app:layout_constraintTop_toBottomOf="@+id/imageView10"
+                      app:srcCompat="@drawable/ic_wishlist_student_side_deselected" />
+              </androidx.constraintlayout.widget.ConstraintLayout>
+          </androidx.cardview.widget.CardView>
+      </androidx.constraintlayout.widget.ConstraintLayout>
     </FrameLayout>
 </layout>

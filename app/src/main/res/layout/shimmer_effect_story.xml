@@ -17,14 +17,15 @@
             android:id="@+id/storiStudentSide"
             android:layout_width="62dp"
             android:layout_height="62dp"
+            android:padding="5dp"
             android:scaleType="centerCrop"
             android:background="#FF636262"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:shapeAppearanceOverlay="@style/RectangularBorder"
+            app:shapeAppearanceOverlay="@style/Circular"
             app:strokeColor="#19D2CC"
-            app:strokeWidth="5dp"></com.google.android.material.imageview.ShapeableImageView>
+            app:strokeWidth="3dp" />
 
         <TextView
             android:id="@+id/StoryNameStudentSide"

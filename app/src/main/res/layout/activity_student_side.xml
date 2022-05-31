@@ -35,8 +35,6 @@
                 app:defaultNavHost="true"
                 app:navGraph="@navigation/student_side_navigation" />
 
-
-
                 <com.google.android.material.bottomnavigation.BottomNavigationView
                     android:id="@+id/bottomNavigationViewStudentSide"
                     android:layout_width="match_parent"

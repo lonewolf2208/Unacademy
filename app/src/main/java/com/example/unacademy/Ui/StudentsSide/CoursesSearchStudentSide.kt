@@ -53,15 +53,15 @@ class CoursesSearchStudentSide : Fragment() {
                     binding.RecyclerViewCourseSearch.adapter = adapter
                     adapter.onClickListener(object : RecyclerAdapterCourseSearchStudentSide.ClickListener {
                         override fun OnClick(position: Int) {
-//                            HomePageTeachersSide.seriesid =
-//                                adapter.courseSearch?.get(position)?.id?.toInt()
-//                            RecyclerAdapterLectureTeachersSide.series_name =
-//                                adapter.courseSearch?.get(position)?.name.toString()
-//                            RecyclerAdapterLectureTeachersSide.seriesDescription =
-//                                adapter.courseSearch?.get(position)?.description.toString()
-//                            RecyclerAdapterLectureTeachersSide.seriesThumbnail =
-//                                adapter.courseSearch?.get(position)?.icon.toString()
-//                            findNavController().navigate(R.id.lecturesTeachersSide2)
+                            HomePageTeachersSide.seriesid =
+                                adapter.courseSearch?.get(position)?.id?.toInt()
+                            RecyclerAdapterLectureTeachersSide.series_name =
+                                adapter.courseSearch?.get(position)?.name.toString()
+                            RecyclerAdapterLectureTeachersSide.seriesDescription =
+                                adapter.courseSearch?.get(position)?.description.toString()
+                            RecyclerAdapterLectureTeachersSide.seriesThumbnail =
+                                adapter.courseSearch?.get(position)?.icon.toString()
+                            findNavController().navigate(R.id.lecturesTeachersSide2)
                         }
                     })
                 }

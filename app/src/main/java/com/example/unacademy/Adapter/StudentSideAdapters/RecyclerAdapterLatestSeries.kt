@@ -53,7 +53,6 @@ class RecyclerAdapterLatestSeries(val context:Context,var getStudentSeries:Array
         holder.binding.imageView10.load(getStudentSeries?.get(holder.adapterPosition)?.icon.toString())
         holder.binding.LectureCountStudentSide.text=getStudentSeries?.get(holder.adapterPosition)?.lectures.toString()
         holder.binding.WishListStudentSide.setOnClickListener {
-
             if(wishListFlag==false) {
                 holder.binding.WishListStudentSide.setBackgroundResource(R.drawable.ic_wishlist_student_side_selected)
                 MainScope().launch {

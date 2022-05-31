@@ -59,38 +59,40 @@ class FragmentTeachersProfileShowPageStudentSide : Fragment(),View.OnClickListen
             container,
             false
         )
-        val dialodView =
-            LayoutInflater.from(requireContext()).inflate(R.layout.lottie_file_loader, null)
+        binding.shapeableImageView2.bringToFront()
+            val dialodView =
+                LayoutInflater.from(requireContext()).inflate(R.layout.lottie_file_loader, null)
 
-        val mBuilder = AlertDialog.Builder(requireContext())
-            .setView(dialodView)
-        val alertDialog: AlertDialog = mBuilder.create()
-        alertDialog.getWindow()!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT));
-        alertDialog.show()
+            val mBuilder = AlertDialog.Builder(requireContext())
+                .setView(dialodView)
+            val alertDialog: AlertDialog = mBuilder.create()
+            alertDialog.getWindow()!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT));
+            alertDialog.show()
         binding.lifecycleOwner=this
         binding.teacherProfileModel=viewModel
         binding.FollowBUttonTeachersProfile.setOnClickListener(this)
         lifecycleScope.launch {
             var result=viewModel.getProfile(homePageStudentSide.teacher_id)
-            result.observe(viewLifecycleOwner,
-                {
-                    when(it)
-                    {
-                       is com.example.unacademy.Repository.Response.Success ->
-                       {
-                           alertDialog.dismiss()
+            result.observe(viewLifecycleOwner
+            ) {
+                when (it) {
+                    is com.example.unacademy.Repository.Response.Success -> {
+                        alertDialog.dismiss()
 
-                           binding.shapeableImageView2.load(it.data?.picture)
-                           binding.TeacherProfileShowPageFollowerCount.text= it.data!!.followers.toString()
-                           binding.TeacherProfileShowPageSeriesCount.text= it.data!!.educator_series.size.toString()
-                           binding.QuizzesShowPageTeacherProfileShowPage.text=it.data.educator_quiz.size.toString()
-                           binding.TeacherNameTeacherProfile.text=it.data.name
-                           binding.TeacherDescriptionTeacherProfileShowPage.text=it.data.qual
-                           teacher_profile_series=it.data.educator_series
-                           teacher_profile_quizzes=it.data.educator_quiz
-                       }
+                        binding.shapeableImageView2.load(it.data?.picture)
+                        binding.TeacherProfileShowPageFollowerCount.text =
+                            it.data!!.followers.toString()
+                        binding.TeacherProfileShowPageSeriesCount.text =
+                            it.data!!.educator_series.size.toString()
+                        binding.QuizzesShowPageTeacherProfileShowPage.text =
+                            it.data.educator_quiz.size.toString()
+                        binding.TeacherNameTeacherProfile.text = it.data.name
+                        binding.TeacherDescriptionTeacherProfileShowPage.text = it.data.qual
+                        teacher_profile_series = it.data.educator_series
+                        teacher_profile_quizzes = it.data.educator_quiz
                     }
-                })
+                }
+            }
 
         }
         binding.viewPager.adapter=FragmentStateChangeAdapter(this@FragmentTeachersProfileShowPageStudentSide)
@@ -111,30 +113,28 @@ class FragmentTeachersProfileShowPageStudentSide : Fragment(),View.OnClickListen
                 lifecycleScope.launch {
                     if (flag % 2 == 0) {
                         var result = viewModel.addFollowing()
-                        result.observe(viewLifecycleOwner,
-                            {
-                                when (it) {
-                                    is com.example.unacademy.Repository.Response.Success -> {
-                                        binding.FollowBUttonTeachersProfile.text = "Following"
-                                        flag++
-                                    }
+                        result.observe(viewLifecycleOwner
+                        ) {
+                            when (it) {
+                                is com.example.unacademy.Repository.Response.Success -> {
+                                    binding.FollowBUttonTeachersProfile.text = "Following"
+                                    flag++
                                 }
-                            })
+                            }
+                        }
                     }
                     else
                     {
                         var result=viewModel.teacherUnfollowing()
-                        result.observe(viewLifecycleOwner,
-                            {
-                                when(it)
-                                {
-                                    is com.example.unacademy.Repository.Response.Success->
-                                    {
-                                        flag++
-                                        binding.FollowBUttonTeachersProfile.text="Follow"
-                                    }
+                        result.observe(viewLifecycleOwner
+                        ) {
+                            when (it) {
+                                is com.example.unacademy.Repository.Response.Success -> {
+                                    flag++
+                                    binding.FollowBUttonTeachersProfile.text = "Follow"
                                 }
-                            })
+                            }
+                        }
                     }
                 }
             }
