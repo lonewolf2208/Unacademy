@@ -39,36 +39,36 @@ class RecyclerAdapterResultAnalysisStudentSide(var studentSideGetQuizModelItem: 
             {
                 1-> {
                     holder.binding.Option1QuizResultPageAnalysis.isChecked = true
-                    holder.binding.Option1QuizResultPageAnalysis.setBackgroundColor(Color.parseColor("#CD0000"))
+                    holder.binding.Option1QuizResultPageAnalysis.setBackgroundColor(Color.parseColor("#D90000"))
                 }
                 2-> {
                     holder.binding.Option2QuizResultPageAnalysis.isChecked = true
-                    holder.binding.Option2QuizResultPageAnalysis.setBackgroundColor(Color.parseColor("#CD0000"))
+                    holder.binding.Option2QuizResultPageAnalysis.setBackgroundColor(Color.parseColor("#D90000"))
                 }
                 3-> {
                     holder.binding.Option3QuizResultPageAnalysis.isChecked = true
-                    holder.binding.Option3QuizResultPageAnalysis.setBackgroundColor(Color.parseColor("#CD0000"))
+                    holder.binding.Option3QuizResultPageAnalysis.setBackgroundColor(Color.parseColor("#D90000"))
                 }
                 4-> {
                     holder.binding.Option4QuizResultPageAnalysis.isChecked = true
-                    holder.binding.Option4QuizResultPageAnalysis.setBackgroundColor(Color.parseColor("#CD0000"))
+                    holder.binding.Option4QuizResultPageAnalysis.setBackgroundColor(Color.parseColor("#D90000"))
                 }
             }
             when (correctedAnswer) {
                 1 -> {
-                    holder.binding.Option1QuizResultPageAnalysis.setBackgroundColor(Color.GREEN)
+                    holder.binding.Option1QuizResultPageAnalysis.setBackgroundColor(Color.parseColor("#1D9200"))
                 }
                 2 -> {
 
-                    holder.binding.Option2QuizResultPageAnalysis.setBackgroundColor(Color.GREEN)
+                    holder.binding.Option2QuizResultPageAnalysis.setBackgroundColor(Color.parseColor("#1D9200"))
                 }
                 3 -> {
 
-                    holder.binding.Option3QuizResultPageAnalysis.setBackgroundColor(Color.GREEN)
+                    holder.binding.Option3QuizResultPageAnalysis.setBackgroundColor(Color.parseColor("#1D9200"))
                 }
                 4 -> {
 
-                    holder.binding.Option4QuizResultPageAnalysis.setBackgroundColor(Color.GREEN)
+                    holder.binding.Option4QuizResultPageAnalysis.setBackgroundColor(Color.parseColor("#1D9200"))
                 }
             }
         }
@@ -76,19 +76,19 @@ class RecyclerAdapterResultAnalysisStudentSide(var studentSideGetQuizModelItem: 
             when (attemptedAnswer) {
                 1 -> {
                     holder.binding.Option1QuizResultPageAnalysis.isChecked = true
-                    holder.binding.Option1QuizResultPageAnalysis.setBackgroundColor(Color.GREEN)
+                    holder.binding.Option1QuizResultPageAnalysis.setBackgroundColor(Color.parseColor("#1D9200"))
                 }
                 2 -> {
                     holder.binding.Option2QuizResultPageAnalysis.isChecked = true
-                    holder.binding.Option2QuizResultPageAnalysis.setBackgroundColor(Color.GREEN)
+                    holder.binding.Option2QuizResultPageAnalysis.setBackgroundColor(Color.parseColor("#1D9200"))
                 }
                 3 -> {
                     holder.binding.Option3QuizResultPageAnalysis.isChecked = true
-                    holder.binding.Option3QuizResultPageAnalysis.setBackgroundColor(Color.GREEN)
+                    holder.binding.Option3QuizResultPageAnalysis.setBackgroundColor(Color.parseColor("#1D9200"))
                 }
                 4 -> {
                     holder.binding.Option4QuizResultPageAnalysis.isChecked = true
-                    holder.binding.Option4QuizResultPageAnalysis.setBackgroundColor(Color.GREEN)
+                    holder.binding.Option4QuizResultPageAnalysis.setBackgroundColor(Color.parseColor("#1D9200"))
                 }
             }
         }

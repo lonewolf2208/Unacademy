@@ -24,7 +24,6 @@ class HomePageViewModel():ViewModel() {
             var AccessToken = Splash_Screen.readInfo("access").toString()
             token = AccessToken
         }
-        Log.w("getSeries","Called")
         job.join()
         var getSeriesRepo=getSeriesRepo(Api)
         result=getSeriesRepo.getSeriesApi(token.toString())

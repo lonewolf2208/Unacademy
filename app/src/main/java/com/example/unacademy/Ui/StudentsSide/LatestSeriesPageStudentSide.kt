@@ -32,15 +32,15 @@ class   LatestSeriesPageStudentSide : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding=DataBindingUtil.inflate(inflater,R.layout.fragment_latest_series_page_student_side, container, false)
-        binding.shimmerFrameLayoutHomePageLatestSeries.startShimmerAnimation()
-        if(homePageStudentSide.series.size!=0)
-        {
-            binding.shimmerFrameLayoutHomePageLatestSeries.stopShimmerAnimation()
-            binding.shimmerFrameLayoutHomePageLatestSeries.visibility=View.INVISIBLE
-        }
+//        binding.shimmerFrameLayoutHomePageLatestSeries.startShimmerAnimation()
+//        if(homePageStudentSide.series.size!=0)
+//        {
+//            binding.shimmerFrameLayoutHomePageLatestSeries.stopShimmerAnimation()
+//            binding.shimmerFrameLayoutHomePageLatestSeries.visibility=View.INVISIBLE
+//        }
         layoutManager= LinearLayoutManager(container?.context)
         binding.RecylerViewLatestSeries.layoutManager=layoutManager
-        adapter=RecyclerAdapterTeachersSideHomePage(homePageStudentSide.series)
+        adapter=RecyclerAdapterTeachersSideHomePage(HomePageTeachersSide.latesSeries)
         binding.RecylerViewLatestSeries.adapter=adapter
         adapter.onClickListeer(object : RecyclerAdapterTeachersSideHomePage.ClickListener {
             override fun OnClick(position: Int) {

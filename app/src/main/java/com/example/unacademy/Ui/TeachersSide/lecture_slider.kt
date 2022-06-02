@@ -38,27 +38,27 @@ lateinit var getStoryViewModel: GetStoryViewModel
         binding.getStoryViewModel=getStoryViewModel
         lifecycleScope.launch {
            var result=  getStoryViewModel.getStory()
-            result.observe(viewLifecycleOwner,
-                {
-                    when(it) {
-                        is Response.Success -> {
-                            var size = it.data?.size?.toInt()
-                            var slideModel = ArrayList<SlideModel>()
-                            for (i in 0..(size!!.toInt()-1)) {
-                                slideModel.add(SlideModel(it.data!![i].doc, centerCrop = true ))
-                            }
-                            binding.imageSliderFragment.setImageList(slideModel, true)
+            result.observe(viewLifecycleOwner
+            ) {
+                when (it) {
+                    is Response.Success -> {
+                        var size = it.data?.size?.toInt()
+                        var slideModel = ArrayList<SlideModel>()
+                        for (i in 0..(size!!.toInt() - 1)) {
+                            slideModel.add(SlideModel(it.data!![i].doc, centerCrop = true))
                         }
-                        is Response.Error -> {
-                            Toast.makeText(context, it.errorMessage.toString(), Toast.LENGTH_LONG)
-                                .show()
-                        }
-                        is Response.noStory -> {
-                           binding.storySliderText.text="No story to show"
-                        }
-
+                        binding.imageSliderFragment.setImageList(slideModel, true)
                     }
-                })
+                    is Response.Error -> {
+                        Toast.makeText(context, it.errorMessage.toString(), Toast.LENGTH_LONG)
+                            .show()
+                    }
+                    is Response.noStory -> {
+                        binding.storySliderText.text = "No story to show"
+                    }
+
+                }
+            }
         }
 
         return binding.root

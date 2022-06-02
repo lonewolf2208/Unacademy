@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.unacademy.R
+import com.example.unacademy.Ui.StudentsSide.homePageStudentSide
 import com.example.unacademy.databinding.CardViewOurEducatorsStudentSideBinding
 import com.example.unacademy.databinding.FragmentCardViewHomePageStudentsSideBinding
 import com.example.unacademy.models.StudentSideModel.getStudentSeries.EducatorDetails
@@ -52,8 +53,12 @@ class RecyclerAdapterOurEducatorsStudentSide(val context:Context,var educationDe
         holder.binding.educatorImageStudentSide.load(educationDetails?.get(position)?.picture.toString())
         if(educationDetails?.get(position)?.is_followed==true)
         {
+            homePageStudentSide.is_following=true
 //            holder.binding.FollowButton.setBackgroundResource(R.drawable.follow_button_border)
-
+            holder.binding.FollowButton.strokeColor= ColorStateList.valueOf(Color.parseColor("#0E97B5"))
+            holder.binding.FollowButton.strokeWidth=5
+            holder.binding.FollowButton.setBackgroundColor(Color.WHITE)
+            holder.binding.FollowButton.setTextColor(ColorStateList.valueOf(Color.parseColor("#0E97B5")))
             holder.binding.FollowButton.text="Following"
         }
         holder.binding.FollowButton.setOnClickListener {
@@ -62,7 +67,12 @@ class RecyclerAdapterOurEducatorsStudentSide(val context:Context,var educationDe
             if(is_following==false)
             {
 //                holder.binding.FollowButton.setBackgroundResource(R.drawable.follow_button_border)
+                homePageStudentSide.is_following=true
                 holder.binding.FollowButton.text="Following"
+                holder.binding.FollowButton.strokeColor= ColorStateList.valueOf(Color.parseColor("#0E97B5"))
+                holder.binding.FollowButton.strokeWidth=5
+                holder.binding.FollowButton.setBackgroundColor(Color.WHITE)
+                holder.binding.FollowButton.setTextColor(ColorStateList.valueOf(Color.parseColor("#0E97B5")))
                 MainScope().launch {
                     HomePageStudentSideViewModel().addFollowing()
                 }
@@ -70,7 +80,10 @@ class RecyclerAdapterOurEducatorsStudentSide(val context:Context,var educationDe
             }
             else
             {
+                homePageStudentSide.is_following=false
                 holder.binding.FollowButton.text="Follow"
+                holder.binding.FollowButton.setBackgroundColor(Color.parseColor("#0E97B5"))
+                holder.binding.FollowButton.setTextColor(ColorStateList.valueOf(Color.WHITE))
                 MainScope().launch {
                     HomePageStudentSideViewModel().teacherUnfollowing()
                 }

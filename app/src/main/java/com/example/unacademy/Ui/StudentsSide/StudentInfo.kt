@@ -114,11 +114,11 @@ class StudentInfo : Fragment(),View.OnClickListener,DatePickerDialog.OnDateSetLi
                 if (createStudentViewModel.validations() == null) {
                     lifecycleScope.launch {
                         var result = createStudentViewModel.createStudent()
-                        result.observe(viewLifecycleOwner, {
+                        result.observe(viewLifecycleOwner) {
                             when (it) {
                                 is Response.Success -> {
                                     lifecycleScope.launch {
-                                        Splash_Screen.save("studentloggedIn",true)
+                                        Splash_Screen.save("studentloggedIn", true)
                                     }
                                     val intent = Intent(activity, StudentSideActivity::class.java)
                                     startActivity(intent)
@@ -129,7 +129,7 @@ class StudentInfo : Fragment(),View.OnClickListener,DatePickerDialog.OnDateSetLi
                                     Toast.LENGTH_LONG
                                 ).show()
                             }
-                        })
+                        }
                     }
                 }
             }

@@ -17,23 +17,22 @@ import coil.load
 import com.example.unacademy.Activities.ExoPlayer
 import com.example.unacademy.Adapter.RecyclerAdapterLectureTeachersSide
 import com.example.unacademy.Adapter.RecyclerAdapterTeachersSideHomePage
+import com.example.unacademy.Adapter.StudentSideAdapters.FragmentStateChangeAdapter
 import com.example.unacademy.R
 import com.example.unacademy.Ui.StudentsSide.homePageStudentSide
 import com.example.unacademy.databinding.FragmentLecturesTeachersSideBinding
 import com.example.unacademy.viewmodel.LectureTeachersSideViewModel
+import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.coroutines.launch
 
 class LecturesTeachersSide : Fragment() {
 
     lateinit var binding: FragmentLecturesTeachersSideBinding
-    lateinit var lectureTeachersSideViewModel: LectureTeachersSideViewModel
-    private var layoutManager: RecyclerView.LayoutManager? = null
-    lateinit var adapter: RecyclerAdapterLectureTeachersSide
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        lectureTeachersSideViewModel =
-            ViewModelProvider(this)[LectureTeachersSideViewModel::class.java]
+
     }
 
     companion object{
@@ -51,57 +50,21 @@ class LecturesTeachersSide : Fragment() {
             false
         )
         binding.lifecycleOwner = this
-        binding.lectureSideViewModel = lectureTeachersSideViewModel
         binding.seriedThumbnail.load(RecyclerAdapterLectureTeachersSide.seriesThumbnail.toString())
         binding.seriesName.setText(RecyclerAdapterLectureTeachersSide.series_name)
         binding.seriesDescription.setText(RecyclerAdapterLectureTeachersSide.seriesDescription)
+        binding.viewPagerSeries.adapter= FragmentStateChangeAdapter(this@LecturesTeachersSide)
+        TabLayoutMediator(binding.tabLayoutSeries,binding.viewPagerSeries) { tab, position ->
+            when (position) {
+                0 -> tab.text = "Lectures"
+                1 -> tab.text = "Notes"
+            }
+        }.attach()
 
 //        binding.floatingButtonUploadLecture.setOnClickListener {
 //            findNavController().navigate(R.id.upload_lectures)
 //        }
-        lifecycleScope.launch {
-            lectureTeachersSideViewModel.getLectures(HomePageTeachersSide.seriesid!!.toInt())
-            lectureTeachersSideViewModel.result.observe(viewLifecycleOwner
-            ) {
-                when (it) {
-                    is com.example.unacademy.Repository.Response.Success -> {
-                        if (it.data!!.isEmpty()) {
-                            binding.EmptyLecture.text = "Series Is Empty ."
-                        }
-                        binding.shimmerFrameLayoutLectureSide.stopShimmerAnimation()
-                        binding.shimmerFrameLayoutLectureSide.visibility = View.GONE
-                        layoutManager = LinearLayoutManager(container?.context)
-                        binding.recyclerViewLectureSide.layoutManager = layoutManager
-                        adapter = RecyclerAdapterLectureTeachersSide(it.data)
-                        binding.recyclerViewLectureSide.adapter = adapter
 
-                        adapter.onClickListeer(object :
-                            RecyclerAdapterTeachersSideHomePage.ClickListener {
-                            override fun OnClick(position: Int) {
-                                videoUrl =
-                                    adapter.getLectureModelItem?.get(position)?.video.toString()
-                                val intent = Intent(
-                                    activity,
-                                    ExoPlayer::class.java
-                                )
-                                startActivity(intent)
-                            }
-                        })
-                    }
-                    is com.example.unacademy.Repository.Response.Error -> Toast.makeText(
-                        context,
-                        it.errorMessage.toString(),
-                        Toast.LENGTH_LONG
-                    ).show()
-                    is com.example.unacademy.Repository.Response.Loading -> Toast.makeText(
-                        context,
-                        "Loading",
-                        Toast.LENGTH_LONG
-                    ).show()
-                }
-
-            }
-        }
 
         return binding.root
     }

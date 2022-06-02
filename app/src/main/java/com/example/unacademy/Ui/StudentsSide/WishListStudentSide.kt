@@ -41,30 +41,35 @@ lateinit var wishListSTudentSideViewModel:StudentProfileViewModel
         bindiing.wishlistViewModel=wishListSTudentSideViewModel
         lifecycleScope.launch {
             var result = wishListSTudentSideViewModel.getWishlistSeries()
-            result.observe(viewLifecycleOwner,
-                {
-                    when (it) {
-                        is Response.Success -> {
-                            layoutManager = LinearLayoutManager(
-                                container?.context)
-                            bindiing.RecyclerViewWishlistedSeries.layoutManager = layoutManager
-                            adapter = RecyclerAdapterLatestSeries(requireContext(), it.data!!)
-                            bindiing.RecyclerViewWishlistedSeries.adapter = adapter
-                            adapter.notifyDataSetChanged()
-                            adapter.onClickListener(object : RecyclerAdapterLatestSeries.ClickListener {
-                                override fun OnClick(position: Int) {
-                                    HomePageTeachersSide.seriesid = adapter.getStudentSeries?.get(position)?.id!!.toInt()
-                                    RecyclerAdapterLectureTeachersSide.series_name=adapter.getStudentSeries?.get(position)?.name.toString()
-                                    RecyclerAdapterLectureTeachersSide.seriesDescription=adapter.getStudentSeries?.get(position)?.description.toString()
-                                    RecyclerAdapterLectureTeachersSide.seriesThumbnail=adapter.getStudentSeries?.get(position)?.icon.toString()
-                                    findNavController().navigate(R.id.lecturesTeachersSide2)
-                                }
-                            })
-                        }
+            result.observe(viewLifecycleOwner
+            ) {
+                when (it) {
+                    is Response.Success -> {
+                        layoutManager = LinearLayoutManager(
+                            container?.context
+                        )
+                        bindiing.RecyclerViewWishlistedSeries.layoutManager = layoutManager
+                        adapter = RecyclerAdapterLatestSeries(requireContext(), it.data!!)
+                        bindiing.RecyclerViewWishlistedSeries.adapter = adapter
+                        adapter.notifyDataSetChanged()
+                        adapter.onClickListener(object : RecyclerAdapterLatestSeries.ClickListener {
+                            override fun OnClick(position: Int) {
+                                HomePageTeachersSide.seriesid =
+                                    adapter.getStudentSeries?.get(position)?.id!!.toInt()
+                                RecyclerAdapterLectureTeachersSide.series_name =
+                                    adapter.getStudentSeries?.get(position)?.name.toString()
+                                RecyclerAdapterLectureTeachersSide.seriesDescription =
+                                    adapter.getStudentSeries?.get(position)?.description.toString()
+                                RecyclerAdapterLectureTeachersSide.seriesThumbnail =
+                                    adapter.getStudentSeries?.get(position)?.icon.toString()
+                                findNavController().navigate(R.id.lecturesTeachersSide2)
+                            }
+                        })
                     }
+                }
 
 
-                })
+            }
         }
         return bindiing.root
     }

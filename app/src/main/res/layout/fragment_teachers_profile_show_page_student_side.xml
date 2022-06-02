@@ -190,7 +190,7 @@
                         app:layout_constraintTop_toTopOf="@+id/imageView17" />
 
 
-                    <Button
+                    <com.google.android.material.button.MaterialButton
                         android:id="@+id/FollowBUttonTeachersProfile"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
@@ -213,11 +213,11 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/imageView18"
                         app:tabGravity="fill"
-                        app:tabIndicatorColor="#EF9800"
+                        app:tabIndicatorColor="#EE6352"
                         app:tabIndicatorFullWidth="true"
                         app:tabIndicatorGravity="bottom"
                         app:tabMode="fixed"
-                        app:tabSelectedTextColor="#EF9800"
+                        app:tabSelectedTextColor="#EE6352"
                         app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
                         app:tabTextColor="@color/black" />
 

@@ -48,38 +48,36 @@ class QuizShowPageTeachersProfile : Fragment() {
 
         lifecycleScope.launch {
             var result=viewModel.getProfile(homePageStudentSide.teacher_id)
-            result.observe(viewLifecycleOwner,
-                {
-                    when(it)
-                    {
-                        is Response.Success->
-                        {
-                            if(it.data!!.educator_quiz.size==0)
-                            {
-                                binding.NoQuizzes.visibility=View.VISIBLE
-                            }
-                            layoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
-                            binding.RecyclerViewStudentSideQuiz.layoutManager = layoutManager
-                            adapterGetQuiz =
-                                RecyclerAdapterQuizTEachersSide(TeacherProfileRepoStudentSide.studentQuizWithNoZeroQuestions)
-
-                            binding.RecyclerViewStudentSideQuiz.adapter = adapterGetQuiz
-                            adapterGetQuiz.onClickListener(object : RecyclerAdapterQuizTEachersSide.ClickListener {
-                                override fun OnClick(position: Int) {
-                                    homePageStudentSide.quizTitle =
-                                        homePageStudentSide.totalQuiz!!.get(position).title.toString()
-                                    homePageStudentSide.quizDescription =
-                                        homePageStudentSide.totalQuiz!!.get(position).description.toString()
-                                    homePageStudentSide.quizLectureCount =
-                                        homePageStudentSide.totalQuiz!!.get(position).questions.toString()
-                                    homePageStudentSide.quizid =
-                                        homePageStudentSide.totalQuiz!!.get(position).id.toInt()
-                                    findNavController().navigate(R.id.quizShowPageStudentSide)
-                                }
-                            })
+            result.observe(viewLifecycleOwner
+            ) {
+                when (it) {
+                    is Response.Success -> {
+                        if (it.data!!.educator_quiz.size == 0) {
+                            binding.NoQuizzes.visibility = View.VISIBLE
                         }
+                        layoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
+                        binding.RecyclerViewStudentSideQuiz.layoutManager = layoutManager
+                        adapterGetQuiz =
+                            RecyclerAdapterQuizTEachersSide(TeacherProfileRepoStudentSide.studentQuizWithNoZeroQuestions)
+
+                        binding.RecyclerViewStudentSideQuiz.adapter = adapterGetQuiz
+                        adapterGetQuiz.onClickListener(object :
+                            RecyclerAdapterQuizTEachersSide.ClickListener {
+                            override fun OnClick(position: Int) {
+                                homePageStudentSide.quizTitle =
+                                    homePageStudentSide.totalQuiz!!.get(position).title.toString()
+                                homePageStudentSide.quizDescription =
+                                    homePageStudentSide.totalQuiz!!.get(position).description.toString()
+                                homePageStudentSide.quizLectureCount =
+                                    homePageStudentSide.totalQuiz!!.get(position).questions.toString()
+                                homePageStudentSide.quizid =
+                                    homePageStudentSide.totalQuiz!!.get(position).id.toInt()
+                                findNavController().navigate(R.id.quizShowPageStudentSide)
+                            }
+                        })
                     }
-                })
+                }
+            }
 
         }
             return binding.root

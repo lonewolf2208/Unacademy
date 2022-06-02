@@ -293,4 +293,15 @@ interface Api {
     @GET("/student/search/series/{name}/")
     fun searchCourse(@Path("name")name:String,@Header("Authorization") token: String):Call<List<SearchCourseModelItem>>
 
+    @FormUrlEncoded
+    @PATCH("/student/profile/")
+    fun UpdateStudentProfile( @Field("name") name: String,
+                              @Field("gender") gender: String,
+                              @Field("birth") birth: String,
+                              @Field("picture") picture: String,
+                              @Field("standard") standard: String,
+                              @Field("mobile") mobile: Long,
+                              @Field("bio") bio: String,
+                              @Header("Authorization") token: String):Call<ResponseBody>
+
 }

@@ -20,10 +20,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scrollbarThumbHorizontal="@null">
-
-
-
-
             <com.denzcoskun.imageslider.ImageSlider
                 android:id="@+id/recyclerViewLatestSeriesStudentSide"
                 app:auto_cycle="true"

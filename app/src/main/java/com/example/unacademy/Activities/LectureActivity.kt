@@ -70,7 +70,6 @@ class LectureActivity : AppCompatActivity() {
             storageReference.putFile(pdfUri)
                 .addOnSuccessListener{
                     it.storage.downloadUrl.addOnSuccessListener {
-
                         if(progressDialog.isShowing())
                         {
                             progressDialog.dismiss()

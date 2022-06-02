@@ -56,6 +56,7 @@ class homePageStudentSide : Fragment(),View.OnClickListener {
         var totalQuiz=ArrayList<StudentSideGetQuizModelItem>()
         var teacher_id:Int=0
         var series=ArrayList<getStudentSeriesItem>()
+        var is_following=false
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -218,12 +219,13 @@ class homePageStudentSide : Fragment(),View.OnClickListener {
                         adapterGetQuiz.onClickListener(object :
                             RecyclerAdapterQuizTEachersSide.ClickListener {
                             override fun OnClick(position: Int) {
-                                quizTitle = it.data!!?.get(position)?.title.toString()
-                                quizDescription = it.data[position].description.toString()
-                                quizLectureCount = it.data[position].questions.toString()
-                                quizid = it.data[position].id.toInt()
-                                quizDuration = it.data[position].duration
-                                if (it.data[position].is_attempted == true) {
+//                                Toast.makeText(requireContext(), it.data!![position].is_attempted.toString(),Toast.LENGTH_LONG).show()
+                                quizTitle = GetQuizRepoStudentSide.studentQuizWithNoZeroQuestions[position].title.toString()
+                                quizDescription = GetQuizRepoStudentSide.studentQuizWithNoZeroQuestions[position].description.toString()
+                                quizLectureCount =GetQuizRepoStudentSide.studentQuizWithNoZeroQuestions[position].questions.toString()
+                                quizid = GetQuizRepoStudentSide.studentQuizWithNoZeroQuestions[position].id.toInt()
+                                quizDuration = GetQuizRepoStudentSide.studentQuizWithNoZeroQuestions[position].duration
+                                if (GetQuizRepoStudentSide.studentQuizWithNoZeroQuestions[position].is_attempted == true) {
                                     findNavController().navigate(R.id.action_homePageStudentSide_to_quizResultPage)
                                 } else {
                                     findNavController().navigate(R.id.action_homePageStudentSide_to_quizShowPageStudentSide)

@@ -63,36 +63,47 @@ class ProfileStudentSide : Fragment() {
         }
         lifecycleScope.launch {
             var result = profileSTudentSideViewModel.getWishlistSeries()
-            result.observe(viewLifecycleOwner,
-                {
-                    when (it) {
-                        is Response.Success -> {
-                            var shimmerFrameLayoutHomePageQuiz=binding.shimmerFrameLayoutLatestSeriesProfilePageStudentSide
-                            shimmerFrameLayoutHomePageQuiz?.stopShimmerAnimation()
-                            shimmerFrameLayoutHomePageQuiz?.visibility=View.INVISIBLE
-                            if(it.data!!.isEmpty())
-                            {
-                                binding.EmptyWishlistStudentSide.text="Your Wishlist is Empty"
-                            }
-                            layoutManager = LinearLayoutManager(
-                                container?.context,LinearLayoutManager.HORIZONTAL,false)
-                            binding.RecyclerAdapterWishlistStudentSide.layoutManager = layoutManager
-                            adapter = RecyclerAdapterStudentWishlist(requireContext(), it.data!!)
-                            binding.RecyclerAdapterWishlistStudentSide.adapter = adapter
-                            adapter.notifyDataSetChanged()
-                            adapter.onClickListener(object : RecyclerAdapterStudentWishlist.ClickListener {
-                                override fun OnClick(position: Int) {
-                                    HomePageTeachersSide.seriesid = adapter.getStudentSeries?.get(position)?.id!!.toInt()
-                                    RecyclerAdapterLectureTeachersSide.series_name=adapter.getStudentSeries?.get(position)?.name.toString()
-                                    RecyclerAdapterLectureTeachersSide.seriesDescription=adapter.getStudentSeries?.get(position)?.description.toString()
-                                    RecyclerAdapterLectureTeachersSide.seriesThumbnail=adapter.getStudentSeries?.get(position)?.icon.toString()
-                                    findNavController().navigate(R.id.lecturesTeachersSide2)
-                                }
-                            })
+            result.observe(viewLifecycleOwner
+            ) {
+                when (it) {
+                    is Response.Success -> {
+                        var shimmerFrameLayoutHomePageQuiz =
+                            binding.shimmerFrameLayoutLatestSeriesProfilePageStudentSide
+                        shimmerFrameLayoutHomePageQuiz?.stopShimmerAnimation()
+                        shimmerFrameLayoutHomePageQuiz?.visibility = View.INVISIBLE
+                        if (it.data!!.isEmpty()) {
+                            binding.EmptyWishlistStudentSide.text = "Your Wishlist is Empty"
                         }
-                        is Response.Error->Toast.makeText(requireContext(),it.errorMessage.toString(),Toast.LENGTH_LONG).show()
+                        layoutManager = LinearLayoutManager(
+                            container?.context, LinearLayoutManager.HORIZONTAL, false
+                        )
+                        binding.RecyclerAdapterWishlistStudentSide.layoutManager = layoutManager
+                        adapter = RecyclerAdapterStudentWishlist(requireContext(), it.data!!)
+                        binding.RecyclerAdapterWishlistStudentSide.adapter = adapter
+                        adapter.notifyDataSetChanged()
+                        adapter.onClickListener(object :
+                            RecyclerAdapterStudentWishlist.ClickListener {
+                            override fun OnClick(position: Int) {
+                                HomePageTeachersSide.seriesid =
+                                    adapter.getStudentSeries?.get(position)?.id!!.toInt()
+                                RecyclerAdapterLectureTeachersSide.series_name =
+                                    adapter.getStudentSeries?.get(position)?.name.toString()
+                                RecyclerAdapterLectureTeachersSide.seriesDescription =
+                                    adapter.getStudentSeries?.get(position)?.description.toString()
+                                RecyclerAdapterLectureTeachersSide.seriesThumbnail =
+                                    adapter.getStudentSeries?.get(position)?.icon.toString()
+                                findNavController().navigate(R.id.lecturesTeachersSide2)
+                            }
+                        })
                     }
-                }) }
+                    is Response.Error -> Toast.makeText(
+                        requireContext(),
+                        it.errorMessage.toString(),
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            }
+        }
         if(attemptedQuiz.isEmpty())
         {
             binding.EmptyAttemptedQuiz.visibility=View.VISIBLE
@@ -113,20 +124,21 @@ class ProfileStudentSide : Fragment() {
         })
         lifecycleScope.launch {
             var result=profileSTudentSideViewModel.getProfile()
-            result.observe(viewLifecycleOwner,
-                {
-                    when(it)
-                    {
-                        is Response.Success->
-                        {
-                            studentProfile= it.data
-                        }
-                        is Response.Error->
-                        {
-                            Toast.makeText(requireContext(),it.errorMessage.toString(),Toast.LENGTH_LONG).show()
-                        }
+            result.observe(viewLifecycleOwner
+            ) {
+                when (it) {
+                    is Response.Success -> {
+                        studentProfile = it.data
                     }
-                })
+                    is Response.Error -> {
+                        Toast.makeText(
+                            requireContext(),
+                            it.errorMessage.toString(),
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+                }
+            }
         }
         return binding.root
     }

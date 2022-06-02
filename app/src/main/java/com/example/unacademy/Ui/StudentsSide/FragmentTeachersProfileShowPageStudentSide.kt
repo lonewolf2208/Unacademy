@@ -3,6 +3,7 @@ package com.example.unacademy.Ui.StudentsSide
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.app.ProgressDialog
+import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -36,7 +37,7 @@ class FragmentTeachersProfileShowPageStudentSide : Fragment(),View.OnClickListen
 
     lateinit var binding:FragmentTeachersProfileShowPageStudentSideBinding
     lateinit var viewModel:TeacherProfileShowStudentSideViewModel
-    var flag=0
+    var flag=1
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel=ViewModelProvider(this)[TeacherProfileShowStudentSideViewModel::class.java]
@@ -78,7 +79,15 @@ class FragmentTeachersProfileShowPageStudentSide : Fragment(),View.OnClickListen
                 when (it) {
                     is com.example.unacademy.Repository.Response.Success -> {
                         alertDialog.dismiss()
-
+                        if(homePageStudentSide.is_following==true)
+                        {
+                            flag=0
+                            binding.FollowBUttonTeachersProfile.text = "Following"
+                            binding.FollowBUttonTeachersProfile.strokeColor= ColorStateList.valueOf(Color.parseColor("#0E97B5"))
+                            binding.FollowBUttonTeachersProfile.strokeWidth=5
+                            binding.FollowBUttonTeachersProfile.setBackgroundColor(Color.WHITE)
+                            binding.FollowBUttonTeachersProfile.setTextColor(ColorStateList.valueOf(Color.parseColor("#0E97B5")))
+                        }
                         binding.shapeableImageView2.load(it.data?.picture)
                         binding.TeacherProfileShowPageFollowerCount.text =
                             it.data!!.followers.toString()
@@ -118,6 +127,10 @@ class FragmentTeachersProfileShowPageStudentSide : Fragment(),View.OnClickListen
                             when (it) {
                                 is com.example.unacademy.Repository.Response.Success -> {
                                     binding.FollowBUttonTeachersProfile.text = "Following"
+                                    binding.FollowBUttonTeachersProfile.strokeColor= ColorStateList.valueOf(Color.parseColor("#0E97B5"))
+                                    binding.FollowBUttonTeachersProfile.strokeWidth=5
+                                    binding.FollowBUttonTeachersProfile.setBackgroundColor(Color.WHITE)
+                                    binding.FollowBUttonTeachersProfile.setTextColor(ColorStateList.valueOf(Color.parseColor("#0E97B5")))
                                     flag++
                                 }
                             }
@@ -131,7 +144,9 @@ class FragmentTeachersProfileShowPageStudentSide : Fragment(),View.OnClickListen
                             when (it) {
                                 is com.example.unacademy.Repository.Response.Success -> {
                                     flag++
-                                    binding.FollowBUttonTeachersProfile.text = "Follow"
+                                    binding.FollowBUttonTeachersProfile.text="Follow"
+                                    binding.FollowBUttonTeachersProfile.setBackgroundColor(Color.parseColor("#0E97B5"))
+                                    binding.FollowBUttonTeachersProfile.setTextColor(ColorStateList.valueOf(Color.WHITE))
                                 }
                             }
                         }
