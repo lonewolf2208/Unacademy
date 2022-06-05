@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_homePageTeachersSide_to_latestSeriesPageStudentSide2"
             app:destination="@id/latestSeriesPageStudentSide2" />
+        <action
+            android:id="@+id/action_homePageTeachersSide_to_lecturesTeachersSide3"
+            app:destination="@id/lecturesTeachersSide3" />
     </fragment>
     <fragment
         android:id="@+id/profileTeachersSide"
@@ -101,4 +104,16 @@
         android:id="@+id/latestSeriesPageStudentSide2"
         android:name="com.example.unacademy.Ui.StudentsSide.LatestSeriesPageStudentSide"
         android:label="LatestSeriesPageStudentSide" />
+    <fragment
+        android:id="@+id/lecturesTeachersSide3"
+        android:name="com.example.unacademy.Ui.TeachersSide.LecturesTeachersSide"
+        android:label="LecturesTeachersSide" />
+    <fragment
+        android:id="@+id/pdfShowPage"
+        android:name="com.example.unacademy.Ui.PdfShowPage"
+        android:label="PdfShowPage" />
+    <fragment
+        android:id="@+id/quizShowTEachers"
+        android:name="com.example.unacademy.Ui.TeachersSide.QuizShowTEachers"
+        android:label="QuizShowTEachers" />
 </navigation>

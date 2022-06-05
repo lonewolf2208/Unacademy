@@ -5,23 +5,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.unacademy.Adapter.StudentSideAdapters.RecyclerAdapterQuizTEachersSide
 import com.example.unacademy.R
-import com.example.unacademy.Repository.Response
-import com.example.unacademy.Ui.TeachersSide.HomePageTeachersSide
 import com.example.unacademy.databinding.FragmentQuizShowPageStudentSideBinding
-import com.example.unacademy.viewmodel.viewmodelStudentside.GetQuizQuestionsViewModel
-import com.example.unacademy.viewmodel.viewmodelStudentside.HomePageStudentSideViewModel
-import kotlinx.coroutines.launch
 
 
 class QuizShowPageStudentSide : Fragment() {

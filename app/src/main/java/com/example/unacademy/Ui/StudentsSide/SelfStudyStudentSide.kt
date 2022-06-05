@@ -49,7 +49,7 @@ class SelfStudyStudentSide : Fragment() {
             ) {
                 when (it) {
                     is Response.Success -> {
-                        layoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
+
                         var shimmerFrameLayoutHomePageQuiz0 =
                             binding.shimmerFrameLayoutSelfStudyStudentSide0
                         shimmerFrameLayoutHomePageQuiz0?.stopShimmerAnimation()
@@ -62,6 +62,7 @@ class SelfStudyStudentSide : Fragment() {
                             binding.shimmerFrameLayoutSelfStudyStudentSide2
                         shimmerFrameLayoutHomePageQuiz2?.stopShimmerAnimation()
                         shimmerFrameLayoutHomePageQuiz2?.visibility = View.INVISIBLE
+                        layoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
                         binding.RecyclerAdapterSelfStudy.layoutManager = layoutManager
                         adapterGetQuiz = RecyclerAdapterQuizTEachersSide(TeacherProfileRepoStudentSide.studentQuizWithNoZeroQuestions)
                         binding.RecyclerAdapterSelfStudy.adapter = adapterGetQuiz

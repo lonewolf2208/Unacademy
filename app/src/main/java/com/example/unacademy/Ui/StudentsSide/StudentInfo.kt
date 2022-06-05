@@ -113,21 +113,30 @@ class StudentInfo : Fragment(),View.OnClickListener,DatePickerDialog.OnDateSetLi
             R.id.submitStudentInfo -> {
                 if (createStudentViewModel.validations() == null) {
                     lifecycleScope.launch {
-                        var result = createStudentViewModel.createStudent()
-                        result.observe(viewLifecycleOwner) {
-                            when (it) {
-                                is Response.Success -> {
-                                    lifecycleScope.launch {
-                                        Splash_Screen.save("studentloggedIn", true)
+                        if (createStudentViewModel.picture.value.isNullOrEmpty()) {
+                            Toast.makeText(
+                                requireContext(),
+                                "Upload Picture to continue",
+                                Toast.LENGTH_LONG
+                            ).show()
+                        } else {
+                            var result = createStudentViewModel.createStudent()
+                            result.observe(viewLifecycleOwner) {
+                                when (it) {
+                                    is Response.Success -> {
+                                        lifecycleScope.launch {
+                                            Splash_Screen.save("studentloggedIn", true)
+                                        }
+                                        val intent =
+                                            Intent(activity, StudentSideActivity::class.java)
+                                        startActivity(intent)
                                     }
-                                    val intent = Intent(activity, StudentSideActivity::class.java)
-                                    startActivity(intent)
+                                    is Response.Error -> Toast.makeText(
+                                        context,
+                                        it.errorMessage,
+                                        Toast.LENGTH_LONG
+                                    ).show()
                                 }
-                                is Response.Error -> Toast.makeText(
-                                    context,
-                                    it.errorMessage,
-                                    Toast.LENGTH_LONG
-                                ).show()
                             }
                         }
                     }

@@ -5,6 +5,7 @@ import com.example.unacademy.models.AuthModels.LoginDataClass
 import com.example.unacademy.models.AuthModels.Message
 import com.example.unacademy.models.AuthModels.SignUpDataClass
 import com.example.unacademy.models.QuizQuestionsModel.quizQuestionsModel
+import com.example.unacademy.models.StudentSideModel.QuizResultRepo.Question
 import com.example.unacademy.models.StudentSideModel.StudentSideGetQuiz.StudentSideGetQuizModelItem
 import com.example.unacademy.models.StudentSideModel.QuizResultRepo.QuizResultModelItem
 import com.example.unacademy.models.StudentSideModel.SearchStudentSide.SearchStudentSideItem
@@ -17,6 +18,7 @@ import com.example.unacademy.models.StudentSideModel.getSearchCourseModel.Search
 import com.example.unacademy.models.StudentSideModel.getStudentProfileModel.getStudentProfileModel
 import com.example.unacademy.models.StudentSideModel.teachersProfileModel.teacher_profile_student_side
 import com.example.unacademy.models.TeachersSideModels.CreateQuizModel.CreateQuizModel
+import com.example.unacademy.models.TeachersSideModels.UploadPdf.uploadpdf
 
 import com.example.unacademy.models.TeachersSideModels.getLectureModelItem
 import com.example.unacademy.models.TeachersSideModels.getStoryModelItem
@@ -27,7 +29,7 @@ import okhttp3.ResponseBody
 import retrofit2.Call
 
 import retrofit2.http.*
-import java.util.ArrayList
+import kotlin.collections.ArrayList
 
 interface Api {
 
@@ -304,4 +306,16 @@ interface Api {
                               @Field("bio") bio: String,
                               @Header("Authorization") token: String):Call<ResponseBody>
 
+    @FormUrlEncoded
+    @POST("/educator/attachments/{series}/")
+    fun UploadPdf(@Path("series")series:Int,@Field("title")title:String,@Field("description")description: String,@Field("doc")doc:String,@Header("Authorization") token: String):Call<ResponseBody>
+
+    @GET("/educator/attachments/{series}/")
+    fun GetPDf(@Path("series")series: Int,@Header("Authorization") token: String):Call<uploadpdf>
+
+    @GET("/educator/quiz/")
+    fun getQuiz(@Header("Authorization") token: String):Call<List<StudentSideGetQuizModelItem>>
+
+    @GET("/educator/quiz/{quiz_id}")
+    fun getQuestions(@Path("quiz_id")quiz_id:Int,@Header("Authorization") token: String):Call<List<Question>>
 }

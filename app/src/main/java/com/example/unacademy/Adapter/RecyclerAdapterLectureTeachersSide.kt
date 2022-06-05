@@ -18,6 +18,7 @@ class RecyclerAdapterLectureTeachersSide(val getLectureModelItem: List<getLectur
        var series_name:String=""
        var seriesDescription:String=""
        var seriesThumbnail:String=""
+       var seriesId:Int=0
    }
     var clickListener: RecyclerAdapterTeachersSideHomePage.ClickListener?=null
 

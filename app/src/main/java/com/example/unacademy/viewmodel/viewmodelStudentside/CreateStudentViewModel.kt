@@ -1,11 +1,13 @@
 package com.example.unacademy.viewmodel.viewmodelStudentside
 
+import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.unacademy.Repository.Response
 import com.example.unacademy.Repository.StudentSideRepo.CreateStudent
 import com.example.unacademy.Ui.Auth.Splash_Screen
+import com.example.unacademy.Ui.StudentsSide.StudentInfo
 import com.example.unacademy.api.RetrofitClient
 import kotlinx.coroutines.launch
 import okhttp3.ResponseBody
@@ -49,6 +51,10 @@ class CreateStudentViewModel: ViewModel() {
         if(standard.value.isNullOrEmpty())
         {
             helpertextstandard.postValue("Please Enter Your Class")
+        }
+        if(picture.value.isNullOrEmpty())
+        {
+
         }
         if(gender.value.isNullOrEmpty() || gender.value.toString().trim()=="Select Your Gender")
         {

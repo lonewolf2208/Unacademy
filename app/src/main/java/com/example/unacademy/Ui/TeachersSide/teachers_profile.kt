@@ -133,16 +133,20 @@ class teachers_profile : Fragment(),View.OnClickListener,DatePickerDialog.OnDate
             R.id.teachers_image->pickImageGallery()
             R.id.VideoUpload->pickVideoGallery()
             R.id.sunmitButtonTeachersProfile-> {
-                if (teachersProfileViewModel.validations() == null) {
-                    lifecycleScope.launch {
-                        teachersProfileViewModel.submitData()
-                    }
-                    teachersProfileViewModel.result.observe(viewLifecycleOwner,
-                        {
+                if (teachersProfileViewModel.imageUrl.value.isNullOrEmpty()) {
+                    Toast.makeText(requireContext(), "Upload Image FIrst", Toast.LENGTH_LONG).show()
+                } else {
+                    if (teachersProfileViewModel.validations() == null) {
+                        lifecycleScope.launch {
+                            teachersProfileViewModel.submitData()
+                        }
+                        teachersProfileViewModel.result.observe(
+                            viewLifecycleOwner
+                        ) {
                             when (it) {
                                 is Response.Success -> {
                                     lifecycleScope.launch {
-                                        Splash_Screen.save("teacherloggedIn",true)
+                                        Splash_Screen.save("teacherloggedIn", true)
                                     }
                                     val intent = Intent(
                                         activity,
@@ -161,7 +165,8 @@ class teachers_profile : Fragment(),View.OnClickListener,DatePickerDialog.OnDate
                                     Toast.LENGTH_LONG
                                 ).show()
                             }
-                        })
+                        }
+                    }
                 }
             }
             R.id.DobTeachersSide->

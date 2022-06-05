@@ -2,7 +2,6 @@ package com.example.unacademy.Ui.TeachersSide
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 
 import android.view.LayoutInflater
 import android.view.View
@@ -10,31 +9,23 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import coil.load
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.unacademy.Activities.LectureActivity
 import com.example.unacademy.Adapter.RecyclerAdapterLectureTeachersSide
 import com.example.unacademy.Adapter.RecyclerAdapterTeachersSideHomePage
+import com.example.unacademy.Adapter.StudentSideAdapters.RecyclerAdapterQuizTEachersSide
 import com.example.unacademy.R
 import com.example.unacademy.Repository.Response
-import com.example.unacademy.Repository.getNewToken
-import com.example.unacademy.Ui.Auth.Splash_Screen
-import com.example.unacademy.api.RetrofitClient
 import com.example.unacademy.databinding.FragmentHomePageTeachersSideBinding
 import com.example.unacademy.models.StudentSideModel.getStudentSeries.getStudentSeriesItem
-import com.example.unacademy.models.TeachersSideModels.getTeachersProfile.getTeachersProfileModel
 import com.example.unacademy.viewmodel.HomePageViewModel
 import com.facebook.shimmer.ShimmerFrameLayout
-import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
-import okhttp3.internal.wait
-import retrofit2.Call
-import retrofit2.Callback
 
 class HomePageTeachersSide : Fragment() {
 
@@ -42,11 +33,13 @@ class HomePageTeachersSide : Fragment() {
     {
         var seriesid:Int?=null
         var latesSeries:List<getStudentSeriesItem>?=null
+        var quizid:Int=0
     }
     lateinit var binding :FragmentHomePageTeachersSideBinding
     lateinit var homePageViewModel:HomePageViewModel
     private var layoutManager: RecyclerView.LayoutManager?=null
     lateinit var adapter:RecyclerAdapterTeachersSideHomePage
+    lateinit var adapterGetQuiz: RecyclerAdapterQuizTEachersSide
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         homePageViewModel=ViewModelProvider(this)[HomePageViewModel::class.java]
@@ -68,6 +61,23 @@ class HomePageTeachersSide : Fragment() {
         binding.shimmerFrameLayoutHomePage.startShimmerAnimation()
         lifecycleScope.launch {
             homePageViewModel.getSeries()
+            homePageViewModel.getQuiz().observe(viewLifecycleOwner
+            ) {
+                when (it) {
+                    is Response.Success -> {
+                        layoutManager =LinearLayoutManager(container?.context ,LinearLayoutManager.HORIZONTAL, false)
+                        binding.recyclerViewQuiz.layoutManager = layoutManager
+                        adapterGetQuiz = RecyclerAdapterQuizTEachersSide(it.data)
+                        binding.recyclerViewQuiz.adapter = adapterGetQuiz
+                        adapterGetQuiz.onClickListener(object : RecyclerAdapterQuizTEachersSide.ClickListener {
+                            override fun OnClick(position: Int) {
+                                quizid= adapterGetQuiz.studentSideGetQuizModelItem!![position].id
+                                findNavController().navigate(R.id.quizShowTEachers)
+                            }
+                        })
+                    }
+                }
+            }
         }
 
        homePageViewModel.result.observe(viewLifecycleOwner

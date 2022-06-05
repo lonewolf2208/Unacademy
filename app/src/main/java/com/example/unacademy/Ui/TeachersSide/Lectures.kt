@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -37,6 +38,7 @@ class Lectures : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        binding= DataBindingUtil.inflate(layoutInflater,R.layout.fragment_lectures, container, false)
         binding.lectureSideViewModel = lectureTeachersSideViewModel
         lifecycleScope.launch {
             lectureTeachersSideViewModel.getLectures(HomePageTeachersSide.seriesid!!.toInt())
@@ -81,7 +83,8 @@ class Lectures : Fragment() {
 
             }
         }
-        return inflater.inflate(R.layout.fragment_lectures, container, false)
+        return binding.root
+
     }
 
 

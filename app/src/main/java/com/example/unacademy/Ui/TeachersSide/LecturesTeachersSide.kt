@@ -17,6 +17,7 @@ import coil.load
 import com.example.unacademy.Activities.ExoPlayer
 import com.example.unacademy.Adapter.RecyclerAdapterLectureTeachersSide
 import com.example.unacademy.Adapter.RecyclerAdapterTeachersSideHomePage
+import com.example.unacademy.Adapter.StudentSideAdapters.FragementChangeSeries
 import com.example.unacademy.Adapter.StudentSideAdapters.FragmentStateChangeAdapter
 import com.example.unacademy.R
 import com.example.unacademy.Ui.StudentsSide.homePageStudentSide
@@ -53,7 +54,7 @@ class LecturesTeachersSide : Fragment() {
         binding.seriedThumbnail.load(RecyclerAdapterLectureTeachersSide.seriesThumbnail.toString())
         binding.seriesName.setText(RecyclerAdapterLectureTeachersSide.series_name)
         binding.seriesDescription.setText(RecyclerAdapterLectureTeachersSide.seriesDescription)
-        binding.viewPagerSeries.adapter= FragmentStateChangeAdapter(this@LecturesTeachersSide)
+        binding.viewPagerSeries.adapter= FragementChangeSeries(this@LecturesTeachersSide)
         TabLayoutMediator(binding.tabLayoutSeries,binding.viewPagerSeries) { tab, position ->
             when (position) {
                 0 -> tab.text = "Lectures"

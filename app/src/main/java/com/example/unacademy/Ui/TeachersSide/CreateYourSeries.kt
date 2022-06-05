@@ -99,25 +99,31 @@ class CreateYourSeries : Fragment() ,View.OnClickListener{
     }
 
     override fun onClick(v: View?) {
-        when(v?.id)
-        {
-            R.id.ThumbnailUpload->pickImageGallery()
-            R.id.createSeries->
-            {
-                if (createYourSeriesViewModel.Validations()==null) {
-                    lifecycleScope.launch {
-                        val result = createYourSeriesViewModel.createSeries()
-                        result.observe(this@CreateYourSeries,
-                            {
+        when (v?.id) {
+            R.id.ThumbnailUpload -> pickImageGallery()
+            R.id.createSeries -> {
+                if (createYourSeriesViewModel.Validations() == null) {
+                    if (createYourSeriesViewModel.icon.value.isNullOrEmpty()) {
+                        Toast.makeText(
+                            requireContext(),
+                            "Upload Image For Series",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    } else {
+                        lifecycleScope.launch {
+                            val result = createYourSeriesViewModel.createSeries()
+                            result.observe(
+                                this@CreateYourSeries
+                            ) {
                                 when (it) {
-                                    is Response.Success ->
-                                    {
+                                    is Response.Success -> {
                                         findNavController().navigate(R.id.action_createYourSeries_to_homePageTeachersSide)
                                         Toast.makeText(
-                                        context,
-                                        "Series Created",
-                                        Toast.LENGTH_LONG
-                                    ).show()}
+                                            context,
+                                            "Series Created",
+                                            Toast.LENGTH_LONG
+                                        ).show()
+                                    }
 
                                     is Response.Error -> Toast.makeText(
                                         context,
@@ -125,11 +131,11 @@ class CreateYourSeries : Fragment() ,View.OnClickListener{
                                         Toast.LENGTH_LONG
                                     ).show()
                                 }
-                            })
+                            }
+                        }
                     }
                 }
             }
         }
     }
-
 }

@@ -31,9 +31,7 @@ import com.example.unacademy.api.RetrofitClient
 import com.example.unacademy.databinding.FragmentHomePageStudentSideBinding
 import com.example.unacademy.models.StudentSideModel.StudentSideGetQuiz.StudentSideGetQuizModelItem
 import com.example.unacademy.models.StudentSideModel.getStudentSeries.getStudentSeriesItem
-import com.example.unacademy.models.TeachersSideModels.educatorSeries.educatorSeriesModelItem
 import com.example.unacademy.viewmodel.viewmodelStudentside.HomePageStudentSideViewModel
-import com.facebook.shimmer.ShimmerFrameLayout
 import kotlinx.coroutines.launch
 
 class homePageStudentSide : Fragment(),View.OnClickListener {

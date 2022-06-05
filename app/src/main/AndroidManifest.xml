@@ -15,19 +15,25 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name=".Activities.StudentStoryActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/TeachersSideHomePage"/>
         <activity
             android:name=".Activities.StoryActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/TeachersSideHomePage"/>
         <activity
             android:name=".Activities.LectureActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/TeachersSideHomePage"
+            />
         <activity
             android:name=".Activities.ExoPlayer"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/TeachersSideHomePage"/>
         <activity
             android:name=".Activities.StudentSideActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/TeachersSideHomePage"/>
         <activity
             android:name=".Activities.NavBarActivity"
             android:exported="true"

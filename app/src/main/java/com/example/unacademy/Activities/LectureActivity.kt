@@ -6,19 +6,35 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.example.unacademy.R
+import com.example.unacademy.Ui.Auth.Splash_Screen
+import com.example.unacademy.Ui.StudentsSide.homePageStudentSide
+import com.example.unacademy.Ui.TeachersSide.HomePageTeachersSide
+import com.example.unacademy.api.RetrofitClient
 import com.example.unacademy.databinding.ActivityLectureBinding
 import com.example.unacademy.databinding.ActivityNavBarBinding
 import com.google.android.gms.tasks.OnFailureListener
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.OnProgressListener
+import kotlinx.coroutines.launch
+import okhttp3.ResponseBody
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.util.*
 
 class LectureActivity : AppCompatActivity() {
@@ -69,14 +85,45 @@ class LectureActivity : AppCompatActivity() {
             progressDialog.setCancelable(false)
             storageReference.putFile(pdfUri)
                 .addOnSuccessListener{
+                    Toast.makeText(this,pdfUri.toString(),Toast.LENGTH_LONG).show()
                     it.storage.downloadUrl.addOnSuccessListener {
                         if(progressDialog.isShowing())
                         {
                             progressDialog.dismiss()
                         }
-//                        binding.ThumbnailSeries.setImageURI(data?.data)
-//                        createYourSeriesViewModel.icon.postValue(it.toString())
+                        val bottomSheet = BottomSheetDialog(this)
+                        val dialodView =
+                            LayoutInflater.from(this).inflate(R.layout.upload_quiz_layout, null)
+                        bottomSheet.setContentView(dialodView)
+                        bottomSheet.show()
+                        var token:String=""
+                        val job =lifecycleScope.launch {
+                            var AccessToken = Splash_Screen.readInfo("access").toString()
+                            token = AccessToken
+                        }
+                        val submitButton=dialodView.findViewById<Button>(R.id.UploadPdf)
+                        var title=dialodView.findViewById<TextView>(R.id.TitlePDf)
+                        var description=dialodView.findViewById<TextView>(R.id.DescriptionPdf)
+                        var url=it.toString()
+                        submitButton.setOnClickListener{
+                            Toast.makeText(this@LectureActivity,token.toString(),Toast.LENGTH_LONG).show()
+                            var result=RetrofitClient.init().UploadPdf(HomePageTeachersSide.seriesid!!.toInt(),title.text.toString(),description.text.toString(),url.toString(),"Bearer ${token}")
+                            result.enqueue(object : Callback<ResponseBody?> {
+                                override fun onResponse(
+                                    call: Call<ResponseBody?>,
+                                    response: Response<ResponseBody?>
+                                ) {
+                                    when{
+                                        response.isSuccessful->{bottomSheet.dismiss()}
+                                        else->{Toast.makeText(this@LectureActivity,response.code().toString(),Toast.LENGTH_LONG).show()}
+                                    }
+                                }
 
+                                override fun onFailure(call: Call<ResponseBody?>, t: Throwable) {
+                                    TODO("Not yet implemented")
+                                }
+                            })
+                        }
                     }
                 }
                 .addOnFailureListener(OnFailureListener()
