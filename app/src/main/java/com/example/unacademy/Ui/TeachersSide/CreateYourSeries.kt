@@ -77,6 +77,7 @@ class CreateYourSeries : Fragment() ,View.OnClickListener{
                         {
                             progressDialog.dismiss()
                         }
+                        binding.ThumbnailSeries.visibility=View.VISIBLE
                             binding.ThumbnailSeries.setImageURI(data?.data)
                             createYourSeriesViewModel.icon.postValue(it.toString())
 

@@ -38,6 +38,10 @@ class   LatestSeriesPageStudentSide : Fragment() {
 //            binding.shimmerFrameLayoutHomePageLatestSeries.stopShimmerAnimation()
 //            binding.shimmerFrameLayoutHomePageLatestSeries.visibility=View.INVISIBLE
 //        }
+        if(HomePageTeachersSide.latesSeries!!.isEmpty())
+        {
+            binding.EmptySeries.visibility=View.VISIBLE
+        }
         layoutManager= LinearLayoutManager(container?.context)
         binding.RecylerViewLatestSeries.layoutManager=layoutManager
         adapter=RecyclerAdapterTeachersSideHomePage(HomePageTeachersSide.latesSeries)

@@ -62,12 +62,12 @@
 
                 </LinearLayout>
             </com.facebook.shimmer.ShimmerFrameLayout>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerViewHomePage"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="15dp"
                 android:layout_marginEnd="24dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -78,7 +78,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="300dp"
+                android:layout_marginTop="150dp"
                 android:layout_marginEnd="16dp"
                 android:textColor="#000000"
                 android:textSize="28sp"
@@ -91,7 +91,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:fontFamily="@font/roboto_bold"
                 android:text="Your Quizzes"
                 android:textColor="#000000"
@@ -111,6 +111,7 @@
 
             <TextView
                 android:id="@+id/seeMoreSeries"
+                android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="33dp"
@@ -120,6 +121,33 @@
                 android:textColor="#000000"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/shimmerFrameLayoutQuiz"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView44">
+
+                <LinearLayout
+                    android:id="@+id/linearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <include
+                        android:id="@+id/include2DailyQUiz"
+                        layout="@layout/shimmer_effect_quiz_" />
+
+                    <include
+                        android:id="@+id/include3DailyQUiz"
+                        layout="@layout/shimmer_effect_quiz_" />
+                    />
+                </LinearLayout>
+            </com.facebook.shimmer.ShimmerFrameLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </FrameLayout>
 </androidx.core.widget.NestedScrollView>

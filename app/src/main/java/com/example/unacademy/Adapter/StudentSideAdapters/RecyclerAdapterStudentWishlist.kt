@@ -38,8 +38,8 @@ class RecyclerAdapterStudentWishlist(val context: Context, var getStudentSeries:
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.binding.SeriesNameStudentSide.text= getStudentSeries?.get(position)?.name.toString()
-        if(getStudentSeries?.get(position)?.is_wishlisted==true)
+        holder.binding.SeriesNameStudentSide.text= getStudentSeries.get(position).name.toString()
+        if(getStudentSeries.get(position).is_wishlisted ==true)
         {
             holder.binding.WishListStudentSide.setBackgroundResource(R.drawable.ic_wishlist_student_side_selected)
         }

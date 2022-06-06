@@ -62,7 +62,6 @@ class TeachersProfileViewModel():ViewModel()
         if(imageUrl.value.isNullOrEmpty())
         {
             helperTextImage.postValue("Please Update Your Profile Picture")
-
         }
         if(gender.value.isNullOrEmpty() || gender.value.toString().trim()=="Select Your Gender")
         {

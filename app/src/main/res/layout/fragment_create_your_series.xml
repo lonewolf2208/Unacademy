@@ -86,6 +86,7 @@
                 android:layout_marginStart="24dp"
                 app:helperText="@{createSeriesViewModel.helperTextName}"
                 android:layout_marginTop="4dp"
+                app:helperTextTextColor="@color/Red"
                 android:layout_marginEnd="24dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -126,6 +127,7 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="24dp"
+                app:helperTextTextColor="@color/Red"
                 app:helperText="@{createSeriesViewModel.helperTextDescription}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -163,6 +165,7 @@
             <ImageView
                 android:id="@+id/ThumbnailSeries"
                 android:layout_width="150dp"
+                android:visibility="gone"
                 android:layout_height="150dp"
                 android:layout_marginStart="120dp"
                 android:layout_marginTop="16dp"

@@ -59,12 +59,15 @@ class HomePageTeachersSide : Fragment() {
 
         binding.lifecycleOwner=this
         binding.shimmerFrameLayoutHomePage.startShimmerAnimation()
+        binding.shimmerFrameLayoutQuiz.startShimmerAnimation()
         lifecycleScope.launch {
             homePageViewModel.getSeries()
             homePageViewModel.getQuiz().observe(viewLifecycleOwner
             ) {
                 when (it) {
                     is Response.Success -> {
+                        binding.shimmerFrameLayoutQuiz.stopShimmerAnimation()
+                        binding.shimmerFrameLayoutQuiz.visibility=View.INVISIBLE
                         layoutManager =LinearLayoutManager(container?.context ,LinearLayoutManager.HORIZONTAL, false)
                         binding.recyclerViewQuiz.layoutManager = layoutManager
                         adapterGetQuiz = RecyclerAdapterQuizTEachersSide(it.data)
@@ -94,6 +97,7 @@ class HomePageTeachersSide : Fragment() {
                    if (it.data!!.isEmpty()) {
                        binding.EmptySeries.text = "Upload Series !! "
                    }
+                   binding.seeMoreSeries.visibility=View.VISIBLE
                    layoutManager = LinearLayoutManager(container?.context ,LinearLayoutManager.HORIZONTAL,
                        false)
                    binding.recyclerViewHomePage.layoutManager = layoutManager
