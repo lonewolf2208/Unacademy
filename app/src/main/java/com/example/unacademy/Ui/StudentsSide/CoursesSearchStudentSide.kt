@@ -37,7 +37,7 @@ class CoursesSearchStudentSide : Fragment() {
         binding=DataBindingUtil.inflate(inflater,R.layout.fragment_courses_search_student_side, container, false)
         layoutManager = LinearLayoutManager(
             container?.context,
-            LinearLayoutManager.HORIZONTAL,
+            LinearLayoutManager.VERTICAL,
             false
         )
         binding.RecyclerViewCourseSearch.layoutManager =

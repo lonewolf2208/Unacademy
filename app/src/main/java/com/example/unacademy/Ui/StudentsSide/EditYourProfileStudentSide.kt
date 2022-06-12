@@ -59,7 +59,7 @@ class EditYourProfileStudentSide : Fragment() ,View.OnClickListener{
         binding.MobileNoStudentProfile.isEnabled=false
         binding.NameStudentProfileStudentSide.isEnabled=false
         binding.checkBoxEdit.setOnClickListener(this)
-       binding.BioStudentProfile.setText(ProfileStudentSide.studentProfile!!.bio.toString())
+         binding.BioStudentProfile.setText(ProfileStudentSide.studentProfile!!.bio.toString())
         binding.ClassStudentProfile.setText(ProfileStudentSide.studentProfile!!.standard)
         binding.DateOfBirthStudentPRofile.setText(ProfileStudentSide.studentProfile!!.birth)
         binding.EmailAddressStudentProfile.setText(ProfileStudentSide.studentProfile!!.student.email)

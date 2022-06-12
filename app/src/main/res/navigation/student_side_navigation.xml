@@ -134,4 +134,14 @@
         android:id="@+id/educatorSearchStudentSide"
         android:name="com.example.unacademy.Ui.StudentsSide.EducatorSearchStudentSide"
         android:label="EducatorSearchStudentSide" />
+    <fragment
+        android:id="@+id/aboutUsOmega"
+        android:name="com.example.unacademy.Ui.AboutUsOmega"
+        android:label="fragment_about_us_omega"
+        tools:layout="@layout/fragment_about_us_omega" />
+    <fragment
+        android:id="@+id/privacyPolicyOmega"
+        android:name="com.example.unacademy.Ui.PrivacyPolicyOmega"
+        android:label="fragment_privacy_policy_omega"
+        tools:layout="@layout/fragment_privacy_policy_omega" />
 </navigation>

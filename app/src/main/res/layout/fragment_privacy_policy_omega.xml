@@ -1,14 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Ui.PrivacyPolicyOmega">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+   <androidx.constraintlayout.widget.ConstraintLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+
+       <TextView
+           android:id="@+id/textView26"
+           android:layout_width="0dp"
+           android:layout_height="wrap_content"
+           android:layout_marginStart="16dp"
+           android:layout_marginTop="24dp"
+           android:layout_marginEnd="16dp"
+           android:text="Privacy Policy"
+           android:textAlignment="center"
+           android:textColor="#000000"
+           android:textSize="30sp"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toTopOf="parent" />
+
+       <TextView
+           android:id="@+id/textView125"
+           android:layout_width="0dp"
+           android:layout_height="wrap_content"
+           android:layout_marginStart="16dp"
+           android:layout_marginTop="24dp"
+           android:layout_marginEnd="16dp"
+           android:fontFamily="@font/roboto_black"
+           android:text="In today's business world, companies depend heavily on data and information derived from it. Indeed, information is essential for all company employees, from the top executives to the operations level.  Protecting data, especially private, personal information, is crucial in a complex world where so much depends upon it. The most important step for business owners to protect their customers' data is to create a concise and transparent Privacy Policy.  A Privacy Policy is a legal document, which informs your website's visitors about the data collected on them and how your company will use it.  A good Privacy Policy should outline what data is being collected and explain why you're collecting it, who has access to it, and the time frame during which you plan to store it.  It should also include any third parties with whom your company shares personal or private information, as well as any steps taken to ensure the security of such information.  This article will cover the components of a good Privacy Policy."
+           android:textAlignment="center"
+           android:textColor="#00416D"
+           android:textSize="16sp"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toBottomOf="@+id/textView26" />
+   </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

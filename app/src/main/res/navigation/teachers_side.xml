@@ -116,4 +116,14 @@
         android:id="@+id/quizShowTEachers"
         android:name="com.example.unacademy.Ui.TeachersSide.QuizShowTEachers"
         android:label="QuizShowTEachers" />
+    <fragment
+        android:id="@+id/aboutUsOmega2"
+        android:name="com.example.unacademy.Ui.AboutUsOmega"
+        android:label="fragment_about_us_omega"
+        tools:layout="@layout/fragment_about_us_omega" />
+    <fragment
+        android:id="@+id/privacyPolicyOmega2"
+        android:name="com.example.unacademy.Ui.PrivacyPolicyOmega"
+        android:label="fragment_privacy_policy_omega"
+        tools:layout="@layout/fragment_privacy_policy_omega" />
 </navigation>

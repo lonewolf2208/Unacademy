@@ -79,7 +79,16 @@ class NavBarActivity : AppCompatActivity() ,View.OnClickListener{
             navController.navigate(R.id.change_Password_Inside)
             alertDialog.cancel()
         }
-
+        dialodView.findViewById<ImageView>(R.id.AboutUs).setOnClickListener{
+            var navController = Navigation.findNavController(this,R.id.fragment_container)
+            navController.navigate(R.id.aboutUsOmega2)
+            alertDialog.cancel()
+        }
+        dialodView.findViewById<ImageView>(R.id.Privacy).setOnClickListener{
+            var navController = Navigation.findNavController(this,R.id.fragment_container)
+            navController.navigate(R.id.privacyPolicyOmega2)
+            alertDialog.cancel()
+        }
         alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         alertDialog.window?.setLayout(400,
             2000)

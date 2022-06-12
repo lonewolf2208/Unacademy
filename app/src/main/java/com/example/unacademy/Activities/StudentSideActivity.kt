@@ -53,7 +53,16 @@ class StudentSideActivity : AppCompatActivity(), View.OnClickListener {
                 navController.navigate(R.id.changePassworsInsideStudentSide)
                 alertDialog.cancel()
             }
-
+            dialodView.findViewById<ImageView>(R.id.AboutUs).setOnClickListener{
+                var navController = Navigation.findNavController(this,R.id.fragment_container_student_side)
+                navController.navigate(R.id.aboutUsOmega)
+                alertDialog.cancel()
+            }
+            dialodView.findViewById<ImageView>(R.id.Privacy).setOnClickListener{
+                var navController = Navigation.findNavController(this,R.id.fragment_container_student_side)
+                navController.navigate(R.id.privacyPolicyOmega)
+                alertDialog.cancel()
+            }
             alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
             alertDialog.window?.setLayout(
                 400,
@@ -91,6 +100,7 @@ class StudentSideActivity : AppCompatActivity(), View.OnClickListener {
                 intent.putExtra(Intent.EXTRA_TEXT, "your_text");
                 startActivity(intent);
             }
+
             R.id.NotificationButtonStudentSide->
             {
                 var navController = Navigation.findNavController(this,R.id.fragment_container_student_side)
